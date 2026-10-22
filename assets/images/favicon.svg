@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1e40af" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Modern App Icon Squircle Background -->
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#brandGrad)" filter="url(#glow)"/>
+
+  <!-- Stylized Geometric Tool & "F" Monogram -->
+  <g fill="#ffffff">
+    <!-- Main stem of F -->
+    <rect x="36" y="32" width="16" height="64" rx="8" />
+    <!-- Top bar with bolt notch -->
+    <rect x="36" y="32" width="56" height="16" rx="8" />
+    <!-- Middle bar with wrench accent -->
+    <rect x="36" y="58" width="40" height="14" rx="7" />
+  </g>
+
+  <!-- Cyan accent sparkle for precision utilities -->
+  <circle cx="92" cy="74" r="6" fill="#38bdf8" />
+  <circle cx="102" cy="58" r="3.5" fill="#bae6fd" />
+</svg>
