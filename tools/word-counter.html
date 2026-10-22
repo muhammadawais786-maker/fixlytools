@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Word Counter - Characters, Sentences & Reading Time | Fixlytools</title>
+  <meta name="description" content="Accurately count words, characters, sentences, paragraphs, reading and speaking time in real-time. Free online word counter with keyword density analyzer.">
+  <link rel="canonical" href="https://fixlytools.com/tools/word-counter.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
+        <a href="image-compressor.html" class="hover:text-blue-600">Compressor</a>
+        <a href="json-formatter.html" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="../about.html" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <span>Text Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Word Counter</span>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense Space (728x90)</div>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-6">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Word & Character Counter</h1>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+          Real-time text analytics for writers, students, bloggers, and SEO professionals.
+        </p>
+      </div>
+
+      <!-- Real-time Stat Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-6">
+        <div class="p-3 bg-blue-50 dark:bg-slate-900 rounded-xl text-center border border-blue-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">Words</span>
+          <p id="word-count" class="text-xl font-extrabold text-blue-600 dark:text-blue-400">0</p>
+        </div>
+        <div class="p-3 bg-emerald-50 dark:bg-slate-900 rounded-xl text-center border border-emerald-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">Characters</span>
+          <p id="char-count" class="text-xl font-extrabold text-emerald-600 dark:text-emerald-400">0</p>
+        </div>
+        <div class="p-3 bg-purple-50 dark:bg-slate-900 rounded-xl text-center border border-purple-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">No Spaces</span>
+          <p id="char-no-space" class="text-xl font-extrabold text-purple-600 dark:text-purple-400">0</p>
+        </div>
+        <div class="p-3 bg-amber-50 dark:bg-slate-900 rounded-xl text-center border border-amber-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">Sentences</span>
+          <p id="sentence-count" class="text-xl font-extrabold text-amber-600 dark:text-amber-400">0</p>
+        </div>
+        <div class="p-3 bg-pink-50 dark:bg-slate-900 rounded-xl text-center border border-pink-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">Paragraphs</span>
+          <p id="paragraph-count" class="text-xl font-extrabold text-pink-600 dark:text-pink-400">0</p>
+        </div>
+        <div class="p-3 bg-teal-50 dark:bg-slate-900 rounded-xl text-center border border-teal-100 dark:border-slate-700">
+          <span class="text-xs text-slate-500 uppercase">Reading Time</span>
+          <p id="reading-time" class="text-xs font-bold text-teal-600 dark:text-teal-400 mt-1">0 min</p>
+        </div>
+      </div>
+
+      <!-- Textarea Workspace -->
+      <div class="mb-4">
+        <textarea id="text-input" rows="10" placeholder="Type or paste your text here..." 
+          class="w-full p-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans text-sm leading-relaxed"></textarea>
+      </div>
+
+      <!-- Quick Actions & Density -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="copy-btn" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+            <i class="fa-solid fa-copy"></i> Copy Text
+          </button>
+          <button id="clear-btn" class="px-3.5 py-2 border rounded-lg text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">
+            Clear
+          </button>
+          <button id="uppercase-btn" class="px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600">
+            UPPERCASE
+          </button>
+          <button id="lowercase-btn" class="px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600">
+            lowercase
+          </button>
+        </div>
+
+        <div class="text-xs text-slate-500">
+          Speaking time: <span id="speaking-time" class="font-bold text-slate-700 dark:text-slate-300">0 min</span>
+        </div>
+      </div>
+
+      <!-- Keyword Density Box -->
+      <div class="mt-6 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700">
+        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-2">Top Keywords Density</h4>
+        <div id="keyword-density" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          <span class="text-xs text-slate-400">Type or paste text to see keyword density.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense In-Content Banner (Responsive)</div>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Why Word Count & Reading Time Matter</h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+        Fixlytools Word Counter is an essential aid for meeting specific limits across diverse platforms:
+      </p>
+      <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+        <li><strong>Social Media Posts:</strong> X / Twitter (280 characters), LinkedIn post character limits.</li>
+        <li><strong>Academic Essays:</strong> Adhere strictly to 500, 1000, or 2500-word university assignment targets.</li>
+        <li><strong>SEO Articles:</strong> Balance keyword frequency and target optimal article length (1,200 - 2,000 words).</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/tools/word-counter.js"></script>
+</body>
+</html>

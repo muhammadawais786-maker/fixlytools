@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixlytools - Free, Fast & Private Online Web Utilities</title>
+  <meta name="description" content="Fixlytools provides 15+ powerful, free, privacy-first online tools for images, PDFs, developer utilities, and calculators. Zero server uploads, 100% browser-based.">
+  <meta name="keywords" content="image compressor, merge pdf, word counter, json formatter, qr code generator, pdf compressor, emi calculator">
+  <link rel="canonical" href="https://fixlytools.com/">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#image-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Image & Text</a>
+        <a href="#pdf-tools" class="hover:text-blue-600 dark:hover:text-blue-400">PDF Suite</a>
+        <a href="#dev-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Dev & Calculators</a>
+        <a href="about.html" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
+        <a href="contact.html" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-2 text-sm font-medium">
+      <a href="#image-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Image & Text</a>
+      <a href="#pdf-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">PDF Suite</a>
+      <a href="#dev-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Dev & Calculators</a>
+      <a href="about.html" class="block py-1.5 text-slate-700 dark:text-slate-200">About</a>
+      <a href="contact.html" class="block py-1.5 text-slate-700 dark:text-slate-200">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-12 sm:py-16 bg-gradient-to-b from-blue-50/50 via-white to-transparent dark:from-slate-800/40 dark:via-slate-900 dark:to-transparent border-b border-slate-200/60 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 mb-4">
+        <i class="fa-solid fa-shield-halved text-xs"></i> 100% Client-Side & Private &bull; Zero Server Uploads
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        All Your Everyday Utilities, <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Fast & Free</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
+        Compress images, edit PDFs, format code, and calculate finances directly inside your browser. No files are uploaded to any server.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="max-w-xl mx-auto relative mb-6">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input type="text" id="tool-search" placeholder="Search any tool (e.g. compress image, merge pdf, word count)..." 
+          class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-white text-sm sm:text-base">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <button data-category="all" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all">All 15 Tools</button>
+        <button data-category="image-text" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">🖼️ Images & Text</button>
+        <button data-category="pdf" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">📄 PDF Suite</button>
+        <button data-category="dev-calc" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">⚙️ Developer & Math</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP AD PLACEMENT SLOT (AdSense / Adsterra display ready) -->
+  <div class="max-w-5xl mx-auto px-4 mt-6">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <!-- AD CODE PLACEHOLDER: Paste Google AdSense or Clean Banner Ad Code here -->
+      <div class="text-xs text-slate-400 py-3">Ad Space Reserved for Google AdSense (728x90 / Responsive)</div>
+    </div>
+  </div>
+
+  <!-- Tools Grid Section -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+    <div id="no-results" class="hidden text-center py-16">
+      <i class="fa-solid fa-face-frown text-4xl text-slate-400 mb-3"></i>
+      <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200">No matching tools found</h3>
+      <p class="text-sm text-slate-500">Try searching for keywords like "pdf", "image", "json", "calc", or "password".</p>
+    </div>
+
+    <!-- 15 Tools Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-container">
+
+      <!-- TOOL 1: Image Compressor -->
+      <a href="tools/image-compressor.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image photo compress size shrink reduce optimize jpg png webp">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-file-image"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-300">Phase 1 &bull; Image</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Image Compressor</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Reduce image file size with quality control slider without losing visual clarity.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Browser Only</span>
+        </div>
+      </a>
+
+      <!-- TOOL 2: Image Resizer -->
+      <a href="tools/image-resizer.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image resize scale dimensions pixels crop width height aspect ratio">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300">Phase 1 &bull; Image</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Image Resizer</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Change image dimensions in pixels or percentage with aspect ratio lock.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Instant</span>
+        </div>
+      </a>
+
+      <!-- TOOL 3: Image Format Converter -->
+      <a href="tools/image-converter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="convert image jpg to png png to jpg webp format convert">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-300">Phase 1 &bull; Image</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">JPG / PNG / WebP Converter</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Convert pictures interchangeably between modern formats with zero quality loss.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Batch Friendly</span>
+        </div>
+      </a>
+
+      <!-- TOOL 4: QR Code Generator -->
+      <a href="tools/qr-code-generator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="qr code generator barcode url text link wifi contact create make">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-300">Phase 1 &bull; Utility</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">QR Code Generator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Generate high-res custom QR codes for URLs, WiFi credentials, vCards, and text.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-pink-600 dark:text-pink-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">PNG & SVG Download</span>
+        </div>
+      </a>
+
+      <!-- TOOL 5: Word Counter -->
+      <a href="tools/word-counter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="word counter character count sentences paragraphs reading time text length">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-font"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-300">Phase 1 &bull; Text</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Word Counter</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Count words, characters, sentences, reading and speaking duration in real-time.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Live Statistics</span>
+        </div>
+      </a>
+
+      <!-- TOOL 6: Merge PDF -->
+      <a href="tools/merge-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="merge pdf combine pdf join pdf files documents unite">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-300">Phase 2 &bull; PDF</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Merge PDF</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Combine multiple PDF files into one single document with custom ordering.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-red-600 dark:text-red-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">100% Private</span>
+        </div>
+      </a>
+
+      <!-- TOOL 7: JPG to PDF -->
+      <a href="tools/jpg-to-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="jpg to pdf images to pdf png to pdf photo to document converter">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-images"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-orange-50 dark:bg-orange-950 text-orange-600 dark:text-orange-300">Phase 2 &bull; PDF</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">JPG to PDF</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Turn multiple images into a professional, cleanly aligned PDF book or handout.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-orange-600 dark:text-orange-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">A4 & Custom Formats</span>
+        </div>
+      </a>
+
+      <!-- TOOL 8: Split PDF -->
+      <a href="tools/split-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="split pdf extract pages divide separate pdf range">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300">Phase 2 &bull; PDF</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Split PDF</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Extract individual pages or specified page ranges from any large PDF file.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Range Selector</span>
+        </div>
+      </a>
+
+      <!-- TOOL 9: PDF Compressor -->
+      <a href="tools/pdf-compressor.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf compressor reduce pdf size shrink document mb to kb">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-compress"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-300">Phase 2 &bull; PDF</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">PDF Compressor</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Compress PDF documents to smaller MB/KB for faster email attachments.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-rose-600 dark:text-rose-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">High Ratio</span>
+        </div>
+      </a>
+
+      <!-- TOOL 10: HEIC to JPG -->
+      <a href="tools/heic-to-jpg.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="heic to jpg iphone photo apple format heif converter">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-brands fa-apple"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-300">Phase 2 &bull; Converter</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">HEIC to JPG</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Convert Apple iPhone HEIC and HEIF photos to universal standard JPG/PNG.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-sky-600 dark:text-sky-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Direct In-Browser</span>
+        </div>
+      </a>
+
+      <!-- TOOL 11: JSON Formatter & Validator -->
+      <a href="tools/json-formatter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="json formatter validator beautify minify clean json debug developer">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950 text-violet-600 dark:text-violet-300">Phase 3 &bull; Developer</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">JSON Formatter & Validator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Beautify, validate, minify, and inspect JSON payloads with line error highlighting.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-violet-600 dark:text-violet-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Copy & Download</span>
+        </div>
+      </a>
+
+      <!-- TOOL 12: Password Generator -->
+      <a href="tools/password-generator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="password generator strong random security secure pass gen">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950 text-teal-600 dark:text-teal-300">Phase 3 &bull; Security</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Password Generator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Create cryptographic-grade random passwords with strength indicators.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-teal-600 dark:text-teal-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">1-Click Copy</span>
+        </div>
+      </a>
+
+      <!-- TOOL 13: Text Diff Checker -->
+      <a href="tools/text-diff.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="text diff difference compare comparison text checker find differences">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-code-compare"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-300">Phase 3 &bull; Developer</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Text Diff Checker</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Compare two texts side-by-side with color-coded difference highlights.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-cyan-600 dark:text-cyan-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Side by Side</span>
+        </div>
+      </a>
+
+      <!-- TOOL 14: Age Calculator -->
+      <a href="tools/age-calculator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="age calculator birthday date of birth years months days calculate age">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-cake-candles"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-yellow-50 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-300">Phase 3 &bull; Calculator</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Age Calculator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate exact age down to months, days, minutes with next birthday countdown.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-yellow-600 dark:text-yellow-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Exact Time</span>
+        </div>
+      </a>
+
+      <!-- TOOL 15: EMI / Loan Calculator -->
+      <a href="tools/emi-calculator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="emi calculator loan interest mortgage monthly installment bank">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-lime-100 dark:bg-lime-900/50 text-lime-600 dark:text-lime-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-lime-50 dark:bg-lime-950 text-lime-600 dark:text-lime-300">Phase 3 &bull; Finance</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">EMI / Loan Calculator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate monthly loan payments, total interest, and amortization breakdowns.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-lime-600 dark:text-lime-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">Visual Chart</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- BOTTOM AD PLACEMENT SLOT -->
+  <div class="max-w-5xl mx-auto px-4 mb-10">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <!-- AD CODE PLACEHOLDER: Paste AdSense / Banner ad here -->
+      <div class="text-xs text-slate-400 py-3">Ad Space Reserved for Google AdSense (Responsive Banner)</div>
+    </div>
+  </div>
+
+  <!-- Features & Privacy Guarantee Section (Great for AdSense Content Value) -->
+  <section class="bg-white dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Why Use Fixlytools?</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-sm mt-1">Built modern for performance, zero installation, and complete privacy.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-lock text-lg"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white mb-1">100% Client-Side Privacy</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Your files never leave your device. All calculations, image rendering, and PDF processing occur right in your browser's local memory.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-gauge-high text-lg"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Zero Wait Times</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">No upload progress bars or waiting for server processing queues. Tools run at full native speed.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-amber-600 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-infinity text-lg"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Unlimited Free Usage</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">No subscription fees, no credit cards required, and no limits on file conversion counts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-screwdriver-wrench text-blue-600"></i>
+        <span class="font-bold text-slate-700 dark:text-slate-200">Fixlytools</span> &copy; 2026. All rights reserved.
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <a href="privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="about.html" class="hover:text-blue-600">About Us</a>
+        <a href="contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

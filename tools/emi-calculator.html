@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free EMI & Loan Calculator - Monthly Installment & Interest Breakdown | Fixlytools</title>
+  <meta name="description" content="Calculate monthly EMI, total interest, and loan amortization for home loans, car loans, or personal loans. Visual breakdown chart and instant calculations.">
+  <link rel="canonical" href="https://fixlytools.com/tools/emi-calculator.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
+        <a href="age-calculator.html" class="hover:text-blue-600">Age Calculator</a>
+        <a href="json-formatter.html" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="../about.html" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <span>Calculators</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">EMI / Loan Calculator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense Space (728x90)</div>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">EMI & Loan Calculator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Calculate your monthly installment, total interest payable, and payment balance for mortgages and personal loans.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- Inputs Column -->
+        <div class="space-y-4">
+          <div>
+            <label for="loan-amount" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+              Loan Amount ($)
+            </label>
+            <input type="number" id="loan-amount" value="50000" min="100" step="500" 
+              class="w-full px-4 py-2.5 border rounded-xl dark:bg-slate-700 dark:border-slate-600 font-semibold text-slate-900 dark:text-white">
+          </div>
+
+          <div>
+            <label for="interest-rate" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+              Annual Interest Rate (% p.a.)
+            </label>
+            <input type="number" id="interest-rate" value="8.5" min="0.1" step="0.1" 
+              class="w-full px-4 py-2.5 border rounded-xl dark:bg-slate-700 dark:border-slate-600 font-semibold text-slate-900 dark:text-white">
+          </div>
+
+          <div>
+            <label for="loan-tenure" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+              Loan Tenure
+            </label>
+            <div class="flex gap-2">
+              <input type="number" id="loan-tenure" value="5" min="1" 
+                class="flex-1 px-4 py-2.5 border rounded-xl dark:bg-slate-700 dark:border-slate-600 font-semibold text-slate-900 dark:text-white">
+              <select id="tenure-type" class="px-3 py-2.5 border rounded-xl dark:bg-slate-700 text-sm font-semibold">
+                <option value="years" selected>Years</option>
+                <option value="months">Months</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="calculate-btn" class="w-full py-3 bg-lime-600 hover:bg-lime-700 text-white font-bold rounded-xl shadow transition">
+            Recalculate
+          </button>
+        </div>
+
+        <!-- Output Card -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-5">
+          <div class="text-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <span class="text-xs text-slate-500 uppercase font-semibold">Monthly Loan EMI</span>
+            <p id="emi-output" class="text-3xl font-black text-lime-600 dark:text-lime-400 mt-1">$0.00</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+              <span class="text-[11px] text-slate-500 uppercase font-semibold">Total Interest</span>
+              <p id="total-interest-output" class="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1">$0.00</p>
+            </div>
+            <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+              <span class="text-[11px] text-slate-500 uppercase font-semibold">Total Payment</span>
+              <p id="total-payment-output" class="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1">$0.00</p>
+            </div>
+          </div>
+
+          <!-- Breakdown Visual Bar -->
+          <div>
+            <div class="flex items-center justify-between text-xs font-semibold mb-1 text-slate-600 dark:text-slate-300">
+              <span>Principal: <strong id="principal-pct" class="text-blue-600">0%</strong></span>
+              <span>Interest: <strong id="interest-pct" class="text-amber-500">0%</strong></span>
+            </div>
+            <div class="w-full h-3 rounded-full flex overflow-hidden bg-slate-200 dark:bg-slate-700">
+              <div id="principal-bar" class="bg-blue-600 transition-all duration-300" style="width: 50%;"></div>
+              <div id="interest-bar" class="bg-amber-500 transition-all duration-300" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense In-Content Banner (Responsive)</div>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Understanding the EMI Formula</h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+        Equated Monthly Installment (EMI) is computed with standard mathematical amortization:
+      </p>
+      <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-900 font-mono text-xs text-center text-slate-700 dark:text-slate-300 mb-4">
+        EMI = [P &times; R &times; (1+R)^N] / [(1+R)^N &minus; 1]
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        Where <strong>P</strong> represents Principal amount, <strong>R</strong> is the monthly rate of interest, and <strong>N</strong> is tenure in total months.
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/tools/emi-calculator.js"></script>
+</body>
+</html>

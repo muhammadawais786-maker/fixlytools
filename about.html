@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Fixlytools</title>
+  <meta name="description" content="About Fixlytools - Discover our mission to provide lightning-fast, 100% private and free client-side online tools.">
+  <link rel="canonical" href="https://fixlytools.com/about.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="index.html#image-tools" class="hover:text-blue-600">Image Tools</a>
+        <a href="index.html#pdf-tools" class="hover:text-blue-600">PDF Tools</a>
+        <a href="index.html#dev-tools" class="hover:text-blue-600">Developer & Math</a>
+        <a href="about.html" class="text-blue-600 font-semibold">About</a>
+        <a href="contact.html" class="hover:text-blue-600">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-12 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm border border-slate-200 dark:border-slate-700">
+      <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">About Fixlytools</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+        <strong>Fixlytools</strong> was engineered to solve a common frustration with modern web utilities: endless advertisements, slow cloud uploads, and alarming privacy risks.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+        <div class="p-5 rounded-xl bg-blue-50 dark:bg-slate-700/50 border border-blue-100 dark:border-slate-700">
+          <i class="fa-solid fa-bolt text-2xl text-blue-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white mb-1">Instant Speed</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">All tools execute instantly inside your browser without queue delays.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-emerald-50 dark:bg-slate-700/50 border border-emerald-100 dark:border-slate-700">
+          <i class="fa-solid fa-shield-halved text-2xl text-emerald-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white mb-1">Total Privacy</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Zero file uploads to external servers. Your documents and data never leave your computer.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-purple-50 dark:bg-slate-700/50 border border-purple-100 dark:border-slate-700">
+          <i class="fa-solid fa-gift text-2xl text-purple-600 mb-3"></i>
+          <h3 class="font-bold text-slate-900 dark:text-white mb-1">100% Free</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">No hidden paywalls, subscription fees, or feature limitations.</p>
+        </div>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Core Tool Categories</h2>
+      <ul class="space-y-3 text-slate-600 dark:text-slate-300 mb-8 list-disc list-inside">
+        <li><strong>Image & Graphic Tools:</strong> Ultra-fast compression, resizing, format conversion (JPG, PNG, WebP), and QR code generation.</li>
+        <li><strong>PDF Suite:</strong> Merge, split, compress, and convert images to PDF or Apple HEIC to standard JPG.</li>
+        <li><strong>Developer & Utility Calculators:</strong> JSON beautifiers, strong password generators, text diff comparators, age calculations, and financial EMI loan planners.</li>
+      </ul>
+
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+        Built by passionate developers, Fixlytools leverages modern web standards like WebAssembly, HTML5 Canvas, and modern Web APIs to bring desktop-grade speed directly into your favorite browser.
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-wrench text-blue-600"></i>
+        <span>Fixlytools &copy; 2026</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="about.html" class="hover:text-blue-600">About Us</a>
+        <a href="contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

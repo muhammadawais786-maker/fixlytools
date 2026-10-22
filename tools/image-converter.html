@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free JPG, PNG, WebP Image Converter - Batch Convert Online | Fixlytools</title>
+  <meta name="description" content="Convert images between JPG, PNG, and WebP instantly in your browser. Batch conversion supported with zero quality loss and total privacy.">
+  <link rel="canonical" href="https://fixlytools.com/tools/image-converter.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
+        <a href="image-compressor.html" class="hover:text-blue-600">Compressor</a>
+        <a href="image-resizer.html" class="hover:text-blue-600">Resizer</a>
+        <a href="../about.html" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Image Converter</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense Space (728x90)</div>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Image Format Converter</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Convert JPG, PNG, and WebP files interchangeably with batch support and zero server uploads.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" multiple accept="image/jpeg,image/png,image/webp" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-50 dark:bg-purple-900/40 text-purple-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload images to convert</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Select single or multiple files (JPG, PNG, WebP)</p>
+        <button type="button" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose Files
+        </button>
+      </div>
+
+      <div id="controls" class="hidden mt-6 space-y-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <label for="target-format" class="text-sm font-bold text-slate-700 dark:text-slate-200">Convert to:</label>
+            <select id="target-format" class="px-3 py-2 border rounded-lg dark:bg-slate-700 text-sm font-semibold">
+              <option value="image/jpeg">JPG / JPEG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button id="convert-all-btn" class="flex-1 sm:flex-none px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-sm transition">
+              <i class="fa-solid fa-arrows-rotate"></i> Convert All Files
+            </button>
+            <button id="clear-btn" class="px-4 py-2 border rounded-lg text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <div id="file-list" class="space-y-2.5"></div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense In-Content Banner (Responsive)</div>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Why Convert Images to WebP, JPG, or PNG?</h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+        Choosing the right image format is essential for web performance and compatibility:
+      </p>
+      <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+        <li><strong>WebP:</strong> Next-gen format developed by Google offering superior 30% higher compression with transparency support.</li>
+        <li><strong>PNG:</strong> Lossless format ideal for graphics, logos, illustrations, and transparent backgrounds.</li>
+        <li><strong>JPG:</strong> Universal standard supported by every email client, printer, and device on Earth.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/tools/image-converter.js"></script>
+</body>
+</html>

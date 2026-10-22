@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Age Calculator - Exact Years, Months, Days & Next Birthday | Fixlytools</title>
+  <meta name="description" content="Calculate your exact chronological age in years, months, and days. Countdown to your next birthday with total days and hours lived. 100% free tool.">
+  <link rel="canonical" href="https://fixlytools.com/tools/age-calculator.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
+        <a href="emi-calculator.html" class="hover:text-blue-600">EMI Calculator</a>
+        <a href="word-counter.html" class="hover:text-blue-600">Word Counter</a>
+        <a href="../about.html" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <span>Calculators</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Age Calculator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense Space (728x90)</div>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Chronological Age Calculator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Find your exact age in years, months, and days with next birthday countdown.
+        </p>
+      </div>
+
+      <!-- Inputs -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="dob-input" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+            Date of Birth
+          </label>
+          <input type="date" id="dob-input" value="1998-05-15" class="w-full px-4 py-2.5 border rounded-xl dark:bg-slate-700 dark:border-slate-600 text-sm font-semibold">
+        </div>
+        <div>
+          <label for="target-date-input" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase">
+            Calculate Age As Of
+          </label>
+          <input type="date" id="target-date-input" class="w-full px-4 py-2.5 border rounded-xl dark:bg-slate-700 dark:border-slate-600 text-sm font-semibold">
+        </div>
+      </div>
+
+      <button id="calculate-btn" class="w-full py-3.5 bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+        <i class="fa-solid fa-cake-candles"></i> Calculate Age Now
+      </button>
+
+      <!-- Results Container -->
+      <div id="result-container" class="mt-8 space-y-6">
+        <!-- Main Age Card -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-yellow-50 via-amber-50 to-orange-50 dark:from-slate-900 dark:to-slate-800 border border-yellow-200 dark:border-slate-700 text-center">
+          <span class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wide">Your Exact Age</span>
+          <div class="flex items-center justify-center gap-4 sm:gap-6 mt-3 text-slate-800 dark:text-white">
+            <div>
+              <span id="res-years" class="text-3xl sm:text-5xl font-black text-amber-600 dark:text-amber-400">0</span>
+              <p class="text-xs font-semibold text-slate-500 mt-1">Years</p>
+            </div>
+            <div class="text-2xl sm:text-4xl font-light text-slate-300">&bull;</div>
+            <div>
+              <span id="res-months" class="text-3xl sm:text-5xl font-black text-amber-600 dark:text-amber-400">0</span>
+              <p class="text-xs font-semibold text-slate-500 mt-1">Months</p>
+            </div>
+            <div class="text-2xl sm:text-4xl font-light text-slate-300">&bull;</div>
+            <div>
+              <span id="res-days" class="text-3xl sm:text-5xl font-black text-amber-600 dark:text-amber-400">0</span>
+              <p class="text-xs font-semibold text-slate-500 mt-1">Days</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-4">
+            Day of birth: <strong id="res-bornday" class="text-slate-900 dark:text-white">-</strong> &bull; 
+            Next Birthday: <strong id="res-nextbday" class="text-amber-600 dark:text-amber-400">-</strong>
+          </p>
+        </div>
+
+        <!-- Life Milestones Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-center">
+            <span class="text-[11px] font-semibold text-slate-500 uppercase">Total Months</span>
+            <p id="tot-months" class="text-lg font-bold text-slate-800 dark:text-slate-100 mt-1">0</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-center">
+            <span class="text-[11px] font-semibold text-slate-500 uppercase">Total Weeks</span>
+            <p id="tot-weeks" class="text-lg font-bold text-slate-800 dark:text-slate-100 mt-1">0</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-center">
+            <span class="text-[11px] font-semibold text-slate-500 uppercase">Total Days</span>
+            <p id="tot-days" class="text-lg font-bold text-slate-800 dark:text-slate-100 mt-1">0</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 text-center">
+            <span class="text-[11px] font-semibold text-slate-500 uppercase">Total Hours</span>
+            <p id="tot-hours" class="text-lg font-bold text-slate-800 dark:text-slate-100 mt-1">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+      <div class="text-xs text-slate-400 py-2">Google AdSense In-Content Banner (Responsive)</div>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Accurate Leap-Year Aware Age Calculation</h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+        Calculating age by simply dividing total days by 365 produces errors because months vary between 28 and 31 days, and leap years occur every four years. Fixlytools implements precise Gregorian calendar algorithms to ensure exact day-level accuracy for job applications, insurance forms, and birthday celebrations.
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
+        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/tools/age-calculator.js"></script>
+</body>
+</html>
