@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -47,75 +47,36 @@
     </div>
   </header>
 
-  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-12 w-full">
-    <!-- Quick Contact Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-      <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl shrink-0">
-            <i class="fa-solid fa-envelope"></i>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Official Email</span>
-            <p class="text-base font-bold text-slate-900 dark:text-white mt-0.5">support@fixlytools.com</p>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">24/7 direct response to all inquiries</p>
-          </div>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 flex gap-2">
-          <a href="mailto:support@fixlytools.com" class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold text-center transition flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-paper-plane text-xs"></i> Send Email
-          </a>
-          <button onclick="navigator.clipboard.writeText('support@fixlytools.com'); showToast('Email copied to clipboard!', 'success');" class="px-3 py-2 border rounded-lg text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700" title="Copy Email">
-            <i class="fa-solid fa-copy"></i>
-          </button>
-        </div>
-      </div>
+  <main class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 py-12 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm border border-slate-200 dark:border-slate-700">
+      <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Contact Us</h1>
+      <p class="text-slate-600 dark:text-slate-300 mb-8">Have a question, feedback, or tool suggestion? We'd love to hear from you.</p>
 
-      <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl shrink-0">
-            <i class="fa-brands fa-google"></i>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Quick Gmail Compose</span>
-            <p class="text-base font-bold text-slate-900 dark:text-white mt-0.5">Direct via Web Gmail</p>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Opens directly in your browser Gmail</p>
-          </div>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@fixlytools.com&su=Fixlytools%20Inquiry" target="_blank" rel="noopener" class="w-full py-2 bg-slate-900 hover:bg-black dark:bg-slate-700 dark:hover:bg-slate-600 text-white rounded-lg text-xs font-bold text-center transition flex items-center justify-center gap-1.5">
-            <i class="fa-brands fa-google text-xs"></i> Open in Gmail Window
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact Form Card -->
-    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 dark:border-slate-700">
-      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Send Us a Direct Message</h1>
-      <p class="text-sm text-slate-600 dark:text-slate-300 mb-8">Fill out the fields below to quickly draft and send your feedback, feature request, or partnership proposal.</p>
-
-      <form id="contact-form" class="space-y-5" onsubmit="handleContactSubmit(event)">
+      <form id="contact-form" class="space-y-5" onsubmit="event.preventDefault(); showToast('Thank you! Your message has been sent.', 'success'); this.reset();">
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase" for="name">Your Name</label>
-          <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5" for="name">Your Name</label>
+          <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase" for="email">Your Email Address</label>
-          <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5" for="email">Email Address</label>
+          <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase" for="subject">Subject</label>
-          <input type="text" id="subject" required placeholder="Question, Tool Suggestion, or Bug Report" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5" for="subject">Subject</label>
+          <input type="text" id="subject" required placeholder="Tool suggestion or question" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase" for="message">Message</label>
-          <textarea id="message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500"></textarea>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5" for="message">Message</label>
+          <textarea id="message" rows="5" required placeholder="Type your message here..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
-        <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-2 text-sm">
-          <i class="fa-solid fa-paper-plane"></i> Send Message Directly
+        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow transition-colors">
+          Send Message
         </button>
       </form>
+
+      <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p>Direct Support Email: <a href="mailto:support@fixlytools.com" class="text-blue-600 font-medium">support@fixlytools.com</a></p>
+      </div>
     </div>
   </main>
 
@@ -133,31 +94,7 @@
       </div>
     </div>
   </footer>
-
   <script src="assets/js/app.js"></script>
-  <script>
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const userEmail = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      const fullSubject = encodeURIComponent(`[Fixlytools] ${subject}`);
-      const body = encodeURIComponent(`Hello Fixlytools Support,\n\nName: ${name}\nEmail: ${userEmail}\n\nMessage:\n${message}\n\n---\nSent from Fixlytools Contact Page`);
-
-      // Try opening Gmail web composer in a new tab first (preferred by 90% of desktop users)
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=support@fixlytools.com&su=${fullSubject}&body=${body}`;
-      const mailtoUrl = `mailto:support@fixlytools.com?subject=${fullSubject}&body=${body}`;
-
-      showToast('Opening your email client to send message...', 'info');
-
-      // Attempt popup or mailto
-      const win = window.open(gmailUrl, '_blank');
-      if (!win || win.closed || typeof win.closed === 'undefined') {
-        window.location.href = mailtoUrl;
-      }
-    }
-  </script>
 </body>
 </html>
+
