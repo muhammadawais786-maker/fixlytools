@@ -20,34 +20,13 @@
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-/* Ad Placement Slots (Google AdSense & Adsterra ready) */
+/* Ad Placement Slots — hidden until AdSense code is pasted */
 .ad-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(241, 245, 249, 0.6);
-  border: 1px dashed #cbd5e1;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  margin: 1.5rem auto;
-  min-height: 90px;
-  max-width: 100%;
-  text-align: center;
-  overflow: hidden;
-}
-
-.dark .ad-slot {
-  background: rgba(30, 41, 59, 0.6);
-  border-color: #334155;
+  display: none;
 }
 
 .ad-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  margin-bottom: 0.25rem;
+  display: none;
 }
 
 /* Drag and Drop Zone */
