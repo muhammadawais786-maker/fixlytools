@@ -132,11 +132,12 @@
           showToast('Thank you! Your message has been sent successfully.', 'success');
           contactForm.reset();
         } else {
-          showToast('Could not send message. Please try again.', 'error');
+          console.error('Web3Forms error:', result);
+          showToast('Could not send message. Please try again or email support@fixlytools.com.', 'error');
         }
       } catch (err) {
-        showToast('Message sent! We will get back to you shortly.', 'success');
-        contactForm.reset();
+        console.error('Contact form network error:', err);
+        showToast('Network error: your message was NOT sent. Please email support@fixlytools.com instead.', 'error');
       } finally {
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';
