@@ -135,11 +135,61 @@
       <span class="ad-label">Advertisement</span>
     </div>
 
-    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none">
-      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Why Use a Client-Side JSON Formatter?</h2>
-      <p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-        API responses often contain sensitive authorization tokens, internal user IDs, and private server payloads. Unlike other online tools that transmit your pasted data across untrusted servers, Fixlytools parses JSON directly in your browser's V8 engine.
-      </p>
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Format and Validate JSON Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">JSON (JavaScript Object Notation) is the standard data format used by APIs, configuration files, and databases. Working with raw, minified JSON is difficult to read. Fixlytools JSON Formatter instantly beautifies JSON with proper indentation, detects syntax errors with line numbers, and can also minify JSON for production use.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Paste Your JSON:</strong> Paste your raw or minified JSON data into the input text area on the left side of the tool.</li>
+        <li><strong>Click Format or Minify:</strong> Click "Format JSON" to beautify with indentation, or "Minify JSON" to compact it into a single line for production.</li>
+        <li><strong>Check for Errors:</strong> If your JSON has syntax errors, the tool highlights the problem and shows the line number so you can fix it quickly.</li>
+        <li><strong>Copy or Download:</strong> Copy the formatted output to your clipboard or download it as a .json file.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Real-Time Validation:</strong> Instantly detects JSON syntax errors and highlights the problematic line with a helpful message.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Beautify & Minify:</strong> Switch between readable, indented JSON and compact single-line JSON for production use.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Copy to Clipboard:</strong> One-click copy of the formatted output â€” no selecting text manually.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Download as File:</strong> Save the formatted or minified JSON directly as a .json file to your device.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Works Offline:</strong> Everything runs in your browser. No data is ever sent to any server.</span></li>        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is JSON formatting?</h4>
+          <p>JSON formatting (or beautifying) adds proper indentation and line breaks to compact JSON data, making it easy for humans to read and debug. Minifying does the opposite â€” removing all whitespace to reduce file size for use in APIs and web applications.</p>
+        </div>        <div>
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What JSON syntax errors does the tool detect?</h4>
+          <p>The tool detects common JSON errors such as missing commas, unclosed brackets or braces, incorrect quotes (JSON requires double quotes), trailing commas, and invalid values.</p>
+        </div>        <div>
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is there a size limit for JSON input?</h4>
+          <p>There is no strict limit, but very large JSON files (above 5 MB) may slow down the tool depending on your device. For best performance, format large JSON files in sections.</p>
+        </div>        <div>
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does the tool support JSON5 or JSONC (comments)?</h4>
+          <p>No. The tool validates strict JSON as defined by the JSON specification (RFC 8259). JSON5 and JSONC formats with comments are not valid JSON and will be flagged as errors.</p>
+        </div>        <div>
+          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my JSON data sent to a server?</h4>
+          <p>No. All formatting and validation happens entirely in your browser using JavaScript. Your data is never transmitted to any server.</p>
+        </div>        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="text-diff.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-code-compare text-blue-500"></i> Text Diff Checker</a>
+        <a href="word-counter.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
+        <a href="password-generator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
+        <a href="qr-code-generator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-qrcode text-blue-500"></i> QR Code Generator</a>
+        </div>
+      </div>
+
     </div>
   </main>
 
