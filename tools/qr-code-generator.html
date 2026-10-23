@@ -8,6 +8,18 @@
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="alternate icon" href="../favicon.ico">
   <link rel="canonical" href="https://fixlytools.com/tools/qr-code-generator.html">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/qr-code-generator.html">
+  <meta property="og:title" content="Free QR Code Generator - URL, WiFi & Text | Fixlytools">
+  <meta property="og:description" content="Generate high-resolution QR codes for website URLs, Wi-Fi passwords, contact vCards, and text. Pick colors and download PNG instantly.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free QR Code Generator - URL, WiFi & Text | Fixlytools">
+  <meta name="twitter:description" content="Generate high-resolution QR codes for website URLs, Wi-Fi passwords, contact vCards, and text. Pick colors and download PNG instantly.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -23,7 +35,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- QRCode.js Library CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-</head>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Code Generator",
+  "url": "https://fixlytools.com/tools/qr-code-generator.html",
+  "description": "Generate high-resolution QR codes for URLs, Wi-Fi, vCards, and text.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+  </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

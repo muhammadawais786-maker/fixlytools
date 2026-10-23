@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Subtle grid pattern -->
+  <rect width="1200" height="630" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <!-- Icon circle -->
+  <circle cx="600" cy="210" r="80" fill="rgba(255,255,255,0.15)"/>
+  <text x="600" y="235" font-family="Arial, sans-serif" font-size="70" text-anchor="middle" fill="white">🔧</text>
+  <!-- Brand name -->
+  <text x="600" y="340" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" text-anchor="middle" fill="white">Fixlytools</text>
+  <!-- Tagline -->
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="rgba(255,255,255,0.85)">15 Free Online Tools — Images, PDFs &amp; More</text>
+  <!-- Sub text -->
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="rgba(255,255,255,0.65)">No uploads · No sign-up · 100% Private · Works in your browser</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="580" width="1200" height="50" fill="rgba(0,0,0,0.25)"/>
+  <text x="600" y="612" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="rgba(255,255,255,0.8)">fixlytools.com</text>
+</svg>

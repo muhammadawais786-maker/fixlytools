@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,18 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.ico">
   <link rel="canonical" href="https://fixlytools.com/">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/">
+  <meta property="og:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
+  <meta property="og:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
+  <meta name="twitter:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +46,22 @@
   </script>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Fixlytools",
+  "url": "https://fixlytools.com",
+  "description": "15 free browser-based tools for images, PDFs, developers, and calculators.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://fixlytools.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+  </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
 
   <!-- Header -->
