@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearchAndFilter();
   initAccessibility();
   initGlobalDropGuard();
+  initServiceWorker();
 });
 
 // 1. Theme Management (Dark / Light Mode)
@@ -284,4 +285,15 @@ function loadImageFile(file) {
 // 14. Utility: canvas -> Blob as a Promise
 function canvasToBlob(canvas, type, quality) {
   return new Promise((resolve) => canvas.toBlob(resolve, type, quality));
+}
+
+
+// 10. Offline support: register the service worker (needs HTTPS or localhost)
+function initServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  const secure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if (!secure) return;
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => { /* offline mode is optional */ });
+  });
 }

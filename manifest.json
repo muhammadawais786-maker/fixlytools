@@ -1,0 +1,23 @@
+{
+  "name": "Fixlytools - Free Online Tools",
+  "short_name": "Fixlytools",
+  "description": "Free, fast and private online tools: image compressor, PDF tools, calculators and more. Everything runs in your browser.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Image Compressor", "url": "/tools/image-compressor", "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Merge PDF", "url": "/tools/merge-pdf", "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Word Counter", "url": "/tools/word-counter", "icons": [{ "src": "/assets/images/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
