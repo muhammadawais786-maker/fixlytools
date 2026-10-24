@@ -1,37 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Converter - JPG, PNG, WebP Online Converter | Fixlytools</title>
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Image Converter - JPG, PNG &amp; WebP Online | Fixlytools</title>
   <meta name="description" content="Convert images between JPG, PNG, and WebP instantly in your browser. Batch conversion supported with good quality output and total privacy.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="alternate icon" href="../favicon.ico">
-  <link rel="canonical" href="https://fixlytools.com/tools/image-converter.html">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://fixlytools.com/tools/image-converter">
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fixlytools">
-  <meta property="og:url" content="https://fixlytools.com/tools/image-converter.html">
-  <meta property="og:title" content="Image Converter - JPG, PNG, WebP Online Converter | Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/image-converter">
+  <meta property="og:title" content="Image Converter - JPG, PNG &amp; WebP Online | Fixlytools">
   <meta property="og:description" content="Convert images between JPG, PNG, and WebP instantly in your browser. Batch conversion supported with good quality and total privacy.">
-  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Image Converter - JPG, PNG, WebP Online Converter | Fixlytools">
+  <meta name="twitter:title" content="Image Converter - JPG, PNG &amp; WebP Online | Fixlytools">
   <meta name="twitter:description" content="Convert images between JPG, PNG, and WebP instantly in your browser. Batch conversion supported with good quality and total privacy.">
-  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Structured Data / JSON-LD -->
@@ -40,7 +36,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Image Format Converter",
-  "url": "https://fixlytools.com/tools/image-converter.html",
+  "url": "https://fixlytools.com/tools/image-converter",
   "description": "Convert images between JPG, PNG, and WebP instantly in your browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
@@ -48,17 +44,18 @@
 }
   </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
         <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
         <span>Fixlytools</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
-        <a href="image-compressor.html" class="hover:text-blue-600">Compressor</a>
-        <a href="image-resizer.html" class="hover:text-blue-600">Resizer</a>
-        <a href="../about.html" class="hover:text-blue-600">About</a>
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/image-resizer" class="hover:text-blue-600">Resizer</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
       </nav>
       <div class="flex items-center gap-3">
         <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
@@ -70,7 +67,7 @@
   </header>
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
-    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <a href="/" class="hover:underline">Home</a> &gt; 
     <span>Image Tools</span> &gt; 
     <span class="text-slate-800 dark:text-slate-200 font-semibold">Image Converter</span>
   </div>
@@ -95,7 +92,7 @@
         <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-50 dark:bg-purple-900/40 text-purple-600 flex items-center justify-center text-2xl">
           <i class="fa-solid fa-arrows-rotate"></i>
         </div>
-        <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload images to convert</h3>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload images to convert</h2>
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Select single or multiple files (JPG, PNG, WebP)</p>
         <button type="button" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
           Choose Files
@@ -138,10 +135,9 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Convert Image Format Online</h2>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Different platforms and devices require images in specific formats. JPG is best for photos with small file sizes, PNG is ideal for graphics with transparency, and WebP is the modern standard preferred by Google for faster web pages. Fixlytools Image Converter lets you switch between these formats instantly in your browser.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
-        <li><strong>Upload Your Image:</strong> Click "Browse Image" or drag and drop a JPG, PNG, or WebP file onto the tool.</li>
+        <li><strong>Upload Your Images:</strong> Click to browse or drag and drop one or more JPG, PNG, or WebP files onto the tool.</li>
         <li><strong>Choose Output Format:</strong> Select your target format: JPG, PNG, or WebP.</li>
-        <li><strong>Adjust Quality (Optional):</strong> For JPG and WebP outputs, set the quality level to balance file size and visual appearance.</li>
-        <li><strong>Convert & Download:</strong> Click "Convert & Download" to instantly save the converted image.</li>
+                <li><strong>Convert &amp; Save:</strong> Click "Convert All Files", then use the Save button next to each converted image.</li>
         </ol>
       </div>
 
@@ -149,7 +145,7 @@
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>JPG, PNG & WebP Support:</strong> Convert between all three major modern image formats with a single click.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Quality Control:</strong> Adjust output quality for JPG and WebP to get the file size you need.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Preserves Transparency:</strong> When converting to PNG, alpha-channel transparency in the source image is kept intact.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Privacy First:</strong> All conversion runs inside your browser. No images are sent to any server.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No Limits:</strong> Convert as many images as you need, completely free, with no account required.</span></li>        </ul>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>JPG, PNG & WebP Support:</strong> Convert between all three major modern image formats.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Batch Conversion:</strong> Convert several images in one go and save each result.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Preserves Transparency:</strong> When converting to PNG, alpha-channel transparency in the source image is kept intact.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Privacy First:</strong> All conversion runs inside your browser. No images are sent to any server.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No Limits:</strong> Convert as many images as you need, completely free, with no account required.</span></li>        </ul>
       </div>
 
       <!-- FAQ Section -->
@@ -157,19 +153,19 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
         <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between JPG, PNG and WebP?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between JPG, PNG and WebP?</h3>
           <p>JPG uses lossy compression and is best for photographs. PNG uses lossless compression and supports transparency, making it ideal for logos and graphics. WebP is a modern format developed by Google that offers smaller file sizes than both JPG and PNG while maintaining good quality.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does converting from JPG to PNG improve quality?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does converting from JPG to PNG improve quality?</h3>
           <p>No. Converting from a lossy format (JPG) to a lossless one (PNG) will not restore lost quality. The output PNG will be larger in file size but will not look sharper than the source JPG.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will the converted file have a watermark?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will the converted file have a watermark?</h3>
           <p>Never. Fixlytools does not add any watermarks to converted images. The output is clean and ready to use.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I convert HEIC files here?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I convert HEIC files here?</h3>
           <p>This tool handles JPG, PNG, and WebP formats. For HEIC files from iPhones, use our dedicated HEIC to JPG Converter tool.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the conversion done on my device or a server?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the conversion done on my device or a server?</h3>
           <p>All conversion is done locally inside your browser using the HTML5 Canvas API. Your images are never uploaded to any server.</p>
         </div>        </div>
       </div>
@@ -178,10 +174,10 @@
       <div>
         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
         <div class="flex flex-wrap gap-2">
-        <a href="image-compressor.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
-        <a href="image-resizer.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
-        <a href="heic-to-jpg.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-apple text-blue-500"></i> HEIC to JPG</a>
-        <a href="jpg-to-pdf.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> JPG to PDF</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/heic-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-apple text-blue-500"></i> HEIC to JPG</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> JPG to PDF</a>
         </div>
       </div>
 
@@ -192,15 +188,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
       <div class="flex gap-6">
-        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
-        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
-        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/tools/image-converter.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/image-converter.js"></script>
 </body>
 </html>
 

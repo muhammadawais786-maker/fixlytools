@@ -1,134 +1,132 @@
 // Fixlytools - Image Resizer
-document.addEventListener('DOMContentLoaded', () => {
-  const dropzone = document.getElementById('dropzone');
-  const fileInput = document.getElementById('file-input');
-  const workspace = document.getElementById('workspace');
-  const previewImg = document.getElementById('preview-img');
-  const widthInput = document.getElementById('width-input');
-  const heightInput = document.getElementById('height-input');
-  const lockAspect = document.getElementById('lock-aspect');
-  const formatSelect = document.getElementById('format-select');
-  const dimensionInfo = document.getElementById('dimension-info');
-  const downloadBtn = document.getElementById('download-btn');
-  const resetBtn = document.getElementById('reset-btn');
-  const presetBtns = document.querySelectorAll('.preset-btn');
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const workspace = document.getElementById('workspace');
+    const previewImg = document.getElementById('preview-img');
+    const widthInput = document.getElementById('width-input');
+    const heightInput = document.getElementById('height-input');
+    const lockAspect = document.getElementById('lock-aspect');
+    const formatSelect = document.getElementById('format-select');
+    const dimensionInfo = document.getElementById('dimension-info');
+    const downloadBtn = document.getElementById('download-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const presetBtns = document.querySelectorAll('.preset-btn');
 
-  let originalWidth = 0;
-  let originalHeight = 0;
-  let aspectRatio = 1;
-  let currentFile = null;
-  let currentImage = null;
+    const MAX_SIDE = 10000;
+    const MAX_PIXELS = 100000000;
 
-  // Dropzone drag-and-drop
-  ['dragenter', 'dragover'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      dropzone.classList.add('drag-active');
-    });
-  });
+    let originalWidth = 0;
+    let originalHeight = 0;
+    let aspectRatio = 1;
+    let currentFile = null;
+    let currentImage = null;
+    let previewUrl = null;
 
-  ['dragleave', 'drop'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('drag-active');
-    });
-  });
+    async function handleFiles(files) {
+      const file = files.find(f => f.type.startsWith('image/'));
+      if (!file) {
+        showToast('Please choose an image file (JPG, PNG or WebP).', 'warning');
+        return;
+      }
+      let img;
+      try {
+        img = await loadImageFile(file);
+      } catch (err) {
+        showToast('This image could not be read. It may be damaged or in an unsupported format.', 'error');
+        return;
+      }
+      currentFile = file;
+      currentImage = img;
+      originalWidth = img.naturalWidth || img.width;
+      originalHeight = img.naturalHeight || img.height;
+      aspectRatio = originalWidth / originalHeight;
 
-  dropzone.addEventListener('drop', (e) => {
-    const files = e.dataTransfer.files;
-    if (files.length > 0 && files[0].type.startsWith('image/')) {
-      handleImage(files[0]);
+      widthInput.value = originalWidth;
+      heightInput.value = originalHeight;
+      updateInfo();
+
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = URL.createObjectURL(file);
+      previewImg.src = previewUrl;
+      dropzone.classList.add('hidden');
+      workspace.classList.remove('hidden');
     }
-  });
 
-  dropzone.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) handleImage(fileInput.files[0]);
-  });
-
-  function handleImage(file) {
-    currentFile = file;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      currentImage = new Image();
-      currentImage.onload = () => {
-        originalWidth = currentImage.width;
-        originalHeight = currentImage.height;
-        aspectRatio = originalWidth / originalHeight;
-
-        widthInput.value = originalWidth;
-        heightInput.value = originalHeight;
-        updateInfo();
-
-        previewImg.src = e.target.result;
-        dropzone.classList.add('hidden');
-        workspace.classList.remove('hidden');
-      };
-      currentImage.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function updateInfo() {
-    dimensionInfo.textContent = `Original: ${originalWidth} × ${originalHeight} px | New: ${widthInput.value} × ${heightInput.value} px`;
-  }
-
-  widthInput.addEventListener('input', () => {
-    const w = parseInt(widthInput.value, 10);
-    if (lockAspect.checked && w > 0) {
-      heightInput.value = Math.round(w / aspectRatio);
+    function updateInfo() {
+      dimensionInfo.textContent = `Original: ${originalWidth} × ${originalHeight} px | New: ${widthInput.value || '?'} × ${heightInput.value || '?'} px`;
     }
-    updateInfo();
-  });
 
-  heightInput.addEventListener('input', () => {
-    const h = parseInt(heightInput.value, 10);
-    if (lockAspect.checked && h > 0) {
-      widthInput.value = Math.round(h * aspectRatio);
-    }
-    updateInfo();
-  });
+    setupDropzone(dropzone, fileInput, handleFiles);
 
-  presetBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const scale = parseFloat(btn.dataset.scale);
-      widthInput.value = Math.round(originalWidth * scale);
-      heightInput.value = Math.round(originalHeight * scale);
+    widthInput.addEventListener('input', () => {
+      const w = parseInt(widthInput.value, 10);
+      if (lockAspect.checked && w > 0) heightInput.value = Math.max(1, Math.round(w / aspectRatio));
       updateInfo();
     });
-  });
 
-  downloadBtn.addEventListener('click', () => {
-    if (!currentImage) return;
+    heightInput.addEventListener('input', () => {
+      const h = parseInt(heightInput.value, 10);
+      if (lockAspect.checked && h > 0) widthInput.value = Math.max(1, Math.round(h * aspectRatio));
+      updateInfo();
+    });
 
-    const targetWidth = parseInt(widthInput.value, 10) || originalWidth;
-    const targetHeight = parseInt(heightInput.value, 10) || originalHeight;
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scale = parseFloat(btn.dataset.scale);
+        widthInput.value = Math.max(1, Math.round(originalWidth * scale));
+        heightInput.value = Math.max(1, Math.round(originalHeight * scale));
+        updateInfo();
+      });
+    });
 
-    const canvas = document.createElement('canvas');
-    canvas.width = targetWidth;
-    canvas.height = targetHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(currentImage, 0, 0, targetWidth, targetHeight);
+    downloadBtn.addEventListener('click', async () => {
+      if (!currentImage) return;
 
-    const format = formatSelect.value;
-    canvas.toBlob((blob) => {
-      if (!blob) return;
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      const ext = format === 'image/jpeg' ? 'jpg' : (format === 'image/webp' ? 'webp' : 'png');
-      a.download = `fixlytools-resized-${targetWidth}x${targetHeight}.${ext}`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const targetWidth = parseInt(widthInput.value, 10);
+      const targetHeight = parseInt(heightInput.value, 10);
+      if (!(targetWidth > 0) || !(targetHeight > 0)) {
+        showToast('Please enter a width and height of at least 1 pixel.', 'warning');
+        return;
+      }
+      if (targetWidth > MAX_SIDE || targetHeight > MAX_SIDE || targetWidth * targetHeight > MAX_PIXELS) {
+        showToast(`The size is too large. Please keep each side under ${MAX_SIDE} px.`, 'warning');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingQuality = 'high';
+
+      const format = formatSelect.value;
+      if (format === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';       // JPEG has no transparency: avoid black backgrounds
+        ctx.fillRect(0, 0, targetWidth, targetHeight);
+      }
+      ctx.drawImage(currentImage, 0, 0, targetWidth, targetHeight);
+
+      const blob = await canvasToBlob(canvas, format, 0.92);
+      if (!blob) {
+        showToast('Could not create the resized image. Try a smaller size.', 'error');
+        return;
+      }
+      // some browsers silently fall back to PNG when a format is unsupported: name the file correctly
+      const ext = blob.type === 'image/jpeg' ? 'jpg' : blob.type === 'image/webp' ? 'webp' : 'png';
+      downloadBlob(blob, `fixlytools-${baseName(currentFile.name)}-${targetWidth}x${targetHeight}.${ext}`);
       showToast('Resized image downloaded successfully!', 'success');
-    }, format, 0.92);
-  });
+    });
 
-  resetBtn.addEventListener('click', () => {
-    currentFile = null;
-    currentImage = null;
-    fileInput.value = '';
-    workspace.classList.add('hidden');
-    dropzone.classList.remove('hidden');
+    resetBtn.addEventListener('click', () => {
+      currentFile = null;
+      currentImage = null;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = null;
+      previewImg.removeAttribute('src');
+      workspace.classList.add('hidden');
+      dropzone.classList.remove('hidden');
+    });
   });
-});
+}

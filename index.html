@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fixlytools - Free, Fast & Private Online Web Utilities</title>
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Fixlytools - Free, Fast &amp; Private Online Web Utilities</title>
   <meta name="description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
-  <meta name="keywords" content="image compressor, merge pdf, word counter, json formatter, qr code generator, pdf compressor, emi calculator">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" href="favicon.ico">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://fixlytools.com/">
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -15,36 +16,20 @@
   <meta property="og:url" content="https://fixlytools.com/">
   <meta property="og:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
   <meta property="og:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
-  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
   <meta name="twitter:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
-  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
   
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af'
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Structured Data / JSON-LD -->
@@ -63,11 +48,12 @@
 }
   </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
 
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
         <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
         <span>Fixlytools</span>
       </a>
@@ -76,8 +62,8 @@
         <a href="#image-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Image & Text</a>
         <a href="#pdf-tools" class="hover:text-blue-600 dark:hover:text-blue-400">PDF Suite</a>
         <a href="#dev-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Dev & Calculators</a>
-        <a href="about.html" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
-        <a href="contact.html" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+        <a href="/about" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
+        <a href="/contact" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -96,8 +82,8 @@
       <a href="#image-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Image & Text</a>
       <a href="#pdf-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">PDF Suite</a>
       <a href="#dev-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Dev & Calculators</a>
-      <a href="about.html" class="block py-1.5 text-slate-700 dark:text-slate-200">About</a>
-      <a href="contact.html" class="block py-1.5 text-slate-700 dark:text-slate-200">Contact</a>
+      <a href="/about" class="block py-1.5 text-slate-700 dark:text-slate-200">About</a>
+      <a href="/contact" class="block py-1.5 text-slate-700 dark:text-slate-200">Contact</a>
     </div>
   </header>
 
@@ -144,7 +130,8 @@
   <!-- Tools Grid Section -->
   <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
 
-    <div id="no-results" class="hidden text-center py-16">
+    <h2 class="sr-only">Free Online Tools</h2>
+      <div id="no-results" class="hidden text-center py-16">
       <i class="fa-solid fa-face-frown text-4xl text-slate-400 mb-3"></i>
       <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200">No matching tools found</h3>
       <p class="text-sm text-slate-500">Try searching for keywords like "pdf", "image", "json", "calc", or "password".</p>
@@ -154,7 +141,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-container">
 
       <!-- TOOL 1: Image Compressor -->
-      <a href="tools/image-compressor.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image photo compress size shrink reduce optimize jpg png webp">
+      <a href="/tools/image-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image photo compress size shrink reduce optimize jpg png webp">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-image"></i>
@@ -170,7 +157,7 @@
       </a>
 
       <!-- TOOL 2: Image Resizer -->
-      <a href="tools/image-resizer.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image resize scale dimensions pixels crop width height aspect ratio">
+      <a href="/tools/image-resizer" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image resize scale dimensions pixels crop width height aspect ratio">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
@@ -186,14 +173,14 @@
       </a>
 
       <!-- TOOL 3: Image Format Converter -->
-      <a href="tools/image-converter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="convert image jpg to png png to jpg webp format convert">
+      <a href="/tools/image-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="convert image jpg to png png to jpg webp format convert">
         <div>
           <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-arrows-rotate"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-300">Image Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">JPG / PNG / WebP Converter</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Convert pictures interchangeably between modern formats with zero quality loss.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Convert images between JPG, PNG and WebP, several files at once.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400">
           <span>Launch Tool &rarr;</span>
@@ -202,23 +189,23 @@
       </a>
 
       <!-- TOOL 4: QR Code Generator -->
-      <a href="tools/qr-code-generator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="qr code generator barcode url text link wifi contact create make">
+      <a href="/tools/qr-code-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="qr code generator barcode url text link wifi contact create make">
         <div>
           <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-qrcode"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-300">Utility Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">QR Code Generator</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Generate high-res custom QR codes for URLs, WiFi credentials, vCards, and text.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Generate custom QR codes for website links, Wi-Fi credentials, and plain text.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-pink-600 dark:text-pink-400">
           <span>Launch Tool &rarr;</span>
-          <span class="text-slate-400 font-normal">PNG & SVG Download</span>
+          <span class="text-slate-400 font-normal">PNG Download</span>
         </div>
       </a>
 
       <!-- TOOL 5: Word Counter -->
-      <a href="tools/word-counter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="word counter character count sentences paragraphs reading time text length">
+      <a href="/tools/word-counter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="word counter character count sentences paragraphs reading time text length">
         <div>
           <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-font"></i>
@@ -234,7 +221,7 @@
       </a>
 
       <!-- TOOL 6: Merge PDF -->
-      <a href="tools/merge-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="merge pdf combine pdf join pdf files documents unite">
+      <a href="/tools/merge-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="merge pdf combine pdf join pdf files documents unite">
         <div>
           <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-pdf"></i>
@@ -250,7 +237,7 @@
       </a>
 
       <!-- TOOL 7: JPG to PDF -->
-      <a href="tools/jpg-to-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="jpg to pdf images to pdf png to pdf photo to document converter">
+      <a href="/tools/jpg-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="jpg to pdf images to pdf png to pdf photo to document converter">
         <div>
           <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-images"></i>
@@ -266,7 +253,7 @@
       </a>
 
       <!-- TOOL 8: Split PDF -->
-      <a href="tools/split-pdf.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="split pdf extract pages divide separate pdf range">
+      <a href="/tools/split-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="split pdf extract pages divide separate pdf range">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-scissors"></i>
@@ -282,23 +269,23 @@
       </a>
 
       <!-- TOOL 9: PDF Compressor -->
-      <a href="tools/pdf-compressor.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf compressor reduce pdf size shrink document mb to kb">
+      <a href="/tools/pdf-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf compressor reduce pdf size shrink document mb to kb">
         <div>
           <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-compress"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-300">PDF Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">PDF Compressor</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Compress PDF documents to smaller MB/KB for faster email attachments.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Optimize PDF structure to shrink file size where possible. Savings depend on the file.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-rose-600 dark:text-rose-400">
           <span>Launch Tool &rarr;</span>
-          <span class="text-slate-400 font-normal">High Ratio</span>
+          <span class="text-slate-400 font-normal">Optimize</span>
         </div>
       </a>
 
       <!-- TOOL 10: HEIC to JPG -->
-      <a href="tools/heic-to-jpg.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="heic to jpg iphone photo apple format heif converter">
+      <a href="/tools/heic-to-jpg" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="heic to jpg iphone photo apple format heif converter">
         <div>
           <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-brands fa-apple"></i>
@@ -314,14 +301,14 @@
       </a>
 
       <!-- TOOL 11: JSON Formatter & Validator -->
-      <a href="tools/json-formatter.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="json formatter validator beautify minify clean json debug developer">
+      <a href="/tools/json-formatter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="json formatter validator beautify minify clean json debug developer">
         <div>
           <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950 text-violet-600 dark:text-violet-300">Developer Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">JSON Formatter & Validator</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Beautify, validate, minify, and inspect JSON payloads with line error highlighting.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Beautify, validate, and minify JSON. Syntax errors show their location when available.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-violet-600 dark:text-violet-400">
           <span>Launch Tool &rarr;</span>
@@ -330,7 +317,7 @@
       </a>
 
       <!-- TOOL 12: Password Generator -->
-      <a href="tools/password-generator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="password generator strong random security secure pass gen">
+      <a href="/tools/password-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="password generator strong random security secure pass gen">
         <div>
           <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-key"></i>
@@ -346,50 +333,50 @@
       </a>
 
       <!-- TOOL 13: Text Diff Checker -->
-      <a href="tools/text-diff.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="text diff difference compare comparison text checker find differences">
+      <a href="/tools/text-diff" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="text diff difference compare comparison text checker find differences">
         <div>
           <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code-compare"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-300">Developer Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Text Diff Checker</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Compare two texts side-by-side with color-coded difference highlights.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Compare two texts line by line with color-coded additions and removals.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-cyan-600 dark:text-cyan-400">
           <span>Launch Tool &rarr;</span>
-          <span class="text-slate-400 font-normal">Side by Side</span>
+          <span class="text-slate-400 font-normal">Line by Line</span>
         </div>
       </a>
 
       <!-- TOOL 14: Age Calculator -->
-      <a href="tools/age-calculator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="age calculator birthday date of birth years months days calculate age">
+      <a href="/tools/age-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="age calculator birthday date of birth years months days calculate age">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-cake-candles"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-yellow-50 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-300">Calculator Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Age Calculator</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate exact age down to months, days, minutes with next birthday countdown.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate exact age in years, months and days, with a next-birthday countdown.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-yellow-600 dark:text-yellow-400">
           <span>Launch Tool &rarr;</span>
-          <span class="text-slate-400 font-normal">Exact Time</span>
+          <span class="text-slate-400 font-normal">Exact Age</span>
         </div>
       </a>
 
       <!-- TOOL 15: EMI / Loan Calculator -->
-      <a href="tools/emi-calculator.html" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="emi calculator loan interest mortgage monthly installment bank">
+      <a href="/tools/emi-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="emi calculator loan interest mortgage monthly installment bank">
         <div>
           <div class="w-12 h-12 rounded-xl bg-lime-100 dark:bg-lime-900/50 text-lime-600 dark:text-lime-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-calculator"></i>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-lime-50 dark:bg-lime-950 text-lime-600 dark:text-lime-300">Finance Tool</span>
           <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">EMI / Loan Calculator</h3>
-          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate monthly loan payments, total interest, and amortization breakdowns.</p>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Calculate monthly loan payments, total interest, and total repayment.</p>
         </div>
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-lime-600 dark:text-lime-400">
           <span>Launch Tool &rarr;</span>
-          <span class="text-slate-400 font-normal">Visual Chart</span>
+          <span class="text-slate-400 font-normal">Visual Bar</span>
         </div>
       </a>
 
@@ -418,7 +405,7 @@
             <i class="fa-solid fa-lock text-lg"></i>
           </div>
           <div>
-            <h4 class="font-bold text-slate-900 dark:text-white mb-1">100% Client-Side Privacy</h4>
+            <h3 class="font-bold text-slate-900 dark:text-white mb-1">100% Client-Side Privacy</h3>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Your files never leave your device. All calculations, image rendering, and PDF processing occur right in your browser's local memory.</p>
           </div>
         </div>
@@ -428,7 +415,7 @@
             <i class="fa-solid fa-gauge-high text-lg"></i>
           </div>
           <div>
-            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Zero Wait Times</h4>
+            <h3 class="font-bold text-slate-900 dark:text-white mb-1">Zero Wait Times</h3>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">No upload progress bars or waiting for server processing queues. Tools run at full native speed.</p>
           </div>
         </div>
@@ -438,7 +425,7 @@
             <i class="fa-solid fa-infinity text-lg"></i>
           </div>
           <div>
-            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Unlimited Free Usage</h4>
+            <h3 class="font-bold text-slate-900 dark:text-white mb-1">Unlimited Free Usage</h3>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">No subscription fees, no credit cards required, and no limits on file conversion counts.</p>
           </div>
         </div>
@@ -454,15 +441,15 @@
         <span class="font-bold text-slate-700 dark:text-slate-200">Fixlytools</span> &copy; 2026. All rights reserved.
       </div>
       <div class="flex flex-wrap items-center justify-center gap-6">
-        <a href="privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-blue-600">Terms of Service</a>
-        <a href="about.html" class="hover:text-blue-600">About Us</a>
-        <a href="contact.html" class="hover:text-blue-600">Contact</a>
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/about" class="hover:text-blue-600">About Us</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/app.js"></script>
+  <script src="/assets/js/app.js"></script>
 </body>
 </html>
 

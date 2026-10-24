@@ -1,37 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JPG to PDF Converter - Convert Images to PDF Free | Fixlytools</title>
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>JPG to PDF Converter - Images to PDF Free | Fixlytools</title>
   <meta name="description" content="Convert JPG, JPEG, and PNG images into a clean PDF document. Fast, free, and secure in-browser conversion without file limits.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="alternate icon" href="../favicon.ico">
-  <link rel="canonical" href="https://fixlytools.com/tools/jpg-to-pdf.html">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://fixlytools.com/tools/jpg-to-pdf">
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fixlytools">
-  <meta property="og:url" content="https://fixlytools.com/tools/jpg-to-pdf.html">
-  <meta property="og:title" content="JPG to PDF Converter - Convert Images to PDF Free | Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/jpg-to-pdf">
+  <meta property="og:title" content="JPG to PDF Converter - Images to PDF Free | Fixlytools">
   <meta property="og:description" content="Convert JPG, JPEG, and PNG images into a clean PDF document. Fast, free, and secure in-browser conversion without file limits.">
-  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="JPG to PDF Converter - Convert Images to PDF Free | Fixlytools">
+  <meta name="twitter:title" content="JPG to PDF Converter - Images to PDF Free | Fixlytools">
   <meta name="twitter:description" content="Convert JPG, JPEG, and PNG images into a clean PDF document. Fast, free, and secure in-browser conversion without file limits.">
-  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
@@ -41,7 +37,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "JPG to PDF Converter",
-  "url": "https://fixlytools.com/tools/jpg-to-pdf.html",
+  "url": "https://fixlytools.com/tools/jpg-to-pdf",
   "description": "Convert JPG, JPEG, and PNG images into a clean PDF document.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
@@ -49,17 +45,18 @@
 }
   </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
         <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
         <span>Fixlytools</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
-        <a href="merge-pdf.html" class="hover:text-blue-600">Merge PDF</a>
-        <a href="split-pdf.html" class="hover:text-blue-600">Split PDF</a>
-        <a href="../about.html" class="hover:text-blue-600">About</a>
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/split-pdf" class="hover:text-blue-600">Split PDF</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
       </nav>
       <div class="flex items-center gap-3">
         <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
@@ -71,7 +68,7 @@
   </header>
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
-    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <a href="/" class="hover:underline">Home</a> &gt; 
     <span>PDF Tools</span> &gt; 
     <span class="text-slate-800 dark:text-slate-200 font-semibold">JPG to PDF</span>
   </div>
@@ -96,7 +93,7 @@
         <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-50 dark:bg-orange-900/40 text-orange-600 flex items-center justify-center text-2xl">
           <i class="fa-solid fa-images"></i>
         </div>
-        <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload images to convert to PDF</h3>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload images to convert to PDF</h2>
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Select single or multiple JPG / PNG files</p>
         <button type="button" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
           Choose Images
@@ -141,12 +138,12 @@
       <!-- How To Section -->
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Convert JPG Images to PDF Online</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Converting photos to PDF is ideal for creating portfolios, submitting scanned documents, or packaging multiple images into a single shareable file. Fixlytools JPG to PDF Converter handles JPG, JPEG, and PNG images and assembles them into a clean, properly formatted PDF â€” all in your browser.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Converting photos to PDF is ideal for creating portfolios, submitting scanned documents, or packaging multiple images into a single shareable file. Fixlytools JPG to PDF Converter handles JPG, JPEG, and PNG images and assembles them into a clean, properly formatted PDF — all in your browser.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
         <li><strong>Select Your Images:</strong> Click "Choose Images" and select one or more JPG, JPEG, or PNG files from your device.</li>
-        <li><strong>Arrange the Order:</strong> Drag and rearrange the image thumbnails to set the page order in the output PDF.</li>
-        <li><strong>Choose Page Size:</strong> Select your preferred PDF page size â€” A4, Letter, or fit-to-image â€” before converting.</li>
-        <li><strong>Convert & Download:</strong> Click "Convert to PDF" and your image-based PDF is ready to download in seconds.</li>
+        <li><strong>Check the Order:</strong> Images become PDF pages in the order they appear in the list. Remove any image you do not want.</li>
+        <li><strong>Choose Page Layout:</strong> Select Auto (page matches each image), A4 Portrait, or A4 Landscape before converting.</li>
+        <li><strong>Convert & Download:</strong> Click "Convert Images to PDF" and your image-based PDF is ready to download in seconds.</li>
         </ol>
       </div>
 
@@ -154,7 +151,7 @@
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Supports JPG & PNG:</strong> Convert both JPG/JPEG and PNG images into PDF pages with a single tool.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Multi-Image PDF:</strong> Add multiple images and combine them all into one multi-page PDF document.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page Size Options:</strong> Choose from standard A4, US Letter, or image-fitted page sizes.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Page Order:</strong> Drag thumbnails to arrange images in any order before converting.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No Uploads Needed:</strong> Everything runs in your browser via pdf-lib. Your photos stay on your device.</span></li>        </ul>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Supports JPG & PNG:</strong> Convert both JPG/JPEG and PNG images into PDF pages with a single tool.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Multi-Image PDF:</strong> Add multiple images and combine them all into one multi-page PDF document.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page Layout Options:</strong> Choose automatic image-fitted pages, A4 portrait, or A4 landscape.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Preview Before Converting:</strong> See every image as a thumbnail and remove any you do not need.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No Uploads Needed:</strong> Everything runs in your browser via pdf-lib. Your photos stay on your device.</span></li>        </ul>
       </div>
 
       <!-- FAQ Section -->
@@ -162,19 +159,19 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
         <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I add multiple images to one PDF?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I add multiple images to one PDF?</h3>
           <p>Yes. The tool lets you add as many images as you need and combines them into a single multi-page PDF where each image becomes one page.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What page sizes are available?</h4>
-          <p>You can choose A4 (210 x 297 mm), US Letter (216 x 279 mm), or a custom size that fits the image dimensions exactly.</p>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What page sizes are available?</h3>
+          <p>You can choose Auto (each page takes the shape of its image), A4 Portrait (210 x 297 mm) or A4 Landscape (297 x 210 mm). Images are never stretched.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does the tool support PNG images with transparency?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does the tool support PNG images with transparency?</h3>
           <p>Yes. PNG images are accepted. However, transparent areas are rendered with a white background in the PDF output, since the PDF format does not support transparent page backgrounds.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the output PDF searchable (does it contain text)?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the output PDF searchable (does it contain text)?</h3>
           <p>No. The PDF contains your images as pictures, not searchable text. To create a searchable PDF from a scanned document, you would need OCR (Optical Character Recognition) software.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are my photos uploaded anywhere?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are my photos uploaded anywhere?</h3>
           <p>No. The conversion uses pdf-lib entirely in your browser. Your images are never sent to any server.</p>
         </div>        </div>
       </div>
@@ -183,10 +180,10 @@
       <div>
         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
         <div class="flex flex-wrap gap-2">
-        <a href="merge-pdf.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
-        <a href="split-pdf.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
-        <a href="pdf-compressor.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
-        <a href="image-compressor.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
         </div>
       </div>
 
@@ -197,15 +194,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
       <div class="flex gap-6">
-        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
-        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
-        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/tools/jpg-to-pdf.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/jpg-to-pdf.js"></script>
 </body>
 </html>
 

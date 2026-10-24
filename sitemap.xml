@@ -2,106 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fixlytools.com/</loc>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <!-- Phase 1 Tools -->
-  <url>
-    <loc>https://fixlytools.com/tools/image-compressor.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/image-resizer.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/age-calculator</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/image-converter.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/emi-calculator</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/qr-code-generator.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/heic-to-jpg</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/word-counter.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <!-- Phase 2 Tools -->
-  <url>
-    <loc>https://fixlytools.com/tools/merge-pdf.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/image-compressor</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/jpg-to-pdf.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/image-converter</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/split-pdf.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/image-resizer</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/pdf-compressor.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/jpg-to-pdf</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/heic-to-jpg.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <!-- Phase 3 Tools -->
-  <url>
-    <loc>https://fixlytools.com/tools/json-formatter.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/json-formatter</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/password-generator.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/merge-pdf</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/text-diff.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/password-generator</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/age-calculator.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/pdf-compressor</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/emi-calculator.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <!-- Trust Pages -->
-  <url>
-    <loc>https://fixlytools.com/about.html</loc>
-    <priority>0.5</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/qr-code-generator</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/privacy-policy.html</loc>
-    <priority>0.5</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/split-pdf</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/terms.html</loc>
-    <priority>0.5</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/text-diff</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/contact.html</loc>
-    <priority>0.5</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://fixlytools.com/tools/word-counter</loc>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/about</loc>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/privacy-policy</loc>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/terms</loc>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/contact</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
 </urlset>

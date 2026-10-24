@@ -1,124 +1,136 @@
 // Fixlytools - Image Compressor
-document.addEventListener('DOMContentLoaded', () => {
-  const dropzone = document.getElementById('dropzone');
-  const fileInput = document.getElementById('file-input');
-  const workspace = document.getElementById('workspace');
-  const originalPreview = document.getElementById('original-preview');
-  const compressedPreview = document.getElementById('compressed-preview');
-  const originalSizeText = document.getElementById('original-size');
-  const compressedSizeText = document.getElementById('compressed-size');
-  const savingsText = document.getElementById('savings-percentage');
-  const qualitySlider = document.getElementById('quality-slider');
-  const qualityValue = document.getElementById('quality-value');
-  const downloadBtn = document.getElementById('download-btn');
-  const resetBtn = document.getElementById('reset-btn');
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('file-input');
+    const workspace = document.getElementById('workspace');
+    const originalPreview = document.getElementById('original-preview');
+    const compressedPreview = document.getElementById('compressed-preview');
+    const originalSizeText = document.getElementById('original-size');
+    const compressedSizeText = document.getElementById('compressed-size');
+    const savingsText = document.getElementById('savings-percentage');
+    const qualitySlider = document.getElementById('quality-slider');
+    const qualityValue = document.getElementById('quality-value');
+    const downloadBtn = document.getElementById('download-btn');
+    const resetBtn = document.getElementById('reset-btn');
 
-  let currentFile = null;
-  let currentImage = null;
-  let compressedBlob = null;
+    const SUPPORTED = ['image/jpeg', 'image/png', 'image/webp'];
+    const MAX_PIXELS = 100000000; // browsers fail on canvases bigger than this
 
-  // Dropzone drag-and-drop
-  ['dragenter', 'dragover'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      dropzone.classList.add('drag-active');
-    });
-  });
+    let currentFile = null;
+    let currentImage = null;
+    let originalUrl = null;
+    let compressedUrl = null;
+    let result = null;      // { blob, ext, isOriginal }
+    let runId = 0;
+    let timer = null;
 
-  ['dragleave', 'drop'].forEach(eventName => {
-    dropzone.addEventListener(eventName, (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('drag-active');
-    });
-  });
+    function revoke(url) { if (url) URL.revokeObjectURL(url); }
 
-  dropzone.addEventListener('drop', (e) => {
-    const files = e.dataTransfer.files;
-    if (files.length > 0 && files[0].type.startsWith('image/')) {
-      handleImage(files[0]);
-    } else {
-      showToast('Please upload a valid image file (JPG, PNG, WebP).', 'warning');
+    function extFor(type) {
+      return type === 'image/jpeg' ? 'jpg' : type === 'image/webp' ? 'webp' : 'png';
     }
-  });
 
-  dropzone.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-      handleImage(fileInput.files[0]);
+    async function handleFiles(files) {
+      const file = files[0];
+      if (!SUPPORTED.includes(file.type)) {
+        showToast('Please choose a JPG, PNG or WebP image.', 'warning');
+        return;
+      }
+      let img;
+      try {
+        img = await loadImageFile(file);
+      } catch (err) {
+        showToast('This image could not be read. It may be damaged.', 'error');
+        return;
+      }
+      if (img.width * img.height > MAX_PIXELS) {
+        showToast('This image is too large to process in the browser.', 'error');
+        return;
+      }
+      currentFile = file;
+      currentImage = img;
+      originalSizeText.textContent = formatBytes(file.size);
+      revoke(originalUrl);
+      originalUrl = URL.createObjectURL(file);
+      originalPreview.src = originalUrl;
+      dropzone.classList.add('hidden');
+      workspace.classList.remove('hidden');
+      if (file.type === 'image/png') {
+        showToast('PNG images are saved as JPG to reduce size. Transparent areas become white.', 'info');
+      }
+      compressImage();
     }
-  });
 
-  function handleImage(file) {
-    currentFile = file;
-    originalSizeText.textContent = formatBytes(file.size);
+    async function compressImage() {
+      if (!currentImage) return;
+      const myRun = ++runId;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      currentImage = new Image();
-      currentImage.onload = () => {
-        originalPreview.src = e.target.result;
-        dropzone.classList.add('hidden');
-        workspace.classList.remove('hidden');
-        compressImage();
-      };
-      currentImage.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
+      const canvas = document.createElement('canvas');
+      canvas.width = currentImage.naturalWidth || currentImage.width;
+      canvas.height = currentImage.naturalHeight || currentImage.height;
+      const ctx = canvas.getContext('2d');
+      const outType = currentFile.type === 'image/png' ? 'image/jpeg' : currentFile.type;
+      if (outType === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';       // JPEG has no transparency: avoid black backgrounds
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      ctx.drawImage(currentImage, 0, 0);
 
-  qualitySlider.addEventListener('input', () => {
-    qualityValue.textContent = `${qualitySlider.value}%`;
-    compressImage();
-  });
+      const quality = parseFloat(qualitySlider.value) / 100;
+      const blob = await canvasToBlob(canvas, outType, quality);
+      if (myRun !== runId) return;         // a newer run replaced this one
+      if (!blob) {
+        showToast('Could not compress this image. Try a smaller one.', 'error');
+        return;
+      }
 
-  function compressImage() {
-    if (!currentImage) return;
+      // never hand back a file that is bigger than the one the user uploaded
+      const biggerThanOriginal = blob.size >= currentFile.size && outType === currentFile.type;
+      result = biggerThanOriginal
+        ? { blob: currentFile, ext: extFor(currentFile.type), isOriginal: true }
+        : { blob, ext: extFor(blob.type || outType), isOriginal: false };
 
-    const canvas = document.createElement('canvas');
-    canvas.width = currentImage.width;
-    canvas.height = currentImage.height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(currentImage, 0, 0);
+      revoke(compressedUrl);
+      compressedUrl = URL.createObjectURL(result.blob);
+      compressedPreview.src = compressedUrl;
+      compressedSizeText.textContent = formatBytes(result.blob.size);
 
-    const quality = parseFloat(qualitySlider.value) / 100;
-    const mimeType = currentFile.type === 'image/png' ? 'image/jpeg' : currentFile.type;
-
-    canvas.toBlob((blob) => {
-      if (!blob) return;
-      compressedBlob = blob;
-      compressedPreview.src = URL.createObjectURL(blob);
-      compressedSizeText.textContent = formatBytes(blob.size);
-
-      const diff = currentFile.size - blob.size;
-      const pct = Math.round((diff / currentFile.size) * 100);
+      const pct = Math.round(((currentFile.size - result.blob.size) / currentFile.size) * 100);
       if (pct > 0) {
         savingsText.textContent = `-${pct}% Saved`;
         savingsText.className = 'text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300';
       } else {
-        savingsText.textContent = `0% Saved`;
+        savingsText.textContent = result.isOriginal ? 'Already optimized' : '0% Saved';
         savingsText.className = 'text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300';
       }
-    }, mimeType, quality);
-  }
+    }
 
-  downloadBtn.addEventListener('click', () => {
-    if (!compressedBlob) return;
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(compressedBlob);
-    const ext = currentFile.type === 'image/png' ? 'jpg' : currentFile.name.split('.').pop();
-    a.download = `fixlytools-compressed-${Date.now()}.${ext}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    showToast('Compressed image downloaded successfully!', 'success');
-  });
+    setupDropzone(dropzone, fileInput, handleFiles);
 
-  resetBtn.addEventListener('click', () => {
-    currentFile = null;
-    currentImage = null;
-    compressedBlob = null;
-    fileInput.value = '';
-    workspace.classList.add('hidden');
-    dropzone.classList.remove('hidden');
+    qualitySlider.addEventListener('input', () => {
+      qualityValue.textContent = `${qualitySlider.value}%`;
+      clearTimeout(timer);
+      timer = setTimeout(compressImage, 120);
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!result) return;
+      downloadBlob(result.blob, `fixlytools-compressed-${baseName(currentFile.name)}.${result.ext}`);
+      showToast('Image downloaded successfully!', 'success');
+    });
+
+    resetBtn.addEventListener('click', () => {
+      runId++;
+      currentFile = null;
+      currentImage = null;
+      result = null;
+      revoke(originalUrl); revoke(compressedUrl);
+      originalUrl = compressedUrl = null;
+      originalPreview.removeAttribute('src');
+      compressedPreview.removeAttribute('src');
+      workspace.classList.add('hidden');
+      dropzone.classList.remove('hidden');
+    });
   });
-});
+}

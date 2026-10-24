@@ -1,37 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free QR Code Generator - URL, WiFi & Text | Fixlytools</title>
-  <meta name="description" content="Generate high-resolution custom QR codes for website URLs, Wi-Fi passwords, contact vCards, and text. Pick colors and download PNG instantly.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="alternate icon" href="../favicon.ico">
-  <link rel="canonical" href="https://fixlytools.com/tools/qr-code-generator.html">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Free QR Code Generator - URL, WiFi &amp; Text | Fixlytools</title>
+  <meta name="description" content="Generate custom QR codes for website URLs, Wi-Fi networks and plain text. Pick colors and download a PNG instantly.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://fixlytools.com/tools/qr-code-generator">
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fixlytools">
-  <meta property="og:url" content="https://fixlytools.com/tools/qr-code-generator.html">
+  <meta property="og:url" content="https://fixlytools.com/tools/qr-code-generator">
   <meta property="og:title" content="Free QR Code Generator - URL, WiFi & Text | Fixlytools">
-  <meta property="og:description" content="Generate high-resolution QR codes for website URLs, Wi-Fi passwords, contact vCards, and text. Pick colors and download PNG instantly.">
-  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta property="og:description" content="Generate QR codes for website URLs, Wi-Fi networks and plain text. Pick colors and download a PNG instantly.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free QR Code Generator - URL, WiFi & Text | Fixlytools">
-  <meta name="twitter:description" content="Generate high-resolution QR codes for website URLs, Wi-Fi passwords, contact vCards, and text. Pick colors and download PNG instantly.">
-  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="twitter:description" content="Generate QR codes for website URLs, Wi-Fi networks and plain text. Pick colors and download a PNG instantly.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- QRCode.js Library CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -42,25 +38,26 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "QR Code Generator",
-  "url": "https://fixlytools.com/tools/qr-code-generator.html",
-  "description": "Generate high-resolution QR codes for URLs, Wi-Fi, vCards, and text.",
+  "url": "https://fixlytools.com/tools/qr-code-generator",
+  "description": "Generate QR codes for URLs, Wi-Fi networks and text.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
   </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
         <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
         <span>Fixlytools</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
-        <a href="image-compressor.html" class="hover:text-blue-600">Compressor</a>
-        <a href="word-counter.html" class="hover:text-blue-600">Word Counter</a>
-        <a href="../about.html" class="hover:text-blue-600">About</a>
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/word-counter" class="hover:text-blue-600">Word Counter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
       </nav>
       <div class="flex items-center gap-3">
         <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
@@ -72,7 +69,7 @@
   </header>
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
-    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <a href="/" class="hover:underline">Home</a> &gt; 
     <span>Image Tools</span> &gt; 
     <span class="text-slate-800 dark:text-slate-200 font-semibold">QR Code Generator</span>
   </div>
@@ -179,12 +176,12 @@
       <!-- How To Section -->
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Create a QR Code Online</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">QR codes are now used everywhere â€” on business cards, restaurant menus, product packaging, social media profiles, and payment pages. Fixlytools QR Code Generator lets you create high-resolution QR codes for any URL, plain text, Wi-Fi credentials, or contact card (vCard) in seconds â€” no account needed.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">QR codes are now used everywhere — on business cards, restaurant menus, product packaging, social media profiles, and payment pages. Fixlytools QR Code Generator lets you create QR codes for any URL, plain text, or Wi-Fi credentials in seconds — no account needed.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
-        <li><strong>Select QR Content Type:</strong> Choose what you want the QR code to contain: a website URL, plain text, Wi-Fi network credentials, or a vCard contact.</li>
+        <li><strong>Select QR Content Type:</strong> Choose what you want the QR code to contain: a website URL, plain text, or Wi-Fi network credentials.</li>
         <li><strong>Enter Your Data:</strong> Fill in the required fields. For a URL, simply paste the web address. For Wi-Fi, enter the network name and password.</li>
         <li><strong>Customise (Optional):</strong> Pick your preferred foreground and background colours to match your brand.</li>
-        <li><strong>Generate:</strong> Click "Generate QR Code" to instantly render your QR code at the selected resolution.</li>
+        <li><strong>Generate:</strong> The QR code updates automatically as you type. Pick the size you want from the size menu.</li>
         <li><strong>Download:</strong> Save your QR code as a high-resolution PNG image ready for print or digital use.</li>
         </ol>
       </div>
@@ -193,7 +190,7 @@
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Multiple Content Types:</strong> Supports URLs, plain text, Wi-Fi network credentials, and vCard contacts.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Colours:</strong> Choose your own foreground and background colours to match your brand identity.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>High Resolution Output:</strong> Generate QR codes up to 400 x 400 px â€” sharp enough for both digital screens and printed materials.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Instant Generation:</strong> QR codes are generated in real time inside your browser with no loading delays.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free to Use:</strong> No sign-up, no fees, no watermarks. Generate unlimited QR codes at no cost.</span></li>        </ul>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Multiple Content Types:</strong> Supports URLs, plain text and Wi-Fi network credentials.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Colours:</strong> Choose your own foreground and background colours to match your brand identity.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>High Resolution Output:</strong> Generate QR codes up to 400 x 400 px, sharp enough for screens and small prints.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Instant Generation:</strong> QR codes are generated in real time inside your browser with no loading delays.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free to Use:</strong> No sign-up, no fees, no watermarks. Generate unlimited QR codes at no cost.</span></li>        </ul>
       </div>
 
       <!-- FAQ Section -->
@@ -201,19 +198,19 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
         <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What can a QR code contain?</h4>
-          <p>QR codes can store website URLs, plain text, phone numbers, email addresses, Wi-Fi credentials, geographic coordinates, and vCard contacts. This tool supports the most common types: URL, text, Wi-Fi, and vCard.</p>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What can a QR code contain?</h3>
+          <p>QR codes can store website URLs, plain text, phone numbers, email addresses, Wi-Fi credentials, geographic coordinates, and vCard contacts. This tool supports the most common types: URL, text and Wi-Fi.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I scan a QR code?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I scan a QR code?</h3>
           <p>Open your phone camera and point it at the QR code. Most modern smartphones (both Android and iPhone) can scan QR codes directly from the default camera app without needing a separate app.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are the QR codes high enough quality to print?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are the QR codes high enough quality to print?</h3>
           <p>Yes. You can generate QR codes at up to 400 x 400 pixels. For large print formats, we recommend scaling up the PNG in a vector editor. The QR code pattern itself is mathematically precise and will scan correctly at any printed size.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Do QR codes expire?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Do QR codes expire?</h3>
           <p>QR codes generated by Fixlytools do not expire. They are simple encoded images with no expiry date or server dependency. Static QR codes (like those containing a URL) remain valid as long as the destination URL is active.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I use the generated QR codes commercially?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I use the generated QR codes commercially?</h3>
           <p>Yes. All QR codes generated by Fixlytools are free for personal and commercial use. No attribution is required.</p>
         </div>        </div>
       </div>
@@ -222,10 +219,10 @@
       <div>
         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
         <div class="flex flex-wrap gap-2">
-        <a href="image-compressor.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
-        <a href="image-resizer.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
-        <a href="password-generator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
-        <a href="word-counter.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/password-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
+        <a href="/tools/word-counter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
         </div>
       </div>
 
@@ -236,15 +233,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
       <div class="flex gap-6">
-        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
-        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
-        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/tools/qr-code-generator.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/qr-code-generator.js"></script>
 </body>
 </html>
 

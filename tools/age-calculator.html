@@ -1,37 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator - Exact Age, Years, Months & Days | Fixlytools</title>
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Age Calculator - Exact Age in Years &amp; Days | Fixlytools</title>
   <meta name="description" content="Calculate your exact chronological age in years, months, and days. Countdown to your next birthday with total days and hours lived. 100% free tool.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="alternate icon" href="../favicon.ico">
-  <link rel="canonical" href="https://fixlytools.com/tools/age-calculator.html">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://fixlytools.com/tools/age-calculator">
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fixlytools">
-  <meta property="og:url" content="https://fixlytools.com/tools/age-calculator.html">
-  <meta property="og:title" content="Age Calculator - Exact Age, Years, Months & Days | Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/age-calculator">
+  <meta property="og:title" content="Age Calculator - Exact Age in Years &amp; Days | Fixlytools">
   <meta property="og:description" content="Calculate your exact chronological age in years, months, and days. Countdown to your next birthday. 100% free tool.">
-  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.svg">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Age Calculator - Exact Age, Years, Months & Days | Fixlytools">
+  <meta name="twitter:title" content="Age Calculator - Exact Age in Years &amp; Days | Fixlytools">
   <meta name="twitter:description" content="Calculate your exact chronological age in years, months, and days. Countdown to your next birthday. 100% free tool.">
-  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' } }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Structured Data / JSON-LD -->
@@ -40,7 +36,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Age Calculator",
-  "url": "https://fixlytools.com/tools/age-calculator.html",
+  "url": "https://fixlytools.com/tools/age-calculator",
   "description": "Calculate exact age in years, months, and days. Countdown to next birthday.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
@@ -48,17 +44,18 @@
 }
   </script></head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
         <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
         <span>Fixlytools</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="../index.html" class="hover:text-blue-600">All Tools</a>
-        <a href="emi-calculator.html" class="hover:text-blue-600">EMI Calculator</a>
-        <a href="word-counter.html" class="hover:text-blue-600">Word Counter</a>
-        <a href="../about.html" class="hover:text-blue-600">About</a>
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/emi-calculator" class="hover:text-blue-600">EMI Calculator</a>
+        <a href="/tools/word-counter" class="hover:text-blue-600">Word Counter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
       </nav>
       <div class="flex items-center gap-3">
         <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
@@ -70,7 +67,7 @@
   </header>
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
-    <a href="../index.html" class="hover:underline">Home</a> &gt; 
+    <a href="/" class="hover:underline">Home</a> &gt; 
     <span>Calculators</span> &gt; 
     <span class="text-slate-800 dark:text-slate-200 font-semibold">Age Calculator</span>
   </div>
@@ -169,7 +166,7 @@
       <!-- How To Section -->
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Calculate Your Exact Age Online</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Knowing your precise age in years, months, days, and even hours can be important for official documents, medical records, legal purposes, or simply satisfying curiosity. Fixlytools Age Calculator computes your exact chronological age from your date of birth to today â€” or to any date you specify â€” and also shows your next birthday countdown.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Knowing your precise age in years, months, days, and even hours can be important for official documents, medical records, legal purposes, or simply satisfying curiosity. Fixlytools Age Calculator computes your exact chronological age from your date of birth to today — or to any date you specify — and also shows your next birthday countdown.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
         <li><strong>Enter Your Date of Birth:</strong> Select your day, month, and year of birth from the date picker fields.</li>
         <li><strong>Set Reference Date (Optional):</strong> By default the tool calculates age as of today. You can change the reference date to calculate age at any past or future date.</li>
@@ -182,7 +179,7 @@
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Exact Age Breakdown:</strong> Shows age in years, months, days, and total days lived for maximum precision.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Birthday Countdown:</strong> Displays how many days remain until your next birthday.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Reference Date:</strong> Calculate age as of any specific date â€” useful for official documents or planning.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Instant Calculation:</strong> Results appear immediately after clicking Calculate. No loading or delays.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>100% Free:</strong> No account, no sign-up, no limits. Calculate as many dates as you need.</span></li>        </ul>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Exact Age Breakdown:</strong> Shows age in years, months, days, and total days lived for maximum precision.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Birthday Countdown:</strong> Displays how many days remain until your next birthday.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Reference Date:</strong> Calculate age as of any specific date — useful for official documents or planning.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Instant Calculation:</strong> Results appear immediately after clicking Calculate. No loading or delays.</span></li>          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>100% Free:</strong> No account, no sign-up, no limits. Calculate as many dates as you need.</span></li>        </ul>
       </div>
 
       <!-- FAQ Section -->
@@ -190,19 +187,19 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
         <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How is exact age calculated?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How is exact age calculated?</h3>
           <p>The tool subtracts your date of birth from the reference date (today or a custom date) and calculates the difference in complete years, then the remaining months, then the remaining days.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What if I do not know my exact date of birth?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What if I do not know my exact date of birth?</h3>
           <p>Enter your estimated date of birth. The tool will calculate based on whatever date you provide. For official purposes, always use the date recorded in your legal documents.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I calculate someone else age?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I calculate someone else age?</h3>
           <p>Yes. Simply enter any person date of birth. The tool calculates age for any date, not just yours.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the age calculation accurate for leap years?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the age calculation accurate for leap years?</h3>
           <p>Yes. The tool correctly handles leap years (February 29 birthdays) and gives an accurate count of days for all calendar years.</p>
         </div>        <div>
-          <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I find out how old I will be on a future date?</h4>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I find out how old I will be on a future date?</h3>
           <p>Yes. Change the reference date to any future date to calculate how old you will be at that point.</p>
         </div>        </div>
       </div>
@@ -211,10 +208,10 @@
       <div>
         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
         <div class="flex flex-wrap gap-2">
-        <a href="emi-calculator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> EMI Calculator</a>
-        <a href="word-counter.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
-        <a href="qr-code-generator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-qrcode text-blue-500"></i> QR Code Generator</a>
-        <a href="password-generator.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
+        <a href="/tools/emi-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> EMI Calculator</a>
+        <a href="/tools/word-counter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
+        <a href="/tools/qr-code-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-qrcode text-blue-500"></i> QR Code Generator</a>
+        <a href="/tools/password-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
         </div>
       </div>
 
@@ -225,15 +222,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
       <div class="flex gap-6">
-        <a href="../privacy-policy.html" class="hover:text-blue-600">Privacy Policy</a>
-        <a href="../terms.html" class="hover:text-blue-600">Terms of Service</a>
-        <a href="../contact.html" class="hover:text-blue-600">Contact</a>
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/tools/age-calculator.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/age-calculator.js"></script>
 </body>
 </html>
 
