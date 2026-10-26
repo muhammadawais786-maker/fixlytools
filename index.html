@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
   <title>Fixlytools - Free, Fast &amp; Private Online Web Utilities</title>
-  <meta name="description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
+  <meta name="description" content="Fixlytools offers 16 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="Fixlytools">
   <meta property="og:url" content="https://fixlytools.com/">
   <meta property="og:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
-  <meta property="og:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
+  <meta property="og:description" content="Fixlytools offers 16 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
   <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
@@ -29,7 +29,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Fixlytools - Free Online Tools for Images, PDFs & More">
-  <meta name="twitter:description" content="Fixlytools offers 15 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
+  <meta name="twitter:description" content="Fixlytools offers 16 free browser-based tools for images, PDFs, developers, and calculators. No uploads, no sign-up, 100% private.">
   <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
   
   <!-- Tailwind CSS CDN -->
@@ -44,7 +44,7 @@
   "@type": "WebSite",
   "name": "Fixlytools",
   "url": "https://fixlytools.com",
-  "description": "15 free browser-based tools for images, PDFs, developers, and calculators.",
+  "description": "16 free browser-based tools for images, PDFs, developers, and calculators.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://fixlytools.com/?q={search_term_string}",
@@ -116,7 +116,7 @@
 
       <!-- Category Filter Pills -->
       <div class="flex flex-wrap items-center justify-center gap-2">
-        <button data-category="all" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all">All 15 Tools</button>
+        <button data-category="all" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all">All 16 Tools</button>
         <button data-category="image-text" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-image text-xs mr-1 text-blue-500"></i> Images &amp; Text</button>
         <button data-category="pdf" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-file-pdf text-xs mr-1 text-red-500"></i> PDF Suite</button>
         <button data-category="dev-calc" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-calculator text-xs mr-1 text-emerald-500"></i> Developer &amp; Math</button>
@@ -142,7 +142,7 @@
       <p class="text-sm text-slate-500">Try searching for keywords like "pdf", "image", "json", "calc", or "password".</p>
     </div>
 
-    <!-- 15 Tools Cards -->
+    <!-- 16 Tools Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-container">
 
       <!-- TOOL 1: Image Compressor -->
@@ -382,6 +382,22 @@
         <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-lime-600 dark:text-lime-400">
           <span>Launch Tool &rarr;</span>
           <span class="text-slate-400 font-normal">Visual Bar</span>
+        </div>
+      </a>
+
+      <!-- TOOL 16: Invoice Generator -->
+      <a href="/tools/invoice-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="invoice generator quote receipt bill pdf business freelance tax vat">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-lime-100 dark:bg-lime-900/50 text-lime-600 dark:text-lime-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-lime-50 dark:bg-lime-950 text-lime-600 dark:text-lime-300">Business Tool</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Invoice Generator</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">Create invoices, quotes and receipts with your logo and download them as PDF.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-lime-600 dark:text-lime-400">
+          <span>Launch Tool &rarr;</span>
+          <span class="text-slate-400 font-normal">PDF Download</span>
         </div>
       </a>
 

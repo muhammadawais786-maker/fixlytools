@@ -1,18 +1,18 @@
 // Fixlytools service worker: makes the site installable and usable offline.
 // Change CACHE_VERSION whenever you deploy a new version of the site.
-const CACHE_VERSION = 'fixlytools-v2';
+const CACHE_VERSION = 'fixlytools-v3';
 const CDN_HOSTS = ['cdnjs.cloudflare.com'];
 
 const PRECACHE = [
   '/', '/about', '/contact', '/privacy-policy', '/terms',
   '/tools/age-calculator', '/tools/emi-calculator', '/tools/heic-to-jpg',
-  '/tools/image-compressor', '/tools/compress-image-to-50kb', '/tools/compress-image-to-100kb', '/tools/compress-image-to-200kb',
+  '/tools/invoice-generator', '/tools/image-compressor', '/tools/compress-image-to-50kb', '/tools/compress-image-to-100kb', '/tools/compress-image-to-200kb',
   '/tools/image-converter', '/tools/image-resizer',
   '/tools/jpg-to-pdf', '/tools/json-formatter', '/tools/merge-pdf',
   '/tools/password-generator', '/tools/pdf-compressor', '/tools/qr-code-generator',
   '/tools/split-pdf', '/tools/text-diff', '/tools/word-counter',
-  '/assets/css/style.css', '/assets/css/tailwind.css', '/assets/js/app.js',
-  '/assets/js/tools/target-compressor.js', '/assets/js/tools/age-calculator.js', '/assets/js/tools/emi-calculator.js',
+  '/assets/css/style.css', '/assets/css/invoice.css', '/assets/css/tailwind.css', '/assets/js/app.js',
+  '/assets/js/tools/target-compressor.js', '/assets/js/tools/invoice-generator.js', '/assets/js/tools/age-calculator.js', '/assets/js/tools/emi-calculator.js',
   '/assets/js/tools/heic-to-jpg.js', '/assets/js/tools/image-compressor.js',
   '/assets/js/tools/image-converter.js', '/assets/js/tools/image-resizer.js',
   '/assets/js/tools/jpg-to-pdf.js', '/assets/js/tools/json-formatter.js',

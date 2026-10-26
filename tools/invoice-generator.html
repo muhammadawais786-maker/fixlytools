@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Free Invoice Generator - Create PDF Invoices Online, No Sign-Up | Fixlytools</title>
+  <meta name="description" content="Create professional invoices, quotes and receipts online for free. Add your logo, tax and discount, then download a PDF. No sign-up needed and your data stays in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/invoice-generator">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/invoice-generator">
+  <meta property="og:title" content="Free Invoice Generator - Create PDF Invoices Online, No Sign-Up | Fixlytools">
+  <meta property="og:description" content="Create professional invoices, quotes and receipts online for free. Add your logo, tax and discount, then download a PDF. No sign-up needed and your data stays in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Invoice Generator - Create PDF Invoices Online, No Sign-Up | Fixlytools">
+  <meta name="twitter:description" content="Create professional invoices, quotes and receipts online for free. Add your logo, tax and discount, then download a PDF. No sign-up needed and your data stays in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/invoice.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Invoice Generator",
+    "url": "https://fixlytools.com/tools/invoice-generator",
+    "description": "Create professional invoices, quotes and receipts online for free. Add your logo, tax and discount, then download a PDF. No sign-up needed and your data stays in your browser.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this invoice generator really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can create and download as many invoices, quotes and receipts as you like. There are no accounts, subscriptions or hidden fees. The PDF carries a small \"Created with Fixlytools.com\" line in the footer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to sign up or create an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Open the page, fill in the form and download your PDF. There is no login."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is my information stored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only in your own browser. Your invoice is built on your device and is never uploaded to Fixlytools. If you tick \"Remember my business details\", your business name, logo and settings are saved in your browser on this device so you do not have to type them again. You can remove them at any time with the \"Clear saved details\" button."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I add my logo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Upload a PNG, JPG or WebP logo. It appears at the top left of the PDF. The logo is resized on your device to keep the file small."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it for UK VAT or US sales tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can enter a tax label (for example VAT or Sales tax) and a tax rate, and the tool adds it to the total. It uses one rate for the whole invoice. If you are VAT registered, put your VAT number in the \"Tax ID / VAT number\" field so it prints on the invoice. This tool does not give tax advice, so check the rules for your country with your tax authority or accountant."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is an invoice made here legally valid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The rules for what an invoice must contain differ from country to country. The tool includes the items most commonly required: your details, the customer, a number, dates, line items, tax and the total. You are responsible for checking that your invoice meets the rules where you work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I edit a PDF after I download it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The PDF itself is not editable. To change something, update the form and download a new PDF. Your business details are remembered, so this takes a few seconds."
+        }
+      }
+    ]
+  }
+]
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/jpg-to-pdf" class="hover:text-blue-600">JPG to PDF</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Breadcrumbs -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Business Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Invoice Generator</span>
+  </div>
+
+  <!-- TOP AD SLOT -->
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Free Invoice Generator</h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+        Create an invoice, quote or receipt, then download it as a PDF. No sign-up. Your details stay in your browser.
+      </p>
+    </div>
+
+    <form id="inv-form" class="space-y-4" onsubmit="return false" autocomplete="off">
+
+      <section class="inv-section">
+        <h2>Document</h2>
+        <div class="inv-grid">
+          <div class="inv-field"><label for="inv-doctype">Type</label>
+            <select id="inv-doctype" class="inv-select"><option value="invoice">Invoice</option><option value="quote">Quote / Estimate</option><option value="receipt">Receipt</option><option value="proforma">Pro-forma invoice</option></select></div>
+          <div class="inv-field"><label for="inv-number">Number</label>
+            <input id="inv-number" class="inv-input" type="text" maxlength="40"></div>
+          <div class="inv-field"><label for="inv-issue">Date</label>
+            <input id="inv-issue" class="inv-input" type="date"></div>
+          <div class="inv-field" id="inv-terms-wrap"><label for="inv-terms">Payment terms</label>
+            <select id="inv-terms" class="inv-select"><option value="0">Due on receipt</option><option value="7">Net 7 days</option><option value="14">Net 14 days</option><option value="30">Net 30 days</option><option value="60">Net 60 days</option><option value="custom">Custom date</option></select></div>
+          <div class="inv-field" id="inv-due-wrap"><label for="inv-due" id="inv-due-label">Due date</label>
+            <input id="inv-due" class="inv-input" type="date"></div>
+          <div class="inv-field"><label for="inv-currency">Currency</label>
+            <select id="inv-currency" class="inv-select"><option value="USD">USD</option><option value="GBP">GBP</option><option value="EUR">EUR</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="NZD">NZD</option><option value="CHF">CHF</option><option value="SEK">SEK</option><option value="NOK">NOK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="SGD">SGD</option><option value="AED">AED</option><option value="INR">INR</option><option value="ZAR">ZAR</option><option value="PKR">PKR</option></select></div>
+          <div class="inv-field inv-span-2"><label for="inv-reference">Reference / PO number (optional)</label>
+            <input id="inv-reference" class="inv-input" type="text" maxlength="60"></div>
+        </div>
+      </section>
+
+      <section class="inv-section">
+        <h2>From (your business)</h2>
+        <div class="inv-logo-box" style="margin-bottom:0.9rem">
+          <img id="inv-logo-preview" class="inv-logo-preview" alt="Your logo" style="display:none">
+          <label class="inv-btn inv-btn-ghost" for="inv-logo-input" style="cursor:pointer"><i class="fa-solid fa-image"></i> Upload logo</label>
+          <input id="inv-logo-input" type="file" accept="image/png,image/jpeg,image/webp" style="display:none">
+          <button type="button" id="inv-logo-remove" class="inv-btn inv-btn-ghost" style="display:none">Remove logo</button>
+          <span class="inv-note">PNG, JPG or WebP. Optional.</span>
+        </div>
+        <div class="inv-grid">
+          <div class="inv-field"><label for="inv-from-name">Business name</label>
+            <input id="inv-from-name" class="inv-input" type="text" maxlength="100"></div>
+          <div class="inv-field"><label for="inv-from-tax">Tax ID / VAT number (optional)</label>
+            <input id="inv-from-tax" class="inv-input" type="text" maxlength="60" placeholder="e.g. VAT GB123456789"></div>
+          <div class="inv-field inv-span-2"><label for="inv-from-address">Address</label>
+            <textarea id="inv-from-address" class="inv-textarea" maxlength="300"></textarea></div>
+          <div class="inv-field"><label for="inv-from-email">Email</label>
+            <input id="inv-from-email" class="inv-input" type="email" maxlength="100"></div>
+          <div class="inv-field"><label for="inv-from-phone">Phone</label>
+            <input id="inv-from-phone" class="inv-input" type="text" maxlength="40"></div>
+        </div>
+      </section>
+
+      <section class="inv-section">
+        <h2>Bill to (your customer)</h2>
+        <div class="inv-grid">
+          <div class="inv-field"><label for="inv-to-name">Customer name</label>
+            <input id="inv-to-name" class="inv-input" type="text" maxlength="100"></div>
+          <div class="inv-field"><label for="inv-to-email">Customer email</label>
+            <input id="inv-to-email" class="inv-input" type="email" maxlength="100"></div>
+          <div class="inv-field inv-span-2"><label for="inv-to-address">Customer address</label>
+            <textarea id="inv-to-address" class="inv-textarea" maxlength="300"></textarea></div>
+        </div>
+      </section>
+
+      <section class="inv-section">
+        <h2>Items</h2>
+        <div class="inv-items-head"><span>Description</span><span class="inv-num">Qty</span><span class="inv-num">Unit price</span><span class="inv-num">Amount</span><span></span></div>
+        <div id="inv-items"></div>
+        <button type="button" id="inv-add-item" class="inv-btn inv-btn-ghost"><i class="fa-solid fa-plus"></i> Add line</button>
+      </section>
+
+      <section class="inv-section">
+        <h2>Discount, tax and payments</h2>
+        <div class="inv-grid-3">
+          <div class="inv-field"><label for="inv-disc-type">Discount type</label>
+            <select id="inv-disc-type" class="inv-select"><option value="percent">Percent (%)</option><option value="amount">Fixed amount</option></select></div>
+          <div class="inv-field"><label for="inv-disc-value">Discount</label>
+            <input id="inv-disc-value" class="inv-input" type="number" min="0" step="any" placeholder="0"></div>
+          <div class="inv-field"><label for="inv-shipping">Shipping / delivery</label>
+            <input id="inv-shipping" class="inv-input" type="number" min="0" step="any" placeholder="0"></div>
+          <div class="inv-field"><label for="inv-tax-label">Tax name</label>
+            <input id="inv-tax-label" class="inv-input" type="text" maxlength="20" value="Tax" placeholder="Tax, VAT, Sales tax"></div>
+          <div class="inv-field"><label for="inv-tax-rate">Tax rate (%)</label>
+            <input id="inv-tax-rate" class="inv-input" type="number" min="0" max="100" step="any" placeholder="0"></div>
+          <div class="inv-field" id="inv-paid-wrap"><label for="inv-paid">Amount already paid</label>
+            <input id="inv-paid" class="inv-input" type="number" min="0" step="any" placeholder="0"></div>
+        </div>
+      </section>
+
+      <section class="inv-section">
+        <h2>Notes and payment details</h2>
+        <div class="inv-grid">
+          <div class="inv-field"><label for="inv-payinfo">Payment details (bank, PayPal, etc.)</label>
+            <textarea id="inv-payinfo" class="inv-textarea" maxlength="600"></textarea></div>
+          <div class="inv-field"><label for="inv-notes">Notes or terms</label>
+            <textarea id="inv-notes" class="inv-textarea" maxlength="600" placeholder="Thank you for your business."></textarea></div>
+        </div>
+        <div class="inv-field" style="margin-top:0.9rem"><label for="inv-accent">Accent colour</label>
+          <div class="inv-swatches"><div id="inv-swatches" class="inv-swatches"></div><input id="inv-accent" type="color" value="#2563eb" aria-label="Pick a custom colour" style="width:2.2rem;height:2rem;border:none;background:none;padding:0;cursor:pointer"></div></div>
+      </section>
+
+      <section class="inv-section">
+        <div id="inv-totals" class="inv-totals" aria-live="polite"></div>
+        <div class="inv-actions" style="margin-top:1rem">
+          <button type="button" id="inv-download" class="inv-btn inv-btn-primary"><i class="fa-solid fa-download"></i> Download PDF</button>
+          <button type="button" id="inv-preview" class="inv-btn inv-btn-ghost"><i class="fa-solid fa-eye"></i> Preview PDF</button>
+          <button type="button" id="inv-reset" class="inv-btn inv-btn-ghost"><i class="fa-solid fa-rotate"></i> New customer</button>
+        </div>
+        <div style="margin-top:1rem">
+          <label class="inv-check"><input type="checkbox" id="inv-remember" checked> Remember my business details on this device</label>
+          <p class="inv-note" style="margin:0.35rem 0 0">Saved only in your browser. <button type="button" id="inv-clear-saved" class="inv-note" style="background:none;border:none;padding:0;text-decoration:underline;cursor:pointer">Clear saved details</button></p>
+        </div>
+      </section>
+    </form>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Create an Invoice Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">This free invoice generator is made for freelancers, contractors and small businesses who need a clean PDF invoice quickly, without opening an account. Everything is built in your browser, so your customer and pricing details stay on your device.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+          <li><strong>Add your details:</strong> Enter your business name and address, and upload a logo if you have one.</li>
+          <li><strong>Add your customer:</strong> Fill in who you are billing and any reference or PO number.</li>
+          <li><strong>List your items:</strong> Type a description, quantity and price for each line. The totals update as you type.</li>
+          <li><strong>Set tax, discount and payment terms:</strong> Add a tax rate, a discount or shipping, and choose when payment is due.</li>
+          <li><strong>Download:</strong> Click "Download PDF". The invoice number goes up by one for the next invoice.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What to Put on an Invoice</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Your details and your customer's details:</strong> names and addresses.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>A unique invoice number and dates:</strong> the date you issue it and when it is due.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Clear line items:</strong> what you provided, how many, and the price of each.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Tax and total:</strong> the tax rate and the final amount to pay. If you are VAT registered, include your VAT number.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>How to pay you:</strong> bank details or another payment method, plus any late-payment terms.</span></li>
+        </ul>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">Requirements differ by country. This tool is not tax or legal advice.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is this invoice generator really free?</h3>
+          <p>Yes. You can create and download as many invoices, quotes and receipts as you like. There are no accounts, subscriptions or hidden fees. The PDF carries a small &quot;Created with Fixlytools.com&quot; line in the footer.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Do I need to sign up or create an account?</h3>
+          <p>No. Open the page, fill in the form and download your PDF. There is no login.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Where is my information stored?</h3>
+          <p>Only in your own browser. Your invoice is built on your device and is never uploaded to Fixlytools. If you tick &quot;Remember my business details&quot;, your business name, logo and settings are saved in your browser on this device so you do not have to type them again. You can remove them at any time with the &quot;Clear saved details&quot; button.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I add my logo?</h3>
+          <p>Yes. Upload a PNG, JPG or WebP logo. It appears at the top left of the PDF. The logo is resized on your device to keep the file small.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I use it for UK VAT or US sales tax?</h3>
+          <p>You can enter a tax label (for example VAT or Sales tax) and a tax rate, and the tool adds it to the total. It uses one rate for the whole invoice. If you are VAT registered, put your VAT number in the &quot;Tax ID / VAT number&quot; field so it prints on the invoice. This tool does not give tax advice, so check the rules for your country with your tax authority or accountant.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is an invoice made here legally valid?</h3>
+          <p>The rules for what an invoice must contain differ from country to country. The tool includes the items most commonly required: your details, the customer, a number, dates, line items, tax and the total. You are responsible for checking that your invoice meets the rules where you work.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I edit a PDF after I download it?</h3>
+          <p>The PDF itself is not editable. To change something, update the form and download a new PDF. Your business details are remembered, so this takes a few seconds.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-circle-plus"></i> Merge PDF</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf"></i> JPG to PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress"></i> PDF Compressor</a>
+        <a href="/tools/emi-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator"></i> EMI Calculator</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/invoice-generator.js"></script>
+</body>
+</html>
