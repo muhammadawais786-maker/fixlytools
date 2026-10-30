@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Crop PDF Pages Online Free - Trim Margins | Fixlytools</title>
+  <meta name="description" content="Crop PDF margins online with a live preview. Trim all or selected pages in mm or percent. Free, and your file never leaves your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/crop-pdf">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/crop-pdf">
+  <meta property="og:title" content="Crop PDF Pages Online Free - Trim Margins | Fixlytools">
+  <meta property="og:description" content="Crop PDF margins online with a live preview. Trim all or selected pages in mm or percent. Free, and your file never leaves your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crop PDF Pages Online Free - Trim Margins | Fixlytools">
+  <meta name="twitter:description" content="Crop PDF margins online with a live preview. Trim all or selected pages in mm or percent. Free, and your file never leaves your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/crop-pdf.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crop PDF",
+  "url": "https://fixlytools.com/tools/crop-pdf",
+  "description": "Crop PDF margins online with a live preview. Trim all or selected pages in mm or percent. Free, and your file never leaves your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does cropping delete what is outside the frame?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not completely. The page is made smaller so viewers show only the cropped area, but the trimmed content may still exist inside the file. Do not use cropping to hide private information. Use a redaction tool for that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does \"Also shrink the page size\" do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When ticked, the visible page size and the page boundary are both reduced, so most apps and printers show the cropped size. When unticked, only the visible area is set, and some apps may still show the full page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the preview only show page 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Page 1 is used as a guide to keep the tool fast. The same margins are applied to every selected page, measured against each page's own size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I crop different pages by different amounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not in one pass. Run the tool again on the downloaded file with other margins and other pages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I crop a password-protected PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Protected PDFs cannot be opened by this tool. Remove the password first, then try again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is done in your browser and the file never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Crop PDF</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Crop PDF Pages Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Trim white margins or unwanted edges from your PDF, with a preview of the result.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-crop-simple"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select a PDF to crop</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag & drop a PDF document</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose PDF File
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-file-pdf text-indigo-600 text-2xl"></i>
+            <div>
+              <p id="pdf-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to crop</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+            Change PDF
+          </button>
+        </div>
+
+        <div class="croppdf-field">
+          <label for="croppdf-unit" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Measure Margins In</label>
+          <select id="croppdf-unit" class="croppdf-select">
+            <option value="mm" selected>Millimeters (mm)</option>
+            <option value="percent">Percent of the page (%)</option>
+          </select>
+        </div>
+
+        <div>
+          <p class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5" id="croppdf-margins-label">Amount to Trim From Each Side</p>
+          <div class="croppdf-grid-2" role="group" aria-labelledby="croppdf-margins-label">
+            <div class="croppdf-field">
+              <label for="croppdf-top" class="croppdf-small-label">Top</label>
+              <input type="number" id="croppdf-top" class="croppdf-input" value="10" min="0" max="1000" step="1" inputmode="decimal">
+            </div>
+            <div class="croppdf-field">
+              <label for="croppdf-right" class="croppdf-small-label">Right</label>
+              <input type="number" id="croppdf-right" class="croppdf-input" value="10" min="0" max="1000" step="1" inputmode="decimal">
+            </div>
+            <div class="croppdf-field">
+              <label for="croppdf-bottom" class="croppdf-small-label">Bottom</label>
+              <input type="number" id="croppdf-bottom" class="croppdf-input" value="10" min="0" max="1000" step="1" inputmode="decimal">
+            </div>
+            <div class="croppdf-field">
+              <label for="croppdf-left" class="croppdf-small-label">Left</label>
+              <input type="number" id="croppdf-left" class="croppdf-input" value="10" min="0" max="1000" step="1" inputmode="decimal">
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 mt-1.5">Margins are measured as you see the page. Percent is measured against the page width for left and right, and the page height for top and bottom.</p>
+        </div>
+
+        <div class="croppdf-preview-wrap">
+          <div id="croppdf-preview" class="croppdf-preview"></div>
+          <p id="croppdf-preview-note" class="text-xs text-slate-500 mt-1.5" aria-live="polite"></p>
+        </div>
+
+        <fieldset class="croppdf-fieldset">
+          <legend class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Pages to Crop</legend>
+          <label class="croppdf-check" for="croppdf-scope-all"><input type="radio" name="croppdf-scope" id="croppdf-scope-all" checked><span>All pages</span></label>
+          <label class="croppdf-check" for="croppdf-scope-some"><input type="radio" name="croppdf-scope" id="croppdf-scope-some"><span>Only these pages:</span></label>
+          <input type="text" id="croppdf-range" class="croppdf-input" placeholder="e.g. 1-3, 5" autocomplete="off" aria-label="Pages to crop">
+        </fieldset>
+
+        <label class="croppdf-check" for="croppdf-media">
+          <input type="checkbox" id="croppdf-media" checked>
+          <span>Also shrink the page size, so every viewer shows the cropped size</span>
+        </label>
+
+        <button id="croppdf-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-crop-simple"></i> Crop &amp; Download
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Cropping removes margins or edges you do not need, such as scanner borders or wide white space. Fixlytools shows page 1 with a frame so you can see what will be trimmed, then saves the cropped PDF.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload Your PDF:</strong> Click "Choose PDF File" or drag a PDF onto the box. Page 1 appears as a preview.</li>
+        <li><strong>Set the Margins:</strong> Choose millimeters or percent and enter how much to trim from the top, right, bottom and left. The darkened area in the preview is what will be removed.</li>
+        <li><strong>Choose the Pages:</strong> Crop every page, or type page numbers such as 1-3, 5 to crop only those pages.</li>
+        <li><strong>Download:</strong> Click "Crop &amp; Download" to save the new PDF. Your original file is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live Preview:</strong> See a crop frame on page 1 that updates as you type.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Millimeters or Percent:</strong> Trim by a fixed size, or by a share of the page.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>All or Selected Pages:</strong> Crop the whole document or only the pages you list.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Handles Rotated Pages:</strong> Margins always follow what you see, even on sideways pages.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Safety Checks:</strong> The tool refuses margins that would leave almost nothing of a page, and reports which page is the problem.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does cropping delete what is outside the frame?</h3>
+          <p>Not completely. The page is made smaller so viewers show only the cropped area, but the trimmed content may still exist inside the file. Do not use cropping to hide private information. Use a redaction tool for that.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What does "Also shrink the page size" do?</h3>
+          <p>When ticked, the visible page size and the page boundary are both reduced, so most apps and printers show the cropped size. When unticked, only the visible area is set, and some apps may still show the full page.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the preview only show page 1?</h3>
+          <p>Page 1 is used as a guide to keep the tool fast. The same margins are applied to every selected page, measured against each page's own size.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I crop different pages by different amounts?</h3>
+          <p>Not in one pass. Run the tool again on the downloaded file with other margins and other pages.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I crop a password-protected PDF?</h3>
+          <p>No. Protected PDFs cannot be opened by this tool. Remove the password first, then try again.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my PDF uploaded to a server?</h3>
+          <p>No. Everything is done in your browser and the file never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/crop-pdf.js"></script>
+</body>
+</html>

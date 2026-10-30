@@ -2,10 +2,38 @@
 
 // ---------- pure helpers (also used by the tests) ----------
 
-const INV_CURRENCIES = {
-  USD: '$', GBP: '£', EUR: '€', CAD: 'CA$', AUD: 'A$', NZD: 'NZ$',
-  CHF: 'CHF ', SEK: 'SEK ', NOK: 'NOK ', DKK: 'DKK ', PLN: 'PLN ', INR: 'INR ',
-  AED: 'AED ', SGD: 'S$', ZAR: 'ZAR ', PKR: 'PKR '
+// [code, name, prefix printed before amounts, decimals]. The built-in PDF font cannot print most currency symbols,
+// so a currency without a safe symbol is printed with its code (e.g. "SAR 150.00").
+const INV_CURRENCY_LIST = [
+  ['USD', 'US Dollar', '$', 2], ['GBP', 'British Pound', '£', 2], ['EUR', 'Euro', '€', 2],
+  ['CAD', 'Canadian Dollar', 'CA$', 2], ['AUD', 'Australian Dollar', 'A$', 2], ['NZD', 'New Zealand Dollar', 'NZ$', 2],
+  ['CHF', 'Swiss Franc', 'CHF ', 2], ['SEK', 'Swedish Krona', 'SEK ', 2], ['NOK', 'Norwegian Krone', 'NOK ', 2],
+  ['DKK', 'Danish Krone', 'DKK ', 2], ['PLN', 'Polish Zloty', 'PLN ', 2], ['CZK', 'Czech Koruna', 'CZK ', 2],
+  ['HUF', 'Hungarian Forint', 'HUF ', 2], ['RON', 'Romanian Leu', 'RON ', 2], ['TRY', 'Turkish Lira', 'TRY ', 2],
+  ['SGD', 'Singapore Dollar', 'S$', 2], ['HKD', 'Hong Kong Dollar', 'HK$', 2], ['JPY', 'Japanese Yen', 'JPY ', 0],
+  ['KRW', 'South Korean Won', 'KRW ', 0], ['CNY', 'Chinese Yuan', 'CNY ', 2],
+  ['AED', 'UAE Dirham', 'AED ', 2], ['SAR', 'Saudi Riyal', 'SAR ', 2], ['QAR', 'Qatari Riyal', 'QAR ', 2],
+  ['KWD', 'Kuwaiti Dinar', 'KWD ', 3], ['BHD', 'Bahraini Dinar', 'BHD ', 3], ['OMR', 'Omani Rial', 'OMR ', 3],
+  ['JOD', 'Jordanian Dinar', 'JOD ', 3], ['EGP', 'Egyptian Pound', 'EGP ', 2], ['MAD', 'Moroccan Dirham', 'MAD ', 2],
+  ['TND', 'Tunisian Dinar', 'TND ', 3],
+  ['PKR', 'Pakistani Rupee', 'PKR ', 2], ['INR', 'Indian Rupee', 'INR ', 2], ['BDT', 'Bangladeshi Taka', 'BDT ', 2],
+  ['LKR', 'Sri Lankan Rupee', 'LKR ', 2], ['NPR', 'Nepalese Rupee', 'NPR ', 2],
+  ['MYR', 'Malaysian Ringgit', 'MYR ', 2], ['IDR', 'Indonesian Rupiah', 'IDR ', 2], ['THB', 'Thai Baht', 'THB ', 2],
+  ['PHP', 'Philippine Peso', 'PHP ', 2], ['VND', 'Vietnamese Dong', 'VND ', 0],
+  ['ZAR', 'South African Rand', 'ZAR ', 2], ['NGN', 'Nigerian Naira', 'NGN ', 2], ['KES', 'Kenyan Shilling', 'KES ', 2],
+  ['GHS', 'Ghanaian Cedi', 'GHS ', 2], ['TZS', 'Tanzanian Shilling', 'TZS ', 2], ['UGX', 'Ugandan Shilling', 'UGX ', 0],
+  ['BRL', 'Brazilian Real', 'BRL ', 2], ['MXN', 'Mexican Peso', 'MXN ', 2]
+];
+const INV_CURRENCIES = {};
+const INV_DECIMALS = {};
+const INV_CURRENCY_NAMES = {};
+INV_CURRENCY_LIST.forEach(([code, name, prefix, dec]) => {
+  INV_CURRENCIES[code] = prefix; INV_DECIMALS[code] = dec; INV_CURRENCY_NAMES[code] = name;
+});
+
+const INV_PAY_METHODS = {
+  '': '', cash: 'Cash', bank: 'Bank transfer', card: 'Card', cheque: 'Cheque', online: 'Online payment',
+  wallet: 'Mobile wallet', cod: 'Cash on delivery', other: 'Other'
 };
 
 const INV_DOC_TYPES = {
@@ -15,8 +43,14 @@ const INV_DOC_TYPES = {
   receipt:  { title: 'RECEIPT',          dueLabel: 'Due date',    showDue: false, showPaid: true  }
 };
 
-function invRound(n) {
-  return Math.round((Number(n) + Number.EPSILON) * 100) / 100;
+function invDecimals(currency) {
+  return INV_DECIMALS[currency] !== undefined ? INV_DECIMALS[currency] : 2;
+}
+
+// rounds to the number of decimals the currency uses (default 2)
+function invRound(n, dec) {
+  const f = Math.pow(10, dec === undefined ? 2 : dec);
+  return Math.round((Number(n) + Number.EPSILON) * f) / f;
 }
 
 function invNum(v) {
@@ -26,36 +60,79 @@ function invNum(v) {
 
 function invFormatMoney(amount, currency) {
   const sym = INV_CURRENCIES[currency] !== undefined ? INV_CURRENCIES[currency] : (currency + ' ');
-  const abs = Math.abs(invRound(amount));
-  const text = abs.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const dec = invDecimals(currency);
+  const abs = Math.abs(invRound(amount, dec));
+  const text = abs.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   return (amount < 0 ? '-' : '') + sym + text;
 }
 
-// items: [{ description, qty, price }]; o: { discountType: 'percent'|'amount', discountValue, taxRate, shipping, paid, docType }
+// items: [{ description, qty, price, unit }]; o: { discountType: 'percent'|'amount', discountValue, taxRate, shipping, paid, docType, currency }
 function invComputeTotals(items, o) {
+  const dec = invDecimals(o.currency);
+  const r = (n) => invRound(n, dec);
   const lines = items.map(i => ({
     description: i.description || '',
+    unit: i.unit || '',
     qty: invNum(i.qty),
     price: invNum(i.price),
-    amount: invRound(invNum(i.qty) * invNum(i.price))
+    amount: r(invNum(i.qty) * invNum(i.price))
   }));
-  const subtotal = invRound(lines.reduce((s, l) => s + l.amount, 0));
+  const subtotal = r(lines.reduce((s, l) => s + l.amount, 0));
 
   const dv = Math.max(invNum(o.discountValue), 0);
   const discount = o.discountType === 'percent'
-    ? invRound(subtotal * Math.min(dv, 100) / 100)
-    : invRound(Math.min(dv, subtotal));
+    ? r(subtotal * Math.min(dv, 100) / 100)
+    : r(Math.min(dv, subtotal));
 
-  const taxable = invRound(subtotal - discount);
+  const taxable = r(subtotal - discount);
   const taxRate = Math.min(Math.max(invNum(o.taxRate), 0), 100);
-  const tax = invRound(taxable * taxRate / 100);
-  const shipping = invRound(Math.max(invNum(o.shipping), 0));
-  const total = invRound(taxable + tax + shipping);
+  const tax = r(taxable * taxRate / 100);
+  const shipping = r(Math.max(invNum(o.shipping), 0));
+  const total = r(taxable + tax + shipping);
 
-  let paid = invRound(Math.max(invNum(o.paid), 0));
+  let paid = r(Math.max(invNum(o.paid), 0));
   if (o.docType === 'receipt' && paid === 0) paid = total;      // a receipt means "paid in full" unless stated
-  const balance = invRound(total - paid);
+  const balance = r(total - paid);
   return { lines, subtotal, discount, taxable, taxRate, tax, shipping, total, paid, balance };
+}
+
+// ---- amount in words (English) ----
+const INV_ONES = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve',
+  'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+const INV_TENS = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+function invBelowThousand(n) {
+  const parts = [];
+  if (n >= 100) { parts.push(INV_ONES[Math.floor(n / 100)] + ' Hundred'); n %= 100; }
+  if (n >= 20) { parts.push(INV_TENS[Math.floor(n / 10)] + (n % 10 ? '-' + INV_ONES[n % 10] : '')); }
+  else if (n > 0) parts.push(INV_ONES[n]);
+  return parts.join(' ');
+}
+
+// whole number (up to 999,999,999,999,999) -> "One Thousand Two Hundred Thirty-Four"
+function invIntToWords(n) {
+  n = Math.floor(Math.abs(n));
+  if (n === 0) return 'Zero';
+  const units = [[1e12, 'Trillion'], [1e9, 'Billion'], [1e6, 'Million'], [1e3, 'Thousand']];
+  const parts = [];
+  for (const [size, name] of units) {
+    if (n >= size) { parts.push(invBelowThousand(Math.floor(n / size)) + ' ' + name); n %= size; }
+  }
+  if (n > 0) parts.push(invBelowThousand(n));
+  return parts.join(' ');
+}
+
+// e.g. "PKR One Thousand Two Hundred and 50/100 Only"
+function invAmountInWords(amount, currency) {
+  const dec = invDecimals(currency);
+  const f = Math.pow(10, dec);
+  const minor = Math.round(Math.abs(amount) * f);
+  const whole = Math.floor(minor / f);
+  const frac = minor - whole * f;
+  if (whole > 999999999999999) return '';
+  let out = currency + ' ' + invIntToWords(whole);
+  if (dec > 0 && frac > 0) out += ' and ' + String(frac).padStart(dec, '0') + '/' + f;
+  return out + ' Only';
 }
 
 // Turns "INV-0009" into "INV-0010" (keeps the leading zeros)
@@ -217,6 +294,7 @@ async function invBuildPdf(d, PDFLib) {
   const meta = [['Number', d.number], ['Date', invFormatDate(d.issueDate)]];
   if (type.showDue && d.dueDate) meta.push([type.dueLabel, invFormatDate(d.dueDate)]);
   if (d.reference) meta.push(['Reference', d.reference]);
+  if (d.payMethod && INV_PAY_METHODS[d.payMethod]) meta.push(['Payment method', INV_PAY_METHODS[d.payMethod]]);
 
   let yl = y;
   fromLines.forEach(l => { text(l.s, M, yl, l.b ? 10.5 : 9.5, l.b ? bold : font, l.b ? dark : grey); yl -= 13; });
@@ -228,14 +306,24 @@ async function invBuildPdf(d, PDFLib) {
   });
   y = Math.min(yl, yr) - 16;
 
-  // ----- bill to -----
-  if (d.to.name || d.to.address || d.to.email) {
-    text('BILL TO', M, y, 8.5, bold, accent);
+  // ----- bill to (left) and ship to (right) -----
+  const billLines = [];
+  if (d.to.name) billLines.push({ s: d.to.name, b: true });
+  invWrap(d.to.address, font, 9.5, 250).forEach(s => billLines.push({ s }));
+  if (d.to.phone) billLines.push({ s: 'Tel: ' + d.to.phone });
+  if (d.to.email) billLines.push({ s: d.to.email });
+  if (d.to.taxId) billLines.push({ s: 'Tax ID: ' + d.to.taxId });
+  const shipLines = d.shipTo && d.shipTo.trim() ? invWrap(d.shipTo, font, 9.5, 225) : [];
+  if (d.shipTo && d.shipTo.trim() && d.to.phone) shipLines.push('Tel: ' + d.to.phone);
+  if (billLines.length || shipLines.length) {
+    const X2 = 330;
+    if (billLines.length) text('BILL TO', M, y, 8.5, bold, accent);
+    if (shipLines.length) text('SHIP TO', X2, y, 8.5, bold, accent);
     y -= 14;
-    if (d.to.name) { text(d.to.name, M, y, 10.5, bold, dark); y -= 13; }
-    invWrap(d.to.address, font, 9.5, 260).forEach(s => { text(s, M, y, 9.5, font, grey); y -= 13; });
-    if (d.to.email) { text(d.to.email, M, y, 9.5, font, grey); y -= 13; }
-    y -= 10;
+    let yb = y, ys = y;
+    billLines.forEach(l => { text(l.s, M, yb, l.b ? 10.5 : 9.5, l.b ? bold : font, l.b ? dark : grey); yb -= 13; });
+    shipLines.forEach(l => { text(l, X2, ys, 9.5, font, grey); ys -= 13; });
+    y = Math.min(yb, ys) - 10;
   }
 
   // ----- items table -----
@@ -246,7 +334,7 @@ async function invBuildPdf(d, PDFLib) {
     const rowH = Math.max(descLines.length * 12, 14) + 8;
     ensureSpace(rowH, true);
     descLines.forEach((s, i) => text(s, M + 8, y - 2 - i * 12, 9.5, font, dark));
-    const qtyText = String(Math.round(l.qty * 1000) / 1000);
+    const qtyText = String(Math.round(l.qty * 1000) / 1000) + (l.unit ? ' ' + l.unit : '');
     textRight(qtyText, COL.qty, y - 2, 9.5, font, dark);
     textRight(money(l.price), COL.price, y - 2, 9.5, font, dark);
     textRight(money(l.amount), COL.amount - 8, y - 2, 9.5, font, dark);
@@ -282,7 +370,8 @@ async function invBuildPdf(d, PDFLib) {
     }
     if (t.paid > 0 || d.docType === 'invoice' || d.docType === 'proforma') {
       page.drawRectangle({ x: RIGHT - 220, y: y - 7, width: 220, height: 24, color: accent });
-      const lbl = (d.docType === 'receipt' && t.balance === 0) ? 'Paid in full' : 'Balance due';
+      const lbl = (d.docType === 'receipt' && t.balance === 0) ? 'Paid in full'
+        : (d.payMethod === 'cod' && t.balance > 0 ? 'Collect on delivery' : 'Balance due');
       text(lbl, RIGHT - 212, y + 1, 10.5, bold, rgb(1, 1, 1));
       textRight(money(t.balance), RIGHT - 8, y + 1, 10.5, bold, rgb(1, 1, 1));
       y -= 36;
@@ -305,8 +394,29 @@ async function invBuildPdf(d, PDFLib) {
     });
     y -= 10;
   }
+  if (d.showWords) block('Amount in words', invAmountInWords(t.total, cur));
   block('Payment details', d.paymentInfo);
   block('Notes', d.notes);
+
+  // ----- signature (optional) -----
+  if (d.signatureDataUrl || (d.signatureLabel && d.signatureLabel.trim())) {
+    ensureSpace(90, false);
+    y -= 10;
+    let sigW = 150;
+    if (d.signatureDataUrl) {
+      try {
+        const simg = await pdf.embedPng(invBase64ToBytes(d.signatureDataUrl));
+        const sc = Math.min(150 / simg.width, 50 / simg.height, 1);
+        const w = simg.width * sc, h = simg.height * sc;
+        page.drawImage(simg, { x: RIGHT - 150, y: y - h, width: w, height: h });
+        y -= h + 4;
+      } catch (e) { y -= 40; }
+    } else { y -= 40; }
+    page.drawLine({ start: { x: RIGHT - sigW, y }, end: { x: RIGHT, y }, thickness: 0.7, color: grey });
+    y -= 12;
+    textRight((d.signatureLabel && d.signatureLabel.trim()) || 'Authorized signature', RIGHT, y, 8.5, font, grey);
+    y -= 14;
+  }
 
   // ----- footer on every page -----
   const pages = pdf.getPages();
@@ -322,7 +432,7 @@ async function invBuildPdf(d, PDFLib) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { invRound, invFormatMoney, invComputeTotals, invNextNumber, invAddDays, invSanitize, invWrap, invBuildPdf, INV_DOC_TYPES };
+  module.exports = { invRound, invDecimals, invAmountInWords, invIntToWords, INV_CURRENCIES, INV_DECIMALS, invFormatMoney, invComputeTotals, invNextNumber, invAddDays, invSanitize, invWrap, invBuildPdf, INV_DOC_TYPES };
 }
 
 // ---------- page wiring ----------
@@ -342,6 +452,9 @@ if (typeof document !== 'undefined') {
       fromName: $('inv-from-name'), fromAddress: $('inv-from-address'), fromEmail: $('inv-from-email'),
       fromPhone: $('inv-from-phone'), fromTax: $('inv-from-tax'),
       toName: $('inv-to-name'), toAddress: $('inv-to-address'), toEmail: $('inv-to-email'),
+      toPhone: $('inv-to-phone'), toTax: $('inv-to-tax'), shipTo: $('inv-ship-to'),
+      payMethod: $('inv-paymethod'), showWords: $('inv-showwords'), curSearch: $('inv-cur-search'),
+      sigInput: $('inv-sig-input'), sigPreview: $('inv-sig-preview'), sigRemove: $('inv-sig-remove'), sigLabel: $('inv-sig-label'),
       itemsBox: $('inv-items'), addItem: $('inv-add-item'),
       discType: $('inv-disc-type'), discValue: $('inv-disc-value'), taxLabel: $('inv-tax-label'), taxRate: $('inv-tax-rate'),
       shipping: $('inv-shipping'), paid: $('inv-paid'),
@@ -353,6 +466,7 @@ if (typeof document !== 'undefined') {
     };
 
     let logoDataUrl = '';
+    let signatureDataUrl = '';
     let accent = SWATCHES[0];
     let itemSeq = 0;
 
@@ -384,6 +498,7 @@ if (typeof document !== 'undefined') {
       row.innerHTML =
         '<input type="text" class="inv-input inv-desc" placeholder="Description" aria-label="Item description" maxlength="300">' +
         '<input type="number" class="inv-input inv-num inv-qty" min="0" step="any" placeholder="Qty" aria-label="Quantity">' +
+        '<input type="text" class="inv-input inv-unit" maxlength="8" placeholder="Unit" aria-label="Unit, for example pcs or hours">' +
         '<input type="number" class="inv-input inv-num inv-price" min="0" step="any" placeholder="Price" aria-label="Unit price">' +
         '<div class="inv-amount" aria-label="Line amount">0.00</div>' +
         '<button type="button" class="inv-remove" aria-label="Remove line ' + id + '">&times;</button>';
@@ -403,6 +518,7 @@ if (typeof document !== 'undefined') {
       return Array.from(els.itemsBox.children).map(row => ({
         description: row.querySelector('.inv-desc').value.trim(),
         qty: row.querySelector('.inv-qty').value,
+        unit: row.querySelector('.inv-unit').value.trim(),
         price: row.querySelector('.inv-price').value
       }));
     }
@@ -412,13 +528,15 @@ if (typeof document !== 'undefined') {
       const items = readItems();
       const opts = {
         discountType: els.discType.value, discountValue: els.discValue.value, taxRate: els.taxRate.value,
-        shipping: els.shipping.value, paid: els.paid.value, docType: els.docType.value
+        shipping: els.shipping.value, paid: els.paid.value, docType: els.docType.value, currency: els.currency.value
       };
       return {
         docType: els.docType.value, number: els.number.value.trim(), issueDate: els.issue.value, dueDate: els.due.value,
         currency: els.currency.value, reference: els.reference.value.trim(),
         from: { name: els.fromName.value.trim(), address: els.fromAddress.value.trim(), email: els.fromEmail.value.trim(), phone: els.fromPhone.value.trim(), taxId: els.fromTax.value.trim() },
-        to: { name: els.toName.value.trim(), address: els.toAddress.value.trim(), email: els.toEmail.value.trim() },
+        to: { name: els.toName.value.trim(), address: els.toAddress.value.trim(), email: els.toEmail.value.trim(), phone: els.toPhone.value.trim(), taxId: els.toTax.value.trim() },
+        shipTo: els.shipTo.value, payMethod: els.payMethod.value, showWords: els.showWords.checked,
+        signatureDataUrl, signatureLabel: els.sigLabel.value,
         discountType: els.discType.value, discountValue: els.discValue.value,
         taxLabel: els.taxLabel.value.trim() || 'Tax',
         notes: els.notes.value, paymentInfo: els.payInfo.value,
@@ -442,7 +560,7 @@ if (typeof document !== 'undefined') {
       rows.push(['Total', invFormatMoney(t.total, cur), 'total']);
       if (type.showPaid && t.paid > 0) rows.push(['Amount paid', '-' + invFormatMoney(t.paid, cur), '']);
       if (type.showPaid && (t.paid > 0 || d.docType === 'invoice' || d.docType === 'proforma')) {
-        rows.push([d.docType === 'receipt' && t.balance === 0 ? 'Paid in full' : 'Balance due', invFormatMoney(t.balance, cur), 'balance']);
+        rows.push([d.docType === 'receipt' && t.balance === 0 ? 'Paid in full' : (d.payMethod === 'cod' && t.balance > 0 ? 'Collect on delivery' : 'Balance due'), invFormatMoney(t.balance, cur), 'balance']);
       }
       els.totals.innerHTML = '';
       rows.forEach(([k, v, cls]) => {
@@ -475,25 +593,78 @@ if (typeof document !== 'undefined') {
       }
     }
 
+    // reads an image file, shrinks it and returns a PNG data URL
+    async function imageToDataUrl(file, maxW, maxH) {
+      const img = await loadImageFile(file);
+      const scale = Math.min(maxW / img.width, maxH / img.height, 1);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.width * scale));
+      canvas.height = Math.max(1, Math.round(img.height * scale));
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/png');
+    }
+
     els.logoInput.addEventListener('change', async () => {
       const file = els.logoInput.files && els.logoInput.files[0];
       els.logoInput.value = '';
       if (!file) return;
       if (!/^image\/(png|jpe?g|webp|gif)$/.test(file.type)) { showToast('Please choose a PNG, JPG or WebP logo.', 'warning'); return; }
       try {
-        const img = await loadImageFile(file);
-        const maxW = 400, maxH = 160;
-        const scale = Math.min(maxW / img.width, maxH / img.height, 1);
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, Math.round(img.width * scale));
-        canvas.height = Math.max(1, Math.round(img.height * scale));
-        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-        setLogo(canvas.toDataURL('image/png'));
+        setLogo(await imageToDataUrl(file, 400, 160));
         refresh();
       } catch (e) {
         showToast('This logo could not be read.', 'error');
       }
     });
+
+    // ----- signature -----
+    function setSignature(dataUrl) {
+      signatureDataUrl = dataUrl || '';
+      if (signatureDataUrl) {
+        els.sigPreview.src = signatureDataUrl;
+        els.sigPreview.style.display = '';
+        els.sigRemove.style.display = '';
+      } else {
+        els.sigPreview.removeAttribute('src');
+        els.sigPreview.style.display = 'none';
+        els.sigRemove.style.display = 'none';
+      }
+    }
+    els.sigInput.addEventListener('change', async () => {
+      const file = els.sigInput.files && els.sigInput.files[0];
+      els.sigInput.value = '';
+      if (!file) return;
+      if (!/^image\/(png|jpe?g|webp|gif)$/.test(file.type)) { showToast('Please choose a PNG, JPG or WebP image.', 'warning'); return; }
+      try {
+        setSignature(await imageToDataUrl(file, 500, 200));
+        refresh();
+      } catch (e) {
+        showToast('This image could not be read.', 'error');
+      }
+    });
+    els.sigRemove.addEventListener('click', () => { setSignature(''); refresh(); });
+
+    // ----- currency list with search -----
+    function fillCurrencies(filter) {
+      const q = (filter || '').trim().toLowerCase();
+      const current = els.currency.value;
+      els.currency.innerHTML = '';
+      INV_CURRENCY_LIST.forEach(([code, name]) => {
+        if (q && code.toLowerCase().indexOf(q) === -1 && name.toLowerCase().indexOf(q) === -1) return;
+        const opt = document.createElement('option');
+        opt.value = code; opt.textContent = code + ' - ' + name;
+        els.currency.appendChild(opt);
+      });
+      if (!els.currency.options.length) {
+        const opt = document.createElement('option');
+        opt.value = current || 'USD'; opt.textContent = 'No match';
+        els.currency.appendChild(opt);
+      }
+      const keep = Array.from(els.currency.options).some(o => o.value === current);
+      els.currency.value = keep ? current : els.currency.options[0].value;
+    }
+    els.curSearch.addEventListener('input', () => { fillCurrencies(els.curSearch.value); refresh(); });
+
     els.logoRemove.addEventListener('click', () => { setLogo(''); refresh(); });
 
     // ----- accent colour -----
@@ -518,7 +689,8 @@ if (typeof document !== 'undefined') {
         remember: true, number: nextNumber || els.number.value.trim(), currency: els.currency.value,
         from: { name: els.fromName.value, address: els.fromAddress.value, email: els.fromEmail.value, phone: els.fromPhone.value, taxId: els.fromTax.value },
         taxLabel: els.taxLabel.value, taxRate: els.taxRate.value, payInfo: els.payInfo.value, notes: els.notes.value,
-        accent, logo: logoDataUrl, terms: els.terms.value
+        accent, logo: logoDataUrl, terms: els.terms.value,
+        payMethod: els.payMethod.value, showWords: els.showWords.checked, signature: signatureDataUrl, signatureLabel: els.sigLabel.value
       });
     }
 
@@ -538,6 +710,10 @@ if (typeof document !== 'undefined') {
       if (s.accent) setAccent(s.accent);
       if (s.logo) setLogo(s.logo);
       if (s.terms) els.terms.value = s.terms;
+      if (s.payMethod !== undefined && INV_PAY_METHODS[s.payMethod] !== undefined) els.payMethod.value = s.payMethod;
+      if (s.showWords !== undefined) els.showWords.checked = !!s.showWords;
+      if (s.signature) setSignature(s.signature);
+      if (s.signatureLabel) els.sigLabel.value = s.signatureLabel;
     }
 
     els.clearSaved.addEventListener('click', () => {
@@ -604,6 +780,7 @@ if (typeof document !== 'undefined') {
       els.itemsBox.innerHTML = '';
       addItemRow();
       els.reference.value = ''; els.toName.value = ''; els.toAddress.value = ''; els.toEmail.value = '';
+      els.toPhone.value = ''; els.toTax.value = ''; els.shipTo.value = '';
       els.discValue.value = ''; els.shipping.value = ''; els.paid.value = '';
       els.issue.value = today(); updateDue();
       refresh();
@@ -614,7 +791,8 @@ if (typeof document !== 'undefined') {
     ['input', 'change'].forEach(ev => {
       [els.docType, els.number, els.issue, els.due, els.currency, els.reference, els.fromName, els.fromAddress, els.fromEmail,
        els.fromPhone, els.fromTax, els.toName, els.toAddress, els.toEmail, els.discType, els.discValue, els.taxLabel,
-       els.taxRate, els.shipping, els.paid, els.notes, els.payInfo].forEach(el => el.addEventListener(ev, refresh));
+       els.taxRate, els.shipping, els.paid, els.notes, els.payInfo, els.toPhone, els.toTax, els.shipTo, els.payMethod, els.showWords,
+       els.sigLabel].forEach(el => el.addEventListener(ev, refresh));
     });
     els.terms.addEventListener('change', () => { updateDue(); refresh(); });
     els.issue.addEventListener('change', () => { updateDue(); refresh(); });
@@ -627,6 +805,8 @@ if (typeof document !== 'undefined') {
     els.terms.value = '14';
     setAccent(SWATCHES[0]);
     setLogo('');
+    setSignature('');
+    fillCurrencies('');
     applySaved(loadSaved());
     updateDue();
     addItemRow();

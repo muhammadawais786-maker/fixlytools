@@ -1,0 +1,39 @@
+/* meme-generator - styles for this tool only (every class starts with memegen-) */
+.memegen-input, .memegen-select { width: 100%; box-sizing: border-box; min-height: 44px; padding: 0.6rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #0f172a; font-size: 0.875rem; }
+.memegen-input::placeholder { color: #94a3b8; }
+.memegen-input:focus, .memegen-select:focus { outline: 2px solid #10b981; outline-offset: 1px; border-color: #10b981; }
+.dark .memegen-input, .dark .memegen-select { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .memegen-input::placeholder { color: #94a3b8; }
+#memegen-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.memegen-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (min-width: 768px) { .memegen-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+.memegen-stage { min-width: 0; text-align: center; }
+.memegen-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; touch-action: none; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #f1f5f9; }
+.memegen-canvas:focus-visible { outline: 3px solid #10b981; outline-offset: 2px; }
+.dark .memegen-canvas { border-color: #475569; background: #0f172a; }
+.memegen-panel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.memegen-field { min-width: 0; }
+.memegen-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.memegen-range { width: 100%; min-height: 36px; accent-color: #059669; }
+.memegen-out { margin-left: 0.25rem; font-weight: 600; color: #059669; }
+.dark .memegen-out { color: #6ee7b7; }
+.memegen-color { width: 100%; box-sizing: border-box; min-height: 44px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; cursor: pointer; }
+.dark .memegen-color { background: #334155; border-color: #475569; }
+.memegen-check { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.875rem; color: #334155; cursor: pointer; }
+.memegen-check input { width: 18px; height: 18px; accent-color: #059669; flex-shrink: 0; }
+.dark .memegen-check { color: #e2e8f0; }
+.memegen-group { padding: 0.9rem; border: 1px solid #e2e8f0; border-radius: 1rem; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
+.dark .memegen-group { background: #0f172a; border-color: #334155; }
+.memegen-group-title { margin: 0; font-size: 0.8125rem; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: #475569; }
+.dark .memegen-group-title { color: #94a3b8; }
+.memegen-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.memegen-secondary { min-height: 44px; padding: 0.5rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #334155; font-size: 0.8125rem; font-weight: 600; cursor: pointer; }
+.memegen-secondary:hover:not(:disabled) { background: #ecfdf5; border-color: #10b981; }
+.memegen-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+.dark .memegen-secondary { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .memegen-secondary:hover:not(:disabled) { background: #475569; }
+.memegen-min0 { min-width: 0; }
+.memegen-note { font-size: 0.75rem; color: #64748b; }
+.dark .memegen-note { color: #94a3b8; }
+.memegen-group-inner { padding-top: 4px; }
+.memegen-gap { margin-top: 10px; }

@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://fixlytools.com/tools/invoice-generator</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
   </url>
   <url>
     <loc>https://fixlytools.com/tools/image-compressor</loc>
@@ -62,11 +62,15 @@
   </url>
   <url>
     <loc>https://fixlytools.com/tools/pdf-compressor</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-27</lastmod>
   </url>
   <url>
     <loc>https://fixlytools.com/tools/qr-code-generator</loc>
     <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/pdf-to-jpg</loc>
+    <lastmod>2026-10-27</lastmod>
   </url>
   <url>
     <loc>https://fixlytools.com/tools/split-pdf</loc>
@@ -95,5 +99,93 @@
   <url>
     <loc>https://fixlytools.com/contact</loc>
     <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/remove-pages</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/rotate-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/add-page-numbers</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/add-watermark-to-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/crop-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/organize-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/sign-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/redact-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/compare-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/pdf-to-markdown</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/scan-to-pdf</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/crop-image</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/rotate-image</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/watermark-image</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/meme-generator</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/photo-editor</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/blur-image</loc>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/calculator</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/scientific-calculator</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/physics-solver</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/chemistry-solver</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/math-solver</loc>
+    <lastmod>2026-10-30</lastmod>
   </url>
 </urlset>

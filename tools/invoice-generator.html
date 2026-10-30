@@ -105,6 +105,30 @@
       },
       {
         "@type": "Question",
+        "name": "Which currencies can I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "More than 45, including US dollar, British pound, euro, Canadian and Australian dollar, UAE dirham, Saudi riyal, Qatari riyal, Kuwaiti dinar, Pakistani and Indian rupee, Bangladeshi taka, Turkish lira, Egyptian pound, Nigerian naira and more. Use the search box above the currency list to find yours. Each currency is shown with the right number of decimals, for example three for the Kuwaiti dinar and none for the Japanese yen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I make an invoice for cash on delivery (COD)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Choose \"Cash on delivery (COD)\" as the payment method and the balance is shown as \"Collect on delivery\". Add your customer's phone number and a delivery address so the courier can contact them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I write invoices in Arabic or Urdu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not yet. The PDF supports English and other Latin-alphabet text. Characters from other scripts, such as Arabic or Urdu, cannot be printed and appear as question marks, so please write names and addresses in English letters."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Can I edit a PDF after I download it?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -180,7 +204,8 @@
           <div class="inv-field" id="inv-due-wrap"><label for="inv-due" id="inv-due-label">Due date</label>
             <input id="inv-due" class="inv-input" type="date"></div>
           <div class="inv-field"><label for="inv-currency">Currency</label>
-            <select id="inv-currency" class="inv-select"><option value="USD">USD</option><option value="GBP">GBP</option><option value="EUR">EUR</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="NZD">NZD</option><option value="CHF">CHF</option><option value="SEK">SEK</option><option value="NOK">NOK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="SGD">SGD</option><option value="AED">AED</option><option value="INR">INR</option><option value="ZAR">ZAR</option><option value="PKR">PKR</option></select></div>
+            <input id="inv-cur-search" class="inv-input" type="text" placeholder="Search: PKR, riyal, dollar..." aria-label="Search currencies" style="margin-bottom:0.3rem">
+            <select id="inv-currency" class="inv-select"></select></div>
           <div class="inv-field inv-span-2"><label for="inv-reference">Reference / PO number (optional)</label>
             <input id="inv-reference" class="inv-input" type="text" maxlength="60"></div>
         </div>
@@ -216,14 +241,20 @@
             <input id="inv-to-name" class="inv-input" type="text" maxlength="100"></div>
           <div class="inv-field"><label for="inv-to-email">Customer email</label>
             <input id="inv-to-email" class="inv-input" type="email" maxlength="100"></div>
-          <div class="inv-field inv-span-2"><label for="inv-to-address">Customer address</label>
+          <div class="inv-field"><label for="inv-to-phone">Customer phone (needed for delivery)</label>
+            <input id="inv-to-phone" class="inv-input" type="tel" maxlength="40"></div>
+          <div class="inv-field"><label for="inv-to-tax">Customer tax ID (optional)</label>
+            <input id="inv-to-tax" class="inv-input" type="text" maxlength="60"></div>
+          <div class="inv-field"><label for="inv-to-address">Billing address</label>
             <textarea id="inv-to-address" class="inv-textarea" maxlength="300"></textarea></div>
+          <div class="inv-field"><label for="inv-ship-to">Delivery address (if different, optional)</label>
+            <textarea id="inv-ship-to" class="inv-textarea" maxlength="300"></textarea></div>
         </div>
       </section>
 
       <section class="inv-section">
         <h2>Items</h2>
-        <div class="inv-items-head"><span>Description</span><span class="inv-num">Qty</span><span class="inv-num">Unit price</span><span class="inv-num">Amount</span><span></span></div>
+        <div class="inv-items-head"><span>Description</span><span class="inv-num">Qty</span><span>Unit</span><span class="inv-num">Unit price</span><span class="inv-num">Amount</span><span></span></div>
         <div id="inv-items"></div>
         <button type="button" id="inv-add-item" class="inv-btn inv-btn-ghost"><i class="fa-solid fa-plus"></i> Add line</button>
       </section>
@@ -248,6 +279,11 @@
 
       <section class="inv-section">
         <h2>Notes and payment details</h2>
+        <div class="inv-grid" style="margin-bottom:0.9rem">
+          <div class="inv-field"><label for="inv-paymethod">Payment method</label>
+            <select id="inv-paymethod" class="inv-select"><option value="">Not specified</option><option value="cash">Cash</option><option value="bank">Bank transfer</option><option value="card">Card</option><option value="cheque">Cheque</option><option value="online">Online payment</option><option value="wallet">Mobile wallet (JazzCash, Easypaisa, etc.)</option><option value="cod">Cash on delivery (COD)</option><option value="other">Other</option></select></div>
+          <div class="inv-field" style="justify-content:flex-end"><label class="inv-check"><input type="checkbox" id="inv-showwords" checked> Show total amount in words</label></div>
+        </div>
         <div class="inv-grid">
           <div class="inv-field"><label for="inv-payinfo">Payment details (bank, PayPal, etc.)</label>
             <textarea id="inv-payinfo" class="inv-textarea" maxlength="600"></textarea></div>
@@ -256,6 +292,14 @@
         </div>
         <div class="inv-field" style="margin-top:0.9rem"><label for="inv-accent">Accent colour</label>
           <div class="inv-swatches"><div id="inv-swatches" class="inv-swatches"></div><input id="inv-accent" type="color" value="#2563eb" aria-label="Pick a custom colour" style="width:2.2rem;height:2rem;border:none;background:none;padding:0;cursor:pointer"></div></div>
+        <div class="inv-field" style="margin-top:0.9rem"><label>Signature (optional)</label>
+          <div class="inv-logo-box">
+            <img id="inv-sig-preview" class="inv-logo-preview" alt="Your signature" style="display:none">
+            <label class="inv-btn inv-btn-ghost" for="inv-sig-input" style="cursor:pointer"><i class="fa-solid fa-signature"></i> Upload signature or stamp</label>
+            <input id="inv-sig-input" type="file" accept="image/png,image/jpeg,image/webp" style="display:none">
+            <button type="button" id="inv-sig-remove" class="inv-btn inv-btn-ghost" style="display:none">Remove</button>
+            <input id="inv-sig-label" class="inv-input" type="text" maxlength="40" placeholder="Label under the line, e.g. Authorized signature" style="max-width:20rem">
+          </div></div>
       </section>
 
       <section class="inv-section">
@@ -328,6 +372,18 @@
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is an invoice made here legally valid?</h3>
           <p>The rules for what an invoice must contain differ from country to country. The tool includes the items most commonly required: your details, the customer, a number, dates, line items, tax and the total. You are responsible for checking that your invoice meets the rules where you work.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which currencies can I use?</h3>
+          <p>More than 45, including US dollar, British pound, euro, Canadian and Australian dollar, UAE dirham, Saudi riyal, Qatari riyal, Kuwaiti dinar, Pakistani and Indian rupee, Bangladeshi taka, Turkish lira, Egyptian pound, Nigerian naira and more. Use the search box above the currency list to find yours. Each currency is shown with the right number of decimals, for example three for the Kuwaiti dinar and none for the Japanese yen.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I make an invoice for cash on delivery (COD)?</h3>
+          <p>Yes. Choose &quot;Cash on delivery (COD)&quot; as the payment method and the balance is shown as &quot;Collect on delivery&quot;. Add your customer&#x27;s phone number and a delivery address so the courier can contact them.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I write invoices in Arabic or Urdu?</h3>
+          <p>Not yet. The PDF supports English and other Latin-alphabet text. Characters from other scripts, such as Arabic or Urdu, cannot be printed and appear as question marks, so please write names and addresses in English letters.</p>
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I edit a PDF after I download it?</h3>

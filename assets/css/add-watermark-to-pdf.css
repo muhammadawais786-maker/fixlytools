@@ -1,0 +1,37 @@
+/* add-watermark-to-pdf - styles for this tool only (every class starts with wmpdf-) */
+.wmpdf-input, .wmpdf-select { width: 100%; box-sizing: border-box; min-height: 44px; padding: 0.6rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #0f172a; font-size: 0.875rem; }
+.wmpdf-input::placeholder { color: #94a3b8; }
+.wmpdf-input:focus, .wmpdf-select:focus { outline: 2px solid #6366f1; outline-offset: 1px; border-color: #6366f1; }
+.dark .wmpdf-input, .dark .wmpdf-select { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .wmpdf-input::placeholder { color: #94a3b8; }
+#wmpdf-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.wmpdf-field { min-width: 0; }
+.wmpdf-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+@media (min-width: 640px) { .wmpdf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.wmpdf-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.wmpdf-wide { grid-column: 1 / -1; }
+.wmpdf-check { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.875rem; color: #334155; cursor: pointer; }
+.wmpdf-check input { width: 18px; height: 18px; accent-color: #4f46e5; flex-shrink: 0; }
+.dark .wmpdf-check { color: #e2e8f0; }
+.wmpdf-summary { min-height: 1.25rem; margin-top: 0.5rem; font-size: 0.8125rem; }
+.wmpdf-ok { color: #4338ca; }
+.wmpdf-error { color: #b91c1c; }
+.dark .wmpdf-ok { color: #a5b4fc; }
+.dark .wmpdf-error { color: #fca5a5; }
+.wmpdf-secondary { min-height: 44px; padding: 0.5rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #334155; font-size: 0.8125rem; font-weight: 600; cursor: pointer; }
+.wmpdf-secondary:hover { background: #f1f5f9; }
+.dark .wmpdf-secondary { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .wmpdf-secondary:hover { background: #475569; }
+.wmpdf-color { width: 100%; box-sizing: border-box; min-height: 44px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; cursor: pointer; }
+.dark .wmpdf-color { background: #334155; border-color: #475569; }
+.wmpdf-range { width: 100%; min-height: 44px; accent-color: #4f46e5; }
+.wmpdf-out { font-weight: 600; color: #4f46e5; margin-left: 0.25rem; }
+.dark .wmpdf-out { color: #a5b4fc; }
+.wmpdf-box { margin-top: 1.25rem; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 1rem; background: #f8fafc; }
+.dark .wmpdf-box { background: #0f172a; border-color: #334155; }
+.wmpdf-image-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.wmpdf-file { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.wmpdf-file:focus + .wmpdf-image-name, .wmpdf-file:focus-visible ~ .wmpdf-image-name { outline: 2px solid #6366f1; outline-offset: 2px; }
+.wmpdf-file-btn { display: inline-flex; align-items: center; gap: 0.4rem; }
+.wmpdf-image-name { min-width: 0; flex: 1 1 120px; font-size: 0.8125rem; color: #475569; overflow-wrap: anywhere; }
+.dark .wmpdf-image-name { color: #cbd5e1; }

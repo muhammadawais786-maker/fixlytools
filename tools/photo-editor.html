@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Free Online Photo Editor - Adjust, Filter, Draw | Fixlytools</title>
+  <meta name="description" content="Simple online photo editor: adjust brightness and contrast, add filters, text, stickers and brush drawing. Free, and your photo stays in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/photo-editor">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/photo-editor">
+  <meta property="og:title" content="Free Online Photo Editor - Adjust, Filter, Draw | Fixlytools">
+  <meta property="og:description" content="Simple online photo editor: adjust brightness and contrast, add filters, text, stickers and brush drawing. Free, and your photo stays in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Online Photo Editor - Adjust, Filter, Draw | Fixlytools">
+  <meta name="twitter:description" content="Simple online photo editor: adjust brightness and contrast, add filters, text, stickers and brush drawing. Free, and your photo stays in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/photo-editor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Online Photo Editor",
+  "url": "https://fixlytools.com/tools/photo-editor",
+  "description": "Simple online photo editor: adjust brightness and contrast, add filters, text, stickers and brush drawing. Free, and your photo stays in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this a full photo editor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a simple tool for quick changes. It has no layers, cropping, retouching or RAW support. For detailed work, use dedicated photo software."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it change my original photo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your edits are saved as a new file. The original stays as it was."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my text and drawings when I rotate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They turn with the photo so they stay on the same spot of the picture. Text stays upright."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the download look the same as the preview?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It should look very similar. The preview is smaller, so check the saved file, especially if you used blur or a strong filter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do stickers look different on different devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stickers are emoji characters drawn with the fonts on your device. Phones and computers draw them in their own style."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about transparent PNG files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose PNG to keep transparent areas. JPG has no transparency, so those areas become white."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my photo uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All editing happens in your browser and the photo never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/image-converter" class="hover:text-blue-600">Converter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Photo Editor</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Online Photo Editor</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Quick fixes for your photos: adjust, filter, rotate, add text, stickers and drawings.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload a photo to edit</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Supports JPG, PNG, WebP (processed in your browser)</p>
+        <button type="button" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Select Photo
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-slate-900 border border-emerald-100 dark:border-slate-700 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 photoed-min0">
+            <i class="fa-solid fa-image text-emerald-600 text-2xl"></i>
+            <div class="photoed-min0">
+              <p id="img-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to edit</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 shrink-0">
+            Change Image
+          </button>
+        </div>
+
+        <div class="photoed-layout">
+          <div class="photoed-stage">
+            <canvas id="photoed-canvas" class="photoed-canvas" width="1" height="1" tabindex="0" role="img" aria-label="Photo preview. Select a text or sticker and use the arrow keys to move it."></canvas>
+            <p id="photoed-size-note" class="text-xs text-slate-500 mt-1.5"></p>
+          </div>
+          <div class="photoed-panel">
+          <div class="photoed-field">
+            <label for="photoed-mode" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">When I Click the Photo</label>
+            <select id="photoed-mode" class="photoed-select">
+              <option value="move" selected>Move texts and stickers</option>
+              <option value="draw">Draw with the brush</option>
+            </select>
+          </div>
+
+          <div class="photoed-group">
+            <p class="photoed-group-title">Adjust</p>
+            <div class="photoed-field">
+              <label for="photoed-brightness" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Brightness <span class="photoed-out" data-for="photoed-brightness">0</span></label>
+              <input type="range" id="photoed-brightness" class="photoed-range" min="-100" max="100" step="1" value="0">
+            </div>
+            <div class="photoed-field">
+              <label for="photoed-contrast" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Contrast <span class="photoed-out" data-for="photoed-contrast">0</span></label>
+              <input type="range" id="photoed-contrast" class="photoed-range" min="-100" max="100" step="1" value="0">
+            </div>
+            <div class="photoed-field">
+              <label for="photoed-saturation" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Saturation <span class="photoed-out" data-for="photoed-saturation">0</span></label>
+              <input type="range" id="photoed-saturation" class="photoed-range" min="-100" max="100" step="1" value="0">
+            </div>
+            <div class="photoed-field">
+              <label for="photoed-blur" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Blur <span class="photoed-out" data-for="photoed-blur">0</span></label>
+              <input type="range" id="photoed-blur" class="photoed-range" min="0" max="100" step="1" value="0">
+            </div>
+            <div class="photoed-field">
+              <label for="photoed-preset" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Filter</label>
+              <select id="photoed-preset" class="photoed-select">
+                <option value="none" selected>None</option>
+                <option value="grayscale">Black and white</option>
+                <option value="sepia">Sepia</option>
+                <option value="warm">Warm</option>
+                <option value="cool">Cool</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="photoed-group">
+            <p class="photoed-group-title">Rotate and Flip</p>
+            <div class="photoed-row">
+              <button type="button" id="photoed-rot-left" class="photoed-secondary" aria-label="Rotate left"><i class="fa-solid fa-rotate-left"></i></button>
+              <button type="button" id="photoed-rot-right" class="photoed-secondary" aria-label="Rotate right"><i class="fa-solid fa-rotate-right"></i></button>
+              <button type="button" id="photoed-flip-h" class="photoed-secondary" aria-label="Flip left to right"><i class="fa-solid fa-left-right"></i></button>
+              <button type="button" id="photoed-flip-v" class="photoed-secondary" aria-label="Flip top to bottom"><i class="fa-solid fa-up-down"></i></button>
+            </div>
+            <p class="photoed-note">Text, stickers and drawings turn with the photo. Text stays upright.</p>
+          </div>
+
+          <div class="photoed-group">
+            <p class="photoed-group-title">Text and Stickers</p>
+            <div class="photoed-field">
+              <label for="photoed-text-input" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Text</label>
+              <input type="text" id="photoed-text-input" class="photoed-input" maxlength="80" placeholder="Type your text" autocomplete="off">
+            </div>
+            <div class="photoed-two">
+              <div class="photoed-field">
+                <label for="photoed-text-color" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Text Colour</label>
+                <input type="color" id="photoed-text-color" class="photoed-color" value="#ffffff">
+              </div>
+              <div class="photoed-field">
+                <label for="photoed-text-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Text Size</label>
+                <input type="range" id="photoed-text-size" class="photoed-range" min="3" max="25" step="1" value="8">
+              </div>
+            </div>
+            <div class="photoed-row">
+              <button type="button" id="photoed-add-text" class="photoed-secondary"><i class="fa-solid fa-font"></i> Add text</button>
+            </div>
+            <p class="photoed-note" id="photoed-sticker-label">Stickers (emoji from your device)</p>
+            <div id="photoed-stickers" class="photoed-stickers" role="group" aria-labelledby="photoed-sticker-label"></div>
+            <div id="photoed-item-panel" class="hidden">
+              <div class="photoed-row">
+                <button type="button" id="photoed-item-smaller" class="photoed-secondary"><i class="fa-solid fa-minus"></i> Smaller</button>
+                <button type="button" id="photoed-item-larger" class="photoed-secondary"><i class="fa-solid fa-plus"></i> Larger</button>
+                <button type="button" id="photoed-item-delete" class="photoed-secondary"><i class="fa-solid fa-trash-can"></i> Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="photoed-group">
+            <p class="photoed-group-title">Brush</p>
+            <div class="photoed-two">
+              <div class="photoed-field">
+                <label for="photoed-brush-color" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Brush Colour</label>
+                <input type="color" id="photoed-brush-color" class="photoed-color" value="#ef4444">
+              </div>
+              <div class="photoed-field">
+                <label for="photoed-brush-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Brush Size</label>
+                <input type="range" id="photoed-brush-size" class="photoed-range" min="1" max="40" step="1" value="8">
+              </div>
+            </div>
+            <p class="photoed-note">Choose "Draw with the brush" at the top, then draw on the photo.</p>
+          </div>
+
+          <div class="photoed-row">
+            <button type="button" id="photoed-undo" class="photoed-secondary" disabled><i class="fa-solid fa-rotate-left"></i> Undo</button>
+            <button type="button" id="photoed-reset-all" class="photoed-secondary"><i class="fa-solid fa-eraser"></i> Reset all edits</button>
+          </div>
+
+          <div class="photoed-field">
+            <label for="photoed-format" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Download As</label>
+            <select id="photoed-format" class="photoed-select">
+              <option value="image/jpeg" selected>JPG (smaller file)</option>
+              <option value="image/png">PNG (keeps transparency)</option>
+            </select>
+          </div>
+          </div>
+        </div>
+
+        <button id="photoed-btn" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i> Download Photo
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">This is a simple editor for quick fixes, not a replacement for full photo software. You can brighten a photo, try a filter, turn it, and add text, stickers or a hand-drawn mark. Everything happens in your browser.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload a Photo:</strong> Click "Select Photo" or drag a JPG, PNG or WebP picture onto the box.</li>
+        <li><strong>Adjust and Filter:</strong> Move the brightness, contrast, saturation and blur sliders, or pick a filter such as black and white or sepia.</li>
+        <li><strong>Rotate, Add Text, Stickers or Drawings:</strong> Turn or flip the photo, add text or an emoji sticker and drag it into place, or switch to the brush and draw.</li>
+        <li><strong>Download:</strong> Choose JPG or PNG and click "Download Photo". Use Undo if you change your mind. Your original file is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Basic Adjustments:</strong> Brightness, contrast, saturation and blur sliders with a live preview.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Four Quick Filters:</strong> Black and white, sepia, warm and cool.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Rotate and Flip:</strong> Turn left or right and mirror the photo in either direction.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Text, Stickers and Brush:</strong> Add text and emoji stickers you can drag, or draw freehand in any colour.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Undo and Reset:</strong> Step back through your changes or reset everything in one click.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is this a full photo editor?</h3>
+          <p>No. It is a simple tool for quick changes. It has no layers, cropping, retouching or RAW support. For detailed work, use dedicated photo software.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does it change my original photo?</h3>
+          <p>No. Your edits are saved as a new file. The original stays as it was.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What happens to my text and drawings when I rotate?</h3>
+          <p>They turn with the photo so they stay on the same spot of the picture. Text stays upright.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will the download look the same as the preview?</h3>
+          <p>It should look very similar. The preview is smaller, so check the saved file, especially if you used blur or a strong filter.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why do stickers look different on different devices?</h3>
+          <p>Stickers are emoji characters drawn with the fonts on your device. Phones and computers draw them in their own style.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What about transparent PNG files?</h3>
+          <p>Choose PNG to keep transparent areas. JPG has no transparency, so those areas become white.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my photo uploaded to a server?</h3>
+          <p>No. All editing happens in your browser and the photo never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrows-rotate text-blue-500"></i> Image Converter</a>
+        <a href="/tools/heic-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-image text-blue-500"></i> HEIC to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/photo-editor.js"></script>
+</body>
+</html>

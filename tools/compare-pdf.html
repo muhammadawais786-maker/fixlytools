@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Compare PDF Text Online - Find Differences | Fixlytools</title>
+  <meta name="description" content="Compare two PDF files and see added and removed text page by page. Runs in your browser, so your files are never uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/compare-pdf">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/compare-pdf">
+  <meta property="og:title" content="Compare PDF Text Online - Find Differences | Fixlytools">
+  <meta property="og:description" content="Compare two PDF files and see added and removed text page by page. Runs in your browser, so your files are never uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Compare PDF Text Online - Find Differences | Fixlytools">
+  <meta name="twitter:description" content="Compare two PDF files and see added and removed text page by page. Runs in your browser, so your files are never uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/compare-pdf.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Compare",
+  "url": "https://fixlytools.com/tools/compare-pdf",
+  "description": "Compare the text of two PDF files and see what was added or removed. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it compare layout, images or fonts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It compares text only. A change in a picture, a colour, a font or the position of a block will not be reported unless the words themselves changed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compare scanned PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not directly. A scanned PDF is a set of pictures with no text to read, so there is nothing to compare. If a PDF has been through OCR it contains text and can be compared, but OCR mistakes will show up as differences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are there differences when both files look the same?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFs store text in pieces, and two exports of the same document can split or order those pieces differently. Try Words mode, which ignores line breaks, and keep \"Ignore spacing differences\" turned on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Lines and Words?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lines mode marks whole lines as added or removed, which is easiest to read for lists, forms and tables. Words mode compares single words, so a re-wrapped paragraph does not look completely changed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compare password-protected PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool cannot open protected files. Remove the password first, then compare the unlocked copies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my PDF files uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Both files are read inside your browser and are never sent to a server. Only the PDF reader code is downloaded from a public library host when the page opens."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Compare PDF</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Compare PDF Files Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Choose two PDF files and see which text was added, removed or left unchanged, page by page.</p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="cmp-slots">
+        <div class="cmp-slot">
+          <p class="cmp-slot-title">First PDF (A, the older version)</p>
+          <div id="dropzone-a" class="dropzone">
+            <input type="file" id="file-input-a" accept="application/pdf,.pdf" class="hidden">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Click or drop the first PDF here</p>
+            <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">Choose PDF</button>
+          </div>
+          <p id="info-a" class="cmp-info" aria-live="polite"></p>
+        </div>
+        <div class="cmp-slot">
+          <p class="cmp-slot-title">Second PDF (B, the newer version)</p>
+          <div id="dropzone-b" class="dropzone">
+            <input type="file" id="file-input-b" accept="application/pdf,.pdf" class="hidden">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Click or drop the second PDF here</p>
+            <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">Choose PDF</button>
+          </div>
+          <p id="info-b" class="cmp-info" aria-live="polite"></p>
+        </div>
+        </div>
+
+        <div class="cmp-options">
+          <div>
+            <label for="compare-mode" class="cmp-label">Compare by</label>
+            <select id="compare-mode" class="cmp-select">
+              <option value="line">Lines (best for lists, forms and tables)</option>
+              <option value="word">Words (ignores line breaks)</option>
+            </select>
+          </div>
+          <div>
+            <label class="cmp-check"><input type="checkbox" id="opt-ignore-space" checked> Ignore spacing differences</label>
+            <label class="cmp-check"><input type="checkbox" id="opt-ignore-case"> Ignore upper / lower case</label>
+            <label class="cmp-check"><input type="checkbox" id="opt-only-diff" checked> Show only the differences</label>
+          </div>
+        </div>
+
+        <div class="cmp-btn-row">
+          <button type="button" id="compare-btn" disabled class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2"><i class="fa-solid fa-code-compare"></i> Compare PDFs</button>
+          <button type="button" id="swap-btn" class="cmp-btn-2"><i class="fa-solid fa-right-left"></i> Swap A and B</button>
+          <button type="button" id="reset-btn" class="cmp-btn-2"><i class="fa-solid fa-xmark"></i> Clear</button>
+        </div>
+        <p id="progress-text" class="cmp-progress" aria-live="polite"></p>
+
+        <div id="result" class="hidden space-y-4" aria-live="polite">
+          <div id="result-stats" class="cmp-stats"></div>
+          <ul id="result-notes" class="cmp-notes"></ul>
+          <div id="diff-output" class="cmp-diff"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Compare Two PDF Files</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Comparing two versions of a contract, report or manual by eye is slow and easy to get wrong. This tool reads the text of both files, lines it up and marks what changed.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose the first PDF (A):</strong> Pick the older or original version of the document.</li>
+        <li><strong>Choose the second PDF (B):</strong> Pick the newer or edited version. You can also drop both files on the first box at once.</li>
+        <li><strong>Set your options:</strong> Compare by lines or by words, and decide whether spacing and letter case should be ignored.</li>
+        <li><strong>Click Compare PDFs:</strong> Read the result. Green rows were added in B, red rows were removed from A, and the numbers on the left show the page in each file.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page-aware results:</strong> Every changed row shows the page it came from in each PDF, plus a list of pages that contain differences.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Line or word comparison:</strong> Choose whole lines for structured text or single words for flowing paragraphs.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Ignore noise:</strong> Optionally ignore spacing and upper / lower case so only real wording changes remain.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Focus on changes:</strong> Unchanged text is collapsed, with a little context kept around every change.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Both files stay on your device and are never uploaded.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does it compare layout, images or fonts?</h3>
+          <p>No. It compares text only. A change in a picture, a colour, a font or the position of a block will not be reported unless the words themselves changed.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I compare scanned PDFs?</h3>
+          <p>Not directly. A scanned PDF is a set of pictures with no text to read, so there is nothing to compare. If a PDF has been through OCR it contains text and can be compared, but OCR mistakes will show up as differences.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why are there differences when both files look the same?</h3>
+          <p>PDFs store text in pieces, and two exports of the same document can split or order those pieces differently. Try Words mode, which ignores line breaks, and keep &quot;Ignore spacing differences&quot; turned on.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between Lines and Words?</h3>
+          <p>Lines mode marks whole lines as added or removed, which is easiest to read for lists, forms and tables. Words mode compares single words, so a re-wrapped paragraph does not look completely changed.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I compare password-protected PDFs?</h3>
+          <p>No. The tool cannot open protected files. Remove the password first, then compare the unlocked copies.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are my PDF files uploaded anywhere?</h3>
+          <p>No. Both files are read inside your browser and are never sent to a server. Only the PDF reader code is downloaded from a public library host when the page opens.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/compare-pdf.js"></script>
+</body>
+</html>
+

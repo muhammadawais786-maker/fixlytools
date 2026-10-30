@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Remove Pages from PDF - Delete PDF Pages Free | Fixlytools</title>
+  <meta name="description" content="Delete unwanted pages from a PDF online for free. Pick pages or ranges and download a new PDF. Runs in your browser, files are never uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/remove-pages">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/remove-pages">
+  <meta property="og:title" content="Remove Pages from PDF - Delete PDF Pages Free | Fixlytools">
+  <meta property="og:description" content="Delete unwanted pages from a PDF online for free. Pick pages or ranges and download a new PDF. Runs in your browser, files are never uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Remove Pages from PDF - Delete PDF Pages Free | Fixlytools">
+  <meta name="twitter:description" content="Delete unwanted pages from a PDF online for free. Pick pages or ranges and download a new PDF. Runs in your browser, files are never uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/remove-pages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Remove PDF Pages",
+  "url": "https://fixlytools.com/tools/remove-pages",
+  "description": "Delete unwanted pages from a PDF online for free. Pick pages or ranges and download a new PDF. Runs in your browser, files are never uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this change my original PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool creates a new file for download and leaves the original untouched."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the deleted pages really gone from the new file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The new PDF is created from only the pages you keep, so deleted pages are not stored inside it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will bookmarks and links still work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. The new file is built page by page, so bookmarks and some interactive items may not be carried over. Normal text, images and layout are kept."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I remove pages from a password-protected PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Protected PDFs cannot be opened by this tool. Remove the password in the app that created it, then try again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What page numbers does the tool use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Page numbers are counted from 1 at the first page of the file, which may differ from any numbers printed on the pages themselves."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The pages are processed by your browser and the file never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Remove PDF Pages</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Remove Pages from PDF</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Delete the pages you do not need and download a clean, shorter PDF.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select a PDF to remove pages from</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag & drop a PDF document</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose PDF File
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-file-pdf text-indigo-600 text-2xl"></i>
+            <div>
+              <p id="pdf-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to remove pages</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+            Change PDF
+          </button>
+        </div>
+
+        <div>
+          <label for="rmpg-range" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Pages to Delete</label>
+          <input type="text" id="rmpg-range" class="rmpg-input" placeholder="e.g. 2, 5-7" autocomplete="off" aria-describedby="rmpg-help rmpg-summary">
+          <p id="rmpg-help" class="text-xs text-slate-500 mt-1.5">Example: <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2, 5-7</code> deletes page 2 and pages 5 to 7. Use <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">9-</code> to delete page 9 and everything after it.</p>
+          <p id="rmpg-summary" class="rmpg-summary" aria-live="polite"></p>
+        </div>
+
+        <button id="rmpg-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-trash-can"></i> Remove Pages &amp; Download
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Removing pages from a PDF is useful when a document has blank pages, an old cover sheet, or sections you do not want to share. Fixlytools builds a new PDF from the pages you keep, right in your browser.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload Your PDF:</strong> Click "Choose PDF File" or drag a PDF onto the box. The tool shows the file name and how many pages it has.</li>
+        <li><strong>Enter the Pages to Delete:</strong> Type page numbers or ranges separated by commas, for example 2, 5-7. A short summary shows what will be deleted and how many pages remain.</li>
+        <li><strong>Remove the Pages:</strong> Click "Remove Pages &amp; Download". The new PDF is built from the pages you kept.</li>
+        <li><strong>Download the Result:</strong> Your new PDF downloads straight to your device. The original file is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Pages and Ranges:</strong> Delete single pages, ranges such as 5-7, or everything from a page to the end with 9-.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live Summary:</strong> See exactly which pages will go and how many will remain before you download.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Safe by Design:</strong> You cannot delete every page, and mistyped page numbers are reported instead of being silently ignored.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Deleted Means Deleted:</strong> The new file is built only from the pages you keep, so removed pages are not hidden inside it.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free and Private:</strong> No account and no upload. The work happens in your browser and your file stays on your device.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does this change my original PDF?</h3>
+          <p>No. The tool creates a new file for download and leaves the original untouched.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are the deleted pages really gone from the new file?</h3>
+          <p>Yes. The new PDF is created from only the pages you keep, so deleted pages are not stored inside it.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will bookmarks and links still work?</h3>
+          <p>Not always. The new file is built page by page, so bookmarks and some interactive items may not be carried over. Normal text, images and layout are kept.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I remove pages from a password-protected PDF?</h3>
+          <p>No. Protected PDFs cannot be opened by this tool. Remove the password in the app that created it, then try again.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What page numbers does the tool use?</h3>
+          <p>Page numbers are counted from 1 at the first page of the file, which may differ from any numbers printed on the pages themselves.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my PDF uploaded anywhere?</h3>
+          <p>No. The pages are processed by your browser and the file never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/remove-pages.js"></script>
+</body>
+</html>

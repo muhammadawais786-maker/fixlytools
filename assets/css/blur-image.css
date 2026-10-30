@@ -1,0 +1,39 @@
+/* blur-image - styles for this tool only (every class starts with blurimg-) */
+.blurimg-input, .blurimg-select { width: 100%; box-sizing: border-box; min-height: 44px; padding: 0.6rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #0f172a; font-size: 0.875rem; }
+.blurimg-input::placeholder { color: #94a3b8; }
+.blurimg-input:focus, .blurimg-select:focus { outline: 2px solid #10b981; outline-offset: 1px; border-color: #10b981; }
+.dark .blurimg-input, .dark .blurimg-select { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .blurimg-input::placeholder { color: #94a3b8; }
+#blurimg-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.blurimg-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (min-width: 768px) { .blurimg-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+.blurimg-stage { min-width: 0; text-align: center; }
+.blurimg-canvas { display: block; max-width: 100%; height: auto; margin: 0 auto; touch-action: none; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #f1f5f9; }
+.blurimg-canvas:focus-visible { outline: 3px solid #10b981; outline-offset: 2px; }
+.dark .blurimg-canvas { border-color: #475569; background: #0f172a; }
+.blurimg-panel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.blurimg-field { min-width: 0; }
+.blurimg-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.blurimg-range { width: 100%; min-height: 36px; accent-color: #059669; }
+.blurimg-out { margin-left: 0.25rem; font-weight: 600; color: #059669; }
+.dark .blurimg-out { color: #6ee7b7; }
+.blurimg-color { width: 100%; box-sizing: border-box; min-height: 44px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; cursor: pointer; }
+.dark .blurimg-color { background: #334155; border-color: #475569; }
+.blurimg-check { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.875rem; color: #334155; cursor: pointer; }
+.blurimg-check input { width: 18px; height: 18px; accent-color: #059669; flex-shrink: 0; }
+.dark .blurimg-check { color: #e2e8f0; }
+.blurimg-group { padding: 0.9rem; border: 1px solid #e2e8f0; border-radius: 1rem; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
+.dark .blurimg-group { background: #0f172a; border-color: #334155; }
+.blurimg-group-title { margin: 0; font-size: 0.8125rem; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: #475569; }
+.dark .blurimg-group-title { color: #94a3b8; }
+.blurimg-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.blurimg-secondary { min-height: 44px; padding: 0.5rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #334155; font-size: 0.8125rem; font-weight: 600; cursor: pointer; }
+.blurimg-secondary:hover:not(:disabled) { background: #ecfdf5; border-color: #10b981; }
+.blurimg-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+.dark .blurimg-secondary { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .blurimg-secondary:hover:not(:disabled) { background: #475569; }
+.blurimg-min0 { min-width: 0; }
+.blurimg-note { font-size: 0.75rem; color: #64748b; }
+.dark .blurimg-note { color: #94a3b8; }
+.blurimg-warn { margin: 0; padding: 0.7rem 0.9rem; border-radius: 0.75rem; background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 0.8125rem; }
+.dark .blurimg-warn { background: #422006; border-color: #92400e; color: #fde68a; }

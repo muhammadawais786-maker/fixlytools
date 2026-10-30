@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Scientific Calculator - Free Online | Fixlytools</title>
+  <meta name="description" content="Free online scientific calculator with DEG/RAD/GRAD, trig, logs, powers, roots, factorials, nCr and nPr. Live preview and history. Runs in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/scientific-calculator">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/scientific-calculator">
+  <meta property="og:title" content="Scientific Calculator - Free Online | Fixlytools">
+  <meta property="og:description" content="Scientific calculator with angle modes, trigonometry, logarithms, roots, factorials and combinations. Private and free.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scientific Calculator - Free Online | Fixlytools">
+  <meta name="twitter:description" content="Scientific calculator with angle modes, trigonometry, logarithms, roots, factorials and combinations. Private and free.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/scientific-calculator.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Scientific Calculator",
+  "url": "https://fixlytools.com/tools/scientific-calculator",
+  "description": "Free online scientific calculator with degree, radian and gradian modes, trigonometric, logarithmic and hyperbolic functions, powers, roots, factorials, combinations and permutations.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between degrees and radians?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both measure angles. A full turn is 360 degrees, which is 2 times pi radians, or 400 gradians. Calculators need to know which one you mean because sin(30) is 0.5 in degree mode but about -0.988 in radian mode. Check the mode shown on the screen before you calculate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some calculators show a tiny number for sin(180)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Computers store pi only approximately, so the sine of exactly 180 degrees comes out as about 1.2e-16 instead of 0. This calculator recognises exact multiples of a quarter turn and returns exact results such as 0, 1 and -1, and tan(90) is reported as undefined."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What order does the calculator follow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brackets first, then factorial and percent, then powers (right to left), then unary minus, then multiplication, division and mod, and finally addition and subtraction. So 2+3*4 is 14 and -2^2 is -4. A product written without a sign, like 2(3+4), is multiplied in the same way as 2*(3+4)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How big can a factorial be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Factorials work for whole numbers from 0 to 170. 171! is too large for the number type used by browsers, so the calculator tells you the allowed range instead of showing an overflow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I enter scientific notation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the EXP key or type E, for example 100E3 for 100000 or 1.5E-3 for 0.0015. Very large or small answers are shown in the same style, such as 6.02214076e+23."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does percent work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A percent sign divides the number before it by 100, so 50% is 0.5 and 200*10% is 20. To add ten percent to 200 write 200*(1+10%)."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Calculators</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Scientific Calculator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Scientific Calculator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Type or tap an expression and see the answer as you go. Choose degrees, radians or gradians, and use functions, powers, roots, factorials and more.
+        </p>
+      </div>
+
+      <div class="sc-wrap">
+        <div>
+          <div class="sc-calc">
+            <div class="sc-screen">
+              <div class="sc-badges">
+                <span id="sc-badge-mode" class="sc-badge sc-badge-mode">DEG</span>
+                <span id="sc-badge-inv" class="sc-badge" hidden>2nd</span>
+                <span id="sc-badge-hyp" class="sc-badge" hidden>hyp</span>
+                <span id="sc-badge-mem" class="sc-badge" hidden>M</span>
+              </div>
+              <label for="sc-expr" class="sc-sr">Expression</label>
+              <input id="sc-expr" class="sc-expr" type="text" inputmode="none" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Tap keys or type, e.g. sin(30) + 2^3">
+              <div id="sc-result" class="sc-result" role="status" aria-live="polite" aria-atomic="true">&nbsp;</div>
+            </div>
+            <div id="sc-modes" class="sc-modes" role="group" aria-label="Angle mode">
+              <button type="button" class="sc-mode-btn" data-mode="deg" aria-pressed="true">DEG</button>
+              <button type="button" class="sc-mode-btn" data-mode="rad" aria-pressed="false">RAD</button>
+              <button type="button" class="sc-mode-btn" data-mode="grad" aria-pressed="false">GRAD</button>
+            </div>
+            <div id="sc-keys" class="sc-keys" role="group" aria-label="Calculator keys">
+            <button type="button" class="sc-key sc-key-toggle" data-key="inv" aria-label="Second function: inverse trig and exponentials" id="sc-key-inv" aria-pressed="false">2nd</button>
+            <button type="button" class="sc-key sc-key-toggle" data-key="hyp" aria-label="Hyperbolic functions" id="sc-key-hyp" aria-pressed="false">hyp</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="left" aria-label="Move cursor left">&#9664;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="right" aria-label="Move cursor right">&#9654;</button>
+            <button type="button" class="sc-key sc-key-clear" data-key="ac" aria-label="Clear everything">AC</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="sin">sin</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="cos">cos</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="tan">tan</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="ln">ln</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="log">log</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="sq" aria-label="Square">x&sup2;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="cube" aria-label="Cube">x&sup3;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="pow" aria-label="x to the power y">x<sup>y</sup></button>
+            <button type="button" class="sc-key sc-key-fn" data-key="sqrt" aria-label="Square root">&radic;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="cbrt" aria-label="Cube root">&#8731;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="root" aria-label="n-th root: type the number, press this key, then type the degree">root</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="fact" aria-label="Factorial">n!</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="ncr" aria-label="Combinations">nCr</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="npr" aria-label="Permutations">nPr</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="mod" aria-label="Remainder">mod</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="pi" aria-label="Pi">&pi;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="e" aria-label="Euler's number e">e</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="exp" aria-label="Times ten to the power">EXP</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="abs" aria-label="Absolute value">abs</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="rand" aria-label="Insert a random number between 0 and 1">rand</button>
+            <button type="button" class="sc-key sc-key-mem" data-key="mc" aria-label="Memory clear">MC</button>
+            <button type="button" class="sc-key sc-key-mem" data-key="mr" aria-label="Memory recall">MR</button>
+            <button type="button" class="sc-key sc-key-mem" data-key="mp" aria-label="Memory add">M+</button>
+            <button type="button" class="sc-key sc-key-mem" data-key="mm" aria-label="Memory subtract">M&minus;</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="inverse" aria-label="Reciprocal">1/x</button>
+            <button type="button" class="sc-key" data-key="7">7</button>
+            <button type="button" class="sc-key" data-key="8">8</button>
+            <button type="button" class="sc-key" data-key="9">9</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="lp" aria-label="Open bracket">(</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="rp" aria-label="Close bracket">)</button>
+            <button type="button" class="sc-key" data-key="4">4</button>
+            <button type="button" class="sc-key" data-key="5">5</button>
+            <button type="button" class="sc-key" data-key="6">6</button>
+            <button type="button" class="sc-key sc-key-op" data-key="mul" aria-label="Multiply">&times;</button>
+            <button type="button" class="sc-key sc-key-op" data-key="div" aria-label="Divide">&divide;</button>
+            <button type="button" class="sc-key" data-key="1">1</button>
+            <button type="button" class="sc-key" data-key="2">2</button>
+            <button type="button" class="sc-key" data-key="3">3</button>
+            <button type="button" class="sc-key sc-key-op" data-key="add" aria-label="Add">+</button>
+            <button type="button" class="sc-key sc-key-op" data-key="sub" aria-label="Subtract">&minus;</button>
+            <button type="button" class="sc-key" data-key="0">0</button>
+            <button type="button" class="sc-key" data-key="dot" aria-label="Decimal point">.</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="ans" aria-label="Previous answer">Ans</button>
+            <button type="button" class="sc-key sc-key-fn" data-key="pct" aria-label="Percent">%</button>
+            <button type="button" class="sc-key sc-key-clear" data-key="bs" aria-label="Backspace">&#9003;</button>
+            <button type="button" class="sc-key sc-key-eq" data-key="eq" aria-label="Equals">=</button>
+            </div>
+            <div class="sc-tools">
+              <button type="button" id="sc-kbd" class="sc-tool-btn" aria-pressed="false">Device keyboard: off</button>
+              <button type="button" id="sc-copy" class="sc-tool-btn">Copy result</button>
+            </div>
+          </div>
+          <p class="sc-note">Enter evaluates. Esc clears. Use the arrow keys or the &#9664; &#9654; keys to edit inside the expression.</p>
+        </div>
+        <section class="sc-hist-box" aria-labelledby="sc-hist-title">
+          <div class="sc-hist-head">
+            <h2 id="sc-hist-title" class="sc-h2">History (last 20)</h2>
+            <button type="button" id="sc-clear-history" class="sc-tool-btn" disabled>Clear history</button>
+          </div>
+          <p id="sc-history-empty" class="sc-hist-empty">No calculations yet. Tap an item to bring its expression back for editing.</p>
+          <ul id="sc-history" class="sc-hist-list"></ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use the Scientific Calculator</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Write the whole expression on the line at the top, with the on-screen keys or with your keyboard. A grey preview of the answer appears while you type.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Pick the angle mode:</strong> Choose <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">DEG</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">RAD</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">GRAD</code> above the keys. The current mode is always shown on the screen. In <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">DEG</code> mode <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin(30)</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0.5</code>.</li>
+        <li><strong>Build the expression:</strong> Tap keys or type, for example <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2(3+4)</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin(30)</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">5!</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">10 nCr 3</code>. Functions need brackets, and missing closing brackets are added for you.</li>
+        <li><strong>Use 2nd and hyp:</strong> Press <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2nd</code> to get <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">asin</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">acos</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">atan</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">e^(</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">10^(</code> instead of <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">cos</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">tan</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">ln</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">log</code>. Press <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">hyp</code> for <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sinh</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">cosh</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">tanh</code>.</li>
+        <li><strong>Press equals:</strong> Press <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">=</code> or Enter to store the answer in the history. Start typing an operator to carry on from <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Ans</code>, or start with a number to begin again.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>DEG, RAD and GRAD:</strong> The angle mode is shown on screen. <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin(180)</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">cos(90)</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0</code> in degrees, without leftover rounding noise. You can also write <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">30deg</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">pi/6 rad</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">100grad</code> to convert an angle.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Correct order of operations:</strong> Powers are read right to left (<code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2^3^2 = 512</code>), <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-2^2</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-4</code>, and implicit multiplication such as <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2(3+4)</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2pi</code> works.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Many functions:</strong> <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin cos tan</code>, their inverses and hyperbolic forms, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">log</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">ln</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">log2</code>, square and cube roots, n-th roots, powers, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">abs</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">n!</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">nCr</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">nPr</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">mod</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">EXP</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">pi</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">e</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Ans</code>.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live preview and edit in place:</strong> Click inside the expression to fix a typo without retyping. Plain messages explain errors such as dividing by zero or a root of a negative number.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Memory and history:</strong> <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M+</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M-</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MR</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MC</code> and a list of your last 20 calculations. Tap one to bring its expression back.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> Your expressions are calculated in your browser, are not sent anywhere and are not stored. The history disappears when you close the page.</span></li>
+        </ul>
+      </div>
+
+      <!-- Limits -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What This Tool Can and Cannot Do</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">This calculator works with real numbers only. It has no complex numbers, no graphing, no matrices, no equation solving, and no units apart from the angle units <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">deg</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">rad</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">grad</code>. Use the Math Solver page for equations, derivatives and matrices.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">A negative number raised to a fractional power, such as <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">(-8)^(1/3)</code>, is not calculated here. Use <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">cbrt(-8)</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-8 root 3</code> for odd roots. Factorials work for whole numbers from 0 to 170, and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0^0</code> is reported as undefined.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">Results are shown with about 12 significant digits. Values you reuse keep their full precision internally, so <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">1/3*3</code> is exactly <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">1</code>.</p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between degrees and radians?</h3>
+          <p>Both measure angles. A full turn is 360 degrees, which is 2 times pi radians, or 400 gradians. Calculators need to know which one you mean because <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">sin(30)</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0.5</code> in degree mode but about <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-0.988</code> in radian mode. Check the mode shown on the screen before you calculate.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why do some calculators show a tiny number for sin(180)?</h3>
+          <p>Computers store pi only approximately, so the sine of exactly 180 degrees comes out as about 1.2e-16 instead of 0. This calculator recognises exact multiples of a quarter turn and returns exact results such as 0, 1 and -1, and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">tan(90)</code> is reported as undefined.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What order does the calculator follow?</h3>
+          <p>Brackets first, then factorial and percent, then powers (right to left), then unary minus, then multiplication, division and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">mod</code>, and finally addition and subtraction. So <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2+3*4</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">14</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-2^2</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-4</code>. A product written without a sign, like <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2(3+4)</code>, is multiplied in the same way as <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2*(3+4)</code>.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How big can a factorial be?</h3>
+          <p>Factorials work for whole numbers from 0 to 170. <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">171!</code> is too large for the number type used by browsers, so the calculator tells you the allowed range instead of showing an overflow.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I enter scientific notation?</h3>
+          <p>Use the <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">EXP</code> key or type <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">E</code>, for example <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">100E3</code> for 100000 or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">1.5E-3</code> for 0.0015. Very large or small answers are shown in the same style, such as <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">6.02214076e+23</code>.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How does percent work?</h3>
+          <p>A percent sign divides the number before it by 100, so <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">50%</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0.5</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">200*10%</code> is <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">20</code>. To add ten percent to 200 write <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">200*(1+10%)</code>.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> Calculator</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/scientific-calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Crop Image Online - Free Photo Cropper | Fixlytools</title>
+  <meta name="description" content="Crop a photo online: drag the crop box, choose a shape like 1:1, 4:3 or 16:9, or type exact pixels. Free, and your image is never uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/crop-image">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/crop-image">
+  <meta property="og:title" content="Crop Image Online - Free Photo Cropper | Fixlytools">
+  <meta property="og:description" content="Crop a photo online: drag the crop box, choose a shape like 1:1, 4:3 or 16:9, or type exact pixels. Free, and your image is never uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crop Image Online - Free Photo Cropper | Fixlytools">
+  <meta name="twitter:description" content="Crop a photo online: drag the crop box, choose a shape like 1:1, 4:3 or 16:9, or type exact pixels. Free, and your image is never uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/crop-image.css">
+  
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Cropper",
+  "url": "https://fixlytools.com/tools/crop-image",
+  "description": "Crop images in your browser with a draggable box, ready-made shapes and exact pixel values. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does cropping reduce the quality of my picture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The pixels inside the box are copied as they are, so the picture is not resized or blurred. If you save as JPG the image is compressed again, so use PNG or a high JPG quality when you want the least loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I crop to an exact size in pixels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type the width and height in the number boxes. With a shape selected (for example 1:1) the other side follows automatically, so the box always keeps that shape."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the passport photo option do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It locks the box to the 35 x 45 mm shape used in many countries. It does not check face position, background or other rules, so please compare your result with the official requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I crop on a phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The crop box and its handles work with touch. You can also type exact values into the number boxes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the output bigger or smaller than I expected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The size shown under the picture is the real size of the saved image in pixels. It is measured on the original picture, not on the smaller preview you see on screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The image is opened and cropped inside your browser and never leaves your device."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Crop Image</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Crop Image Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Drag a box over the part of the picture you want to keep, pick a shape if you need one, and download the result.</p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/*" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-crop-simple"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select an image to crop</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag &amp; drop a JPG, PNG or WebP image</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">Choose Image</button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-5">
+        <div class="cri-wrap">
+          <div id="crop-stage" class="cri-stage">
+            <img id="crop-img" alt="The image you are cropping" draggable="false">
+            <div id="crop-box" class="cri-box" tabindex="0" role="group" aria-label="Crop area. Use the arrow keys to move it, or the number boxes below to set its size."><span class="cri-h cri-h-nw" data-h="nw" aria-hidden="true"></span><span class="cri-h cri-h-n" data-h="n" aria-hidden="true"></span><span class="cri-h cri-h-ne" data-h="ne" aria-hidden="true"></span><span class="cri-h cri-h-w" data-h="w" aria-hidden="true"></span><span class="cri-h cri-h-e" data-h="e" aria-hidden="true"></span><span class="cri-h cri-h-sw" data-h="sw" aria-hidden="true"></span><span class="cri-h cri-h-s" data-h="s" aria-hidden="true"></span><span class="cri-h cri-h-se" data-h="se" aria-hidden="true"></span></div>
+          </div>
+        </div>
+        <p class="cri-tip">Drag inside the box to move it and drag a handle to change its size. With the keyboard, focus the box and use the arrow keys (hold Shift to move 10 px).</p>
+
+        <div class="cri-grid">
+          <div class="cri-wide">
+            <label for="aspect-select" class="cri-label">Shape</label>
+            <select id="aspect-select" class="cri-field">
+              <option value="free">Free (any shape)</option>
+              <option value="1:1">Square 1:1</option>
+              <option value="4:3">4:3</option>
+              <option value="3:2">3:2</option>
+              <option value="16:9">16:9</option>
+              <option value="passport">Passport photo 35 x 45 mm</option>
+            </select>
+          </div>
+          <div class="cri-wide">
+            <label for="format-select" class="cri-label">Save as</label>
+            <select id="format-select" class="cri-field">
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+            </select>
+          </div>
+          <div><label for="crop-x" class="cri-label">Left (px)</label><input type="number" id="crop-x" class="cri-field" min="0" step="1" inputmode="numeric"></div>
+          <div><label for="crop-y" class="cri-label">Top (px)</label><input type="number" id="crop-y" class="cri-field" min="0" step="1" inputmode="numeric"></div>
+          <div><label for="crop-w" class="cri-label">Width (px)</label><input type="number" id="crop-w" class="cri-field" min="1" step="1" inputmode="numeric"></div>
+          <div><label for="crop-h" class="cri-label">Height (px)</label><input type="number" id="crop-h" class="cri-field" min="1" step="1" inputmode="numeric"></div>
+        </div>
+        <div id="quality-wrap" class="hidden">
+          <label for="quality-range" class="cri-label">JPG quality: <span id="quality-value"></span></label>
+          <input type="range" id="quality-range" min="0.5" max="1" step="0.01" value="0.92" class="w-full">
+        </div>
+        <p id="passport-hint" class="cri-hint hidden">This sets the 35:45 shape only. For a print at 300 dpi a 35 x 45 mm photo needs about 413 x 531 px, so crop from a large enough picture. Check your country's passport photo rules before you print.</p>
+        <p id="output-info" class="cri-info" aria-live="polite"></p>
+
+        <div class="cri-actions">
+          <button type="button" id="download-btn" class="cri-btn-main"><i class="fa-solid fa-download"></i> Crop &amp; Download</button>
+          <button type="button" id="reset-btn" class="cri-btn-alt">Choose another image</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Crop an Image Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Cropping removes the parts of a picture you do not need, for example to fix the framing, make a square profile picture or fit a certain shape.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose an image:</strong> Click &quot;Choose Image&quot; or drop a JPG, PNG or WebP picture on the page.</li>
+        <li><strong>Set the crop area:</strong> Drag the box and its handles, or pick a shape such as 1:1, 4:3, 3:2, 16:9 or a passport photo shape. You can also type the exact numbers.</li>
+        <li><strong>Pick the format:</strong> Save as JPG for photos or PNG when you want to keep transparency and every detail.</li>
+        <li><strong>Download:</strong> Press &quot;Crop &amp; Download&quot;. The file name contains the size of the result.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Touch and mouse:</strong> Move and resize the crop box with a finger, a mouse or the arrow keys.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Ready-made shapes:</strong> Free, square, 4:3, 3:2, 16:9 and a 35 x 45 mm passport photo shape.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Exact numbers:</strong> Set left, top, width and height in pixels and see the output size before you download.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>JPG or PNG:</strong> Choose the format and the JPG quality.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Your picture stays on your device.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does cropping reduce the quality of my picture?</h3>
+          <p>The pixels inside the box are copied as they are, so the picture is not resized or blurred. If you save as JPG the image is compressed again, so use PNG or a high JPG quality when you want the least loss.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I crop to an exact size in pixels?</h3>
+          <p>Type the width and height in the number boxes. With a shape selected (for example 1:1) the other side follows automatically, so the box always keeps that shape.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What does the passport photo option do?</h3>
+          <p>It locks the box to the 35 x 45 mm shape used in many countries. It does not check face position, background or other rules, so please compare your result with the official requirements.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I crop on a phone?</h3>
+          <p>Yes. The crop box and its handles work with touch. You can also type exact values into the number boxes.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why is the output bigger or smaller than I expected?</h3>
+          <p>The size shown under the picture is the real size of the saved image in pixels. It is measured on the original picture, not on the smaller preview you see on screen.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my image uploaded to a server?</h3>
+          <p>No. The image is opened and cropped inside your browser and never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-expand text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-zipper text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrows-rotate text-blue-500"></i> Image Converter</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/crop-image.js"></script>
+</body>
+</html>
+

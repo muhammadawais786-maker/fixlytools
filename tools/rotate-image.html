@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Rotate Image Online - Rotate & Flip Photos | Fixlytools</title>
+  <meta name="description" content="Rotate or flip many images at once, straighten crooked photos with a fine angle and download them as a ZIP. Private, in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/rotate-image">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/rotate-image">
+  <meta property="og:title" content="Rotate Image Online - Rotate & Flip Photos | Fixlytools">
+  <meta property="og:description" content="Rotate or flip many images at once, straighten crooked photos with a fine angle and download them as a ZIP. Private, in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rotate Image Online - Rotate & Flip Photos | Fixlytools">
+  <meta name="twitter:description" content="Rotate or flip many images at once, straighten crooked photos with a fine angle and download them as a ZIP. Private, in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/rotate-image.css">
+  
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Rotator",
+  "url": "https://fixlytools.com/tools/rotate-image",
+  "description": "Rotate and flip several images in your browser and download them one by one or as a ZIP. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I rotate many images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add up to 50 images, turn each one on its own or use the buttons that act on all of them, and download everything as one ZIP file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does rotating lose quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turning by 90, 180 or 270 degrees moves the pixels without changing them. Saving as JPG or WebP compresses the picture again, so choose PNG or a high quality if you want the least loss. Fine angles need the pixels to be re-calculated, which softens the picture slightly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the fine angle slider for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It turns the picture by a small amount, from -45 to +45 degrees, which is handy for straightening a crooked scan or horizon. The canvas grows so that nothing is cut off, and the empty corners are transparent (PNG, WebP) or white."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my phone photos come out the right way up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern browsers read the orientation stored in a photo and show it upright, and the tool uses that upright view. Very old browsers may not, so check the preview before you download."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are large pictures reduced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pictures above roughly 16 megapixels, or longer than 8,000 pixels on one side, are scaled down slightly because browsers cannot reliably handle bigger canvases. You are told when this happens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything happens in your browser and the ZIP file is also built on your device."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Rotate Image</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Rotate Image Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Rotate or flip one picture or many at once, straighten a slightly crooked photo, then download them one by one or as a ZIP.</p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/*" multiple class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-rotate"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select images to rotate</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag &amp; drop JPG, PNG or WebP images (up to 50)</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">Choose Images</button>
+      </div>
+
+      <div id="workspace" class="hidden">
+        <div class="roi-head">
+          <span id="image-count" class="roi-count" aria-live="polite"></span>
+          <div class="roi-bar roi-flush">
+            <button type="button" id="add-more-btn" class="roi-btn"><i class="fa-solid fa-plus"></i> Add more</button>
+            <button type="button" id="clear-btn" class="roi-btn"><i class="fa-solid fa-trash"></i> Remove all</button>
+          </div>
+        </div>
+        <div class="roi-bar" role="group" aria-label="Actions for all images">
+          <button type="button" id="all-left-btn" class="roi-btn"><i class="fa-solid fa-rotate-left"></i> All left</button>
+          <button type="button" id="all-right-btn" class="roi-btn"><i class="fa-solid fa-rotate-right"></i> All right</button>
+          <button type="button" id="all-flip-btn" class="roi-btn"><i class="fa-solid fa-left-right"></i> Flip all</button>
+          <button type="button" id="all-reset-btn" class="roi-btn"><i class="fa-solid fa-arrow-rotate-left"></i> Reset all</button>
+        </div>
+
+        <div id="image-grid" class="roi-grid"></div>
+
+        <div class="roi-options">
+          <div>
+            <label for="format-select" class="roi-label">Save as</label>
+            <select id="format-select" class="roi-field">
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+          <div>
+            <label for="fill-select" class="roi-label">Empty corners (fine angle)</label>
+            <select id="fill-select" class="roi-field">
+              <option value="transparent">Transparent</option>
+              <option value="white">White</option>
+            </select>
+            <p id="fill-note" class="roi-note"></p>
+          </div>
+          <div id="quality-wrap" class="hidden">
+            <label for="quality-range" class="roi-label">Quality: <span id="quality-value"></span></label>
+            <input type="range" id="quality-range" min="0.5" max="1" step="0.01" value="0.92" class="w-full">
+          </div>
+        </div>
+
+        <button type="button" id="download-btn" class="roi-main"><i class="fa-solid fa-download"></i> Download</button>
+        <p id="progress-text" class="roi-progress" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Rotate and Flip Images Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Photos taken with a phone or scanner often end up sideways or slightly crooked. Turn them the right way up in a few clicks.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Add your images:</strong> Click &quot;Choose Images&quot; or drop up to 50 JPG, PNG or WebP pictures on the page.</li>
+        <li><strong>Turn each picture:</strong> Use the rotate and flip buttons on a picture, or the buttons at the top to change all pictures together. Use the slider to straighten a crooked photo.</li>
+        <li><strong>Choose the format:</strong> Pick JPG, PNG or WebP, and how the empty corners should look when you used a fine angle.</li>
+        <li><strong>Download:</strong> Download a single picture, or all of them in one ZIP file.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Batch rotation:</strong> Handle up to 50 images in one go, each with its own settings.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Rotate and flip:</strong> Quarter turns left and right, plus horizontal and vertical flip.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Fine angle:</strong> Straighten crooked pictures from -45 to +45 degrees without cutting anything off.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live previews:</strong> See the result on every picture before you save.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Pictures and the ZIP file stay on your device.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I rotate many images at once?</h3>
+          <p>Yes. Add up to 50 images, turn each one on its own or use the buttons that act on all of them, and download everything as one ZIP file.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does rotating lose quality?</h3>
+          <p>Turning by 90, 180 or 270 degrees moves the pixels without changing them. Saving as JPG or WebP compresses the picture again, so choose PNG or a high quality if you want the least loss. Fine angles need the pixels to be re-calculated, which softens the picture slightly.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the fine angle slider for?</h3>
+          <p>It turns the picture by a small amount, from -45 to +45 degrees, which is handy for straightening a crooked scan or horizon. The canvas grows so that nothing is cut off, and the empty corners are transparent (PNG, WebP) or white.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will my phone photos come out the right way up?</h3>
+          <p>Modern browsers read the orientation stored in a photo and show it upright, and the tool uses that upright view. Very old browsers may not, so check the preview before you download.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are large pictures reduced?</h3>
+          <p>Pictures above roughly 16 megapixels, or longer than 8,000 pixels on one side, are scaled down slightly because browsers cannot reliably handle bigger canvases. You are told when this happens.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are my images uploaded anywhere?</h3>
+          <p>No. Everything happens in your browser and the ZIP file is also built on your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-expand text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-zipper text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrows-rotate text-blue-500"></i> Image Converter</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/rotate-image.js"></script>
+</body>
+</html>
+

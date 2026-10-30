@@ -1,0 +1,41 @@
+/* Watermark Image */
+.wmi-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.wmi-count { font-size: 14px; font-weight: 700; color: #1e293b; }
+.wmi-link { font-size: 13px; font-weight: 600; color: #4f46e5; background: none; border: 0; cursor: pointer; min-height: 40px; padding: 0 8px; }
+.wmi-files { list-style: none; margin: 0 0 16px; padding: 0; max-height: 160px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+.wmi-file { display: flex; align-items: center; gap: 8px; padding: 4px 6px 4px 10px; font-size: 13px; color: #334155; border-bottom: 1px solid #f1f5f9; }
+.wmi-file:last-child { border-bottom: 0; }
+.wmi-file-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wmi-file-size { font-size: 11px; color: #94a3b8; flex-shrink: 0; }
+.wmi-x { width: 36px; height: 36px; border: 0; background: none; color: #be123c; cursor: pointer; flex-shrink: 0; }
+.wmi-preview { display: flex; justify-content: center; padding: 10px; border-radius: 14px; background-color: #cbd5e1; margin-bottom: 6px; }
+.wmi-preview canvas { max-width: 100%; max-height: 420px; height: auto; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); }
+.wmi-note { font-size: 12px; color: #64748b; margin: 0 0 16px; text-align: center; min-height: 16px; }
+.wmi-controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin-bottom: 18px; }
+@media (min-width: 640px) { .wmi-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.wmi-label { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #1e293b; }
+.wmi-label span:last-child { font-weight: 600; color: #64748b; }
+.wmi-field { width: 100%; padding: 9px 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #0f172a; font-size: 14px; min-height: 40px; }
+textarea.wmi-field { resize: vertical; min-height: 64px; font-family: inherit; }
+.wmi-range { width: 100%; min-height: 28px; }
+.wmi-color { width: 100%; height: 40px; padding: 2px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; }
+.wmi-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #334155; min-height: 36px; }
+.wmi-check input { width: 18px; height: 18px; }
+.wmi-btn { padding: 9px 14px; border-radius: 10px; background: #f1f5f9; color: #334155; font-size: 13px; font-weight: 600; border: 1px solid #e2e8f0; cursor: pointer; min-height: 40px; }
+.wmi-btn:hover { background: #e2e8f0; }
+.wmi-small { font-size: 12px; color: #64748b; margin: 6px 0 0; overflow-wrap: anywhere; }
+.wmi-main { width: 100%; padding: 14px 16px; border-radius: 12px; background: #4f46e5; color: #fff; font-weight: 700; border: 0; cursor: pointer; min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.wmi-main:hover:not(:disabled) { background: #4338ca; }
+.wmi-main:disabled { opacity: 0.5; cursor: not-allowed; }
+.wmi-progress { font-size: 13px; color: #475569; text-align: center; min-height: 18px; margin: 8px 0 0; }
+.dark .wmi-count, .dark .wmi-label, .dark .wmi-check { color: #e2e8f0; }
+.dark .wmi-link { color: #a5b4fc; }
+.dark .wmi-files { border-color: #334155; }
+.dark .wmi-file { color: #cbd5e1; border-color: #1e293b; }
+.dark .wmi-preview { background-color: #0f172a; }
+.dark .wmi-note, .dark .wmi-small, .dark .wmi-progress, .dark .wmi-label span:last-child { color: #94a3b8; }
+.dark .wmi-field, .dark .wmi-color { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .wmi-btn { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .wmi-btn:hover { background: #475569; }
+.wmi-full { grid-column: 1 / -1; }
+.wmi-flush { margin: 0; }

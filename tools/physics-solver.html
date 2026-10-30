@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Physics Solver - Formula Calculator with Units | Fixlytools</title>
+  <meta name="description" content="Pick a physics formula, enter what you know and solve for the unknown with unit conversion and the working shown. Runs in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/physics-solver">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/physics-solver">
+  <meta property="og:title" content="Physics Solver - Formula Calculator with Units | Fixlytools">
+  <meta property="og:description" content="Pick a physics formula, enter what you know and solve for the unknown with unit conversion and the working shown. Runs in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Physics Solver - Formula Calculator with Units | Fixlytools">
+  <meta name="twitter:description" content="Pick a physics formula, enter what you know and solve for the unknown with unit conversion and the working shown. Runs in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/physics-solver.css">
+  
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Physics Solver",
+  "url": "https://fixlytools.com/tools/physics-solver",
+  "description": "Solve physics formulas for any unknown quantity with unit conversion and working shown. Free and private.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which formulas are included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are 35 formulas in eight groups: motion, projectile motion, forces and energy, circular motion, pressure and density, electricity, waves and optics, and heat and gases. The full list is shown on this page. Anything that is not on the list cannot be solved here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does every value have a unit, and what do the significant figures do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each value has its own unit menu, so you can mix, for example, km/h and seconds. The tool converts everything to SI units before it calculates and gives the answer in the unit you pick. The significant figures setting (3, 4 or 6) only changes how the answer is rounded on screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which value of g is used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard value 9.80665 m/s². Formulas that use gravity show a menu where you can switch to the rounded value 9.81 m/s². Gravity differs a little from place to place, so use your own value if your problem gives one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does projectile motion assume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The launch and landing points are at the same height, the ground is flat, there is no air resistance, and gravity is constant. The three projectile formulas (time of flight, maximum height and range) are only valid under these assumptions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I sometimes get two answers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some formulas are quadratic. For example, solving s = ut + ½at² for time can give two values, and a range can be reached with a low or a high launch angle. Both are shown, and answers that are physically impossible, such as a negative time, are marked as not valid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I get a message instead of a number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool refuses cases that have no physical answer: a temperature at or below absolute zero, a negative mass, a division by zero, light that is totally internally reflected, or a launch speed that cannot reach the range you typed. In the lens and mirror formula distances use the real-is-positive convention: real objects and real images are positive, and the focal length is positive for a converging lens or a concave mirror and negative for a diverging lens or a convex mirror."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Calculators</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Physics Solver</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Physics Solver</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Pick a formula, say which quantity you want to find, enter the others with their units and see the answer with the working.</p>
+      </div>
+
+      <div class="py-form">
+        <div>
+          <label for="py-formula" class="py-label">Formula</label>
+          <select id="py-formula" class="py-select"></select>
+          <p class="py-eq-line">Equation: <span id="py-equation" class="py-eq"></span></p>
+        </div>
+        <div>
+          <label for="py-solve-for" class="py-label">Solve for</label>
+          <select id="py-solve-for" class="py-select"></select>
+        </div>
+
+        <div id="py-vars" class="py-vars"></div>
+
+        <div class="py-opts">
+          <div>
+            <label for="py-sig" class="py-label">Significant figures in the answer</label>
+            <select id="py-sig" class="py-select">
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div id="py-g-wrap" class="hidden">
+            <label for="py-g" class="py-label">Gravity g</label>
+            <select id="py-g" class="py-select">
+              <option value="standard" selected>9.80665 m/s² (standard)</option>
+              <option value="rounded">9.81 m/s² (rounded)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="py-actions">
+          <button type="button" id="py-calc-btn" class="py-btn">Calculate</button>
+          <button type="button" id="py-clear-btn" class="py-btn2">Clear values</button>
+        </div>
+
+        <div id="py-result" class="py-result" aria-live="polite"></div>
+        <div><button type="button" id="py-copy-btn" class="py-btn2 hidden"><i class="fa-solid fa-copy"></i> Copy result</button></div>
+
+        <div class="py-ai">
+          <button type="button" id="py-ai-btn" class="py-ai-btn" disabled aria-disabled="true">AI Physics: Coming soon</button>
+          <span class="py-badge">Coming soon</span>
+          <p class="py-ai-help">Typing questions in words and solving from a photo are planned. Today this tool solves questions written as formulas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What This Tool Can and Cannot Do</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">This tool works with the 35 formulas listed below. You choose a formula, choose the quantity to find, and enter the other values, each with its own unit. It converts everything to SI units, solves the formula, and shows the answer with the working. It does not read word problems, drawings or photos, and it does not choose a formula for you. Check that the formula fits your situation, and check units and sign conventions. Rounding is only applied to what is shown; the calculation itself keeps full precision.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Formulas Included</h2>
+        <ul class="py-list text-slate-600 dark:text-slate-300"><li><strong>Motion:</strong> Velocity, acceleration and time (v = u + a·t); Displacement from initial speed and acceleration (s = u·t + ½·a·t²); Velocity without time (v² = u² + 2·a·s); Displacement from average velocity (s = (u + v)·t / 2); Average speed (v = d / t)</li><li><strong>Projectile motion (level ground, no air resistance):</strong> Time of flight (T = 2·v₀·sin θ / g); Maximum height (H = v₀²·sin²θ / (2g)); Range (R = v₀²·sin 2θ / g)</li><li><strong>Forces and energy:</strong> Newton&#x27;s second law (F = m·a); Weight (W = m·g); Momentum (p = m·v); Work done by a force (W = F·d·cos θ); Power (P = W / t); Kinetic energy (K = ½·m·v²); Gravitational potential energy (U = m·g·h); Impulse (J = F·t); Newton&#x27;s law of gravitation (F = G·m₁·m₂ / r²)</li><li><strong>Circular motion:</strong> Centripetal acceleration (a = v² / r); Centripetal force (F = m·v² / r)</li><li><strong>Pressure and density:</strong> Density (ρ = m / V); Pressure (P = F / A); Pressure at a depth in a fluid (P = ρ·g·h)</li><li><strong>Electricity:</strong> Ohm&#x27;s law (V = I·R); Electric power (P = V·I); Resistors in series (2 or 3) (R_total = R₁ + R₂ + R₃); Resistors in parallel (2 or 3) (1/R_total = 1/R₁ + 1/R₂ + 1/R₃); Coulomb&#x27;s law (magnitudes) (F = k·q₁·q₂ / r²); Charge and current (Q = I·t)</li><li><strong>Waves and optics:</strong> Wave speed (v = f·λ); Lens and mirror equation (real-is-positive) (1/f = 1/u + 1/v); Snell&#x27;s law of refraction (n₁·sin θ₁ = n₂·sin θ₂)</li><li><strong>Heat and gases:</strong> Heat needed to change temperature (Q = m·c·ΔT); Ideal gas law (P·V = n·R·T); Boyle&#x27;s law (constant temperature) (P₁·V₁ = P₂·V₂); Charles&#x27;s law (constant pressure) (V₁ / T₁ = V₂ / T₂)</li></ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Constants Used</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">Gravity g = 9.80665 m/s² (standard gravity; you can switch to 9.81 m/s²). Gravitational constant G = 6.6743 × 10⁻¹¹ N·m²/kg². Coulomb constant k = 8.9875517923 × 10⁹ N·m²/C². Gas constant R = 8.314462618 J/(mol·K). G and k are the CODATA 2018 recommended values; g is the standard value by definition and R follows from the 2019 SI definitions.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use the Physics Solver</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Use it for homework checks, quick estimates or revision. It does the unit conversion and the algebra, so you can focus on whether the formula fits your problem.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Pick a formula:</strong> Choose it from the list. The equation is shown below the menu.</li>
+        <li><strong>Choose what to solve for:</strong> Select the quantity you want to find. That row turns into the answer row and its unit menu sets the unit of the result.</li>
+        <li><strong>Enter the other values:</strong> Type a number for every other quantity and pick its unit. Use a dot for decimals; you can write 1.5e3 for 1500.</li>
+        <li><strong>Calculate:</strong> Press Calculate or Enter. Read the answer and the working, and copy it if you need it.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Formulas as data:</strong> 35 formulas, each solvable for every one of its quantities.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Unit conversion:</strong> Lengths, speeds, forces, energies, pressures, temperatures (°C, K, °F), angles and more.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Working shown:</strong> The formula in symbols, then with your numbers put in, in SI units.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Clear refusals:</strong> Impossible inputs give a plain message, never NaN or a blank.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Calculated in your browser. Nothing is sent or stored.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which formulas are included?</h3>
+          <p>There are 35 formulas in eight groups: motion, projectile motion, forces and energy, circular motion, pressure and density, electricity, waves and optics, and heat and gases. The full list is shown on this page. Anything that is not on the list cannot be solved here.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does every value have a unit, and what do the significant figures do?</h3>
+          <p>Each value has its own unit menu, so you can mix, for example, km/h and seconds. The tool converts everything to SI units before it calculates and gives the answer in the unit you pick. The significant figures setting (3, 4 or 6) only changes how the answer is rounded on screen.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which value of g is used?</h3>
+          <p>The standard value 9.80665 m/s². Formulas that use gravity show a menu where you can switch to the rounded value 9.81 m/s². Gravity differs a little from place to place, so use your own value if your problem gives one.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What does projectile motion assume?</h3>
+          <p>The launch and landing points are at the same height, the ground is flat, there is no air resistance, and gravity is constant. The three projectile formulas (time of flight, maximum height and range) are only valid under these assumptions.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why do I sometimes get two answers?</h3>
+          <p>Some formulas are quadratic. For example, solving s = ut + ½at² for time can give two values, and a range can be reached with a low or a high launch angle. Both are shown, and answers that are physically impossible, such as a negative time, are marked as not valid.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why do I get a message instead of a number?</h3>
+          <p>The tool refuses cases that have no physical answer: a temperature at or below absolute zero, a negative mass, a division by zero, light that is totally internally reflected, or a launch speed that cannot reach the range you typed. In the lens and mirror formula distances use the real-is-positive convention: real objects and real images are positive, and the focal length is positive for a converging lens or a concave mirror and negative for a diverging lens or a convex mirror.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/math-solver" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-superscript text-blue-500"></i> Math Solver</a>
+        <a href="/tools/scientific-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-square-root-variable text-blue-500"></i> Scientific Calculator</a>
+        <a href="/tools/chemistry-solver" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-flask text-blue-500"></i> Chemistry Solver</a>
+        <a href="/tools/calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> Calculator</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/physics-solver.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Redact PDF Online - Black Out Text Securely | Fixlytools</title>
+  <meta name="description" content="Redact a PDF online for free. Draw boxes over names, numbers or any sensitive area and black them out for good. Runs in your browser, nothing is uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/redact-pdf">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/redact-pdf">
+  <meta property="og:title" content="Redact PDF Online - Black Out Text Securely | Fixlytools">
+  <meta property="og:description" content="Redact a PDF online for free. Draw boxes over names, numbers or any sensitive area and black them out for good. Runs in your browser, nothing is uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Redact PDF Online - Black Out Text Securely | Fixlytools">
+  <meta name="twitter:description" content="Redact a PDF online for free. Draw boxes over names, numbers or any sensitive area and black them out for good. Runs in your browser, nothing is uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/redact-pdf.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Redactor",
+  "url": "https://fixlytools.com/tools/redact-pdf",
+  "description": "Permanently black out sensitive areas of a PDF in your browser. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the hidden text really removed from the PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On every page where you drew a box, yes. That page is redrawn as an image with the boxes painted solid black, and the original page content is not copied into the new file. Pages without boxes are copied unchanged, so any text on them stays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can I not select or search text on the redacted pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because those pages are now pictures. That is what makes the removal permanent, but it also means the visible text on those pages is no longer searchable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How big will the new file be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the document. Image pages can be larger or smaller than the original pages. Choose 150 DPI and JPEG for a smaller file, or 300 DPI and PNG for the sharpest result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is anything else in the file left over?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pages you did not mark are copied as they are, including any comments or hidden content on them. The original document properties such as title and author are not copied into the new file. Always check the result before you share it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it find and hide text automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You mark the areas yourself, so you stay in control of exactly what is hidden. Look through every page, including headers and footers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Redaction runs entirely in your browser. Your document never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Redact PDF</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Redact PDF Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Draw boxes over sensitive information and black it out for good. Everything happens in your browser.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select a PDF to redact</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag &amp; drop a PDF document</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose PDF File
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-file-pdf text-indigo-600 text-2xl"></i>
+            <div>
+              <p id="pdf-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to redact</p>
+            </div>
+          </div>
+          <button id="reset-btn" type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+            Change PDF
+          </button>
+        </div>
+
+        <div class="rd-warning" role="note">
+          <strong>How this works:</strong> every page you draw a box on is redrawn as a flat picture with the boxes painted solid black, so the hidden text is removed from the file and not just covered. These pages can no longer be searched or selected. Pages without boxes are copied unchanged. After saving, open the new file and try to select or search the hidden text to confirm it is gone.
+        </div>
+
+        <section class="rd-section" aria-labelledby="rd-h-mark">
+          <h2 class="rd-step" id="rd-h-mark">Mark what to hide</h2>
+          <div class="rd-toolbar">
+            <button type="button" id="rd-draw-toggle" class="rd-btn" aria-pressed="true"><i class="fa-solid fa-pen" aria-hidden="true"></i> <span>Drawing on</span></button>
+            <button type="button" id="rd-add-center" class="rd-btn"><i class="fa-solid fa-square-plus" aria-hidden="true"></i> Add box</button>
+            <button type="button" id="rd-undo" class="rd-btn" disabled><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Undo</button>
+            <button type="button" id="rd-clear-page" class="rd-btn" disabled>Clear page</button>
+            <button type="button" id="rd-clear-all" class="rd-btn" disabled>Clear all</button>
+          </div>
+          <div class="rd-nav">
+            <button type="button" id="rd-prev" class="rd-btn" aria-label="Previous page" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+            <label for="rd-page-num">Page</label>
+            <input type="number" id="rd-page-num" min="1" value="1">
+            <span>of <span id="rd-page-total">1</span></span>
+            <button type="button" id="rd-next" class="rd-btn" aria-label="Next page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="rd-stage-wrap">
+            <div class="rd-stage" id="rd-stage">
+              <canvas id="rd-page-canvas" aria-label="Preview of the selected PDF page"></canvas>
+              <div id="rd-layer" class="rd-layer"></div>
+            </div>
+          </div>
+          <p class="rd-hint">Drag on the page to draw a box. Boxes are solid black in the saved file. On a phone, switch drawing off to scroll the page. Keyboard: press Add box, then use the arrow keys to move it, plus and minus to resize it and Delete to remove it.</p>
+          <ul id="rd-list" class="rd-list" aria-label="Boxes on this page"></ul>
+          <p id="rd-count" class="rd-count" role="status">Nothing selected yet</p>
+        </section>
+
+        <div class="rd-options">
+          <div>
+            <label for="rd-dpi">Quality of redacted pages</label>
+            <select id="rd-dpi">
+              <option value="150">Smaller file (150 DPI)</option>
+              <option value="200" selected>Balanced (200 DPI)</option>
+              <option value="300">Sharpest (300 DPI)</option>
+            </select>
+          </div>
+          <div>
+            <label for="rd-format">Image format</label>
+            <select id="rd-format">
+              <option value="jpeg" selected>JPEG (smaller)</option>
+              <option value="png">PNG (crisper text, larger)</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="progress" class="rd-progress hidden" role="status"></p>
+        <div id="rd-result" class="rd-result hidden" role="status"></div>
+        <div id="rd-status" class="rd-sr" role="status" aria-live="polite"></div>
+        <button id="redact-btn" type="button" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2 rd-primary" disabled>
+          <i class="fa-solid fa-eye-slash"></i> Redact &amp; Download PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Redact a PDF Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Covering text with a black rectangle in a normal PDF editor often leaves the original text underneath, where anyone can copy it. This tool removes it properly: every page with a box is redrawn as an image with the black boxes painted into the pixels.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload your PDF:</strong> Click &quot;Choose PDF File&quot; and select the document that contains sensitive information.</li>
+        <li><strong>Draw boxes:</strong> Go through the pages and drag a box over each name, number, address or other detail you want to hide. Undo or delete any box you do not need.</li>
+        <li><strong>Choose the quality:</strong> Pick the resolution and image format for the redacted pages. The default suits most documents.</li>
+        <li><strong>Redact and check:</strong> Press &quot;Redact &amp; Download PDF&quot;, then open the new file and try to select or search the hidden text to confirm it is gone.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Real removal, not a cover-up:</strong> Pages with boxes are rebuilt as images, so the original text on them is not in the new file.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Draw, move and undo:</strong> Draw boxes with a mouse or finger, adjust them with the keyboard and undo mistakes.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Only the pages you mark change:</strong> Pages without boxes are copied as they are, so they stay sharp and searchable.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Choose the quality:</strong> Pick 150, 200 or 300 DPI and JPEG or PNG to balance file size and sharpness.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Works on phones:</strong> Switch drawing off to scroll the page, or add a box with the button and move it with the keys.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free and private:</strong> No sign-up and no upload. The document stays in your browser, which matters most for confidential files.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the hidden text really removed from the PDF?</h3>
+          <p>On every page where you drew a box, yes. That page is redrawn as an image with the boxes painted solid black, and the original page content is not copied into the new file. Pages without boxes are copied unchanged, so any text on them stays.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why can I not select or search text on the redacted pages?</h3>
+          <p>Because those pages are now pictures. That is what makes the removal permanent, but it also means the visible text on those pages is no longer searchable.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How big will the new file be?</h3>
+          <p>It depends on the document. Image pages can be larger or smaller than the original pages. Choose 150 DPI and JPEG for a smaller file, or 300 DPI and PNG for the sharpest result.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is anything else in the file left over?</h3>
+          <p>Pages you did not mark are copied as they are, including any comments or hidden content on them. The original document properties such as title and author are not copied into the new file. Always check the result before you share it.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can it find and hide text automatically?</h3>
+          <p>No. You mark the areas yourself, so you stay in control of exactly what is hidden. Look through every page, including headers and footers.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my PDF uploaded to a server?</h3>
+          <p>No. Redaction runs entirely in your browser. Your document never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/redact-pdf.js"></script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Meme Generator - Add Text to Any Image Free | Fixlytools</title>
+  <meta name="description" content="Make a meme online: add top and bottom text to your own image, drag extra text boxes, and download a PNG or JPG. Free, and nothing is uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/meme-generator">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/meme-generator">
+  <meta property="og:title" content="Meme Generator - Add Text to Any Image Free | Fixlytools">
+  <meta property="og:description" content="Make a meme online: add top and bottom text to your own image, drag extra text boxes, and download a PNG or JPG. Free, and nothing is uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meme Generator - Add Text to Any Image Free | Fixlytools">
+  <meta name="twitter:description" content="Make a meme online: add top and bottom text to your own image, drag extra text boxes, and download a PNG or JPG. Free, and nothing is uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/meme-generator.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Meme Generator",
+  "url": "https://fixlytools.com/tools/meme-generator",
+  "description": "Make a meme online: add top and bottom text to your own image, drag extra text boxes, and download a PNG or JPG. Free, and nothing is uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which font does the meme use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses Impact when your device has it, then similar bold fonts. No fonts are downloaded, so the look can differ a little between phones and computers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I move the top and bottom text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The top and bottom lines stay in place and shrink to fit. For text anywhere else, add a text box and drag it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which image types can I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPG, PNG and WebP pictures. Animated images are not supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my downloaded meme smaller than my original?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Very large images, above about 16 million pixels or 8000 pixels on one side, are scaled down so that your browser can handle them. The page tells you the download size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have the right to use the picture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is up to you. Only use pictures you made, have permission to use, or that are free to reuse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The meme is made in your browser and the image never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/image-converter" class="hover:text-blue-600">Converter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Meme Generator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Meme Generator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Add bold top and bottom text to your own picture, then download your meme.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-face-laugh"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload an image for your meme</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Supports JPG, PNG, WebP (processed in your browser)</p>
+        <button type="button" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Select Image
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-slate-900 border border-emerald-100 dark:border-slate-700 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 memegen-min0">
+            <i class="fa-solid fa-image text-emerald-600 text-2xl"></i>
+            <div class="memegen-min0">
+              <p id="img-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to add text</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 shrink-0">
+            Change Image
+          </button>
+        </div>
+
+        <div class="memegen-layout">
+          <div class="memegen-stage">
+            <canvas id="memegen-canvas" class="memegen-canvas" width="1" height="1" tabindex="0" role="img" aria-label="Meme preview. Select a text box and use the arrow keys to move it."></canvas>
+            <p id="memegen-size-note" class="text-xs text-slate-500 mt-1.5"></p>
+          </div>
+          <div class="memegen-panel">
+          <div class="memegen-field">
+            <label for="memegen-top" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Top Text</label>
+            <input type="text" id="memegen-top" class="memegen-input" maxlength="120" placeholder="Top text" autocomplete="off">
+          </div>
+          <div class="memegen-field">
+            <label for="memegen-bottom" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Bottom Text</label>
+            <input type="text" id="memegen-bottom" class="memegen-input" maxlength="120" placeholder="Bottom text" autocomplete="off">
+          </div>
+          <label class="memegen-check" for="memegen-upper"><input type="checkbox" id="memegen-upper" checked><span>Use capital letters</span></label>
+          <div class="memegen-field">
+            <label for="memegen-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Text Size</label>
+            <input type="range" id="memegen-size" class="memegen-range" min="4" max="20" step="1" value="10">
+            <p class="text-xs text-slate-500 mt-1.5">Long text shrinks automatically to fit the picture.</p>
+          </div>
+          <div class="memegen-two">
+            <div class="memegen-field">
+              <label for="memegen-fill" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Text Colour</label>
+              <input type="color" id="memegen-fill" class="memegen-color" value="#ffffff">
+            </div>
+            <div class="memegen-field">
+              <label for="memegen-stroke" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Outline Colour</label>
+              <input type="color" id="memegen-stroke" class="memegen-color" value="#000000">
+            </div>
+          </div>
+          <div class="memegen-group">
+            <p class="memegen-group-title">Extra Text Boxes</p>
+            <div class="memegen-row">
+              <button type="button" id="memegen-add" class="memegen-secondary"><i class="fa-solid fa-plus"></i> Add text box</button>
+            </div>
+            <p class="memegen-note">Drag a box on the picture to move it. With a box selected you can also use the arrow keys.</p>
+            <div id="memegen-box-panel" class="hidden">
+              <div class="memegen-group-inner">
+                <label for="memegen-box-text" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Selected Box Text</label>
+                <input type="text" id="memegen-box-text" class="memegen-input" maxlength="80" autocomplete="off">
+                <label for="memegen-box-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5 memegen-gap">Selected Box Size</label>
+                <input type="range" id="memegen-box-size" class="memegen-range" min="3" max="25" step="1" value="8">
+                <div class="memegen-row memegen-gap">
+                  <button type="button" id="memegen-box-delete" class="memegen-secondary"><i class="fa-solid fa-trash-can"></i> Delete box</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="memegen-field">
+            <label for="memegen-format" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Download As</label>
+            <select id="memegen-format" class="memegen-select">
+              <option value="image/png" selected>PNG (sharp text)</option>
+              <option value="image/jpeg">JPG (smaller file)</option>
+            </select>
+          </div>
+          </div>
+        </div>
+
+        <button id="memegen-btn" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i> Download Meme
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">A classic meme is a picture with bold white text and a black outline. Fixlytools adds that text to any image in your browser, and nothing is uploaded.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload an Image:</strong> Click "Select Image" or drag a JPG, PNG or WebP picture onto the box.</li>
+        <li><strong>Type Your Text:</strong> Fill in the top and bottom text. Change the size and colours if you like. Long lines shrink to fit.</li>
+        <li><strong>Add Extra Text (Optional):</strong> Click "Add text box", type your words, then drag the box wherever you want it on the picture.</li>
+        <li><strong>Download:</strong> Choose PNG or JPG and click "Download Meme". Your original image is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Classic Meme Look:</strong> Bold lettering with a thick outline stays readable on bright and dark pictures.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Auto-Fit Text:</strong> Long captions wrap onto more lines and shrink so they never run off the picture.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Draggable Text Boxes:</strong> Add extra text anywhere. Drag with a mouse or finger, or nudge with the arrow keys.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Your Colours:</strong> Pick the text colour and outline colour, and switch capital letters on or off.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No Watermark, No Upload:</strong> The meme is made in your browser, nothing is added to it, and the image never leaves your device.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which font does the meme use?</h3>
+          <p>It uses Impact when your device has it, then similar bold fonts. No fonts are downloaded, so the look can differ a little between phones and computers.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I move the top and bottom text?</h3>
+          <p>The top and bottom lines stay in place and shrink to fit. For text anywhere else, add a text box and drag it.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which image types can I use?</h3>
+          <p>JPG, PNG and WebP pictures. Animated images are not supported.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why is my downloaded meme smaller than my original?</h3>
+          <p>Very large images, above about 16 million pixels or 8000 pixels on one side, are scaled down so that your browser can handle them. The page tells you the download size.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Do I have the right to use the picture?</h3>
+          <p>That is up to you. Only use pictures you made, have permission to use, or that are free to reuse.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my image uploaded to a server?</h3>
+          <p>No. The meme is made in your browser and the image never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrows-rotate text-blue-500"></i> Image Converter</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> JPG to PDF</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/meme-generator.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* Sign PDF */
+.sg-section { border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px; background: #ffffff; }
+.sg-step { font-size: 14px; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+.sg-step span { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-right: 8px; border-radius: 999px; background: #4f46e5; color: #ffffff; font-size: 13px; }
+.sg-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.sg-tab { min-height: 44px; padding: 8px 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; color: #334155; font-size: 14px; font-weight: 600; cursor: pointer; }
+.sg-tab[aria-selected="true"] { background: #4f46e5; border-color: #4f46e5; color: #ffffff; }
+.sg-tab:focus-visible, .sg-btn:focus-visible, .sg-style-btn:focus-visible, .sg-overlay:focus-visible, .sg-handle:focus-visible { outline: 3px solid #6366f1; outline-offset: 2px; }
+.sg-pad { width: 100%; aspect-ratio: 3 / 1; display: block; border: 2px dashed #94a3b8; border-radius: 12px; background: #ffffff; touch-action: none; cursor: crosshair; }
+.sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.sg-btn { min-height: 44px; padding: 8px 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f1f5f9; color: #334155; font-size: 14px; font-weight: 600; cursor: pointer; }
+.sg-btn:hover:not(:disabled) { background: #e2e8f0; }
+.sg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.sg-input { width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 18px; background: #ffffff; color: #0f172a; }
+.sg-style-btn { min-height: 44px; padding: 6px 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; color: #334155; font-size: 16px; cursor: pointer; }
+.sg-style-btn[aria-pressed="true"] { border-color: #4f46e5; background: #eef2ff; color: #3730a3; }
+.sg-style-script { font-family: "Segoe Script","Brush Script MT","Snell Roundhand","Lucida Handwriting","Apple Chancery",cursive; font-style: italic; }
+.sg-style-classic { font-family: Georgia,"Times New Roman",serif; font-style: italic; }
+.sg-style-print { font-family: "Segoe Print","Bradley Hand","Chalkboard SE","Comic Sans MS",cursive; font-style: italic; }
+.sg-colors { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; color: #475569; }
+.sg-colors label { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; cursor: pointer; }
+.sg-swatch { width: 18px; height: 18px; border-radius: 999px; display: inline-block; border: 1px solid #94a3b8; }
+.sg-swatch-black { background: #111827; }
+.sg-swatch-blue { background: #1d4ed8; }
+.sg-note { font-size: 12px; color: #64748b; margin: 8px 0 0; }
+.sg-current { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 8px 10px; border-radius: 12px; background: #f1f5f9; }
+.sg-current img { height: 40px; max-width: 160px; object-fit: contain; background: #ffffff; border-radius: 6px; padding: 2px 6px; }
+
+.sg-stage-wrap { display: flex; justify-content: center; overflow: hidden; }
+.sg-stage { position: relative; display: inline-block; line-height: 0; box-shadow: 0 2px 12px rgba(15, 23, 42, 0.25); background: #ffffff; max-width: 100%; }
+.sg-stage canvas { display: block; max-width: 100%; }
+.sg-overlay { position: absolute; border: 2px dashed #4f46e5; background: rgba(79, 70, 229, 0.06); cursor: move; touch-action: none; user-select: none; -webkit-user-select: none; }
+.sg-overlay img { width: 100%; height: 100%; display: block; pointer-events: none; object-fit: contain; }
+.sg-handle { position: absolute; right: -14px; bottom: -14px; width: 28px; height: 28px; border-radius: 999px; background: #4f46e5; border: 3px solid #ffffff; cursor: nwse-resize; touch-action: none; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35); }
+.sg-nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 14px; color: #334155; }
+.sg-nav input[type="number"] { width: 64px; min-height: 44px; text-align: center; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; background: #ffffff; color: #0f172a; }
+.sg-controls { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 12px; }
+.sg-controls label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 4px; }
+.sg-controls input[type="range"] { width: 100%; min-height: 44px; }
+.sg-controls select { width: 100%; min-height: 44px; border: 1px solid #cbd5e1; border-radius: 10px; padding: 6px 10px; font-size: 14px; background: #ffffff; color: #0f172a; }
+@media (min-width: 640px) { .sg-controls { grid-template-columns: 1fr 1fr; } }
+.sg-progress { font-size: 13px; color: #475569; text-align: center; }
+.sg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.dark .sg-section { background: #1e293b; border-color: #334155; }
+.dark .sg-step { color: #f1f5f9; }
+.dark .sg-tab, .dark .sg-style-btn, .dark .sg-btn { background: #0f172a; border-color: #334155; color: #cbd5e1; }
+.dark .sg-btn:hover:not(:disabled) { background: #334155; }
+.dark .sg-tab[aria-selected="true"] { background: #4f46e5; border-color: #4f46e5; color: #ffffff; }
+.dark .sg-style-btn[aria-pressed="true"] { background: #312e81; border-color: #818cf8; color: #e0e7ff; }
+.dark .sg-input, .dark .sg-nav input[type="number"], .dark .sg-controls select { background: #0f172a; border-color: #475569; color: #f1f5f9; }
+.dark .sg-colors, .dark .sg-note, .dark .sg-progress, .dark .sg-nav, .dark .sg-controls label { color: #94a3b8; }
+.dark .sg-current { background: #0f172a; }
+.dark .sg-overlay { border-color: #a5b4fc; }
+
+.sg-check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: #334155; cursor: pointer; }
+.dark .sg-check { color: #cbd5e1; }
+.sg-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+#reset-btn { min-height: 44px; padding: 0 10px; }

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Blur Image Online - Blur or Pixelate Areas | Fixlytools</title>
+  <meta name="description" content="Blur or pixelate parts of an image online. Draw boxes or paint with a brush, set the strength and download. Manual selection, nothing is uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/blur-image">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/blur-image">
+  <meta property="og:title" content="Blur Image Online - Blur or Pixelate Areas | Fixlytools">
+  <meta property="og:description" content="Blur or pixelate parts of an image online. Draw boxes or paint with a brush, set the strength and download. Manual selection, nothing is uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blur Image Online - Blur or Pixelate Areas | Fixlytools">
+  <meta name="twitter:description" content="Blur or pixelate parts of an image online. Draw boxes or paint with a brush, set the strength and download. Manual selection, nothing is uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/blur-image.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Blur Image",
+  "url": "https://fixlytools.com/tools/blur-image",
+  "description": "Blur or pixelate parts of an image online. Draw boxes or paint with a brush, set the strength and download. Manual selection, nothing is uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the tool find faces automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There is no automatic detection. You mark every area yourself, so look over the whole picture before you download."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How strong should the blur be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strong enough that nothing can be made out, not even by squinting or zooming in. Low strength can leave faces or text recognisable. For very sensitive details such as card numbers or passwords, use the solid black box."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the blur be undone later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The downloaded file does not contain the original pixels under a hidden area. A weak blur or mosaic can still give clues about what was there, so use a high strength or the solid box when it matters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the downloaded image still contain my location data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The image is redrawn and saved as a new file, so it normally does not carry the camera information (EXIF) such as GPS location from the original. Check with a tool you trust if this matters to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between blur and pixelate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Blur smooths the area into a soft smear. Pixelate turns it into large coloured squares. Both lose detail as you raise the strength."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All of the work is done in your browser and the image never leaves your device."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/image-converter" class="hover:text-blue-600">Converter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>Image Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Blur Image</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Blur Image / Hide Faces</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Blur, pixelate or cover faces, number plates and text. You choose the areas by hand.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Upload an image to blur</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Supports JPG, PNG, WebP (processed in your browser)</p>
+        <button type="button" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Select Image
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-slate-900 border border-emerald-100 dark:border-slate-700 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 blurimg-min0">
+            <i class="fa-solid fa-image text-emerald-600 text-2xl"></i>
+            <div class="blurimg-min0">
+              <p id="img-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to blur</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 shrink-0">
+            Change Image
+          </button>
+        </div>
+
+        <div class="blurimg-layout">
+          <div class="blurimg-stage">
+            <canvas id="blurimg-canvas" class="blurimg-canvas" width="1" height="1" tabindex="0" role="img" aria-label="Image preview. Drag on the image to choose an area to hide. Press Backspace to undo."></canvas>
+            <p id="blurimg-size-note" class="text-xs text-slate-500 mt-1.5"></p>
+          </div>
+          <div class="blurimg-panel">
+          <div class="blurimg-field">
+            <label for="blurimg-tool" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">How to Choose an Area</label>
+            <select id="blurimg-tool" class="blurimg-select">
+              <option value="rect" selected>Drag a rectangle</option>
+              <option value="brush">Paint with a brush</option>
+            </select>
+          </div>
+          <div id="blurimg-brush-row" class="hidden">
+            <div class="blurimg-field">
+              <label for="blurimg-brush-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Brush Size</label>
+              <input type="range" id="blurimg-brush-size" class="blurimg-range" min="1" max="20" step="1" value="5">
+            </div>
+          </div>
+          <div class="blurimg-field">
+            <label for="blurimg-mode" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Effect</label>
+            <select id="blurimg-mode" class="blurimg-select">
+              <option value="blur" selected>Blur</option>
+              <option value="pixelate">Pixelate (mosaic)</option>
+              <option value="solid">Solid black box</option>
+            </select>
+          </div>
+          <div class="blurimg-field">
+            <label for="blurimg-strength" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Strength <span id="blurimg-strength-out" class="blurimg-out">80</span></label>
+            <input type="range" id="blurimg-strength" class="blurimg-range" min="1" max="100" step="1" value="80" aria-describedby="blurimg-hint">
+            <p id="blurimg-hint" class="text-xs text-slate-500 mt-1.5" aria-live="polite"></p>
+          </div>
+          <p class="blurimg-warn"><i class="fa-solid fa-triangle-exclamation"></i> Set the strength high enough that the content is unreadable. Zoom in on the result before you share it.</p>
+          <div class="blurimg-group">
+            <p id="blurimg-count" class="blurimg-note" aria-live="polite">0 areas hidden</p>
+            <div class="blurimg-row">
+              <button type="button" id="blurimg-undo" class="blurimg-secondary" disabled><i class="fa-solid fa-rotate-left"></i> Undo last area</button>
+              <button type="button" id="blurimg-clear" class="blurimg-secondary" disabled><i class="fa-solid fa-eraser"></i> Clear all</button>
+            </div>
+          </div>
+          <div class="blurimg-field">
+            <label for="blurimg-format" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Download As</label>
+            <select id="blurimg-format" class="blurimg-select">
+              <option value="image/jpeg" selected>JPG (smaller file)</option>
+              <option value="image/png">PNG (sharper, keeps transparency)</option>
+            </select>
+          </div>
+          </div>
+        </div>
+
+        <button id="blurimg-btn" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i> Download Image
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Blurring or pixelating part of a picture helps you hide faces, number plates, addresses or other private details before you share it. Fixlytools does it in your browser, and you choose every area yourself.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload an Image:</strong> Click "Select Image" or drag a JPG, PNG or WebP picture onto the box.</li>
+        <li><strong>Choose the Effect and Strength:</strong> Pick blur, pixelate or a solid black box. Set the strength high enough that nothing can be made out.</li>
+        <li><strong>Mark the Areas:</strong> Drag rectangles over the parts to hide, or switch to the brush and paint over them. Use "Undo last area" if you slip.</li>
+        <li><strong>Check and Download:</strong> Zoom in on the preview to make sure the hidden parts cannot be read, then click "Download Image". Your original file is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>You Stay in Control:</strong> Areas are chosen by hand. The tool does not detect faces or text on its own.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Rectangle or Brush:</strong> Cover a box in one drag, or paint over an odd shape.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Blur, Pixelate or Solid Box:</strong> Three ways to hide details, with a strength slider for blur and pixelate.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Undo and Clear:</strong> Remove the last area or start over at any time.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by Design:</strong> The image is processed in your browser and never uploaded.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does the tool find faces automatically?</h3>
+          <p>No. There is no automatic detection. You mark every area yourself, so look over the whole picture before you download.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How strong should the blur be?</h3>
+          <p>Strong enough that nothing can be made out, not even by squinting or zooming in. Low strength can leave faces or text recognisable. For very sensitive details such as card numbers or passwords, use the solid black box.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can the blur be undone later?</h3>
+          <p>The downloaded file does not contain the original pixels under a hidden area. A weak blur or mosaic can still give clues about what was there, so use a high strength or the solid box when it matters.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will the downloaded image still contain my location data?</h3>
+          <p>The image is redrawn and saved as a new file, so it normally does not carry the camera information (EXIF) such as GPS location from the original. Check with a tool you trust if this matters to you.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between blur and pixelate?</h3>
+          <p>Blur smooths the area into a soft smear. Pixelate turns it into large coloured squares. Both lose detail as you raise the strength.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my image uploaded to a server?</h3>
+          <p>No. All of the work is done in your browser and the image never leaves your device.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrows-rotate text-blue-500"></i> Image Converter</a>
+        <a href="/tools/heic-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-image text-blue-500"></i> HEIC to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/blur-image.js"></script>
+</body>
+</html>

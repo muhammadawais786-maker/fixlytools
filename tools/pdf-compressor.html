@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
   <title>PDF Compressor - Optimize PDF File Size | Fixlytools</title>
-  <meta name="description" content="Optimize and shrink PDF file size online for free by re-packing its structure. Private, in-browser processing with an honest before/after size comparison.">
+  <meta name="description" content="Compress PDF online for free and reduce a large PDF to a much smaller size. Choose the compression level. Private, in-browser processing with a real before/after size.">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="Fixlytools">
   <meta property="og:url" content="https://fixlytools.com/tools/pdf-compressor">
   <meta property="og:title" content="PDF Compressor - Optimize PDF File Size | Fixlytools">
-  <meta property="og:description" content="Optimize and shrink PDF file size online for free by re-packing its structure. Private, in-browser processing.">
+  <meta property="og:description" content="Compress PDF online for free and reduce file size. Choose the compression level. Private, in-browser processing.">
   <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
@@ -29,7 +29,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PDF Compressor - Optimize PDF File Size | Fixlytools">
-  <meta name="twitter:description" content="Optimize and shrink PDF file size online for free by re-packing its structure. Private, in-browser processing.">
+  <meta name="twitter:description" content="Compress PDF online for free and reduce file size. Choose the compression level. Private, in-browser processing.">
   <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/tailwind.css">
@@ -89,7 +89,7 @@
       <div class="text-center mb-8">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">PDF Compressor</h1>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
-          Optimize your PDF's internal structure to reduce file size. Content stays unchanged.
+          Reduce PDF file size right in your browser. Choose how strong the compression should be.
         </p>
       </div>
 
@@ -120,6 +120,17 @@
           </div>
         </div>
 
+        <div>
+          <label for="level-select" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Compression level</label>
+          <select id="level-select" class="w-full px-4 py-2.5 border rounded-xl dark:bg-slate-700 text-sm">
+            <option value="medium" selected>Recommended - good quality, much smaller (150 DPI)</option>
+            <option value="strong">Strong - smaller file, lower quality (110 DPI)</option>
+            <option value="extreme">Extreme - smallest file (80 DPI)</option>
+            <option value="light">Light - keeps text selectable, little size change</option>
+          </select>
+          <p class="text-xs text-slate-500 mt-1.5">Recommended, Strong and Extreme turn each page into an image, so the text can no longer be selected or searched. Use Light if you need to keep the text.</p>
+        </div>
+
         <button id="compress-btn" class="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
           <i class="fa-solid fa-compress"></i> Compress PDF Now
         </button>
@@ -145,10 +156,10 @@
       <!-- How To Section -->
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Optimize a PDF File Online</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Large PDF files are hard to email or upload. Fixlytools PDF Compressor re-packs the internal structure of your PDF and removes redundant data, entirely inside your browser. Because it does not re-compress the images inside your PDF, the savings depend on how the file was originally created.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Large PDF files are hard to email or upload. Fixlytools PDF Compressor shrinks them entirely inside your browser. Pick a compression level: the Recommended, Strong and Extreme levels re-compress every page as an image, which can turn a scanned or photo-heavy PDF of hundreds of megabytes into a fraction of the size. The Light level only re-packs the file structure and keeps your text selectable.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
         <li><strong>Upload Your PDF:</strong> Click "Choose PDF File" or drag and drop a PDF onto the upload area.</li>
-        <li><strong>Optimize:</strong> Click "Compress PDF Now" and the tool re-packs the document and shows the original and new file size.</li>
+        <li><strong>Choose a level and compress:</strong> Select Recommended, Strong, Extreme or Light, then click "Compress PDF Now". A progress counter shows the page being processed, and the original and new sizes are shown at the end.</li>
         <li><strong>Download:</strong> If the result is smaller, download it. If your PDF is already well optimized, the tool tells you and gives you back your original file unchanged.</li>
         </ol>
       </div>
@@ -158,8 +169,8 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
           <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Honest Size Comparison:</strong> The tool shows the original size and the real size of the file you will download. You never download a larger file by mistake.</span></li>
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Lossless Optimization:</strong> Pages, text, fonts, links and images are not altered. Only the internal file structure is re-packed.</span></li>
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>In-Browser Processing:</strong> Powered by the pdf-lib JavaScript library. Your PDF is never uploaded to a server.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Four Compression Levels:</strong> Recommended (150 DPI), Strong (110 DPI), Extreme (80 DPI) and Light, which keeps text selectable and changes only the file structure.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>In-Browser Processing:</strong> Your PDF is processed on your own device with JavaScript libraries and is never uploaded to a server.</span></li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free &amp; Unlimited:</strong> No account needed and no file count limits.</span></li>
         </ul>
       </div>
@@ -170,15 +181,15 @@
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How much smaller will my PDF get?</h3>
-          <p>It depends on the file. PDFs saved with unoptimized structure or duplicate objects can shrink noticeably. PDFs that are mostly photos or scans, or that were already optimized, may not get smaller at all, because this tool does not re-compress images.</p>
+          <p>It depends on the file and the level. Scanned and photo-heavy PDFs often shrink by 70-90% at the Recommended or Strong level. PDFs that contain only text are already small and may shrink less. The Light level changes little because it does not re-compress images.</p>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will optimization change my document?</h3>
-          <p>No. Text, fonts, images, hyperlinks and layout stay exactly as they are. Only the way the file is stored internally changes.</p>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will compression change my document?</h3>
+          <p>At the Light level, no: text, fonts, images and links stay as they are. At the other levels every page becomes an image, so image quality drops a little, the page size stays the same, but the text can no longer be selected or searched and links stop working.</p>
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why did the tool say my PDF is already optimized?</h3>
-          <p>The re-packed version was not smaller than your original, so the tool returns the original file rather than a larger one. This is normal for files created by modern PDF software.</p>
+          <p>The result was not smaller than your original, so the tool returns the original file rather than a larger one. Try a stronger level.</p>
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I compress a password-protected PDF?</h3>
@@ -195,7 +206,9 @@
       <div>
         <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
         <div class="flex flex-wrap gap-2">
+        <a href="/tools/rotate-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-rotate text-blue-500"></i> Rotate PDF Pages</a>
         <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
         <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
         <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
         <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> Image Compressor</a>

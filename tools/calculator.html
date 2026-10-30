@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Calculator - Free Online Calculator | Fixlytools</title>
+  <meta name="description" content="Free online calculator with memory keys, percent, square root and history. Exact decimals, keyboard support, works on phones. Nothing is stored or sent.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/calculator">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/calculator">
+  <meta property="og:title" content="Calculator - Free Online Calculator | Fixlytools">
+  <meta property="og:description" content="A simple, fast online calculator with memory, percent and history. Runs in your browser and never sends your numbers anywhere.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculator - Free Online Calculator | Fixlytools">
+  <meta name="twitter:description" content="A simple, fast online calculator with memory, percent and history. Runs in your browser and never sends your numbers anywhere.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/calculator.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculator",
+  "url": "https://fixlytools.com/tools/calculator",
+  "description": "Free online calculator for everyday arithmetic with memory keys, percent, square root, reciprocal and a history of the last 20 calculations.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does 2 + 3 x 4 give 20 and not 14?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator runs every operation as soon as you press the next operator, like an ordinary desk calculator. So it works out 2 + 3 = 5 first and then 5 x 4 = 20. To follow the school rule where multiplication comes first, use the Scientific Calculator, which understands order of operations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the percent key work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After + or - it takes a percentage of the first number: 200 + 10 % is 220 and 200 - 10 % is 180. After x it multiplies and divides by 100: 50 x 10 % is 5. On its own it divides the number by 100."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the memory keys do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "M+ adds the number on the display to memory and M- subtracts it. MR brings the memory back onto the display and MC empties it. An M appears at the top of the screen while memory holds a value. Memory is cleared when you close the page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does 0.1 + 0.2 show 0.3 here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Computers store many decimals as binary approximations, which is why some tools show results like 0.30000000000000004. This calculator adds and multiplies decimals exactly as written and only rounds the display to about 12 significant digits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I divide by zero?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The display shows Cannot divide by zero. Press C or CE, or start typing a new number, to carry on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is anything saved or uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Calculations happen in your browser, nothing is sent to a server, and the history list lives only in the page until you close or reload it."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Calculators</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Calculator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Online Calculator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          A clear, everyday calculator for adding, subtracting, multiplying, dividing and working out percentages. It runs in your browser and keeps nothing.
+        </p>
+      </div>
+
+      <div class="ca-wrap">
+        <div>
+          <div class="ca-calc">
+            <div class="ca-screen">
+              <div class="ca-topline"><span id="ca-mem" class="ca-mem" role="img" aria-label="Memory holds a value" hidden>M</span><span id="ca-expr" class="ca-expr">&nbsp;</span></div>
+              <div id="ca-display" class="ca-display" role="status" aria-live="polite" aria-atomic="true" aria-label="Result">0</div>
+            </div>
+            <div id="ca-keys" class="ca-keys" role="group" aria-label="Calculator keys">
+          <button type="button" class="ca-key ca-key-mem" data-key="MC" aria-label="Memory clear">MC</button>
+          <button type="button" class="ca-key ca-key-mem" data-key="MR" aria-label="Memory recall">MR</button>
+          <button type="button" class="ca-key ca-key-mem" data-key="M+" aria-label="Memory add">M+</button>
+          <button type="button" class="ca-key ca-key-mem" data-key="M-" aria-label="Memory subtract">M&minus;</button>
+          <button type="button" class="ca-key ca-key-fn" data-key="PCT" aria-label="Percent">%</button>
+          <button type="button" class="ca-key ca-key-fn" data-key="SQRT" aria-label="Square root">&radic;</button>
+          <button type="button" class="ca-key ca-key-fn" data-key="INV" aria-label="One divided by x">1/x</button>
+          <button type="button" class="ca-key ca-key-fn" data-key="BS" aria-label="Backspace">&#9003;</button>
+          <button type="button" class="ca-key ca-key-clear" data-key="C" aria-label="Clear all">C</button>
+          <button type="button" class="ca-key ca-key-clear" data-key="CE" aria-label="Clear entry">CE</button>
+          <button type="button" class="ca-key ca-key-fn" data-key="NEG" aria-label="Change sign">&plusmn;</button>
+          <button type="button" class="ca-key ca-key-op" data-key="/" aria-label="Divide">&divide;</button>
+          <button type="button" class="ca-key" data-key="7">7</button>
+          <button type="button" class="ca-key" data-key="8">8</button>
+          <button type="button" class="ca-key" data-key="9">9</button>
+          <button type="button" class="ca-key ca-key-op" data-key="*" aria-label="Multiply">&times;</button>
+          <button type="button" class="ca-key" data-key="4">4</button>
+          <button type="button" class="ca-key" data-key="5">5</button>
+          <button type="button" class="ca-key" data-key="6">6</button>
+          <button type="button" class="ca-key ca-key-op" data-key="-" aria-label="Subtract">&minus;</button>
+          <button type="button" class="ca-key" data-key="1">1</button>
+          <button type="button" class="ca-key" data-key="2">2</button>
+          <button type="button" class="ca-key" data-key="3">3</button>
+          <button type="button" class="ca-key ca-key-op" data-key="+" aria-label="Add">+</button>
+          <button type="button" class="ca-key ca-key-wide" data-key="0">0</button>
+          <button type="button" class="ca-key" data-key="." aria-label="Decimal point">.</button>
+          <button type="button" class="ca-key ca-key-eq" data-key="=" aria-label="Equals">=</button>
+            </div>
+            <div class="ca-tools">
+              <label class="ca-check"><input type="checkbox" id="ca-sep"> Thousands separator</label>
+              <button type="button" id="ca-copy" class="ca-tool-btn">Copy result</button>
+            </div>
+          </div>
+          <p class="ca-note">Keyboard: digits, + - * /, Enter or =, Backspace, Esc to clear, . or , for the decimal point.</p>
+        </div>
+        <section class="ca-hist-box" aria-labelledby="ca-hist-title">
+          <div class="ca-hist-head">
+            <h2 id="ca-hist-title" class="ca-h2">History (last 20)</h2>
+            <button type="button" id="ca-clear-history" class="ca-tool-btn" disabled>Clear history</button>
+          </div>
+          <p id="ca-history-empty" class="ca-hist-empty">No calculations yet. Tap a past result to use it again.</p>
+          <ul id="ca-history" class="ca-hist-list"></ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use the Calculator</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">This is a standard four-function calculator that behaves like a desk or phone calculator. Type with the keys on the screen or with your keyboard.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Enter a number:</strong> Tap the digits or type them. Use the <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">.</code> key (or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">.</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">,</code> on your keyboard) for a decimal point, and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">+/-</code> to change the sign.</li>
+        <li><strong>Choose an operation:</strong> Tap <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">+</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">x</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">/</code>. Operations run one after another as you type, so <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">2 + 3 x 4 =</code> gives <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">20</code>.</li>
+        <li><strong>Press equals:</strong> Tap <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">=</code> to see the result. Press <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">=</code> again to repeat the last operation with the same number.</li>
+        <li><strong>Use memory and history:</strong> Use <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M+</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M-</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MR</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MC</code> to keep a running total. Tap an item in the history list to bring its result back.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Exact decimals:</strong> Everyday decimal sums come out right: <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0.1 + 0.2</code> shows <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">0.3</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">1.1 x 3</code> shows <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">3.3</code>.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Desk-calculator percent:</strong> <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">200 + 10 %</code> gives <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">220</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">50 x 10 %</code> gives <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">5</code>, the way a physical calculator does it.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Memory keys:</strong> <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MC</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MR</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M+</code> and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M-</code> with an indicator that shows when the memory holds a number.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>History of 20 calculations:</strong> Tap a past result to use it again, copy the current result with one button, or clear the list.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Keyboard and touch friendly:</strong> Large keys, full keyboard support, and a layout that fits a 375 px wide phone screen. Dark mode is supported.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> All maths happens in your browser. Nothing you type is sent anywhere, and the history disappears when you close the page.</span></li>
+        </ul>
+      </div>
+
+      <!-- Limits -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What This Tool Can and Cannot Do</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">This is a standard four-function calculator with percent, square root, reciprocal and memory. It does not know the order of operations: it runs each operation as soon as you press the next one, like most desk calculators. For brackets, powers, trigonometry and logarithms, use the Scientific Calculator page.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">Results are shown with about 12 significant digits and very large or very small numbers switch to exponent form, for example <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">1.2345e+21</code>. Dividing by zero or taking the square root of a negative number shows a short message instead of a number.</p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does 2 + 3 x 4 give 20 and not 14?</h3>
+          <p>This calculator runs every operation as soon as you press the next operator, like an ordinary desk calculator. So it works out 2 + 3 = 5 first and then 5 x 4 = 20. To follow the school rule where multiplication comes first, use the Scientific Calculator, which understands order of operations.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How does the percent key work?</h3>
+          <p>After <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">+</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">-</code> it takes a percentage of the first number: <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">200 + 10 %</code> is 220 and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">200 - 10 %</code> is 180. After <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">x</code> it multiplies and divides by 100: <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">50 x 10 %</code> is 5. On its own it divides the number by 100.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What do the memory keys do?</h3>
+          <p><code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M+</code> adds the number on the display to memory and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M-</code> subtracts it. <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MR</code> brings the memory back onto the display and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">MC</code> empties it. An <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">M</code> appears at the top of the screen while memory holds a value. Memory is cleared when you close the page.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does 0.1 + 0.2 show 0.3 here?</h3>
+          <p>Computers store many decimals as binary approximations, which is why some tools show results like 0.30000000000000004. This calculator adds and multiplies decimals exactly as written and only rounds the display to about 12 significant digits.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What happens if I divide by zero?</h3>
+          <p>The display shows <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Cannot divide by zero</code>. Press <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">C</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">CE</code>, or start typing a new number, to carry on.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is anything saved or uploaded?</h3>
+          <p>No. Calculations happen in your browser, nothing is sent to a server, and the history list lives only in the page until you close or reload it.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/scientific-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-square-root-variable text-blue-500"></i> Scientific Calculator</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/calculator.js"></script>
+</body>
+</html>

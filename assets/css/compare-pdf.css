@@ -1,0 +1,55 @@
+/* Compare PDF */
+.cmp-slots { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 640px) { .cmp-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cmp-slot-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+.cmp-slot .dropzone { padding: 1.5rem 1rem; }
+.cmp-info { font-size: 12px; color: #475569; margin-top: 8px; overflow-wrap: anywhere; }
+.cmp-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; align-items: end; }
+@media (min-width: 640px) { .cmp-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cmp-label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
+.cmp-select { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; font-size: 14px; }
+.cmp-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #334155; min-height: 36px; }
+.cmp-check input { width: 18px; height: 18px; flex-shrink: 0; }
+.cmp-btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.cmp-btn-2 { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; color: #334155; font-size: 14px; font-weight: 600; border: 1px solid #e2e8f0; cursor: pointer; min-height: 44px; }
+.cmp-btn-2:hover:not(:disabled) { background: #e2e8f0; }
+.cmp-btn-2:disabled, #compare-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.cmp-progress { font-size: 13px; color: #475569; min-height: 18px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px; }
+.cmp-chip { padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+.cmp-chip-add { background: #d1fae5; color: #065f46; }
+.cmp-chip-del { background: #ffe4e6; color: #9f1239; }
+.cmp-chip-eq { background: #f1f5f9; color: #475569; }
+.cmp-notes { margin: 0; padding-left: 18px; font-size: 12px; color: #475569; list-style: disc; }
+.cmp-notes li { margin-top: 4px; }
+.cmp-diff { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #fff; }
+.cmp-head, .cmp-row { display: grid; grid-template-columns: 34px 34px 18px minmax(0, 1fr); gap: 4px; padding: 4px 8px; font-size: 12px; align-items: start; }
+.cmp-head { background: #f1f5f9; color: #64748b; font-weight: 700; }
+.cmp-row { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; border-left: 4px solid transparent; color: #334155; }
+.cmp-pg { color: #94a3b8; text-align: right; user-select: none; }
+.cmp-sign { font-weight: 700; text-align: center; user-select: none; }
+.cmp-text { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.cmp-add { background: #ecfdf5; border-left-color: #10b981; color: #065f46; }
+.cmp-add .cmp-sign { color: #059669; }
+.cmp-del { background: #fff1f2; border-left-color: #f43f5e; color: #9f1239; }
+.cmp-del .cmp-sign { color: #e11d48; }
+.cmp-skip { color: #94a3b8; font-style: italic; background: #f8fafc; }
+.cmp-ok { padding: 16px; margin: 0; font-size: 14px; color: #065f46; background: #ecfdf5; }
+.cmp-note { padding: 8px 12px; margin: 0; font-size: 12px; color: #475569; }
+.cmp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.dark .cmp-slot-title, .dark .cmp-label { color: #e2e8f0; }
+.dark .cmp-info, .dark .cmp-progress, .dark .cmp-notes, .dark .cmp-note { color: #cbd5e1; }
+.dark .cmp-select { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .cmp-check { color: #cbd5e1; }
+.dark .cmp-btn-2 { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .cmp-btn-2:hover:not(:disabled) { background: #475569; }
+.dark .cmp-chip-add { background: #064e3b; color: #a7f3d0; }
+.dark .cmp-chip-del { background: #4c0519; color: #fecdd3; }
+.dark .cmp-chip-eq { background: #334155; color: #cbd5e1; }
+.dark .cmp-diff { background: #0f172a; border-color: #334155; }
+.dark .cmp-head { background: #1e293b; color: #94a3b8; }
+.dark .cmp-row { color: #cbd5e1; }
+.dark .cmp-add { background: #052e22; color: #a7f3d0; }
+.dark .cmp-del { background: #3b0a17; color: #fecdd3; }
+.dark .cmp-skip { background: #1e293b; color: #94a3b8; }
+.dark .cmp-ok { background: #052e22; color: #a7f3d0; }

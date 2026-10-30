@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Scan to PDF - Camera Document Scanner | Fixlytools</title>
+  <meta name="description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/scan-to-pdf">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/scan-to-pdf">
+  <meta property="og:title" content="Scan to PDF - Camera Document Scanner | Fixlytools">
+  <meta property="og:description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scan to PDF - Camera Document Scanner | Fixlytools">
+  <meta name="twitter:description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/scan-to-pdf.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Scan to PDF",
+  "url": "https://fixlytools.com/tools/scan-to-pdf",
+  "description": "Scan paper documents with a camera or photos and save them as one PDF in your browser. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool recognise text (OCR)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Every page in the PDF is a picture, so the text cannot be selected or searched. This tool is for making a clean, shareable copy of a paper page, not for converting it to editable text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a sharp scan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put the page on a flat, plain surface in even light, hold the camera straight above it and keep the whole page in view. Avoid shadows from your hand or phone. The black and white look works best on printed text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the scanner looks do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Original keeps the picture as it is. Clean colour brightens the paper. Grayscale removes colour. High-contrast black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the camera not open?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Live camera needs a secure (https) page, a camera and your permission. If it fails, use \"Take photo\", which opens your phone camera app, or \"Choose images\" to pick pictures you already have."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add HEIC photos from an iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some browsers cannot read HEIC pictures. If an image is rejected, convert it to JPG first, for example with the HEIC to JPG tool on this site, and add it again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my pictures uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Pictures are processed in your browser and the PDF is created on your device. Only the PDF library code is downloaded from a public library host when the page opens."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Scan to PDF</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Scan to PDF Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Scan paper documents with your camera or from photos, tidy them up with a scanner look and save everything as one PDF.</p>
+      </div>
+
+      <div class="scn-actions">
+        <button type="button" id="photo-btn" class="scn-btn scn-btn-main"><i class="fa-solid fa-camera"></i> Take photo</button>
+        <button type="button" id="camera-btn" class="scn-btn"><i class="fa-solid fa-video"></i> Open live camera</button>
+        <button type="button" id="choose-btn" class="scn-btn"><i class="fa-solid fa-images"></i> Choose images</button>
+      </div>
+      <p class="scn-note">Pictures stay on your device and are never uploaded. Your browser asks for permission before it uses the camera.</p>
+      <input type="file" id="capture-input" accept="image/*" capture="environment" class="hidden">
+
+      <div id="camera-panel" class="scn-camera hidden">
+        <video id="camera-video" class="scn-video" playsinline muted></video>
+        <div class="scn-camera-row">
+          <button type="button" id="snap-btn" class="scn-btn scn-btn-main"><i class="fa-solid fa-circle-dot"></i> Capture page</button>
+          <button type="button" id="close-camera-btn" class="scn-btn"><i class="fa-solid fa-xmark"></i> Close camera</button>
+        </div>
+        <p id="camera-status" class="scn-status" aria-live="polite"></p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/*" multiple class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Add photos of your pages</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Drag &amp; drop images here, or use the buttons above</p>
+      </div>
+
+      <div id="workspace" class="hidden">
+        <div class="scn-head">
+          <span id="page-count" class="scn-count" aria-live="polite"></span>
+          <button type="button" id="clear-btn" class="scn-link">Remove all pages</button>
+        </div>
+        <div id="page-grid" class="scn-grid"></div>
+
+        <div class="scn-options">
+          <div>
+            <label for="opt-filter" class="scn-label">Scanner look</label>
+            <select id="opt-filter" class="scn-select">
+              <option value="original">Original colours</option>
+              <option value="clean">Clean colour (brighter paper)</option>
+              <option value="gray">Grayscale</option>
+              <option value="bw">High-contrast black &amp; white</option>
+            </select>
+          </div>
+          <div>
+            <label for="opt-size" class="scn-label">Page size</label>
+            <select id="opt-size" class="scn-select">
+              <option value="a4">A4</option>
+              <option value="letter">US Letter</option>
+              <option value="fit">Fit to image</option>
+            </select>
+          </div>
+          <div>
+            <label for="opt-margin" class="scn-label">Margin (A4 and Letter)</label>
+            <select id="opt-margin" class="scn-select">
+              <option value="0">None</option>
+              <option value="14">Small</option>
+              <option value="36">Normal</option>
+            </select>
+          </div>
+          <div>
+            <label for="opt-quality" class="scn-label">Scan quality</label>
+            <select id="opt-quality" class="scn-select">
+              <option value="2000">Standard (smaller file)</option>
+              <option value="3000">High (sharper, larger file)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" id="create-btn" class="scn-create w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2" disabled><i class="fa-solid fa-file-pdf"></i> Create PDF</button>
+        <p id="progress-text" class="scn-progress" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Scan Documents to PDF</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">A phone camera is a decent scanner when the light is good. Take a picture of each page, clean it up and put all pages into one PDF in the right order.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Add your pages:</strong> Press &quot;Take photo&quot; or &quot;Open live camera&quot; to photograph a page, or choose images you already have. Repeat for every page.</li>
+        <li><strong>Arrange the pages:</strong> Use the arrow buttons to change the order, the rotate button to straighten a page and the bin button to remove one.</li>
+        <li><strong>Choose a scanner look:</strong> Pick original colours, clean colour, grayscale or black and white. The page previews change straight away.</li>
+        <li><strong>Set page size and create the PDF:</strong> Choose A4, US Letter or fit to image, then press &quot;Create PDF&quot; to download your file.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Camera or photos:</strong> Use the live camera, your phone camera app or pictures from your gallery or computer.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Scanner looks:</strong> Original, clean colour, grayscale and high-contrast black and white, previewed on every page.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page control:</strong> Reorder, rotate and delete pages before you save.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page sizes:</strong> A4, US Letter or a page that matches the picture, with optional margins. A4 and Letter pages switch to landscape for wide pictures.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Pictures and the finished PDF never leave your device.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does this tool recognise text (OCR)?</h3>
+          <p>No. Every page in the PDF is a picture, so the text cannot be selected or searched. This tool is for making a clean, shareable copy of a paper page, not for converting it to editable text.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I get a sharp scan?</h3>
+          <p>Put the page on a flat, plain surface in even light, hold the camera straight above it and keep the whole page in view. Avoid shadows from your hand or phone. The black and white look works best on printed text.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What do the scanner looks do?</h3>
+          <p>Original keeps the picture as it is. Clean colour brightens the paper. Grayscale removes colour. High-contrast black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the camera not open?</h3>
+          <p>Live camera needs a secure (https) page, a camera and your permission. If it fails, use &quot;Take photo&quot;, which opens your phone camera app, or &quot;Choose images&quot; to pick pictures you already have.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I add HEIC photos from an iPhone?</h3>
+          <p>Some browsers cannot read HEIC pictures. If an image is rejected, convert it to JPG first, for example with the HEIC to JPG tool on this site, and add it again.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are my pictures uploaded anywhere?</h3>
+          <p>No. Pictures are processed in your browser and the PDF is created on your device. Only the PDF library code is downloaded from a public library host when the page opens.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/image-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-zipper text-blue-500"></i> Image Compressor</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-expand text-blue-500"></i> Image Resizer</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/scan-to-pdf.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+/* Fixlytools - Chemistry Solver (all classes start with ch-) */
+.ch-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.ch-tab { min-height: 44px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: #f8fafc; color: #334155; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.ch-tab:hover { background: #eff6ff; }
+.ch-tab[aria-selected="true"] { background: #2563eb; border-color: #2563eb; color: #fff; }
+.dark .ch-tab { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+.dark .ch-tab:hover { background: #334155; }
+.dark .ch-tab[aria-selected="true"] { background: #3b82f6; border-color: #3b82f6; color: #0b1120; }
+.ch-tab:focus-visible, .ch-btn:focus-visible, .ch-chip:focus-visible, .ch-copy:focus-visible, .ch-input:focus-visible, .ch-select:focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
+
+.ch-panel[hidden] { display: none; }
+.ch-panel { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.ch-card { border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px; background: #f8fafc; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.dark .ch-card { background: #0f172a; border-color: #334155; }
+.ch-h2 { margin: 0; font-size: 17px; font-weight: 700; color: #0f172a; }
+.dark .ch-h2 { color: #f1f5f9; }
+.ch-h3 { margin: 0; font-size: 15px; font-weight: 700; color: #0f172a; }
+.dark .ch-h3 { color: #f1f5f9; }
+.ch-help { margin: 0; font-size: 13px; color: #475569; }
+.dark .ch-help { color: #94a3b8; }
+.ch-field { display: grid; gap: 4px; min-width: 0; }
+.ch-label { font-size: 13px; font-weight: 600; color: #334155; }
+.dark .ch-label { color: #cbd5e1; }
+.ch-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 120px); gap: 8px; }
+.ch-input, .ch-select { width: 100%; box-sizing: border-box; min-height: 44px; padding: 0 12px; border: 1px solid #94a3b8; border-radius: 12px; background: #fff; color: #0f172a; font-size: 16px; font-family: inherit; }
+.ch-input.ch-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.dark .ch-input, .dark .ch-select { background: #1e293b; border-color: #475569; color: #f1f5f9; }
+.ch-input:focus { border-color: #2563eb; }
+.ch-grid2 { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .ch-grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ch-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ch-chip { min-height: 44px; padding: 0 12px; border: 1px dashed #94a3b8; border-radius: 999px; background: transparent; color: #334155; font-size: 13px; cursor: pointer; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.ch-chip:hover { background: #eff6ff; }
+.dark .ch-chip { color: #cbd5e1; border-color: #64748b; }
+.dark .ch-chip:hover { background: #334155; }
+.ch-btn { min-height: 48px; padding: 0 20px; border: 0; border-radius: 12px; background: #2563eb; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.ch-btn:hover { background: #1d4ed8; }
+.dark .ch-btn { background: #3b82f6; color: #0b1120; }
+.dark .ch-btn:hover { background: #60a5fa; }
+.ch-out { min-height: 20px; font-size: 15px; color: #0f172a; overflow-wrap: anywhere; }
+.dark .ch-out { color: #f1f5f9; }
+.ch-out p { margin: 0 0 8px; }
+.ch-out.ch-error { color: #b91c1c; font-weight: 600; }
+.dark .ch-out.ch-error { color: #fca5a5; }
+.ch-big { font-size: 18px; }
+.ch-note { font-size: 13px; color: #475569; }
+.dark .ch-note { color: #94a3b8; }
+.ch-dim { color: #64748b; font-size: 12px; }
+.ch-copy { min-height: 36px; margin-left: 6px; padding: 0 12px; border: 1px solid #94a3b8; border-radius: 10px; background: #fff; color: #0f172a; font-size: 13px; cursor: pointer; font-family: inherit; }
+.dark .ch-copy { background: #1e293b; color: #f1f5f9; border-color: #475569; }
+.ch-table-wrap { overflow-x: auto; max-width: 100%; }
+.ch-table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.ch-table th, .ch-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+.dark .ch-table th, .dark .ch-table td { border-color: #334155; }
+.ch-table th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: #475569; }
+.dark .ch-table th { color: #94a3b8; }
+.ch-ai { margin-top: 18px; padding-top: 14px; border-top: 1px dashed #cbd5e1; display: grid; gap: 8px; }
+.dark .ch-ai { border-color: #475569; }
+.ch-ai-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.ch-ai-btn { min-height: 44px; padding: 0 16px; border: 1px solid #cbd5e1; border-radius: 12px; background: #e2e8f0; color: #64748b; font-weight: 700; font-size: 14px; cursor: not-allowed; font-family: inherit; }
+.dark .ch-ai-btn { background: #1e293b; border-color: #475569; color: #94a3b8; }
+.ch-badge { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 8px; background: #fef3c7; color: #92400e; }
+.dark .ch-badge { background: #78350f; color: #fef3c7; }
+.ch-ai-help { margin: 0; font-size: 13px; color: #475569; }
+.dark .ch-ai-help { color: #94a3b8; }

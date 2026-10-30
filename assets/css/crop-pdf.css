@@ -1,0 +1,33 @@
+/* crop-pdf - styles for this tool only (every class starts with croppdf-) */
+.croppdf-input, .croppdf-select { width: 100%; box-sizing: border-box; min-height: 44px; padding: 0.6rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #0f172a; font-size: 0.875rem; }
+.croppdf-input::placeholder { color: #94a3b8; }
+.croppdf-input:focus, .croppdf-select:focus { outline: 2px solid #6366f1; outline-offset: 1px; border-color: #6366f1; }
+.dark .croppdf-input, .dark .croppdf-select { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .croppdf-input::placeholder { color: #94a3b8; }
+#croppdf-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.croppdf-field { min-width: 0; }
+.croppdf-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+@media (min-width: 640px) { .croppdf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.croppdf-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.croppdf-wide { grid-column: 1 / -1; }
+.croppdf-check { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; font-size: 0.875rem; color: #334155; cursor: pointer; }
+.croppdf-check input { width: 18px; height: 18px; accent-color: #4f46e5; flex-shrink: 0; }
+.dark .croppdf-check { color: #e2e8f0; }
+.croppdf-summary { min-height: 1.25rem; margin-top: 0.5rem; font-size: 0.8125rem; }
+.croppdf-ok { color: #4338ca; }
+.croppdf-error { color: #b91c1c; }
+.dark .croppdf-ok { color: #a5b4fc; }
+.dark .croppdf-error { color: #fca5a5; }
+.croppdf-secondary { min-height: 44px; padding: 0.5rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 0.75rem; background: #fff; color: #334155; font-size: 0.8125rem; font-weight: 600; cursor: pointer; }
+.croppdf-secondary:hover { background: #f1f5f9; }
+.dark .croppdf-secondary { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .croppdf-secondary:hover { background: #475569; }
+.croppdf-small-label { display: block; margin-bottom: 4px; font-size: 0.8125rem; font-weight: 600; color: #475569; }
+.dark .croppdf-small-label { color: #cbd5e1; }
+.croppdf-preview-wrap { text-align: center; }
+.croppdf-preview { position: relative; display: inline-block; max-width: 100%; overflow: hidden; line-height: 0; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; }
+.croppdf-preview:empty { display: none; }
+.croppdf-preview canvas { display: block; max-width: 100%; height: auto; }
+.croppdf-frame { position: absolute; box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55); outline: 2px dashed #818cf8; pointer-events: none; }
+.croppdf-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.croppdf-fieldset legend { padding: 0; }

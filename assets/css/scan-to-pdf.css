@@ -1,0 +1,44 @@
+/* Scan to PDF */
+.scn-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-bottom: 16px; }
+@media (min-width: 640px) { .scn-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.scn-btn { padding: 12px 14px; border-radius: 12px; font-size: 14px; font-weight: 700; min-height: 44px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #e2e8f0; background: #f1f5f9; color: #334155; }
+.scn-btn:hover { background: #e2e8f0; }
+.scn-btn-main { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+.scn-btn-main:hover { background: #4338ca; }
+.scn-note { font-size: 12px; color: #64748b; margin: 0 0 16px; }
+.scn-camera { margin-bottom: 16px; padding: 12px; border: 1px solid #c7d2fe; border-radius: 16px; background: #eef2ff; }
+.scn-video { display: block; width: 100%; max-height: 60vh; border-radius: 12px; background: #000; object-fit: contain; }
+.scn-camera-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.scn-camera-row .scn-btn { flex: 1 1 140px; }
+.scn-status { font-size: 12px; color: #475569; margin: 8px 0 0; }
+.scn-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.scn-count { font-size: 14px; font-weight: 700; color: #1e293b; }
+.scn-link { font-size: 12px; font-weight: 600; color: #64748b; background: none; border: 0; cursor: pointer; min-height: 44px; padding: 0 8px; }
+.scn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 640px) { .scn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .scn-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.scn-card { position: relative; border: 1px solid #e2e8f0; border-radius: 14px; background: #f8fafc; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 0; }
+.scn-num { position: absolute; top: 8px; left: 8px; z-index: 1; background: rgba(15, 23, 42, 0.7); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
+.scn-thumb { max-width: 100%; height: 150px; object-fit: contain; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
+.scn-tools { display: flex; gap: 4px; justify-content: center; }
+.scn-icon { width: 36px; height: 36px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; color: #334155; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; }
+.scn-icon:hover:not(:disabled) { background: #e0e7ff; }
+.scn-icon:disabled { opacity: 0.35; cursor: not-allowed; }
+.scn-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 20px 0; }
+@media (min-width: 640px) { .scn-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.scn-label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
+.scn-select { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; font-size: 14px; }
+.scn-progress { font-size: 13px; color: #475569; min-height: 18px; margin: 8px 0 0; text-align: center; }
+.scn-create:disabled { opacity: 0.5; cursor: not-allowed; }
+.dark .scn-btn { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .scn-btn:hover { background: #475569; }
+.dark .scn-btn-main { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+.dark .scn-btn-main:hover { background: #6366f1; }
+.dark .scn-note, .dark .scn-status, .dark .scn-progress { color: #cbd5e1; }
+.dark .scn-camera { background: #1e1b4b; border-color: #3730a3; }
+.dark .scn-count, .dark .scn-label { color: #e2e8f0; }
+.dark .scn-link { color: #cbd5e1; }
+.dark .scn-card { background: #0f172a; border-color: #334155; }
+.dark .scn-icon { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .scn-icon:hover:not(:disabled) { background: #475569; }
+.dark .scn-select { background: #334155; border-color: #475569; color: #f1f5f9; }

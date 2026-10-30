@@ -1,0 +1,25 @@
+/* PDF to Markdown / Text */
+.pmd-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+@media (min-width: 640px) { .pmd-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pmd-label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
+.pmd-field { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; font-size: 14px; }
+.pmd-hint { font-size: 12px; color: #64748b; margin-top: 4px; min-height: 16px; overflow-wrap: anywhere; }
+.pmd-check { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #334155; min-height: 36px; }
+.pmd-check input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+.pmd-progress { font-size: 13px; color: #475569; min-height: 18px; }
+.pmd-out { width: 100%; min-height: 260px; max-height: 480px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #0f172a; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.5; resize: vertical; }
+.pmd-stats { font-size: 12px; color: #475569; margin: 8px 0; overflow-wrap: anywhere; }
+.pmd-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.pmd-btn { flex: 1 1 140px; padding: 12px 16px; border-radius: 12px; font-size: 14px; font-weight: 700; min-height: 44px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.pmd-btn-main { background: #4f46e5; color: #fff; border: 1px solid #4f46e5; }
+.pmd-btn-main:hover:not(:disabled) { background: #4338ca; }
+.pmd-btn-alt { background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+.pmd-btn-alt:hover:not(:disabled) { background: #e2e8f0; }
+.pmd-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.dark .pmd-label { color: #e2e8f0; }
+.dark .pmd-field, .dark .pmd-out { background: #334155; border-color: #475569; color: #f1f5f9; }
+.dark .pmd-hint, .dark .pmd-progress, .dark .pmd-stats { color: #cbd5e1; }
+.dark .pmd-check { color: #cbd5e1; }
+.dark .pmd-btn-alt { background: #334155; border-color: #475569; color: #e2e8f0; }
+.dark .pmd-btn-alt:hover:not(:disabled) { background: #475569; }
+.pmd-min0 { min-width: 0; }

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Sign PDF Online Free - Add Your Signature | Fixlytools</title>
+  <meta name="description" content="Sign a PDF online for free. Draw, type or upload your signature, place it on any page and download. Your file stays in your browser and is never uploaded.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/sign-pdf">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/sign-pdf">
+  <meta property="og:title" content="Sign PDF Online Free - Add Your Signature | Fixlytools">
+  <meta property="og:description" content="Sign a PDF online for free. Draw, type or upload your signature, place it on any page and download. Your file stays in your browser and is never uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sign PDF Online Free - Add Your Signature | Fixlytools">
+  <meta name="twitter:description" content="Sign a PDF online for free. Draw, type or upload your signature, place it on any page and download. Your file stays in your browser and is never uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/sign-pdf.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Signer",
+  "url": "https://fixlytools.com/tools/sign-pdf",
+  "description": "Add a drawn, typed or uploaded signature to a PDF in your browser. Free and private.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my PDF or my signature uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The signature is created and placed in your browser and the signed PDF is built on your device. Nothing is sent to a server or saved, and your signature disappears when you close or reload the page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the signature legally binding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool places an image of your signature on the document, like signing a printout and scanning it. Whether that is accepted depends on who asks for the signature and on the rules where you live, so check their requirements. Documents that need a certified digital signature use a certificate and have to be signed with specialist software."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I sign more than one page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under \"Add the signature to\" choose every page, the first page or the last page. The signature keeps the same relative position and size on each page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I move or resize the signature after placing it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, as often as you like before downloading. Drag it, pull the round handle, use the size slider, or select it and use the arrow keys and the plus and minus keys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which image types can I upload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG, JPG and WEBP. Leave \"Make the white background transparent\" ticked so only the ink is placed on the page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I sign a password-protected PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Remove the password first, then upload the unlocked file."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Sign PDF</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Sign PDF Online</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Draw, type or upload your signature, place it exactly where you want it and download the signed PDF.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-signature"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select a PDF to sign</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag &amp; drop a PDF document</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose PDF File
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-file-pdf text-indigo-600 text-2xl"></i>
+            <div>
+              <p id="pdf-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to sign</p>
+            </div>
+          </div>
+          <button id="reset-btn" type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+            Change PDF
+          </button>
+        </div>
+
+        <section class="sg-section" aria-labelledby="sg-h-create">
+          <h2 class="sg-step" id="sg-h-create"><span>1</span>Create your signature</h2>
+          <div class="sg-tabs" role="tablist" aria-label="Signature method">
+            <button type="button" class="sg-tab" role="tab" id="sg-tab-draw" data-tab="draw" aria-selected="true" aria-controls="sg-panel-draw">Draw</button>
+            <button type="button" class="sg-tab" role="tab" id="sg-tab-type" data-tab="type" aria-selected="false" tabindex="-1" aria-controls="sg-panel-type">Type</button>
+            <button type="button" class="sg-tab" role="tab" id="sg-tab-upload" data-tab="upload" aria-selected="false" tabindex="-1" aria-controls="sg-panel-upload">Upload</button>
+          </div>
+
+          <div class="sg-panel" id="sg-panel-draw" data-panel="draw" role="tabpanel" aria-labelledby="sg-tab-draw">
+            <canvas id="sg-draw" class="sg-pad" width="900" height="300" aria-label="Signature drawing area. Draw with your finger or mouse."></canvas>
+            <div class="sg-row">
+              <button type="button" id="sg-clear" class="sg-btn"><i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear</button>
+              <span class="sg-note">Sign inside the box above. Keyboard users can use the Type tab instead.</span>
+            </div>
+          </div>
+
+          <div class="sg-panel hidden" id="sg-panel-type" data-panel="type" role="tabpanel" aria-labelledby="sg-tab-type">
+            <label for="sg-type-input" class="sg-sr">Type your name</label>
+            <input type="text" id="sg-type-input" class="sg-input" maxlength="40" placeholder="Type your name" autocomplete="off">
+            <div class="sg-row" role="group" aria-label="Signature style">
+              <button type="button" class="sg-style-btn sg-style-script" data-style="script" aria-pressed="true">Script</button>
+              <button type="button" class="sg-style-btn sg-style-classic" data-style="classic" aria-pressed="false">Classic</button>
+              <button type="button" class="sg-style-btn sg-style-print" data-style="print" aria-pressed="false">Casual</button>
+            </div>
+            <p class="sg-note">Styles use fonts installed on your device, so they can look a little different on another computer.</p>
+          </div>
+
+          <div class="sg-panel hidden" id="sg-panel-upload" data-panel="upload" role="tabpanel" aria-labelledby="sg-tab-upload">
+            <input type="file" id="sg-upload-input" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" class="hidden">
+            <div class="sg-row">
+              <button type="button" id="sg-upload-btn" class="sg-btn"><i class="fa-solid fa-image" aria-hidden="true"></i> Choose signature image</button>
+              <span id="sg-upload-name" class="sg-note"></span>
+            </div>
+            <div class="sg-row">
+              <label class="sg-check"><input type="checkbox" id="sg-white" checked> Make the white background transparent</label>
+            </div>
+            <p class="sg-note">Tip: sign on white paper, take a straight-on photo in good light and upload it.</p>
+          </div>
+
+          <div class="sg-row sg-colors" role="radiogroup" aria-label="Ink colour (Draw and Type)">
+            <span>Ink colour:</span>
+            <label><input type="radio" name="sg-color" value="#111827" checked> <span class="sg-swatch sg-swatch-black" aria-hidden="true"></span> Black</label>
+            <label><input type="radio" name="sg-color" value="#1d4ed8"> <span class="sg-swatch sg-swatch-blue" aria-hidden="true"></span> Blue</label>
+          </div>
+
+          <p id="sg-sig-none" class="sg-note">No signature yet. Create one above and it will appear on the page below.</p>
+          <div id="sg-sig-preview" class="sg-current hidden">
+            <img id="sg-sig-preview-img" alt="Your current signature">
+            <button type="button" id="sg-remove" class="sg-btn"><i class="fa-solid fa-trash" aria-hidden="true"></i> Remove</button>
+          </div>
+        </section>
+
+        <section class="sg-section" aria-labelledby="sg-h-place">
+          <h2 class="sg-step" id="sg-h-place"><span>2</span>Place it on the page</h2>
+          <div class="sg-nav">
+            <button type="button" id="sg-prev" class="sg-btn" aria-label="Previous page" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+            <label for="sg-page-num">Page</label>
+            <input type="number" id="sg-page-num" min="1" value="1">
+            <span>of <span id="sg-page-total">1</span></span>
+            <button type="button" id="sg-next" class="sg-btn" aria-label="Next page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="sg-stage-wrap">
+            <div class="sg-stage" id="sg-stage">
+              <canvas id="sg-page-canvas" aria-label="Preview of the selected PDF page"></canvas>
+              <div id="sg-overlay" class="sg-overlay hidden" tabindex="0" role="group" aria-label="Your signature. Drag it to move. With the keyboard, arrow keys move it and plus and minus resize it.">
+                <img id="sg-img" alt="Your signature">
+                <div id="sg-handle" class="sg-handle" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="sg-controls">
+            <div>
+              <label for="sg-size">Signature size</label>
+              <input type="range" id="sg-size" min="4" max="80" value="28">
+            </div>
+            <div>
+              <label for="sg-scope">Add the signature to</label>
+              <select id="sg-scope">
+                <option value="current">This page only</option>
+                <option value="all">Every page</option>
+                <option value="first">First page only</option>
+                <option value="last">Last page only</option>
+              </select>
+            </div>
+          </div>
+          <p class="sg-note">Drag the signature to move it and pull the round handle to resize it. This adds your signature as an image. It is not a certified digital signature with a certificate or timestamp.</p>
+        </section>
+
+        <p id="progress" class="sg-progress hidden" role="status"></p>
+        <div id="sg-status" class="sg-sr" role="status" aria-live="polite"></div>
+        <button id="sign-btn" type="button" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2 sg-primary" disabled>
+          <i class="fa-solid fa-file-signature"></i> Sign &amp; Download PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Sign a PDF Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">You do not need to print, sign and scan a document any more. Create your signature once, put it on the page and download the signed PDF, all without uploading the file anywhere.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload your PDF:</strong> Click &quot;Choose PDF File&quot; and select the document you need to sign.</li>
+        <li><strong>Create your signature:</strong> Draw it with your mouse or finger, type your name in a handwriting style, or upload a photo of your signature.</li>
+        <li><strong>Place it:</strong> Go to the right page, drag the signature to the signing line and resize it with the round handle or the size slider.</li>
+        <li><strong>Download:</strong> Choose whether to sign this page, the first or last page, or every page, then press &quot;Sign &amp; Download PDF&quot;.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Three ways to sign:</strong> Draw with a finger or mouse, type your name in a signature style, or upload an image of your handwriting.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Exact placement:</strong> Drag, resize with a handle or slider, or move the signature with the arrow keys.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Sign one page or all:</strong> Add the signature to the current page, the first or last page, or every page at once.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Works with rotated pages:</strong> The signature lands where you placed it, even on landscape or rotated pages.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Transparent background:</strong> Drawn and typed signatures have no white box, and uploaded photos can have the paper background removed.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free and private:</strong> No sign-up and no upload. Your document and signature stay in your browser.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my PDF or my signature uploaded anywhere?</h3>
+          <p>No. The signature is created and placed in your browser and the signed PDF is built on your device. Nothing is sent to a server or saved, and your signature disappears when you close or reload the page.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the signature legally binding?</h3>
+          <p>This tool places an image of your signature on the document, like signing a printout and scanning it. Whether that is accepted depends on who asks for the signature and on the rules where you live, so check their requirements. Documents that need a certified digital signature use a certificate and have to be signed with specialist software.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I sign more than one page?</h3>
+          <p>Yes. Under &quot;Add the signature to&quot; choose every page, the first page or the last page. The signature keeps the same relative position and size on each page.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I move or resize the signature after placing it?</h3>
+          <p>Yes, as often as you like before downloading. Drag it, pull the round handle, use the size slider, or select it and use the arrow keys and the plus and minus keys.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which image types can I upload?</h3>
+          <p>PNG, JPG and WEBP. Leave &quot;Make the white background transparent&quot; ticked so only the ink is placed on the page.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I sign a password-protected PDF?</h3>
+          <p>No. Remove the password first, then upload the unlocked file.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/jpg-to-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-images text-blue-500"></i> JPG to PDF</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/sign-pdf.js"></script>
+</body>
+</html>

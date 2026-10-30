@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Add Page Numbers to PDF Online Free | Fixlytools</title>
+  <meta name="description" content="Add page numbers to a PDF online. Pick the position, format, start number and pages. Free and private, processed entirely in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/add-page-numbers">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/add-page-numbers">
+  <meta property="og:title" content="Add Page Numbers to PDF Online Free | Fixlytools">
+  <meta property="og:description" content="Add page numbers to a PDF online. Pick the position, format, start number and pages. Free and private, processed entirely in your browser.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Add Page Numbers to PDF Online Free | Fixlytools">
+  <meta name="twitter:description" content="Add page numbers to a PDF online. Pick the position, format, start number and pages. Free and private, processed entirely in your browser.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/add-page-numbers.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Add Page Numbers to PDF",
+  "url": "https://fixlytools.com/tools/add-page-numbers",
+  "description": "Add page numbers to a PDF online. Pick the position, format, start number and pages. Free and private, processed entirely in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which number does each page get?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each page shows the start number plus its position in the file. With a start number of 1, page 4 shows 4. Skipping the first page does not change this, so page 2 still shows 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I leave the cover page without a number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tick \"Do not number the first page\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I number only some pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Type a range such as 3-12 in the pages box. Pages outside the range are left as they are."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if a number overlaps my content?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numbers are drawn on top of the page. If a page has content close to the edge, increase the distance from the edge and download again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I change the numbers afterward?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The numbers are added as normal text on the page. They are not an editable field, so run the tool again on your original file to change them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is done in your browser and the file never leaves your device. Password-protected PDFs cannot be processed."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt; 
+    <span>PDF Tools</span> &gt; 
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Add Page Numbers</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Add Page Numbers to PDF</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Number the pages of any PDF. Choose where the numbers go and how they look.
+        </p>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" class="hidden">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-list-ol"></i>
+        </div>
+        <h2 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-1">Select a PDF to number</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Click to browse or drag & drop a PDF document</p>
+        <button type="button" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold text-sm shadow-sm transition">
+          Choose PDF File
+        </button>
+      </div>
+
+      <div id="workspace" class="hidden space-y-6">
+        <div class="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-file-pdf text-indigo-600 text-2xl"></i>
+            <div>
+              <p id="pdf-info" class="text-sm font-bold text-slate-800 dark:text-slate-200"></p>
+              <p class="text-xs text-slate-500">Ready to add page numbers</p>
+            </div>
+          </div>
+          <button id="reset-btn" class="text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+            Change PDF
+          </button>
+        </div>
+
+        <div class="pgnum-grid">
+          <div class="pgnum-field">
+            <label for="pgnum-position" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Position</label>
+            <select id="pgnum-position" class="pgnum-select">
+              <option value="bottom-center" selected>Bottom center</option>
+              <option value="bottom-right">Bottom right</option>
+              <option value="bottom-left">Bottom left</option>
+              <option value="top-center">Top center</option>
+              <option value="top-right">Top right</option>
+              <option value="top-left">Top left</option>
+            </select>
+          </div>
+          <div class="pgnum-field">
+            <label for="pgnum-format" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Number Format</label>
+            <select id="pgnum-format" class="pgnum-select">
+              <option value="plain" selected>1, 2, 3</option>
+              <option value="page">Page 1, Page 2</option>
+              <option value="pageOf">Page 1 of 10</option>
+            </select>
+          </div>
+          <div class="pgnum-field">
+            <label for="pgnum-start" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Start Number</label>
+            <input type="number" id="pgnum-start" class="pgnum-input" value="1" min="0" max="99999" step="1" inputmode="numeric">
+          </div>
+          <div class="pgnum-field">
+            <label for="pgnum-size" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Font Size (6-72)</label>
+            <input type="number" id="pgnum-size" class="pgnum-input" value="11" min="6" max="72" step="1" inputmode="numeric">
+          </div>
+          <div class="pgnum-field">
+            <label for="pgnum-margin" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Distance From Edge in mm (3-50)</label>
+            <input type="number" id="pgnum-margin" class="pgnum-input" value="10" min="3" max="50" step="1" inputmode="numeric">
+          </div>
+          <div class="pgnum-field">
+            <label for="pgnum-range" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Pages to Number (optional)</label>
+            <input type="text" id="pgnum-range" class="pgnum-input" placeholder="All pages, or e.g. 2-10" autocomplete="off">
+          </div>
+          <div class="pgnum-field pgnum-wide">
+            <label class="pgnum-check" for="pgnum-skip-first">
+              <input type="checkbox" id="pgnum-skip-first">
+              <span>Do not number the first page (page 2 still shows start number + 1)</span>
+            </label>
+          </div>
+        </div>
+        <p id="pgnum-sample" class="text-xs text-slate-500 mt-1.5" aria-live="polite"></p>
+
+        <button id="pgnum-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-list-ol"></i> Add Numbers &amp; Download
+        </button>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use This Tool</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Page numbers make long documents easier to read, print and refer to. Fixlytools adds them to your PDF in your browser and lets you control the position, style and which pages are numbered.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Upload Your PDF:</strong> Click "Choose PDF File" or drag a PDF onto the box.</li>
+        <li><strong>Choose Position and Format:</strong> Pick one of six positions and a format such as 1, Page 1, or Page 1 of 10. Set the start number, font size and distance from the edge.</li>
+        <li><strong>Select Pages (Optional):</strong> Leave the pages box empty to number every page, or type a range such as 2-10. You can also skip the first page, for example a cover.</li>
+        <li><strong>Download:</strong> Click "Add Numbers &amp; Download" to save the numbered PDF. Your original file is not changed.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Six Positions:</strong> Place numbers at the top or bottom, on the left, center or right.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Three Formats:</strong> Plain numbers, "Page 3", or "Page 3 of 10".</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom Start Number:</strong> Begin at any number from 0 up, useful when your PDF is part of a larger document.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Pages You Choose:</strong> Number every page, a range, or everything except the cover page.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Handles Rotated Pages:</strong> Numbers on sideways pages are turned so they read correctly where the reader sees them.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which number does each page get?</h3>
+          <p>Each page shows the start number plus its position in the file. With a start number of 1, page 4 shows 4. Skipping the first page does not change this, so page 2 still shows 2.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I leave the cover page without a number?</h3>
+          <p>Yes. Tick "Do not number the first page".</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I number only some pages?</h3>
+          <p>Yes. Type a range such as 3-12 in the pages box. Pages outside the range are left as they are.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What if a number overlaps my content?</h3>
+          <p>Numbers are drawn on top of the page. If a page has content close to the edge, increase the distance from the edge and download again.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I change the numbers afterward?</h3>
+          <p>The numbers are added as normal text on the page. They are not an editable field, so run the tool again on your original file to change them.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my PDF uploaded to a server?</h3>
+          <p>No. Everything is done in your browser and the file never leaves your device. Password-protected PDFs cannot be processed.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/merge-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-pdf text-blue-500"></i> Merge PDF</a>
+        <a href="/tools/split-pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-scissors text-blue-500"></i> Split PDF</a>
+        <a href="/tools/pdf-compressor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-compress text-blue-500"></i> PDF Compressor</a>
+        <a href="/tools/pdf-to-jpg" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-image text-blue-500"></i> PDF to JPG</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/add-page-numbers.js"></script>
+</body>
+</html>

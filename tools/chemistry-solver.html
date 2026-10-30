@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Chemistry Solver - Molar Mass, Balancer, pH | Fixlytools</title>
+  <meta name="description" content="Free chemistry solver: molar mass, percent composition, moles, equation balancer, molarity, dilution, pH and ideal gas law. Runs in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/chemistry-solver">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/chemistry-solver">
+  <meta property="og:title" content="Chemistry Solver - Molar Mass, Balancer, pH | Fixlytools">
+  <meta property="og:description" content="Chemistry tools in one page: molar mass, equation balancer, moles, solutions, pH and the ideal gas law. Free and private.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chemistry Solver - Molar Mass, Balancer, pH | Fixlytools">
+  <meta name="twitter:description" content="Chemistry tools in one page: molar mass, equation balancer, moles, solutions, pH and the ideal gas law. Free and private.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/chemistry-solver.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Chemistry Solver",
+  "url": "https://fixlytools.com/tools/chemistry-solver",
+  "description": "Free chemistry calculators in the browser: molar mass, percent composition, mole conversions, chemical equation balancer, molarity, dilution, pH and the ideal gas law.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why are formulas case-sensitive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Element symbols are one capital letter, sometimes followed by a lower-case letter. Co is cobalt but CO is carbon and oxygen, and Cl is chlorine but CL is not an element. Reading the letters exactly as typed avoids silent mistakes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the molar mass differ slightly from my textbook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Textbooks round atomic weights differently or use older tables. This tool uses the IUPAC 2021 abridged values, for example sulfur is 32.06, so the answer can differ in the third decimal place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the balancer handle ions and redox reactions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It balances neutral substances by atom counts only. If an equation can be balanced in several independent ways, or cannot be balanced at all, it tells you instead of choosing an answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What temperature does the pH tab assume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "25 °C, where Kw is 1 × 10^-14 and pH + pOH = 14. At other temperatures Kw is different, so the numbers would change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why must temperature be above absolute zero in the gas law?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The ideal gas law uses kelvin. A Celsius value is converted by adding 273.15, and anything at or below 0 K (-273.15 °C) is rejected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data stored or sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is calculated in your browser and nothing is saved when you close the page."
+      }
+    }
+  ]
+}
+  </script></head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/merge-pdf" class="hover:text-blue-600">Merge PDF</a>
+        <a href="/tools/pdf-compressor" class="hover:text-blue-600">PDF Compressor</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Calculators</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Chemistry Solver</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Chemistry Solver</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">
+          Seven small chemistry calculators on one page. Type a formula or the numbers you know and get the answer with the working. Nothing leaves your browser.
+        </p>
+      </div>
+
+      <div class="ch-tabs" role="tablist" aria-label="Chemistry calculators"><button type="button" class="ch-tab" role="tab" id="ch-tab-molar" data-panel="ch-panel-molar" aria-controls="ch-panel-molar" aria-selected="false" tabindex="-1">Molar mass</button><button type="button" class="ch-tab" role="tab" id="ch-tab-percent" data-panel="ch-panel-percent" aria-controls="ch-panel-percent" aria-selected="false" tabindex="-1">Percent composition</button><button type="button" class="ch-tab" role="tab" id="ch-tab-mole" data-panel="ch-panel-mole" aria-controls="ch-panel-mole" aria-selected="false" tabindex="-1">Moles</button><button type="button" class="ch-tab" role="tab" id="ch-tab-balance" data-panel="ch-panel-balance" aria-controls="ch-panel-balance" aria-selected="false" tabindex="-1">Equation balancer</button><button type="button" class="ch-tab" role="tab" id="ch-tab-solution" data-panel="ch-panel-solution" aria-controls="ch-panel-solution" aria-selected="false" tabindex="-1">Solutions</button><button type="button" class="ch-tab" role="tab" id="ch-tab-ph" data-panel="ch-panel-ph" aria-controls="ch-panel-ph" aria-selected="false" tabindex="-1">pH</button><button type="button" class="ch-tab" role="tab" id="ch-tab-gas" data-panel="ch-panel-gas" aria-controls="ch-panel-gas" aria-selected="false" tabindex="-1">Ideal gas</button></div>
+      <div class="ch-panels">
+        <div id="ch-panel-molar" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-molar" tabindex="0">
+          <h2 class="ch-h2">Molar mass of a formula</h2>
+          <div class="ch-card">
+            <p class="ch-help">Type a formula with element symbols. Brackets, nesting and hydrates work, for example Ca(OH)2, Al2(SO4)3 or CuSO4.5H2O. Symbols are case-sensitive.</p>
+            <div class="ch-field"><label class="ch-label" for="ch-mm-input">Chemical formula</label><input id="ch-mm-input" class="ch-input ch-mono" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. Ca(OH)2"></div>
+            <div id="ch-mm-chips" class="ch-chips" role="group" aria-label="Examples"><button type="button" class="ch-chip" data-v="H2O">H2O</button><button type="button" class="ch-chip" data-v="NaCl">NaCl</button><button type="button" class="ch-chip" data-v="C6H12O6">C6H12O6</button><button type="button" class="ch-chip" data-v="Ca(OH)2">Ca(OH)2</button><button type="button" class="ch-chip" data-v="Al2(SO4)3">Al2(SO4)3</button><button type="button" class="ch-chip" data-v="K4[Fe(CN)6]">K4[Fe(CN)6]</button><button type="button" class="ch-chip" data-v="CuSO4.5H2O">CuSO4.5H2O</button></div>
+            <div><button type="button" id="ch-mm-go" class="ch-btn">Calculate molar mass</button></div>
+            <div id="ch-mm-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-percent" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-percent" tabindex="0">
+          <h2 class="ch-h2">Percent composition by mass</h2>
+          <div class="ch-card">
+            <p class="ch-help">Shows how much of the mass of one mole of the compound comes from each element.</p>
+            <div class="ch-field"><label class="ch-label" for="ch-pc-input">Chemical formula</label><input id="ch-pc-input" class="ch-input ch-mono" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. C6H12O6"></div>
+            <div id="ch-pc-chips" class="ch-chips" role="group" aria-label="Examples"><button type="button" class="ch-chip" data-v="H2O">H2O</button><button type="button" class="ch-chip" data-v="C6H12O6">C6H12O6</button><button type="button" class="ch-chip" data-v="NaCl">NaCl</button><button type="button" class="ch-chip" data-v="Fe2O3">Fe2O3</button><button type="button" class="ch-chip" data-v="(NH4)2SO4">(NH4)2SO4</button></div>
+            <div><button type="button" id="ch-pc-go" class="ch-btn">Calculate percentages</button></div>
+            <div id="ch-pc-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-mole" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-mole" tabindex="0">
+          <h2 class="ch-h2">Grams, moles and particles</h2>
+          <div class="ch-card">
+            <p class="ch-help">Convert between grams, moles and number of particles (molecules, formula units or atoms). Grams need a molar mass: type a formula, or type the molar mass yourself (it wins if you fill both).</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-mo-value">Amount you have</label><input id="ch-mo-value" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. 36"></div>
+              <div class="ch-field"><label class="ch-label" for="ch-mo-from">Unit you have</label><select id="ch-mo-from" class="ch-select"><option value="g">grams</option><option value="mol">moles</option><option value="particles">particles</option></select></div>
+              <div class="ch-field"><label class="ch-label" for="ch-mo-to">Convert to</label><select id="ch-mo-to" class="ch-select"><option value="mol">moles</option><option value="g">grams</option><option value="particles">particles</option></select></div>
+              <div class="ch-field"><label class="ch-label" for="ch-mo-formula">Formula (for the molar mass)</label><input id="ch-mo-formula" class="ch-input ch-mono" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. H2O"></div>
+              <div class="ch-field"><label class="ch-label" for="ch-mo-mm">Or molar mass in g/mol</label><input id="ch-mo-mm" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. 18.015"></div>
+            </div>
+            <div><button type="button" id="ch-mo-go" class="ch-btn">Convert</button></div>
+            <div id="ch-mo-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-balance" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-balance" tabindex="0">
+          <h2 class="ch-h2">Equation balancer</h2>
+          <div class="ch-card">
+            <p class="ch-help">Write the reaction with an arrow (<code>-&gt;</code>, <code>=</code> or the arrow symbol) and plus signs. Do not type coefficients. Ions, charges and redox half-reactions are not supported.</p>
+            <div class="ch-field"><label class="ch-label" for="ch-bal-input">Unbalanced equation</label><input id="ch-bal-input" class="ch-input ch-mono" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. Fe + O2 -> Fe2O3"></div>
+            <div id="ch-bal-chips" class="ch-chips" role="group" aria-label="Examples"><button type="button" class="ch-chip" data-v="H2 + O2 -> H2O">H2 + O2 -> H2O</button><button type="button" class="ch-chip" data-v="C3H8 + O2 -> CO2 + H2O">C3H8 + O2 -> CO2 + H2O</button><button type="button" class="ch-chip" data-v="Fe + O2 -> Fe2O3">Fe + O2 -> Fe2O3</button><button type="button" class="ch-chip" data-v="Al + HCl -> AlCl3 + H2">Al + HCl -> AlCl3 + H2</button><button type="button" class="ch-chip" data-v="KMnO4 + HCl -> KCl + MnCl2 + Cl2 + H2O">KMnO4 + HCl -> KCl + MnCl2 + Cl2 + H2O</button></div>
+            <div><button type="button" id="ch-bal-go" class="ch-btn">Balance</button></div>
+            <div id="ch-bal-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-solution" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-solution" tabindex="0">
+          <h2 class="ch-h2">Solutions: molarity and dilution</h2>
+          <div class="ch-card">
+            <h3 class="ch-h3">Molarity (M = n / V)</h3>
+            <p class="ch-help">Fill two of the three boxes and leave one empty. The empty one is calculated. For grams, type a formula or a molar mass.</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-so-n">Amount of solute</label><div class="ch-row"><input id="ch-so-n" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-so-n-unit" class="ch-select" aria-label="Amount of solute unit"><option value="mol">mol</option><option value="mmol">mmol</option><option value="g">g</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-so-v">Volume of solution</label><div class="ch-row"><input id="ch-so-v" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-so-v-unit" class="ch-select" aria-label="Volume of solution unit"><option value="L">L</option><option value="mL">mL</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-so-m">Molarity</label><div class="ch-row"><input id="ch-so-m" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-so-m-unit" class="ch-select" aria-label="Molarity unit"><option value="mol/L">mol/L</option><option value="mmol/L">mmol/L</option></select></div></div>
+            </div>
+            <div id="ch-so-gram-row" class="ch-grid2" hidden>
+              <div class="ch-field"><label class="ch-label" for="ch-so-formula">Formula of the solute</label><input id="ch-so-formula" class="ch-input ch-mono" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. NaCl"></div>
+              <div class="ch-field"><label class="ch-label" for="ch-so-mm">Or molar mass in g/mol</label><input id="ch-so-mm" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. 58.44"></div>
+            </div>
+            <div><button type="button" id="ch-so-go" class="ch-btn">Calculate</button></div>
+            <div id="ch-so-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+          <div class="ch-card">
+            <h3 class="ch-h3">Dilution (C1 &times; V1 = C2 &times; V2)</h3>
+            <p class="ch-help">Fill three of the four boxes and leave one empty. C1 and V1 are the stock solution; C2 and V2 are the diluted solution.</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-di-c1">C1 (stock concentration)</label><div class="ch-row"><input id="ch-di-c1" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder=""><select id="ch-di-c1-unit" class="ch-select" aria-label="C1 (stock concentration) unit"><option value="mol/L">mol/L</option><option value="mmol/L">mmol/L</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-di-v1">V1 (stock volume)</label><div class="ch-row"><input id="ch-di-v1" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder=""><select id="ch-di-v1-unit" class="ch-select" aria-label="V1 (stock volume) unit"><option value="L">L</option><option value="mL">mL</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-di-c2">C2 (final concentration)</label><div class="ch-row"><input id="ch-di-c2" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder=""><select id="ch-di-c2-unit" class="ch-select" aria-label="C2 (final concentration) unit"><option value="mol/L">mol/L</option><option value="mmol/L">mmol/L</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-di-v2">V2 (final volume)</label><div class="ch-row"><input id="ch-di-v2" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder=""><select id="ch-di-v2-unit" class="ch-select" aria-label="V2 (final volume) unit"><option value="L">L</option><option value="mL">mL</option></select></div></div>
+            </div>
+            <div><button type="button" id="ch-di-go" class="ch-btn">Calculate</button></div>
+            <div id="ch-di-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-ph" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-ph" tabindex="0">
+          <h2 class="ch-h2">pH, pOH and concentrations (25 &deg;C)</h2>
+          <div class="ch-card">
+            <h3 class="ch-h3">Convert between pH, pOH, [H+] and [OH-]</h3>
+            <p class="ch-help">Uses pH + pOH = 14 and Kw = 1 &times; 10<sup>-14</sup>, which is true at 25 &deg;C only. Concentrations are in mol/L.</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-ph-kind">What you know</label><select id="ch-ph-kind" class="ch-select"><option value="pH">pH</option><option value="pOH">pOH</option><option value="H">[H+] in mol/L</option><option value="OH">[OH-] in mol/L</option></select></div>
+              <div class="ch-field"><label class="ch-label" for="ch-ph-value">Value</label><input id="ch-ph-value" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. 7 or 1e-3"></div>
+            </div>
+            <div><button type="button" id="ch-ph-go" class="ch-btn">Calculate</button></div>
+            <div id="ch-ph-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+          <div class="ch-card">
+            <h3 class="ch-h3">pH of a strong acid or strong base</h3>
+            <p class="ch-help">Assumes complete dissociation. Weak acids, weak bases and buffers are not covered.</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-st-type">Type</label><select id="ch-st-type" class="ch-select"><option value="acid">Strong acid</option><option value="base">Strong base</option></select></div>
+              <div class="ch-field"><label class="ch-label" for="ch-st-c">Concentration in mol/L</label><input id="ch-st-c" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. 0.001"></div>
+              <div class="ch-field"><label class="ch-label" for="ch-st-n">H+ or OH- released per formula unit</label><select id="ch-st-n" class="ch-select"><option value="1">1 (HCl, HNO3, NaOH)</option><option value="2">2 (H2SO4, Ca(OH)2)</option><option value="3">3</option></select></div>
+            </div>
+            <div><button type="button" id="ch-st-go" class="ch-btn">Calculate pH</button></div>
+            <div id="ch-st-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+        <div id="ch-panel-gas" class="ch-panel" role="tabpanel" aria-labelledby="ch-tab-gas" tabindex="0">
+          <h2 class="ch-h2">Ideal gas law (PV = nRT)</h2>
+          <div class="ch-card">
+            <p class="ch-help">Fill three of the four boxes and leave one empty. R = 8.314462618 J/(mol&middot;K) = 0.082057 L&middot;atm/(mol&middot;K). Temperature must be above absolute zero.</p>
+            <div class="ch-grid2">
+              <div class="ch-field"><label class="ch-label" for="ch-ga-p">Pressure P</label><div class="ch-row"><input id="ch-ga-p" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-ga-p-unit" class="ch-select" aria-label="Pressure P unit"><option value="atm">atm</option><option value="kPa">kPa</option><option value="mmHg">mmHg</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-ga-v">Volume V</label><div class="ch-row"><input id="ch-ga-v" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-ga-v-unit" class="ch-select" aria-label="Volume V unit"><option value="L">L</option><option value="mL">mL</option></select></div></div>
+              <div class="ch-field"><label class="ch-label" for="ch-ga-n">Amount n (mol)</label><input id="ch-ga-n" class="ch-input " type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="empty = solve"></div>
+              <div class="ch-field"><label class="ch-label" for="ch-ga-t">Temperature T</label><div class="ch-row"><input id="ch-ga-t" class="ch-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="empty = solve"><select id="ch-ga-t-unit" class="ch-select" aria-label="Temperature T unit"><option value="K">K</option><option value="C">C</option></select></div></div>
+            </div>
+            <div><button type="button" id="ch-ga-go" class="ch-btn">Calculate</button></div>
+            <div id="ch-ga-out" class="ch-out" role="status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ch-ai">
+        <div class="ch-ai-line">
+          <button type="button" id="ch-ai-btn" class="ch-ai-btn" disabled aria-disabled="true">AI Chemistry: Coming soon</button>
+          <span class="ch-badge">Coming soon</span>
+        </div>
+        <p class="ch-ai-help">Typing questions in words and solving from a photo are planned. Today this tool solves questions written as formulas.</p>
+      </div>
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <!-- How To Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use the Chemistry Solver</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Pick a tab for the kind of problem you have, fill in what you know and press the button. The result, with the numbers used, appears underneath.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose a tab:</strong> Use <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Molar mass</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Percent composition</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Moles</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Equation balancer</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Solutions</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">pH</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Ideal gas</code>.</li>
+        <li><strong>Enter formulas with element symbols:</strong> Write <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">H2O</code>, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Ca(OH)2</code> or <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">CuSO4.5H2O</code>. Symbols are case-sensitive: <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Co</code> is cobalt, <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">CO</code> is carbon monoxide. Tap an example to fill the box.</li>
+        <li><strong>Leave one box empty when solving:</strong> In the solutions and gas law tabs, fill all values you know and leave the one you want empty. Pick the unit next to each value.</li>
+        <li><strong>Read the result and the working:</strong> Each answer shows the unit and how it was found. Use the Copy button to take the answer with you.</li>
+        </ol>
+      </div>
+
+      <!-- Key Features -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Molar mass with a breakdown:</strong> Brackets, nested groups and hydrates are read, and every element is listed with its count, atomic weight and subtotal.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Percent composition:</strong> The share of each element in one mole of a compound, by mass.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Equation balancer with exact arithmetic:</strong> Finds the smallest whole-number coefficients by solving the atom-count equations with fractions, so there is no rounding. If there is no solution or more than one, it says so.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Moles, solutions and dilution:</strong> Convert grams, moles and particles, work out molarity or the mass of solute needed, and solve <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">C1 V1 = C2 V2</code> for any one value.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>pH and gas law:</strong> Convert between pH, pOH, [H+] and [OH-], find the pH of a strong acid or base, and solve <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">PV = nRT</code> for any one variable with unit choices.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> All calculations happen in your browser. Nothing you type is sent anywhere or stored.</span></li>
+        </ul>
+      </div>
+
+      <!-- Limits -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What This Tool Can and Cannot Do</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">This tool works with formulas written with element symbols, and with the numbers you type. It does not read word problems or photos yet. Check that the units you pick match your problem.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">Formulas are case-sensitive. The balancer handles neutral substances only: ions, charges and redox half-reactions are not supported, and some equations have more than one valid balanced form, in which case it will not guess. The pH tab assumes 25 °C and strong acids and bases; weak acids, weak bases and buffers are not covered.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-3">Atomic weights are the IUPAC abridged standard atomic weights (2021 table) rounded as IUPAC prints them. Elements with no stable isotopes have no standard weight, so the mass number of a long-lived isotope is used and marked with an asterisk. Ranges in real samples are wider than the printed value suggests, so answers are only as exact as the data.</p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why are formulas case-sensitive?</h3>
+          <p>Element symbols are one capital letter, sometimes followed by a lower-case letter. <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Co</code> is cobalt but <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">CO</code> is carbon and oxygen, and <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">Cl</code> is chlorine but <code class="bg-slate-100 dark:bg-slate-700 px-1 py-0.5 rounded">CL</code> is not an element. Reading the letters exactly as typed avoids silent mistakes.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the molar mass differ slightly from my textbook?</h3>
+          <p>Textbooks round atomic weights differently or use older tables. This tool uses the IUPAC 2021 abridged values, for example sulfur is 32.06, so the answer can differ in the third decimal place.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can the balancer handle ions and redox reactions?</h3>
+          <p>No. It balances neutral substances by atom counts only. If an equation can be balanced in several independent ways, or cannot be balanced at all, it tells you instead of choosing an answer.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What temperature does the pH tab assume?</h3>
+          <p>25 °C, where Kw is 1 × 10^-14 and pH + pOH = 14. At other temperatures Kw is different, so the numbers would change.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why must temperature be above absolute zero in the gas law?</h3>
+          <p>The ideal gas law uses kelvin. A Celsius value is converted by adding 273.15, and anything at or below 0 K (-273.15 °C) is rejected.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my data stored or sent anywhere?</h3>
+          <p>No. Everything is calculated in your browser and nothing is saved when you close the page.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Related Tools -->
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> Calculator</a>
+        <a href="/tools/math-solver" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-superscript text-blue-500"></i> Math Solver</a>
+        <a href="/tools/scientific-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-square-root-variable text-blue-500"></i> Scientific Calculator</a>
+        <a href="/tools/image-resizer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-up-right-and-down-left-from-center text-blue-500"></i> Image Resizer</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/chemistry-solver.js"></script>
+</body>
+</html>
