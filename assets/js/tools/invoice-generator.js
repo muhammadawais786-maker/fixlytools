@@ -33,7 +33,7 @@ INV_CURRENCY_LIST.forEach(([code, name, prefix, dec]) => {
 
 const INV_PAY_METHODS = {
   '': '', cash: 'Cash', bank: 'Bank transfer', card: 'Card', cheque: 'Cheque', online: 'Online payment',
-  wallet: 'Mobile wallet', cod: 'Cash on delivery', other: 'Other'
+  wallet: 'Digital wallet', cod: 'Cash on delivery', other: 'Other'
 };
 
 const INV_DOC_TYPES = {
