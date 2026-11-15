@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Color Picker &amp; HEX to RGB Converter - HEX, RGB, HSL, CMYK | Fixlytools</title>
+  <meta name="description" content="Free color picker and converter. Pick any color and get its HEX, RGB, HSL and CMYK codes. Convert HEX to RGB, see shades and check text contrast. Copy in one click.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/color-picker">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/color-picker">
+  <meta property="og:title" content="Color Picker &amp;amp; HEX to RGB Converter - HEX, RGB, HSL, CMYK | Fixlytools">
+  <meta property="og:description" content="Pick a color and instantly get HEX, RGB, HSL and CMYK values. Includes shades, a screen eyedropper and WCAG contrast checker.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Color Picker &amp;amp; HEX to RGB Converter - HEX, RGB, HSL, CMYK | Fixlytools">
+  <meta name="twitter:description" content="Pick a color and instantly get HEX, RGB, HSL and CMYK values. Includes shades, a screen eyedropper and WCAG contrast checker.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Color Picker and HEX to RGB Converter",
+  "url": "https://fixlytools.com/tools/color-picker",
+  "description": "Pick colors and convert between HEX, RGB, HSL and CMYK.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert HEX to RGB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A HEX code has three pairs of digits for red, green and blue. #2563EB is 25, 63 and EB in hexadecimal, which are 37, 99 and 235 in decimal, so the color is rgb(37, 99, 235). Type the HEX code into the tool and it shows the RGB value for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between RGB, HSL and CMYK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RGB mixes red, green and blue light and is used on screens. HSL describes a color as hue, saturation and lightness, which is easier to adjust by hand. CMYK is the ink mix used in printing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the CMYK value exact for printing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a simple mathematical conversion. Real printers use color profiles, so the printed color can look different. Use it as a starting point only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the contrast ratio mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It measures how well text stands out from its background, from 1:1 (no contrast) to 21:1 (black on white). WCAG asks for at least 4.5:1 for normal text to be readable by most people, including those with low vision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does Pick from screen not appear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The eyedropper uses a browser feature that is available in Chrome and Edge on computers. Safari and Firefox do not support it yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I type a short HEX code like #f0a?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Three-digit codes are expanded, so #f0a becomes #FF00AA."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Developer Tools</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Color Picker</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Color Picker &amp; HEX to RGB Converter</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Pick a color or type a code, and get HEX, RGB, HSL and CMYK values to copy.</p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="nt-grid nt-grid-2" style="align-items:start">
+          <div>
+            <div id="cp-swatch" class="nt-swatch" style="background:#2563EB"></div>
+            <div class="nt-row" style="margin-top:12px">
+              <input type="color" id="cp-picker" value="#2563eb" aria-label="Pick a color" style="width:64px;height:44px;padding:0;border:1px solid #cbd5e1;border-radius:10px;background:none;cursor:pointer">
+              <button type="button" id="cp-random" class="nt-btn nt-btn-alt"><i class="fa-solid fa-shuffle"></i> Random</button>
+              <button type="button" id="cp-eyedrop" class="nt-btn nt-btn-alt nt-hide"><i class="fa-solid fa-eye-dropper"></i> Pick from screen</button>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <label for="cp-hex" class="nt-label">HEX, RGB() or HSL()</label>
+              <input type="text" id="cp-hex" class="nt-field nt-mono" value="#2563EB" spellcheck="false" autocomplete="off">
+            </div>
+            <div class="nt-grid-stats">
+              <div><label for="cp-r" class="nt-label">R</label><input type="number" id="cp-r" class="nt-field" min="0" max="255" value="37" inputmode="numeric"></div>
+              <div><label for="cp-g" class="nt-label">G</label><input type="number" id="cp-g" class="nt-field" min="0" max="255" value="99" inputmode="numeric"></div>
+              <div><label for="cp-b" class="nt-label">B</label><input type="number" id="cp-b" class="nt-field" min="0" max="255" value="235" inputmode="numeric"></div>
+            </div>
+            <div class="nt-grid-stats">
+              <div><label for="cp-h" class="nt-label">H (0-360)</label><input type="number" id="cp-h" class="nt-field" min="0" max="360" value="221" inputmode="numeric"></div>
+              <div><label for="cp-s" class="nt-label">S (%)</label><input type="number" id="cp-s" class="nt-field" min="0" max="100" value="83" inputmode="numeric"></div>
+              <div><label for="cp-l" class="nt-label">L (%)</label><input type="number" id="cp-l" class="nt-field" min="0" max="100" value="53" inputmode="numeric"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <div class="nt-row" style="justify-content:space-between;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px">
+            <span style="min-width:60px;font-size:12px;font-weight:800;text-transform:uppercase;color:#64748b">HEX</span>
+            <code id="cp-out-hex" class="nt-mono" style="flex:1 1 auto;font-size:14px;font-weight:700;word-break:break-all">-</code>
+            <button type="button" class="nt-btn nt-btn-alt" data-copy="cp-out-hex" style="padding:7px 12px;font-size:12px"><i class="fa-solid fa-copy"></i> Copy</button>
+          </div>
+          <div class="nt-row" style="justify-content:space-between;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px">
+            <span style="min-width:60px;font-size:12px;font-weight:800;text-transform:uppercase;color:#64748b">RGB</span>
+            <code id="cp-out-rgb" class="nt-mono" style="flex:1 1 auto;font-size:14px;font-weight:700;word-break:break-all">-</code>
+            <button type="button" class="nt-btn nt-btn-alt" data-copy="cp-out-rgb" style="padding:7px 12px;font-size:12px"><i class="fa-solid fa-copy"></i> Copy</button>
+          </div>
+          <div class="nt-row" style="justify-content:space-between;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px">
+            <span style="min-width:60px;font-size:12px;font-weight:800;text-transform:uppercase;color:#64748b">HSL</span>
+            <code id="cp-out-hsl" class="nt-mono" style="flex:1 1 auto;font-size:14px;font-weight:700;word-break:break-all">-</code>
+            <button type="button" class="nt-btn nt-btn-alt" data-copy="cp-out-hsl" style="padding:7px 12px;font-size:12px"><i class="fa-solid fa-copy"></i> Copy</button>
+          </div>
+          <div class="nt-row" style="justify-content:space-between;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px">
+            <span style="min-width:60px;font-size:12px;font-weight:800;text-transform:uppercase;color:#64748b">CMYK</span>
+            <code id="cp-out-cmyk" class="nt-mono" style="flex:1 1 auto;font-size:14px;font-weight:700;word-break:break-all">-</code>
+            <button type="button" class="nt-btn nt-btn-alt" data-copy="cp-out-cmyk" style="padding:7px 12px;font-size:12px"><i class="fa-solid fa-copy"></i> Copy</button>
+          </div>
+          <div class="nt-row" style="justify-content:space-between;padding:10px 12px;border:1px solid #e2e8f0;border-radius:12px">
+            <span style="min-width:60px;font-size:12px;font-weight:800;text-transform:uppercase;color:#64748b">CSS</span>
+            <code id="cp-out-css" class="nt-mono" style="flex:1 1 auto;font-size:14px;font-weight:700;word-break:break-all">-</code>
+            <button type="button" class="nt-btn nt-btn-alt" data-copy="cp-out-css" style="padding:7px 12px;font-size:12px"><i class="fa-solid fa-copy"></i> Copy</button>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Lighter and Darker Shades</h2>
+          <div id="cp-shades" style="display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px"></div>
+          <p class="nt-hint">Click a shade to use it. Left is lighter, right is darker.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Text Contrast (WCAG)</h2>
+          <div class="nt-grid nt-grid-2">
+            <div class="nt-panel" style="background:#ffffff;color:#0f172a">
+              <div id="cp-sample-white" style="font-size:20px;font-weight:800">Text on white</div>
+              <div id="cp-con-white" class="nt-mono" style="margin-top:6px;font-size:13px;color:#475569">-</div>
+            </div>
+            <div class="nt-panel" style="background:#000000">
+              <div id="cp-sample-black" style="font-size:20px;font-weight:800">Text on black</div>
+              <div id="cp-con-black" class="nt-mono" style="margin-top:6px;font-size:13px;color:#cbd5e1">-</div>
+            </div>
+          </div>
+          <p class="nt-hint">AA needs 4.5:1 for normal text (3:1 for large text). AAA needs 7:1.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Pick a Color and Get Its Code</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Web designers and developers need the same color in different formats. This tool shows all of them at once and lets you copy the one you need.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose a color:</strong> Click the color box to open the picker, press Random, or use "Pick from screen" (in Chrome and Edge) to take a color from anywhere on your screen.</li>
+        <li><strong>Or type a code:</strong> Type or paste a HEX code such as #2563EB, an rgb() value or an hsl() value into the box. The other fields update straight away.</li>
+        <li><strong>Fine-tune with the numbers:</strong> Change the R, G, B or H, S, L fields to adjust the color precisely.</li>
+        <li><strong>Copy the format you need:</strong> Press Copy next to HEX, RGB, HSL, CMYK or the ready-made CSS line.</li>
+        <li><strong>Check readability:</strong> The contrast boxes show how readable text in this color is on white and on black.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>HEX to RGB and back:</strong> Convert between HEX, RGB, HSL and CMYK instantly.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Screen eyedropper:</strong> Pick any pixel on your screen in browsers that support it (Chrome and Edge).</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Shades palette:</strong> Nine lighter and darker shades of your color, one click to use.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>WCAG contrast checker:</strong> See the contrast ratio on white and black and whether it passes AA or AAA.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>One-click copy:</strong> Copy any code, including a ready-to-paste CSS color line.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> Nothing is uploaded. Everything runs in your browser.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I convert HEX to RGB?</h3>
+          <p>A HEX code has three pairs of digits for red, green and blue. #2563EB is 25, 63 and EB in hexadecimal, which are 37, 99 and 235 in decimal, so the color is rgb(37, 99, 235). Type the HEX code into the tool and it shows the RGB value for you.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between RGB, HSL and CMYK?</h3>
+          <p>RGB mixes red, green and blue light and is used on screens. HSL describes a color as hue, saturation and lightness, which is easier to adjust by hand. CMYK is the ink mix used in printing.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the CMYK value exact for printing?</h3>
+          <p>No. It is a simple mathematical conversion. Real printers use color profiles, so the printed color can look different. Use it as a starting point only.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What does the contrast ratio mean?</h3>
+          <p>It measures how well text stands out from its background, from 1:1 (no contrast) to 21:1 (black on white). WCAG asks for at least 4.5:1 for normal text to be readable by most people, including those with low vision.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does Pick from screen not appear?</h3>
+          <p>The eyedropper uses a browser feature that is available in Chrome and Edge on computers. Safari and Firefox do not support it yet.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I type a short HEX code like #f0a?</h3>
+          <p>Yes. Three-digit codes are expanded, so #f0a becomes #FF00AA.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-image text-blue-500"></i> Image Converter</a>
+        <a href="/tools/photo-editor" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-wand-magic-sparkles text-blue-500"></i> Photo Editor</a>
+        <a href="/tools/lorem-ipsum-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-paragraph text-blue-500"></i> Lorem Ipsum Generator</a>
+        <a href="/tools/base64-encoder-decoder" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-code text-blue-500"></i> Base64 Encoder</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/color-picker.js"></script>
+</body>
+</html>

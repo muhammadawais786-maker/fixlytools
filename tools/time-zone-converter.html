@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Time Zone Converter - Time Difference Between Countries | Fixlytools</title>
+  <meta name="description" content="Free time zone converter for every country. See the time difference between Pakistan, India, UK, USA, Saudi Arabia, UAE, Canada, Australia and more, with daylight saving applied automatically.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/time-zone-converter">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/time-zone-converter">
+  <meta property="og:title" content="Time Zone Converter - Time Difference Between Countries | Fixlytools">
+  <meta property="og:description" content="Convert time between any two countries and see the exact time difference, with automatic daylight saving. Includes a live world clock.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Time Zone Converter - Time Difference Between Countries | Fixlytools">
+  <meta name="twitter:description" content="Convert time between any two countries and see the exact time difference, with automatic daylight saving. Includes a live world clock.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Time Zone Converter",
+  "url": "https://fixlytools.com/tools/time-zone-converter",
+  "description": "Convert time between countries and see the time difference, with daylight saving handled automatically.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the time difference between Pakistan and the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pakistan (UTC+5) is 5 hours ahead of the United Kingdom in winter, when the UK uses GMT. In summer, when the UK uses British Summer Time (UTC+1), Pakistan is 4 hours ahead. Pakistan does not use daylight saving time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the time difference between Pakistan and the USA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the US region and the season. In winter, Pakistan is 10 hours ahead of New York and 13 hours ahead of Los Angeles. In summer, when US clocks move forward, it is 9 and 12 hours. Choose the US city in the tool for the exact figure on any date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the time difference between India and Pakistan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "India (UTC+5:30) is 30 minutes ahead of Pakistan (UTC+5) all year round."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the difference change during the year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many countries, including the UK, most of Europe, the USA and Canada, move their clocks forward in spring and back in autumn. Their time difference to countries without daylight saving, such as Pakistan, India, Saudi Arabia and the UAE, therefore changes by one hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert my meeting time for people in other countries?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose your country in From, the country of the other person in To, and enter the date and time of the meeting. You can repeat this for each country."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does UTC mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UTC (Coordinated Universal Time) is the world time standard. Every time zone is described as an offset from it, for example UTC+5 for Pakistan or UTC-5 for New York in winter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which country has half-hour or 45-minute time zones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "India and Sri Lanka use UTC+5:30, Nepal uses UTC+5:45, Iran uses UTC+3:30, Afghanistan uses UTC+4:30 and Myanmar uses UTC+6:30. The tool handles these correctly."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Time Tools</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Time Zone Converter</span>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Time Zone Converter</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Choose two countries and a time to see the time there and the exact time difference. Works for every country.</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="nt-grid nt-grid-2">
+          <div class="space-y-3">
+            <div>
+              <label for="tz-from-country" class="nt-label">From (country)</label>
+              <select id="tz-from-country" class="nt-field"></select>
+            </div>
+            <div class="nt-hide">
+              <label for="tz-from-zone" class="nt-label">Region / city</label>
+              <select id="tz-from-zone" class="nt-field"></select>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <label for="tz-to-country" class="nt-label">To (country)</label>
+              <select id="tz-to-country" class="nt-field"></select>
+            </div>
+            <div class="nt-hide">
+              <label for="tz-to-zone" class="nt-label">Region / city</label>
+              <select id="tz-to-zone" class="nt-field"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="nt-grid nt-grid-3" style="align-items:end">
+          <div>
+            <label for="tz-when" class="nt-label">Date and time in the "From" place</label>
+            <input type="datetime-local" id="tz-when" class="nt-field">
+          </div>
+          <div>
+            <label for="tz-format" class="nt-label">Clock</label>
+            <select id="tz-format" class="nt-field"><option value="12">12-hour (AM/PM)</option><option value="24">24-hour</option></select>
+          </div>
+          <div class="nt-row">
+            <button type="button" id="tz-now" class="nt-btn nt-btn-alt"><i class="fa-solid fa-clock"></i> Now</button>
+            <button type="button" id="tz-swap" class="nt-btn nt-btn-alt"><i class="fa-solid fa-arrow-right-arrow-left"></i> Swap</button>
+          </div>
+        </div>
+
+        <div id="tz-result" class="nt-hide space-y-4">
+          <div class="nt-hero nt-hero-blue">
+            <span class="nt-hero-label">Time in the "To" place</span>
+            <div id="tz-big" class="nt-hero-big" aria-live="polite">-</div>
+            <p id="tz-big-date" class="nt-hero-sub" style="font-weight:700"></p>
+            <p id="tz-diff" class="nt-hero-sub"></p>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="nt-table">
+              <thead><tr><th>Place</th><th>Local time</th><th>UTC offset</th></tr></thead>
+              <tbody>
+                <tr><td id="tz-from-name"></td><td id="tz-from-time"></td><td id="tz-from-off" class="nt-mono"></td></tr>
+                <tr><td id="tz-to-name"></td><td id="tz-to-time"></td><td id="tz-to-off" class="nt-mono"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="nt-hint">Daylight saving time is applied automatically for the date you choose. Times that do not exist because the clocks jump forward are shown shifted by the browser.</p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Popular Time Differences</h2>
+          <div class="nt-row">
+          <a href="/tools/time-zone-converter?from=PK&amp;to=GB" data-from="PK" data-to="GB" class="nt-chip">Pakistan to UK time</a>
+          <a href="/tools/time-zone-converter?from=PK&amp;to=US" data-from="PK" data-to="US" class="nt-chip">Pakistan to USA time</a>
+          <a href="/tools/time-zone-converter?from=PK&amp;to=SA" data-from="PK" data-to="SA" class="nt-chip">Pakistan to Saudi Arabia time</a>
+          <a href="/tools/time-zone-converter?from=PK&amp;to=AE" data-from="PK" data-to="AE" class="nt-chip">Pakistan to UAE time</a>
+          <a href="/tools/time-zone-converter?from=PK&amp;to=CA" data-from="PK" data-to="CA" class="nt-chip">Pakistan to Canada time</a>
+          <a href="/tools/time-zone-converter?from=PK&amp;to=AU" data-from="PK" data-to="AU" class="nt-chip">Pakistan to Australia time</a>
+          <a href="/tools/time-zone-converter?from=IN&amp;to=US" data-from="IN" data-to="US" class="nt-chip">India to USA time</a>
+          <a href="/tools/time-zone-converter?from=IN&amp;to=GB" data-from="IN" data-to="GB" class="nt-chip">India to UK time</a>
+          <a href="/tools/time-zone-converter?from=US&amp;to=GB" data-from="US" data-to="GB" class="nt-chip">USA to UK time</a>
+          <a href="/tools/time-zone-converter?from=US&amp;to=IN" data-from="US" data-to="IN" class="nt-chip">USA to India time</a>
+          <a href="/tools/time-zone-converter?from=US&amp;to=PK" data-from="US" data-to="PK" class="nt-chip">USA to Pakistan time</a>
+          <a href="/tools/time-zone-converter?from=GB&amp;to=AU" data-from="GB" data-to="AU" class="nt-chip">UK to Australia time</a>
+          <a href="/tools/time-zone-converter?from=GB&amp;to=US" data-from="GB" data-to="US" class="nt-chip">UK to USA time</a>
+          <a href="/tools/time-zone-converter?from=CA&amp;to=IN" data-from="CA" data-to="IN" class="nt-chip">Canada to India time</a>
+          <a href="/tools/time-zone-converter?from=AE&amp;to=GB" data-from="AE" data-to="GB" class="nt-chip">UAE to UK time</a>
+          <a href="/tools/time-zone-converter?from=SA&amp;to=PK" data-from="SA" data-to="PK" class="nt-chip">Saudi Arabia to Pakistan time</a>
+          <a href="/tools/time-zone-converter?from=PH&amp;to=US" data-from="PH" data-to="US" class="nt-chip">Philippines to USA time</a>
+          <a href="/tools/time-zone-converter?from=DE&amp;to=US" data-from="DE" data-to="US" class="nt-chip">Germany to USA time</a>
+          <a href="/tools/time-zone-converter?from=AU&amp;to=IN" data-from="AU" data-to="IN" class="nt-chip">Australia to India time</a>
+          <a href="/tools/time-zone-converter?from=NG&amp;to=GB" data-from="NG" data-to="GB" class="nt-chip">Nigeria to UK time</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Current Time Around the World</h2>
+          <div id="tz-clocks" class="nt-grid-stats"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Convert Time Between Countries</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Planning a call or a meeting across countries is easier when you know the exact time difference. This converter covers more than 200 countries and territories and handles daylight saving time for you.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose the country you start from:</strong> The tool picks your own country automatically. Change it if you want. For large countries such as the USA, Canada, Australia or Russia, also choose the region or city.</li>
+        <li><strong>Choose the country to convert to:</strong> Pick the second country (and region if asked).</li>
+        <li><strong>Set the date and time:</strong> Press Now to use the current time, or choose any date and time in the first place. Switch between 12-hour and 24-hour clocks if you prefer.</li>
+        <li><strong>Read the result:</strong> You see the converted time and date, the UTC offsets and a sentence such as "United Kingdom is 5 hours behind Pakistan".</li>
+        <li><strong>Use the shortcuts:</strong> Tap a popular pair such as Pakistan to UK time or India to USA time to fill the tool in one tap.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Every country:</strong> More than 200 countries and territories, each with its correct time zone.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Regions for big countries:</strong> The USA, Canada, Australia, Russia, Brazil, Mexico, Indonesia and others have their city zones.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Daylight saving handled:</strong> The offset is worked out for the exact date you choose, so summer and winter changes are correct.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Time difference in words:</strong> A clear sentence tells you which place is ahead and by how many hours and minutes.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live world clock:</strong> Twelve major places with the current time updating every second.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> The calculation uses the time zone data in your browser and nothing is sent anywhere.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the time difference between Pakistan and the UK?</h3>
+          <p>Pakistan (UTC+5) is 5 hours ahead of the United Kingdom in winter, when the UK uses GMT. In summer, when the UK uses British Summer Time (UTC+1), Pakistan is 4 hours ahead. Pakistan does not use daylight saving time.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the time difference between Pakistan and the USA?</h3>
+          <p>It depends on the US region and the season. In winter, Pakistan is 10 hours ahead of New York and 13 hours ahead of Los Angeles. In summer, when US clocks move forward, it is 9 and 12 hours. Choose the US city in the tool for the exact figure on any date.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the time difference between India and Pakistan?</h3>
+          <p>India (UTC+5:30) is 30 minutes ahead of Pakistan (UTC+5) all year round.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the difference change during the year?</h3>
+          <p>Many countries, including the UK, most of Europe, the USA and Canada, move their clocks forward in spring and back in autumn. Their time difference to countries without daylight saving, such as Pakistan, India, Saudi Arabia and the UAE, therefore changes by one hour.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I convert my meeting time for people in other countries?</h3>
+          <p>Choose your country in From, the country of the other person in To, and enter the date and time of the meeting. You can repeat this for each country.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What does UTC mean?</h3>
+          <p>UTC (Coordinated Universal Time) is the world time standard. Every time zone is described as an offset from it, for example UTC+5 for Pakistan or UTC-5 for New York in winter.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which country has half-hour or 45-minute time zones?</h3>
+          <p>India and Sri Lanka use UTC+5:30, Nepal uses UTC+5:45, Iran uses UTC+3:30, Afghanistan uses UTC+4:30 and Myanmar uses UTC+6:30. The tool handles these correctly.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/age-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-cake-candles text-blue-500"></i> Age &amp; Date Difference</a>
+        <a href="/tools/stopwatch-timer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-stopwatch text-blue-500"></i> Stopwatch &amp; Timer</a>
+        <a href="/tools/unit-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-ruler text-blue-500"></i> Unit Converter</a>
+        <a href="/tools/percentage-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-percent text-blue-500"></i> Percentage Calculator</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/tz-data.js"></script>
+  <script src="/assets/js/tools/time-zone-converter.js"></script>
+</body>
+</html>

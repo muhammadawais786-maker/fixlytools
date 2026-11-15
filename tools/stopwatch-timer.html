@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Online Stopwatch &amp; Countdown Timer with Laps and Alarm | Fixlytools</title>
+  <meta name="description" content="Free online stopwatch with lap times and a countdown timer with alarm. Accurate to the hundredth of a second, works in the background and needs no installation.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/stopwatch-timer">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/stopwatch-timer">
+  <meta property="og:title" content="Online Stopwatch &amp;amp; Countdown Timer with Laps and Alarm | Fixlytools">
+  <meta property="og:description" content="Use a precise stopwatch with laps or a countdown timer with an alarm sound, right in your browser. Free, no sign-up.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Online Stopwatch &amp;amp; Countdown Timer with Laps and Alarm | Fixlytools">
+  <meta name="twitter:description" content="Use a precise stopwatch with laps or a countdown timer with an alarm sound, right in your browser. Free, no sign-up.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Stopwatch and Countdown Timer",
+  "url": "https://fixlytools.com/tools/stopwatch-timer",
+  "description": "An online stopwatch with lap times and a countdown timer with an alarm.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the stopwatch accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It measures real clock time, not the number of ticks, so it stays correct even when the browser slows down background tabs. The display updates about 30 times a second."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the timer still work if I switch tabs or lock my phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The countdown keeps the correct end time, so it shows the right time when you return. However, some phones pause web pages when the screen is locked, so the alarm sound may be delayed. For important alarms, keep the screen on or use your phone clock app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did I not hear the alarm sound?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Make sure the sound option is ticked and your device volume is up. Browsers only play sound after you have interacted with the page, which pressing Start counts as."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use the Pomodoro technique?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose the 25 min preset, work until the alarm rings, then take a 5 minute break by choosing 5 min. After four rounds, take a longer break."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use laps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While the stopwatch runs, press Lap each time you complete a round. The table shows each lap time and the total so far, for example for running or swimming practice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum time for the timer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can set up to 99 hours, 59 minutes and 59 seconds."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Time Tools</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Stopwatch &amp; Timer</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Stopwatch &amp; Countdown Timer</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">A precise stopwatch with laps, and a countdown timer that rings when time is up.</p>
+      </div>
+
+      <div class="nt-tabs" role="tablist">
+        <button type="button" id="st-tab-sw" class="nt-tab nt-active" role="tab" aria-selected="true">Stopwatch</button>
+        <button type="button" id="st-tab-tm" class="nt-tab" role="tab" aria-selected="false">Countdown Timer</button>
+      </div>
+
+      <div id="st-panel-sw" class="space-y-5">
+        <div id="sw-display" class="nt-big-time" aria-live="off">00:00:00.00</div>
+        <div class="nt-row" style="justify-content:center">
+          <button type="button" id="sw-start" class="nt-btn"><i class="fa-solid fa-play"></i> Start</button>
+          <button type="button" id="sw-lap" class="nt-btn nt-btn-alt" disabled><i class="fa-solid fa-flag"></i> Lap</button>
+          <button type="button" id="sw-reset" class="nt-btn nt-btn-alt" disabled><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+        <div id="sw-laps-wrap" class="nt-hide">
+          <div style="overflow-x:auto">
+            <table class="nt-table">
+              <thead><tr><th>Lap</th><th>Lap time</th><th>Total</th></tr></thead>
+              <tbody id="sw-laps"></tbody>
+            </table>
+          </div>
+          <p class="nt-hint">The fastest lap is green and the slowest is red once you have three laps.</p>
+          <button type="button" id="sw-copy" class="nt-btn nt-btn-alt" style="margin-top:8px"><i class="fa-solid fa-copy"></i> Copy laps</button>
+        </div>
+      </div>
+
+      <div id="st-panel-tm" class="nt-hide space-y-5">
+        <div id="tm-setup" class="space-y-4">
+          <div class="nt-grid-stats">
+            <div><label for="tm-h" class="nt-label">Hours</label><input type="number" id="tm-h" class="nt-field" min="0" max="99" value="0" inputmode="numeric"></div>
+            <div><label for="tm-m" class="nt-label">Minutes</label><input type="number" id="tm-m" class="nt-field" min="0" max="59" value="5" inputmode="numeric"></div>
+            <div><label for="tm-s" class="nt-label">Seconds</label><input type="number" id="tm-s" class="nt-field" min="0" max="59" value="0" inputmode="numeric"></div>
+          </div>
+          <div class="nt-row">
+            <button type="button" class="nt-chip" data-minutes="1">1 min</button>
+            <button type="button" class="nt-chip" data-minutes="5">5 min</button>
+            <button type="button" class="nt-chip" data-minutes="10">10 min</button>
+            <button type="button" class="nt-chip" data-minutes="15">15 min</button>
+            <button type="button" class="nt-chip" data-minutes="25">25 min</button>
+            <button type="button" class="nt-chip" data-minutes="30">30 min</button>
+            <button type="button" class="nt-chip" data-minutes="60">1 hour</button>
+          </div>
+        </div>
+        <div id="tm-display" class="nt-big-time" aria-live="off">00:05:00</div>
+        <div style="height:8px;border-radius:999px;background:#e2e8f0;overflow:hidden"><div id="tm-bar" style="height:100%;width:0%;background:#2563eb;transition:width .2s linear"></div></div>
+        <div class="nt-row" style="justify-content:center">
+          <button type="button" id="tm-start" class="nt-btn"><i class="fa-solid fa-play"></i> Start</button>
+          <button type="button" id="tm-reset" class="nt-btn nt-btn-alt" disabled><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+        <label class="nt-check" style="justify-content:center"><input type="checkbox" id="tm-sound" checked> <span>Play a sound when time is up</span></label>
+        <div id="tm-alarm" class="nt-hide nt-note" style="text-align:center;font-size:16px;font-weight:700">
+          Time is up!
+          <div style="margin-top:10px"><button type="button" id="tm-alarm-stop" class="nt-btn nt-btn-red"><i class="fa-solid fa-bell-slash"></i> Stop alarm</button></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Use the Online Stopwatch and Timer</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Use the stopwatch to time something that is already happening, and the countdown timer to be alerted after a set time. Both keep correct time even if you switch to another tab.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Stopwatch: press Start:</strong> The time runs in hours, minutes, seconds and hundredths of a second. Press Pause to stop it and Resume to continue.</li>
+        <li><strong>Record laps:</strong> Press Lap while it is running to save a split time. The table shows each lap and the running total, and marks the fastest and slowest laps.</li>
+        <li><strong>Timer: set the time:</strong> Open the Countdown Timer tab, type hours, minutes and seconds or tap a preset like 5 minutes, then press Start.</li>
+        <li><strong>Wait for the alarm:</strong> When the timer reaches zero it plays a sound and vibrates a phone that supports it. Press Stop alarm to silence it.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Hundredth-of-a-second precision:</strong> The stopwatch is accurate and does not drift when the tab is in the background.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Lap times:</strong> Record unlimited laps with split and total time, and copy them.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Countdown timer with alarm:</strong> Set any time up to 99 hours, with a progress bar and a sound when it ends.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Quick presets:</strong> One tap for 1, 5, 10, 15, 25, 30 and 60 minutes. 25 minutes suits the Pomodoro study method.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Time in the tab title:</strong> The remaining time shows in the browser tab, so you can see it while working elsewhere.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Free and private:</strong> No sign-up and nothing is uploaded.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the stopwatch accurate?</h3>
+          <p>Yes. It measures real clock time, not the number of ticks, so it stays correct even when the browser slows down background tabs. The display updates about 30 times a second.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Will the timer still work if I switch tabs or lock my phone?</h3>
+          <p>The countdown keeps the correct end time, so it shows the right time when you return. However, some phones pause web pages when the screen is locked, so the alarm sound may be delayed. For important alarms, keep the screen on or use your phone clock app.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why did I not hear the alarm sound?</h3>
+          <p>Make sure the sound option is ticked and your device volume is up. Browsers only play sound after you have interacted with the page, which pressing Start counts as.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I use the Pomodoro technique?</h3>
+          <p>Choose the 25 min preset, work until the alarm rings, then take a 5 minute break by choosing 5 min. After four rounds, take a longer break.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I use laps?</h3>
+          <p>While the stopwatch runs, press Lap each time you complete a round. The table shows each lap time and the total so far, for example for running or swimming practice.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the maximum time for the timer?</h3>
+          <p>You can set up to 99 hours, 59 minutes and 59 seconds.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/time-zone-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-earth-asia text-blue-500"></i> Time Zone Converter</a>
+        <a href="/tools/age-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-cake-candles text-blue-500"></i> Age &amp; Date Difference</a>
+        <a href="/tools/percentage-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-percent text-blue-500"></i> Percentage Calculator</a>
+        <a href="/tools/calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-calculator text-blue-500"></i> Calculator</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/stopwatch-timer.js"></script>
+</body>
+</html>

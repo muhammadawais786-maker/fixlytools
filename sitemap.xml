@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://fixlytools.com/tools/age-calculator</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://fixlytools.com/tools/emi-calculator</loc>
@@ -137,8 +137,8 @@
     <lastmod>2026-10-28</lastmod>
   </url>
   <url>
-    <loc>https://fixlytools.com/tools/pdf-to-markdown</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://fixlytools.com/tools/pdf-to-text</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://fixlytools.com/tools/scan-to-pdf</loc>
@@ -187,5 +187,53 @@
   <url>
     <loc>https://fixlytools.com/tools/math-solver</loc>
     <lastmod>2026-10-30</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/text-to-speech</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/speech-to-text</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/case-converter</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/lorem-ipsum-generator</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/color-picker</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/base64-encoder-decoder</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/barcode-generator</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/unit-converter</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/percentage-calculator</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/bmi-calculator</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/time-zone-converter</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://fixlytools.com/tools/stopwatch-timer</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 </urlset>

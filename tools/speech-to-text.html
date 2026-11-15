@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Speech to Text - Voice Typing Online, Free | Fixlytools</title>
+  <meta name="description" content="Free speech to text tool. Speak into your microphone and get text instantly, in English, Urdu, Hindi, Arabic and many more languages. Copy or download the result.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/speech-to-text">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/speech-to-text">
+  <meta property="og:title" content="Speech to Text - Voice Typing Online, Free | Fixlytools">
+  <meta property="og:description" content="Voice typing in your browser. Speak, see the text appear, then copy or download it. Supports many languages including Urdu and Arabic.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Speech to Text - Voice Typing Online, Free | Fixlytools">
+  <meta name="twitter:description" content="Voice typing in your browser. Speak, see the text appear, then copy or download it. Supports many languages including Urdu and Arabic.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Speech to Text",
+  "url": "https://fixlytools.com/tools/speech-to-text",
+  "description": "Convert speech from your microphone into text in your browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which browsers support speech to text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google Chrome and Microsoft Edge on computers and Android work best. Safari supports it on recent versions. Firefox does not support browser speech recognition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my voice recorded or uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fixlytools does not record or receive your voice. However, Chrome and Edge send the audio to their own speech services (Google or Microsoft) to turn it into text, which is how the browser feature works. Avoid using this tool for confidential material."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work in Urdu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Choose Urdu (Pakistan) and speak in Urdu. Accuracy depends on your microphone, your accent and the background noise, so always read the result and correct it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does it say the microphone is blocked?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your browser asked for microphone permission and it was denied. Click the lock icon next to the address bar, allow the microphone for this site, and press Start Listening again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it need an internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In Chrome and Edge the speech is processed online, so you need to be connected for it to work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it transcribe an audio or video file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This tool only listens to a live microphone. It cannot read an uploaded recording."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it add punctuation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not. You may need to add full stops and commas yourself when you edit the text."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Text Tools</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Speech to Text</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Speech to Text</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Speak into your microphone and watch your words appear as text. Works in Chrome, Edge and Safari.</p>
+      </div>
+
+      <div id="stt-unsupported" class="nt-hide nt-note mb-4">Speech recognition is not available in this browser. Please use Google Chrome, Microsoft Edge or Safari on a phone or computer. Firefox does not support it.</div>
+      <div class="space-y-5">
+        <div class="nt-note nt-note-blue"><strong>Privacy note:</strong> to turn your voice into text, Chrome and Edge send the audio to their own speech service (Google in Chrome, Microsoft in Edge). Fixlytools never receives your voice or your text. If that is not acceptable for your content, do not use this tool.</div>
+
+        <div class="nt-grid nt-grid-2">
+          <div>
+            <label for="stt-lang" class="nt-label">Language you will speak</label>
+            <select id="stt-lang" class="nt-field">
+              <option value="en-US">English (United States)</option>
+              <option value="en-GB">English (United Kingdom)</option>
+              <option value="en-IN">English (India)</option>
+              <option value="en-AU">English (Australia)</option>
+              <option value="ur-PK">Urdu (Pakistan)</option>
+              <option value="ur-IN">Urdu (India)</option>
+              <option value="hi-IN">Hindi (India)</option>
+              <option value="pa-IN">Punjabi (India)</option>
+              <option value="bn-BD">Bengali (Bangladesh)</option>
+              <option value="ar-SA">Arabic (Saudi Arabia)</option>
+              <option value="ar-AE">Arabic (UAE)</option>
+              <option value="ar-EG">Arabic (Egypt)</option>
+              <option value="fa-IR">Persian (Iran)</option>
+              <option value="tr-TR">Turkish</option>
+              <option value="fr-FR">French (France)</option>
+              <option value="de-DE">German</option>
+              <option value="es-ES">Spanish (Spain)</option>
+              <option value="es-MX">Spanish (Mexico)</option>
+              <option value="pt-BR">Portuguese (Brazil)</option>
+              <option value="it-IT">Italian</option>
+              <option value="ru-RU">Russian</option>
+              <option value="id-ID">Indonesian</option>
+              <option value="ms-MY">Malay</option>
+              <option value="zh-CN">Chinese (Mandarin)</option>
+              <option value="ja-JP">Japanese</option>
+              <option value="ko-KR">Korean</option>
+            </select>
+          </div>
+          <div class="nt-row" style="align-items:flex-end">
+            <button type="button" id="stt-start" class="nt-btn nt-btn-green"><i class="fa-solid fa-microphone"></i> Start Listening</button>
+            <button type="button" id="stt-stop" class="nt-btn nt-btn-red" disabled><i class="fa-solid fa-stop"></i> Stop</button>
+          </div>
+        </div>
+
+        <p class="nt-hint" aria-live="polite"><span id="stt-dot" class="nt-dot nt-hide"></span><span id="stt-status"></span></p>
+
+        <div>
+          <label for="stt-text" class="nt-label">Your text (you can edit it)</label>
+          <textarea id="stt-text" rows="10" class="nt-field" placeholder="Press Start Listening and begin to speak. Your words appear here."></textarea>
+          <p id="stt-interim" class="nt-hint" aria-live="off" style="min-height:1.2em"></p>
+        </div>
+
+        <div class="nt-row">
+          <button type="button" id="stt-copy" class="nt-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button type="button" id="stt-download" class="nt-btn nt-btn-alt"><i class="fa-solid fa-download"></i> Download .txt</button>
+          <button type="button" id="stt-clear" class="nt-btn nt-btn-alt"><i class="fa-solid fa-eraser"></i> Clear</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Convert Speech to Text Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">This voice typing tool listens through your microphone and writes what you say. It uses the speech recognition built into your browser, so there is no software to install.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose your language:</strong> Pick the language you will speak, for example Urdu (Pakistan) or English (United States).</li>
+        <li><strong>Press Start Listening:</strong> Allow the microphone when your browser asks. The red dot shows that it is listening.</li>
+        <li><strong>Speak clearly:</strong> Talk at a normal pace in a quiet place. Your words appear in the text box as you speak.</li>
+        <li><strong>Press Stop and edit:</strong> Fix any mistakes in the text box, then copy the text or download it as a .txt file.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Many languages:</strong> Includes Urdu, Hindi, Arabic, Persian, Bengali, Turkish and the major European and Asian languages.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Live text as you speak:</strong> See your words appear in real time and correct them straight away.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Keeps listening:</strong> The tool continues after short pauses until you press Stop.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Copy or download:</strong> Copy to the clipboard or save the text as a .txt file.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>No sign-up:</strong> Free, with no account and no time limit.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which browsers support speech to text?</h3>
+          <p>Google Chrome and Microsoft Edge on computers and Android work best. Safari supports it on recent versions. Firefox does not support browser speech recognition.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is my voice recorded or uploaded?</h3>
+          <p>Fixlytools does not record or receive your voice. However, Chrome and Edge send the audio to their own speech services (Google or Microsoft) to turn it into text, which is how the browser feature works. Avoid using this tool for confidential material.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does it work in Urdu?</h3>
+          <p>Yes. Choose Urdu (Pakistan) and speak in Urdu. Accuracy depends on your microphone, your accent and the background noise, so always read the result and correct it.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does it say the microphone is blocked?</h3>
+          <p>Your browser asked for microphone permission and it was denied. Click the lock icon next to the address bar, allow the microphone for this site, and press Start Listening again.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does it need an internet connection?</h3>
+          <p>Yes. In Chrome and Edge the speech is processed online, so you need to be connected for it to work.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can it transcribe an audio or video file?</h3>
+          <p>No. This tool only listens to a live microphone. It cannot read an uploaded recording.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does it add punctuation?</h3>
+          <p>Usually not. You may need to add full stops and commas yourself when you edit the text.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/text-to-speech" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-volume-high text-blue-500"></i> Text to Speech</a>
+        <a href="/tools/word-counter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-font text-blue-500"></i> Word Counter</a>
+        <a href="/tools/case-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-arrow-up-a-z text-blue-500"></i> Case Converter</a>
+        <a href="/tools/text-diff" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-code-compare text-blue-500"></i> Text Diff Checker</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/speech-to-text.js"></script>
+</body>
+</html>

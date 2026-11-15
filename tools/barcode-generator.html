@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Barcode Generator - Code 128, Code 39, EAN-13, UPC-A | Fixlytools</title>
+  <meta name="description" content="Free online barcode generator. Create Code 128, Code 39, EAN-13, EAN-8 and UPC-A barcodes, then download as PNG or SVG. Check digits are added automatically.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/barcode-generator">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/barcode-generator">
+  <meta property="og:title" content="Barcode Generator - Code 128, Code 39, EAN-13, UPC-A | Fixlytools">
+  <meta property="og:description" content="Make printable barcodes in your browser: Code 128, Code 39, EAN-13, EAN-8 and UPC-A. Download as PNG or SVG. Free and private.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Barcode Generator - Code 128, Code 39, EAN-13, UPC-A | Fixlytools">
+  <meta name="twitter:description" content="Make printable barcodes in your browser: Code 128, Code 39, EAN-13, EAN-8 and UPC-A. Download as PNG or SVG. Free and private.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Barcode Generator",
+  "url": "https://fixlytools.com/tools/barcode-generator",
+  "description": "Generate Code 128, Code 39, EAN-13, EAN-8 and UPC-A barcodes and download them as PNG or SVG.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a barcode and a QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A barcode is a row of vertical lines that holds a short code or number and is read in a single direction. A QR code is a two-dimensional square that can hold much more data, such as a web address. Use our QR Code Generator for links and a barcode for product or inventory numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which barcode type should I choose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Code 128 for inventory, shipping and general labels. Use EAN-13 for products sold in most of the world, and UPC-A for the USA and Canada. EAN-8 is for very small packages. Code 39 is an older type used in some industries and libraries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use these barcodes on products I sell in shops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool creates a correct barcode image for any number, but shops expect official numbers that belong to your company. EAN and UPC numbers are issued by GS1, so register with them (or the national GS1 office) before selling retail products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the check digit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The last digit of an EAN or UPC number is calculated from the other digits. Scanners use it to detect misreads. Enter one number less and the tool adds the check digit, or enter the full number and it is verified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can my scanner not read the barcode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Print it large enough with strong contrast (dark bars on a light background), leave blank space at both sides, and do not stretch it. A wider bar setting usually helps with low-quality printers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Code 128 support lowercase letters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Code 128 supports uppercase and lowercase letters, digits and symbols. Code 39 supports capital letters only."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Generators</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Barcode Generator</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Barcode Generator</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Create a barcode from text or numbers and download it as an image. Not the same as a QR code.</p>
+      </div>
+
+      <div class="space-y-5">
+        <div class="nt-grid nt-grid-2">
+          <div>
+            <label for="bc-type" class="nt-label">Barcode type</label>
+            <select id="bc-type" class="nt-field">
+              <option value="code128">Code 128 (letters, digits, symbols)</option>
+              <option value="code39">Code 39 (capitals, digits)</option>
+              <option value="ean13">EAN-13 (retail products)</option>
+              <option value="ean8">EAN-8 (small products)</option>
+              <option value="upca">UPC-A (USA and Canada)</option>
+            </select>
+          </div>
+          <div>
+            <label for="bc-text" class="nt-label">Text or number to encode</label>
+            <input type="text" id="bc-text" class="nt-field nt-mono" spellcheck="false" autocomplete="off">
+          </div>
+        </div>
+        <p id="bc-hint" class="nt-hint"></p>
+        <p id="bc-error" class="nt-hide nt-note"></p>
+
+        <div class="nt-grid nt-grid-4">
+          <div><label for="bc-width" class="nt-label">Bar width</label><input type="range" id="bc-width" class="nt-range" min="1" max="6" step="1" value="3"></div>
+          <div><label for="bc-height" class="nt-label">Height</label><input type="range" id="bc-height" class="nt-range" min="40" max="200" step="10" value="100"></div>
+          <div><label for="bc-fg" class="nt-label">Bar color</label><input type="color" id="bc-fg" value="#000000" style="width:100%;height:42px;border:1px solid #cbd5e1;border-radius:10px;padding:0;background:none"></div>
+          <div><label for="bc-bg" class="nt-label">Background</label><input type="color" id="bc-bg" value="#ffffff" style="width:100%;height:42px;border:1px solid #cbd5e1;border-radius:10px;padding:0;background:none"></div>
+        </div>
+        <label class="nt-check"><input type="checkbox" id="bc-showtext" checked> <span>Show the text under the barcode</span></label>
+
+        <div id="bc-preview" class="nt-panel" style="text-align:center;overflow-x:auto;min-height:120px;background:#ffffff"></div>
+        <div id="bc-actions" class="nt-row nt-hide">
+          <button type="button" id="bc-png" class="nt-btn"><i class="fa-solid fa-image"></i> Download PNG</button>
+          <button type="button" id="bc-svg" class="nt-btn nt-btn-alt"><i class="fa-solid fa-vector-square"></i> Download SVG</button>
+        </div>
+        <p class="nt-note nt-note-blue">Test every barcode with a scanner before you print it in large numbers. For products sold in shops, official EAN and UPC numbers are issued by GS1.</p>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Create a Barcode Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">A barcode is the pattern of black lines you see on products, parcels and library books. Unlike a QR code, which is a square of dots, a barcode is read in one direction and holds a short number or code. This generator makes five common types.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose the barcode type:</strong> Use Code 128 for general codes with letters and numbers, Code 39 for simple capital-letter codes, and EAN-13, EAN-8 or UPC-A for retail product numbers.</li>
+        <li><strong>Enter your text or number:</strong> For EAN and UPC, type the digits. If you leave out the last check digit, the tool adds it for you and tells you if one you typed is wrong.</li>
+        <li><strong>Adjust the look:</strong> Change the bar width, height and colors, and choose whether to show the text underneath.</li>
+        <li><strong>Download:</strong> Save the barcode as a PNG image or as an SVG that stays sharp at any size.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Five barcode types:</strong> Code 128, Code 39, EAN-13, EAN-8 and UPC-A.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Automatic check digits:</strong> The check digit for EAN and UPC codes is calculated and verified for you.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>PNG and SVG download:</strong> Use PNG for documents and SVG for printing at any size.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Custom size and colors:</strong> Control bar width, height, bar color and background.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> The barcode is created in your browser. Your text is never uploaded.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between a barcode and a QR code?</h3>
+          <p>A barcode is a row of vertical lines that holds a short code or number and is read in a single direction. A QR code is a two-dimensional square that can hold much more data, such as a web address. Use our QR Code Generator for links and a barcode for product or inventory numbers.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which barcode type should I choose?</h3>
+          <p>Use Code 128 for inventory, shipping and general labels. Use EAN-13 for products sold in most of the world, and UPC-A for the USA and Canada. EAN-8 is for very small packages. Code 39 is an older type used in some industries and libraries.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I use these barcodes on products I sell in shops?</h3>
+          <p>The tool creates a correct barcode image for any number, but shops expect official numbers that belong to your company. EAN and UPC numbers are issued by GS1, so register with them (or the national GS1 office) before selling retail products.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the check digit?</h3>
+          <p>The last digit of an EAN or UPC number is calculated from the other digits. Scanners use it to detect misreads. Enter one number less and the tool adds the check digit, or enter the full number and it is verified.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why can my scanner not read the barcode?</h3>
+          <p>Print it large enough with strong contrast (dark bars on a light background), leave blank space at both sides, and do not stretch it. A wider bar setting usually helps with low-quality printers.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does Code 128 support lowercase letters?</h3>
+          <p>Yes. Code 128 supports uppercase and lowercase letters, digits and symbols. Code 39 supports capital letters only.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/qr-code-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-qrcode text-blue-500"></i> QR Code Generator</a>
+        <a href="/tools/invoice-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-file-invoice text-blue-500"></i> Invoice Generator</a>
+        <a href="/tools/base64-encoder-decoder" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-code text-blue-500"></i> Base64 Encoder</a>
+        <a href="/tools/password-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-key text-blue-500"></i> Password Generator</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/barcode-generator.js"></script>
+</body>
+</html>

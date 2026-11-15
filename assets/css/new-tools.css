@@ -1,0 +1,109 @@
+/* Fixlytools - shared styles for the newer tools (nt- prefix). Works in light and dark mode. */
+.nt-tabs { display: flex; gap: 6px; padding: 5px; border-radius: 14px; background: #f1f5f9; margin-bottom: 20px; }
+.dark .nt-tabs { background: #0f172a; }
+.nt-tab { flex: 1 1 0; min-width: 0; padding: 10px 12px; border: 0; border-radius: 10px; background: transparent; color: #475569; font-size: 14px; font-weight: 700; cursor: pointer; }
+.dark .nt-tab { color: #cbd5e1; }
+.nt-tab.nt-active { background: #ffffff; color: #1d4ed8; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15); }
+.dark .nt-tab.nt-active { background: #1e293b; color: #93c5fd; }
+
+.nt-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+@media (min-width: 640px) {
+  .nt-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nt-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nt-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.nt-grid-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 640px) { .nt-grid-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.nt-grid-stats4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 640px) { .nt-grid-stats4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.nt-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 6px; color: #334155; }
+.dark .nt-label { color: #cbd5e1; }
+.nt-field { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 12px; background: #ffffff; color: #0f172a; font-size: 14px; font-weight: 600; }
+.dark .nt-field { background: #334155; border-color: #475569; color: #f1f5f9; }
+.nt-field:focus { outline: 2px solid #3b82f6; outline-offset: 1px; }
+textarea.nt-field { font-weight: 500; line-height: 1.6; resize: vertical; }
+.nt-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.nt-hint { font-size: 12px; color: #64748b; margin-top: 6px; }
+.dark .nt-hint { color: #94a3b8; }
+
+.nt-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border: 0; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; background: #2563eb; color: #ffffff; }
+.nt-btn:hover { background: #1d4ed8; }
+.nt-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.nt-btn-alt { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+.nt-btn-alt:hover { background: #e2e8f0; }
+.dark .nt-btn-alt { background: #334155; color: #e2e8f0; border-color: #475569; }
+.dark .nt-btn-alt:hover { background: #475569; }
+.nt-btn-wide { width: 100%; }
+.nt-btn-yellow { background: #eab308; color: #0f172a; }
+.nt-btn-yellow:hover { background: #ca8a04; }
+.nt-btn-green { background: #059669; }
+.nt-btn-green:hover { background: #047857; }
+.nt-btn-red { background: #dc2626; }
+.nt-btn-red:hover { background: #b91c1c; }
+.nt-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+.nt-card { padding: 14px; border-radius: 14px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; }
+.dark .nt-card { background: rgba(15, 23, 42, 0.6); border-color: #334155; }
+.nt-card-label { display: block; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+.nt-card-value { display: block; margin-top: 4px; font-size: 18px; font-weight: 800; color: #0f172a; word-break: break-word; }
+.dark .nt-card-value { color: #f1f5f9; }
+.nt-hero { padding: 22px 16px; border-radius: 18px; text-align: center; background: linear-gradient(90deg, #fefce8, #fffbeb, #fff7ed); border: 1px solid #fde68a; }
+.dark .nt-hero { background: #0f172a; border-color: #334155; }
+.nt-hero-blue { background: linear-gradient(90deg, #eff6ff, #eef2ff); border-color: #bfdbfe; }
+.dark .nt-hero-blue { background: #0f172a; border-color: #334155; }
+.nt-hero-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #b45309; }
+.dark .nt-hero-label { color: #fbbf24; }
+.nt-hero-blue .nt-hero-label { color: #1d4ed8; }
+.dark .nt-hero-blue .nt-hero-label { color: #93c5fd; }
+.nt-hero-big { font-size: 34px; font-weight: 900; color: #d97706; line-height: 1.15; margin-top: 6px; word-break: break-word; }
+.dark .nt-hero-big { color: #fbbf24; }
+.nt-hero-blue .nt-hero-big { color: #1d4ed8; }
+.dark .nt-hero-blue .nt-hero-big { color: #93c5fd; }
+@media (min-width: 640px) { .nt-hero-big { font-size: 46px; } }
+.nt-hero-sub { font-size: 13px; color: #475569; margin-top: 8px; }
+.dark .nt-hero-sub { color: #cbd5e1; }
+.nt-hide { display: none !important; }
+.nt-note { padding: 12px 14px; border-radius: 12px; background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 13px; line-height: 1.5; }
+.dark .nt-note { background: rgba(120, 53, 15, 0.25); border-color: #92400e; color: #fde68a; }
+.nt-note-blue { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+.dark .nt-note-blue { background: rgba(30, 64, 175, 0.2); border-color: #1e40af; color: #bfdbfe; }
+.nt-out { width: 100%; min-height: 120px; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 12px; background: #f8fafc; color: #0f172a; font-size: 14px; line-height: 1.6; }
+.dark .nt-out { background: #0f172a; border-color: #475569; color: #f1f5f9; }
+.nt-check { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #334155; cursor: pointer; }
+.dark .nt-check { color: #e2e8f0; }
+.nt-range { width: 100%; }
+.nt-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.nt-table th, .nt-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+.dark .nt-table th, .dark .nt-table td { border-color: #334155; }
+.nt-table th { font-size: 12px; text-transform: uppercase; color: #64748b; }
+.nt-chip { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; border: 1px solid #cbd5e1; background: #f8fafc; color: #334155; font-size: 13px; font-weight: 600; cursor: pointer; }
+.nt-chip:hover { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+.dark .nt-chip { background: #1e293b; border-color: #475569; color: #e2e8f0; }
+.dark .nt-chip:hover { background: #1e3a8a; color: #dbeafe; }
+.nt-swatch { width: 100%; height: 120px; border-radius: 16px; border: 1px solid #cbd5e1; }
+.nt-big-time { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 44px; font-weight: 800; letter-spacing: 0.02em; text-align: center; color: #0f172a; }
+.dark .nt-big-time { color: #f1f5f9; }
+@media (min-width: 640px) { .nt-big-time { font-size: 72px; } }
+.nt-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.nt-panel { padding: 16px; border-radius: 16px; border: 1px solid #e2e8f0; background: #f8fafc; }
+.dark .nt-panel { background: rgba(15, 23, 42, 0.5); border-color: #334155; }
+.nt-panel-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+.dark .nt-panel-title { color: #f1f5f9; }
+.nt-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.nt-inline .nt-field { width: 120px; flex: 0 1 140px; }
+.nt-answer { margin-top: 10px; font-size: 22px; font-weight: 800; color: #1d4ed8; word-break: break-word; }
+.dark .nt-answer { color: #93c5fd; }
+.nt-scale { position: relative; height: 14px; border-radius: 999px; background: linear-gradient(90deg, #60a5fa 0%, #34d399 22%, #34d399 43%, #fbbf24 50%, #f87171 70%, #b91c1c 100%); margin: 28px 6px 10px; }
+.nt-pointer { position: absolute; top: -9px; width: 6px; height: 32px; margin-left: -3px; border-radius: 4px; background: #0f172a; box-shadow: 0 0 0 2px #ffffff; }
+.dark .nt-pointer { background: #f8fafc; box-shadow: 0 0 0 2px #0f172a; }
+.nt-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 15px; font-weight: 800; }
+.nt-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #dc2626; margin-right: 8px; animation: ntpulse 1.1s ease-in-out infinite; }
+@keyframes ntpulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .nt-dot { animation: none; } }
+.nt-btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.nt-btn-group .nt-btn { padding: 9px 14px; font-size: 13px; }
+
+/* spacing helpers missing from the precompiled Tailwind file */
+.mb-5 { margin-bottom: 1.25rem; }

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Unit Converter - Length, Weight, Temperature, Area &amp; More | Fixlytools</title>
+  <meta name="description" content="Free online unit converter for length, weight, temperature, area, volume, speed, time, data, pressure and energy. Includes marla, kanal and tola. Instant results.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/unit-converter">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/unit-converter">
+  <meta property="og:title" content="Unit Converter - Length, Weight, Temperature, Area &amp;amp; More | Fixlytools">
+  <meta property="og:description" content="Convert between hundreds of units instantly: km to miles, kg to lb, Celsius to Fahrenheit, sq ft to marla and more. Free and private.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unit Converter - Length, Weight, Temperature, Area &amp;amp; More | Fixlytools">
+  <meta name="twitter:description" content="Convert between hundreds of units instantly: km to miles, kg to lb, Celsius to Fahrenheit, sq ft to marla and more. Free and private.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Unit Converter",
+  "url": "https://fixlytools.com/tools/unit-converter",
+  "description": "Convert length, weight, temperature, area, volume, speed, time, data, pressure and energy units.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert Celsius to Fahrenheit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the Celsius value by 9/5 and add 32. For example 100 degrees C is 212 degrees F. The tool does this for you in the Temperature category, and also converts to Kelvin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many square feet are in a marla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool uses the common definition of 1 marla = 272.25 square feet (about 25.29 square meters), and 1 kanal = 20 marla. Marla sizes can differ by region and by local land records, so check the definition used in your area before buying or selling property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between KB and KiB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "KB (kilobyte) is 1000 bytes and is used by storage makers. KiB (kibibyte) is 1024 bytes and is used by many operating systems. The tool offers both so you can pick the one you need."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is a tola in grams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One tola is 11.6638038 grams, which is the standard used for gold in Pakistan and India."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are US and UK gallons different?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A US gallon is 3.785 liters and a UK (imperial) gallon is 4.546 liters. Both are available in the Volume category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the converter accurate enough for science or engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses exact conversion factors and shows up to 10 significant digits. For critical work always double check against the standard your project requires."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Calculators</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Unit Converter</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Unit Converter</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Convert length, weight, temperature, area, volume, speed, time, data, pressure and energy in one place.</p>
+      </div>
+
+      <div id="uc-cats" class="nt-row mb-5"></div>
+      <div class="nt-grid nt-grid-3 mb-4" style="align-items:end">
+        <div>
+          <label for="uc-value" class="nt-label">Value</label>
+          <input type="number" id="uc-value" class="nt-field" value="1" step="any" inputmode="decimal">
+        </div>
+        <div>
+          <label for="uc-from" class="nt-label">From</label>
+          <select id="uc-from" class="nt-field"></select>
+        </div>
+        <div>
+          <label for="uc-to" class="nt-label">To</label>
+          <select id="uc-to" class="nt-field"></select>
+        </div>
+      </div>
+      <div class="nt-row mb-5">
+        <button type="button" id="uc-swap" class="nt-btn nt-btn-alt"><i class="fa-solid fa-arrow-right-arrow-left"></i> Swap units</button>
+        <button type="button" id="uc-copy" class="nt-btn nt-btn-alt"><i class="fa-solid fa-copy"></i> Copy result</button>
+      </div>
+      <div class="nt-hero nt-hero-blue">
+        <span class="nt-hero-label">Result</span>
+        <div id="uc-result" class="nt-hero-big" aria-live="polite">-</div>
+        <p id="uc-eq" class="nt-hero-sub"></p>
+      </div>
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">All Conversions</h2>
+      <div style="overflow-x:auto">
+        <table class="nt-table">
+          <thead><tr><th>Unit</th><th>Value</th></tr></thead>
+          <tbody id="uc-table"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Convert Units Online</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Pick a category, type a value and choose the units. The answer updates as you type, and the table below shows the same value in every other unit of that category.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Choose a category:</strong> Select Length, Weight, Temperature, Area, Volume, Speed, Time, Data, Pressure or Energy.</li>
+        <li><strong>Enter a value:</strong> Type the number you want to convert. Decimals and negative numbers (for temperature) work too.</li>
+        <li><strong>Pick the units:</strong> Choose the unit you have in the From box and the unit you need in the To box. Use Swap units to reverse them.</li>
+        <li><strong>Read the result:</strong> The result appears instantly. The All Conversions table shows the value in every unit of the category at once.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>10 categories:</strong> Length, weight, temperature, area, volume, speed, time, digital data, pressure and energy.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Local units included:</strong> Marla and kanal for land area and tola for weight, next to the international units.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Instant results:</strong> The answer changes as you type, with no button to press.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>All units at a glance:</strong> A full table shows your value in every unit of the category.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Accurate factors:</strong> Uses the exact international definitions (for example 1 inch = 25.4 mm and 1 lb = 0.45359237 kg).</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> All calculations happen in your browser.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I convert Celsius to Fahrenheit?</h3>
+          <p>Multiply the Celsius value by 9/5 and add 32. For example 100 degrees C is 212 degrees F. The tool does this for you in the Temperature category, and also converts to Kelvin.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How many square feet are in a marla?</h3>
+          <p>This tool uses the common definition of 1 marla = 272.25 square feet (about 25.29 square meters), and 1 kanal = 20 marla. Marla sizes can differ by region and by local land records, so check the definition used in your area before buying or selling property.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is the difference between KB and KiB?</h3>
+          <p>KB (kilobyte) is 1000 bytes and is used by storage makers. KiB (kibibyte) is 1024 bytes and is used by many operating systems. The tool offers both so you can pick the one you need.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How much is a tola in grams?</h3>
+          <p>One tola is 11.6638038 grams, which is the standard used for gold in Pakistan and India.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Are US and UK gallons different?</h3>
+          <p>Yes. A US gallon is 3.785 liters and a UK (imperial) gallon is 4.546 liters. Both are available in the Volume category.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the converter accurate enough for science or engineering?</h3>
+          <p>It uses exact conversion factors and shows up to 10 significant digits. For critical work always double check against the standard your project requires.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/percentage-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-percent text-blue-500"></i> Percentage Calculator</a>
+        <a href="/tools/scientific-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-square-root-variable text-blue-500"></i> Scientific Calculator</a>
+        <a href="/tools/bmi-calculator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-weight-scale text-blue-500"></i> BMI Calculator</a>
+        <a href="/tools/physics-solver" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-atom text-blue-500"></i> Physics Solver</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/unit-converter.js"></script>
+</body>
+</html>

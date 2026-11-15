@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
+  <title>Base64 Encoder &amp; Decoder - Text and Image to Base64 Online | Fixlytools</title>
+  <meta name="description" content="Free Base64 encoder and decoder. Convert text to Base64 and back, handle Unicode, URL-safe Base64, and turn an image or file into a Base64 data URI. Private, in your browser.">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fixlytools">
+  <link rel="canonical" href="https://fixlytools.com/tools/base64-encoder-decoder">
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fixlytools">
+  <meta property="og:url" content="https://fixlytools.com/tools/base64-encoder-decoder">
+  <meta property="og:title" content="Base64 Encoder &amp;amp; Decoder - Text and Image to Base64 Online | Fixlytools">
+  <meta property="og:description" content="Encode and decode Base64 online. Supports Unicode text, URL-safe Base64 and image to Base64 data URI. Nothing is uploaded.">
+  <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fixlytools - free online tools">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Base64 Encoder &amp;amp; Decoder - Text and Image to Base64 Online | Fixlytools">
+  <meta name="twitter:description" content="Encode and decode Base64 online. Supports Unicode text, URL-safe Base64 and image to Base64 data URI. Nothing is uploaded.">
+  <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/new-tools.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Base64 Encoder and Decoder",
+  "url": "https://fixlytools.com/tools/base64-encoder-decoder",
+  "description": "Encode and decode Base64 text and convert files or images to Base64.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 is a way to write binary data using only 64 safe characters (A to Z, a to z, 0 to 9, + and /). It is used to send images, files and special characters through systems built for plain text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Base64 encryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base64 is only a change of format and anyone can decode it. Never use it to hide passwords or private data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my decoded text garbled or not shown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The data may not be text, for example an image or a PDF, or it may have been encoded in a different character set. Try \"Download decoded file\" to save it as a file."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is URL-safe Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard Base64 uses + and / and ends with = signs, which have special meanings in web addresses. URL-safe Base64 swaps them for - and _ and removes the padding, so it can be used in links and tokens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert an image to Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the File or Image tab, choose the image and copy the result. Keep the data URI prefix ticked to get a string you can paste straight into an img tag or a CSS background."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the Base64 version bigger than the original?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Base64 makes data about one third larger, because it uses four characters to store every three bytes. That is why it is best for small images and icons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a size limit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Text has no fixed limit, but very large inputs depend on your device memory. Files are limited to 5 MB in this tool."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
+  <noscript><div style="padding:12px;text-align:center;background:#fef3c7;color:#92400e;font-family:sans-serif">JavaScript is required to use Fixlytools. Please enable JavaScript in your browser.</div></noscript>
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 font-bold text-xl text-blue-600 dark:text-blue-400">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+        <span>Fixlytools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="hover:text-blue-600">All Tools</a>
+        <a href="/tools/image-compressor" class="hover:text-blue-600">Compressor</a>
+        <a href="/tools/json-formatter" class="hover:text-blue-600">JSON Formatter</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="theme-toggle p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
+    <a href="/" class="hover:underline">Home</a> &gt;
+    <span>Developer Tools</span> &gt;
+    <span class="text-slate-800 dark:text-slate-200 font-semibold">Base64 Encoder / Decoder</span>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+    <div class="ad-slot">
+      <span class="ad-label">Advertisement</span>
+    </div>
+  </div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Base64 Encoder &amp; Decoder</h1>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Convert text to Base64 and back, or turn an image or file into a Base64 string.</p>
+      </div>
+
+      <div class="nt-tabs" role="tablist">
+        <button type="button" id="b64-tab-text" class="nt-tab nt-active" role="tab">Text</button>
+        <button type="button" id="b64-tab-file" class="nt-tab" role="tab">File or Image to Base64</button>
+      </div>
+
+      <div id="b64-panel-text" class="space-y-4">
+        <div>
+          <label for="b64-input" class="nt-label">Input</label>
+          <textarea id="b64-input" rows="6" class="nt-field nt-mono" placeholder="Type text to encode, or paste Base64 to decode..." spellcheck="false"></textarea>
+        </div>
+        <label class="nt-check"><input type="checkbox" id="b64-urlsafe"> <span>URL-safe Base64 when encoding (uses - and _ and no = padding)</span></label>
+        <div class="nt-btn-group">
+          <button type="button" id="b64-encode" class="nt-btn"><i class="fa-solid fa-lock"></i> Encode to Base64</button>
+          <button type="button" id="b64-decode" class="nt-btn nt-btn-green"><i class="fa-solid fa-lock-open"></i> Decode from Base64</button>
+          <button type="button" id="b64-decode-file" class="nt-btn nt-btn-alt"><i class="fa-solid fa-file-arrow-down"></i> Download decoded file</button>
+        </div>
+        <p id="b64-error" class="nt-hide nt-note"></p>
+        <div>
+          <label for="b64-output" class="nt-label">Result</label>
+          <textarea id="b64-output" rows="6" class="nt-field nt-mono" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="nt-row">
+          <button type="button" id="b64-copy" class="nt-btn nt-btn-green"><i class="fa-solid fa-copy"></i> Copy result</button>
+          <button type="button" id="b64-swap" class="nt-btn nt-btn-alt"><i class="fa-solid fa-arrow-right-arrow-left"></i> Use result as input</button>
+          <button type="button" id="b64-clear" class="nt-btn nt-btn-alt"><i class="fa-solid fa-eraser"></i> Clear</button>
+        </div>
+      </div>
+
+      <div id="b64-panel-file" class="nt-hide space-y-4">
+        <div>
+          <label for="b64-file" class="nt-label">Choose a file (image, PDF, text... up to 5 MB)</label>
+          <input type="file" id="b64-file" class="nt-field">
+        </div>
+        <p id="b64-file-error" class="nt-hide nt-note"></p>
+        <div id="b64-file-result" class="nt-hide space-y-4">
+          <p id="b64-file-name" class="nt-hint"></p>
+          <img id="b64-file-preview" class="nt-hide" alt="Preview of the chosen image" style="max-width:100%;max-height:220px;border-radius:12px;border:1px solid #cbd5e1">
+          <label class="nt-check"><input type="checkbox" id="b64-file-uri" checked> <span>Include the data URI prefix (data:image/png;base64,...)</span></label>
+          <textarea id="b64-file-out" rows="8" class="nt-field nt-mono" readonly spellcheck="false" aria-label="Base64 output"></textarea>
+          <div class="nt-row">
+            <button type="button" id="b64-file-copy" class="nt-btn nt-btn-green"><i class="fa-solid fa-copy"></i> Copy</button>
+            <button type="button" id="b64-file-download" class="nt-btn nt-btn-alt"><i class="fa-solid fa-download"></i> Download .txt</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad-slot my-8">
+      <span class="ad-label">Advertisement</span>
+    </div>
+
+    <!-- SEO Content & FAQ -->
+    <div class="mt-8 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 space-y-8">
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Encode and Decode Base64</h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">Base64 turns any data into plain letters and numbers so it can be sent safely in places that only accept text, such as JSON, URLs, emails and HTML. This tool does it in your browser.</p>
+        <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
+        <li><strong>Paste your input:</strong> Type or paste normal text to encode, or a Base64 string to decode.</li>
+        <li><strong>Press Encode or Decode:</strong> Encode to Base64 turns text into Base64. Decode from Base64 turns it back into readable text. Tick URL-safe if the result goes into a web address.</li>
+        <li><strong>Copy the result:</strong> Copy the result, or press "Use result as input" to run another step on it.</li>
+        <li><strong>Images and files:</strong> Open the File or Image tab, choose a file up to 5 MB and copy its Base64 or data URI for use in HTML, CSS or an API.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Unicode safe:</strong> Works with Urdu, Arabic, emoji and every other language, not only English letters.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>URL-safe option:</strong> Produces the Base64URL variant used in tokens and web addresses.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Image and file to Base64:</strong> Creates the raw Base64 or a full data URI with a live image preview.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Forgiving decoder:</strong> Ignores spaces and line breaks, accepts data URIs, URL-safe characters and missing padding.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Download decoded files:</strong> Decode Base64 back into a file when the data is not text.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private:</strong> Everything runs in your browser. Nothing is uploaded.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is Base64?</h3>
+          <p>Base64 is a way to write binary data using only 64 safe characters (A to Z, a to z, 0 to 9, + and /). It is used to send images, files and special characters through systems built for plain text.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is Base64 encryption?</h3>
+          <p>No. Base64 is only a change of format and anyone can decode it. Never use it to hide passwords or private data.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why is my decoded text garbled or not shown?</h3>
+          <p>The data may not be text, for example an image or a PDF, or it may have been encoded in a different character set. Try "Download decoded file" to save it as a file.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What is URL-safe Base64?</h3>
+          <p>Standard Base64 uses + and / and ends with = signs, which have special meanings in web addresses. URL-safe Base64 swaps them for - and _ and removes the padding, so it can be used in links and tokens.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How do I convert an image to Base64?</h3>
+          <p>Open the File or Image tab, choose the image and copy the result. Keep the data URI prefix ticked to get a string you can paste straight into an img tag or a CSS background.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why is the Base64 version bigger than the original?</h3>
+          <p>Base64 makes data about one third larger, because it uses four characters to store every three bytes. That is why it is best for small images and icons.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is there a size limit?</h3>
+          <p>Text has no fixed limit, but very large inputs depend on your device memory. Files are limited to 5 MB in this tool.</p>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Tools You Might Like</h2>
+        <div class="flex flex-wrap gap-2">
+        <a href="/tools/json-formatter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-code text-blue-500"></i> JSON Formatter</a>
+        <a href="/tools/color-picker" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-palette text-blue-500"></i> Color Picker</a>
+        <a href="/tools/qr-code-generator" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-qrcode text-blue-500"></i> QR Code Generator</a>
+        <a href="/tools/image-converter" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-700 transition"><i class="fa-solid fa-image text-blue-500"></i> Image Converter</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>Fixlytools &copy; 2026. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/nt-common.js"></script>
+  <script src="/assets/js/tools/base64-encoder-decoder.js"></script>
+</body>
+</html>
