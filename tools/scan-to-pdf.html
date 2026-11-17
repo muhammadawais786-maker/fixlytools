@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>try{var t=localStorage.getItem("fixlytools_theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}</script>
-  <title>Scan to PDF - Camera Document Scanner | Fixlytools</title>
-  <meta name="description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <title>Scan to PDF - Free Document Scanner with Auto Crop &amp; Enhance | Fixlytools</title>
+  <meta name="description" content="Free document scanner: scan to PDF with your camera or photos. Auto-crop the page, straighten it, whiten the paper and sharpen text. Private, in your browser.">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -19,8 +19,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fixlytools">
   <meta property="og:url" content="https://fixlytools.com/tools/scan-to-pdf">
-  <meta property="og:title" content="Scan to PDF - Camera Document Scanner | Fixlytools">
-  <meta property="og:description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <meta property="og:title" content="Scan to PDF - Free Document Scanner with Auto Crop &amp; Enhance | Fixlytools">
+  <meta property="og:description" content="Free document scanner: scan to PDF with your camera or photos. Auto-crop the page, straighten it, whiten the paper and sharpen text. Private, in your browser.">
   <meta property="og:image" content="https://fixlytools.com/assets/images/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
@@ -28,8 +28,8 @@
   <meta property="og:image:alt" content="Fixlytools - free online tools">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scan to PDF - Camera Document Scanner | Fixlytools">
-  <meta name="twitter:description" content="Scan documents to PDF with your camera or photos. Reorder, rotate, pick a scanner look and download one PDF. Private, in your browser.">
+  <meta name="twitter:title" content="Scan to PDF - Free Document Scanner with Auto Crop &amp; Enhance | Fixlytools">
+  <meta name="twitter:description" content="Free document scanner: scan to PDF with your camera or photos. Auto-crop the page, straighten it, whiten the paper and sharpen text. Private, in your browser.">
   <meta name="twitter:image" content="https://fixlytools.com/assets/images/og-image.png">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/tailwind.css">
@@ -80,7 +80,15 @@
       "name": "What do the scanner looks do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Original keeps the picture as it is. Clean colour brightens the paper. Grayscale removes colour. High-contrast black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks."
+        "text": "Enhance makes the paper white and the text dark while keeping colours. No shadow evens out the light and removes shadows. Lighten brightens the picture. Black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks. Eco uses light grey text to save ink. Original leaves the picture unchanged."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the automatic crop work and what if it gets the page wrong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool looks for the largest light page against its background, cuts it out and straightens it. It works best on a pale page on a darker surface. If the edges are wrong, press the magic-wand button on the page, choose Crop and drag the four corners onto the page corners."
       }
     },
     {
@@ -150,7 +158,7 @@
     <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="text-center mb-8">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Scan to PDF Online</h1>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Scan paper documents with your camera or from photos, tidy them up with a scanner look and save everything as one PDF.</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2">Scan paper documents with your camera or from photos. The page is cropped and straightened automatically, the paper turns white and the text gets sharper. Save everything as one PDF.</p>
       </div>
 
       <div class="scn-actions">
@@ -188,16 +196,31 @@
 
         <div class="scn-options">
           <div>
-            <label for="opt-filter" class="scn-label">Scanner look</label>
-            <select id="opt-filter" class="scn-select">
-              <option value="original">Original colours</option>
-              <option value="clean">Clean colour (brighter paper)</option>
-              <option value="gray">Grayscale</option>
-              <option value="bw">High-contrast black &amp; white</option>
+            <label for="opt-format" class="scn-label">Save as</label>
+            <select id="opt-format" class="scn-select">
+              <option value="pdf">PDF document</option>
+              <option value="jpg">Image (JPG) - for photos, degrees, forms</option>
+              <option value="png">Image (PNG) - sharpest text</option>
             </select>
           </div>
           <div>
-            <label for="opt-size" class="scn-label">Page size</label>
+            <label for="opt-filter" class="scn-label">Scanner look</label>
+            <select id="opt-filter" class="scn-select">
+              <option value="enhance">Enhance (white paper, dark text)</option>
+              <option value="original">Original</option>
+              <option value="lighten">Lighten</option>
+              <option value="noshadow">No shadow</option>
+              <option value="bw">Black &amp; white</option>
+              <option value="eco">Eco (light ink)</option>
+              <option value="gray">Grayscale</option>
+              <option value="invert">Invert</option>
+            </select>
+          </div>
+          <div class="scn-check-row">
+            <label class="scn-check"><input type="checkbox" id="opt-autocrop" checked> <span><strong>Auto-crop</strong> the page and straighten it when I add a photo</span></label>
+          </div>
+          <div>
+            <label for="opt-size" class="scn-label scn-pdf-only">Page size</label>
             <select id="opt-size" class="scn-select">
               <option value="a4">A4</option>
               <option value="letter">US Letter</option>
@@ -205,7 +228,7 @@
             </select>
           </div>
           <div>
-            <label for="opt-margin" class="scn-label">Margin (A4 and Letter)</label>
+            <label for="opt-margin" class="scn-label scn-pdf-only">Margin (A4 and Letter)</label>
             <select id="opt-margin" class="scn-select">
               <option value="0">None</option>
               <option value="14">Small</option>
@@ -238,8 +261,8 @@
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">A phone camera is a decent scanner when the light is good. Take a picture of each page, clean it up and put all pages into one PDF in the right order.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
         <li><strong>Add your pages:</strong> Press &quot;Take photo&quot; or &quot;Open live camera&quot; to photograph a page, or choose images you already have. Repeat for every page.</li>
-        <li><strong>Arrange the pages:</strong> Use the arrow buttons to change the order, the rotate button to straighten a page and the bin button to remove one.</li>
-        <li><strong>Choose a scanner look:</strong> Pick original colours, clean colour, grayscale or black and white. The page previews change straight away.</li>
+        <li><strong>Check the crop:</strong> The tool finds the edges of the page and straightens it automatically. If it missed, press the magic-wand button on a page, choose Crop and drag the four corners onto the page. The arrows change the order, the rotate button turns a page and the bin removes it.</li>
+        <li><strong>Choose a scanner look:</strong> Open a page with the magic-wand button and pick Enhance, Lighten, No shadow, Black &amp; white, Eco, Grayscale or Invert, then fine-tune brightness and contrast. Enhance gives white paper and dark text like a real scanner.</li>
         <li><strong>Set page size and create the PDF:</strong> Choose A4, US Letter or fit to image, then press &quot;Create PDF&quot; to download your file.</li>
         </ol>
       </div>
@@ -248,8 +271,8 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Key Features</h2>
         <ul class="space-y-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
           <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Camera or photos:</strong> Use the live camera, your phone camera app or pictures from your gallery or computer.</span></li>
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Scanner looks:</strong> Original, clean colour, grayscale and high-contrast black and white, previewed on every page.</span></li>
-          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page control:</strong> Reorder, rotate and delete pages before you save.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Scanner looks:</strong> Enhance, Lighten, No shadow, Black and white, Eco, Grayscale and Invert, with brightness and contrast sliders.</span></li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Auto crop and straighten:</strong> Finds the page edges, removes the background and corrects a tilted photo. Drag four corners if you want to adjust it.</span></li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Page sizes:</strong> A4, US Letter or a page that matches the picture, with optional margins. A4 and Letter pages switch to landscape for wide pictures.</span></li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-blue-500 mt-0.5 shrink-0"></i><span><strong>Private by design:</strong> Pictures and the finished PDF never leave your device.</span></li>
         </ul>
@@ -268,7 +291,11 @@
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">What do the scanner looks do?</h3>
-          <p>Original keeps the picture as it is. Clean colour brightens the paper. Grayscale removes colour. High-contrast black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks.</p>
+          <p>Enhance makes the paper white and the text dark while keeping colours. No shadow evens out the light and removes shadows. Lighten brightens the picture. Black and white turns every pixel black or white, which gives small files but loses photos, stamps and light pencil marks. Eco uses light grey text to save ink. Original leaves the picture unchanged.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How does the automatic crop work and what if it gets the page wrong?</h3>
+          <p>The tool looks for the largest light page against its background, cuts it out and straightens it. It works best on a pale page on a darker surface. If the edges are wrong, press the magic-wand button on the page, choose Crop and drag the four corners onto the page corners.</p>
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the camera not open?</h3>
@@ -299,6 +326,40 @@
     </div>
   </main>
 
+
+  <div id="editor" class="scn-modal hidden" role="dialog" aria-modal="true" aria-labelledby="ed-title">
+    <div class="scn-modal-box">
+      <div class="scn-modal-head">
+        <h2 id="ed-title" class="scn-modal-title">Edit page</h2>
+        <button type="button" id="ed-done" class="scn-btn scn-btn-main"><i class="fa-solid fa-check"></i> Done</button>
+      </div>
+      <div id="ed-stage" class="scn-stage">
+        <canvas id="ed-canvas" class="scn-ed-canvas"></canvas>
+        <canvas id="ed-overlay" class="scn-ed-overlay"></canvas>
+      </div>
+      <div class="scn-ed-bar">
+        <button type="button" id="ed-crop" class="scn-btn"><i class="fa-solid fa-crop-simple"></i> Crop</button>
+        <button type="button" id="ed-rotate" class="scn-btn"><i class="fa-solid fa-rotate-right"></i> Rotate</button>
+      </div>
+      <div id="ed-crop-tools" class="scn-ed-bar hidden">
+        <button type="button" id="ed-auto" class="scn-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Auto detect</button>
+        <button type="button" id="ed-full" class="scn-btn"><i class="fa-solid fa-expand"></i> Whole picture</button>
+        <p class="scn-note">Drag the four round corners onto the corners of the page, then press Apply crop.</p>
+      </div>
+      <div id="ed-looks">
+        <div id="ed-filters" class="scn-looks" aria-label="Scanner looks"></div>
+        <div class="scn-sliders">
+          <label class="scn-slider"><span>Brightness</span><input type="range" id="ed-bright" min="-100" max="100" value="0"></label>
+          <label class="scn-slider"><span>Contrast</span><input type="range" id="ed-contrast" min="-100" max="100" value="0"></label>
+        </div>
+        <div class="scn-ed-bar">
+          <button type="button" id="ed-reset" class="scn-btn"><i class="fa-solid fa-rotate-left"></i> Reset sliders</button>
+          <button type="button" id="ed-apply-all" class="scn-btn"><i class="fa-solid fa-clone"></i> Use this look for all pages</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
@@ -311,6 +372,7 @@
   </footer>
 
   <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/tools/scan-engine.js"></script>
   <script src="/assets/js/tools/scan-to-pdf.js"></script>
 </body>
 </html>
