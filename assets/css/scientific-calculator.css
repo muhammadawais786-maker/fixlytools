@@ -208,3 +208,4 @@ main.sc-main { padding-left: 6px; padding-right: 6px; }
 @media (max-width: 640px) and (max-height: 700px) { body.sc-page .sc-screen { flex-basis: 110px; } body.sc-page .sc-result { font-size: 26px; } }
 .sc-brand { flex: none; text-align: center; margin-top: 8px; color: #aab0bb; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; user-select: none; }
 @media (max-width: 640px) { body.sc-page .sc-brand { margin-top: 6px; font-size: 13px; } }
+body .sc-key.k-del { font-size: 30px; line-height: 1; }

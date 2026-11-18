@@ -45,7 +45,7 @@
     ['RCL', '@rcl', 'STO', '→', 'CLRv', '@clrv', 'k-fn'], ['ENG', '@eng', 'i', 'i', 'Cot', 'cot(', 'k-fn'], ['(', '(', '%', '%', 'Cot⁻¹', 'acot(', 'k-fn'], [')', ')', ',', ',', 'x', 'X', 'k-fn'], ['S⇔D', '@sd', '►DMS', '@dms', 'y', 'Y', 'k-fn'], ['M+', '@mplus', 'M−', '@mminus', 'm', 'M', 'k-fn']
   ];
   var NUM = [
-    ['7', '7', 'CONST', '@const', '', '', 'k-num'], ['8', '8', 'CONV', '@conv', 'SI', '@si', 'k-num'], ['9', '9', 'Limit', 'lim(', '∞', '∞', 'k-num'], ['DEL', '@del', '', '', '', '', 'k-clr'], ['AC', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr'],
+    ['7', '7', 'CONST', '@const', '', '', 'k-num'], ['8', '8', 'CONV', '@conv', 'SI', '@si', 'k-num'], ['9', '9', 'Limit', 'lim(', '∞', '∞', 'k-num'], ['⌫', '@del', '', '', '', '', 'k-clr k-del'], ['AC', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr'],
     ['4', '4', 'MATRIX', '@tab_matrix', 'EQN', '@tab_eqn', 'k-num'], ['5', '5', 'VECTOR', '@tab_vector', 'BASE', '@tab_base', 'k-num'], ['6', '6', 'FUNC', '@tab_table', 'HELP', '@help', 'k-num'], ['×', '*', 'nPr', ' nPr ', 'GCD', 'gcd(', 'k-op'], ['÷', '/', 'nCr', ' nCr ', 'LCM', 'lcm(', 'k-op'],
     ['1', '1', 'STAT', '@tab_stat', '', '', 'k-num'], ['2', '2', 'CMPLX', '@cmplx', '', '', 'k-num'], ['3', '3', 'DISTR', '@tab_distr', '', '', 'k-num'], ['+', '+', 'Pol', 'Pol(', 'Ceil', 'ceil(', 'k-op'], ['−', '-', 'Rec', 'Rec(', 'Floor', 'floor(', 'k-op'],
     ['0', '0', 'COPY', '@copy', 'PASTE', '@paste', 'k-num'], ['.', '.', 'Ran#', 'ran#', 'RanInt', 'ranint#(', 'k-num'], ['×10ˣ', 'E', 'π', 'pi', 'e', 'e', 'k-num'], ['Ans', 'Ans', 'PreAns', 'PreAns', '', '', 'k-num'], ['=', '@eq', 'History', '@hist', '', '', 'k-eq']
@@ -56,7 +56,7 @@
     ['r', 'R', 's', 'S', 't', 'T', 'k-fn'], ['u', 'U', 'v', 'V', 'w', 'W', 'k-fn'], ['x', 'X', 'y', 'Y', 'z', 'Z', 'k-fn'], ['{', '{', '(', '(', '', '', 'k-fn'], ['}', '}', ')', ')', '', '', 'k-fn'], [',', ',', '', '', '', '', 'k-fn'],
     ['=', '=', '≠', '≠', 'and', ' and ', 'k-fn'], ['<', '<', '≤', '≤', 'or', ' or ', 'k-fn'], ['>', '>', '≥', '≥', 'xor', ' xor ', 'k-fn'], ['True', 'true', 'False', 'false', '¬', '¬', 'k-fn k-sm'], ['→', '→', '', '', '', '', 'k-fn'], [':=', ':=', '', '', '', '', 'k-fn'],
     ['[⁞⁞]', '@mx_open', 'v2', '@vc_open2', 'v3', '@vc_open3', 'k-fn k-sm'], ['•', '@vc_dot', 'Cross', '@vc_cross', '', '', 'k-fn'], ['Det', '@mx_det', 'Trn', '@mx_trn', '', '', 'k-fn k-sm'], ['Rank', '@mx_rank', 'Trace', '@mx_trace', '', '', 'k-fn k-sm'], ['[ ]⁻¹', '@mx_inv', 'RREF', '@mx_rref', '', '', 'k-fn k-sm'], ['EiValues', '@mx_eival', 'EiVec', '@mx_eivec', '', '', 'k-fn k-sm'],
-    ['DEL', '@del', '', '', '', '', 'k-clr k-wide'], ['CLR', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr k-wide']
+    ['⌫', '@del', '', '', '', '', 'k-clr k-wide k-del'], ['CLR', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr k-wide']
   ];
   var keyEls = [];
   function buildKeys(list, host) {
@@ -66,7 +66,7 @@
       var lbl = h('div', { cls: 'sc-lbl' }, []);
       lbl.appendChild(h('span', { cls: 'sc-s', text: d[2] || '' }));
       lbl.appendChild(h('span', { cls: 'sc-a', text: d[4] || '' }));
-      var b = h('button', { type: 'button', cls: 'sc-key ' + d[6], 'aria-label': d[0] + (d[2] ? ' (shift ' + d[2] + ')' : '') + (d[4] ? ' (alpha ' + d[4] + ')' : '') }, [h('span', { cls: 'sc-m', text: d[0] })]);
+      var b = h('button', { type: 'button', cls: 'sc-key ' + d[6], 'aria-label': (d[0] === '⌫' ? 'Delete' : d[0]) + (d[2] ? ' (shift ' + d[2] + ')' : '') + (d[4] ? ' (alpha ' + d[4] + ')' : '') }, [h('span', { cls: 'sc-m', text: d[0] })]);
       b.addEventListener('click', function () { press(d); });
       w.appendChild(lbl); w.appendChild(b);
       host.appendChild(w); keyEls.push({ d: d, b: b });
