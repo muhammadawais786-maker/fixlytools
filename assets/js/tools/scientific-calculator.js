@@ -14,9 +14,16 @@
     return e;
   }
   var SUP = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
+  function group(s) {
+    s = String(s);
+    var m = /^(-?)(\d+)(?:\.(\d+))?$/.exec(s);
+    if (!m) return s;
+    var ip = m[2].replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f'), fp = m[3] ? m[3].replace(/(\d{3})(?=\d)/g, '$1\u202f') : '';
+    return m[1] + ip + (m[3] ? '.' + fp : '');
+  }
   function pretty(s) { return String(s).replace(/E(-?\d+)/g, function (m, d) { return '×10' + d.split('').map(function (c) { return SUP[c]; }).join(''); }); }
 
-  var st = { mode: 'deg', fmt: 'norm2', digits: 2, cfmt: 'rect', math: true, mixed: false, cmplx: false };
+  var st = { mode: 'deg', fmt: 'norm2', digits: 2, cfmt: 'rect', math: false, mixed: false, cmplx: false };
   var vars = {}, ans = 0, preans = 0, memory = 0;
   var shift = false, alpha = false, hyp = false, flip = false, forceDms = false, forceEng = false;
   var last = null, hist = [], histPos = -1, calcMode = null;
@@ -154,7 +161,7 @@
       case 'down': histRecall(true); break;
       case 'clrall': vars = {}; memory = 0; ans = 0; preans = 0; hist = []; renderHist(); action('ac'); break;
       case 'cmplx': { var cs = $('su-cmplx'); cs.value = st.cmplx ? 'comp' : 'cmplx'; cs.dispatchEvent(new Event('change')); break; }
-      case 'mode': openTab('comp'); $('sc-tabs').scrollIntoView({ block: 'nearest' }); $('sc-tabs').querySelector('button').focus(); break;
+      case 'mode': toggleModeMenu(); break;
       case 'setup': $('sc-setup').open = true; $('sc-setup').scrollIntoView({ block: 'nearest' }); break;
       case 'del': doDel(); break;
       case 'ac': elExpr.value = ''; hideBox(); flip = false; forceDms = false; forceEng = false; elRes.className = 'sc-result'; elRes.textContent = ' '; last = null; elExpr.focus(); break;
@@ -217,7 +224,7 @@
     if (!last) return;
     if (!last.ok) { if (last.msg) showErr(last.msg); return; }
     last.text = renderValue(last.v);
-    elRes.className = 'sc-result'; elRes.textContent = pretty(last.text);
+    elRes.className = 'sc-result'; elRes.textContent = group(pretty(last.text));
   }
   function preview() {
     flip = false; forceDms = false; forceEng = false;
@@ -225,7 +232,7 @@
     if (!t.trim()) { elRes.className = 'sc-result'; elRes.textContent = ' '; last = null; return; }
     var r = ceRun(t, env());
     last = r;
-    if (r.ok) { r.text = renderValue(r.v); elRes.className = 'sc-result sc-preview'; elRes.textContent = pretty(r.text); }
+    if (r.ok) { r.text = renderValue(r.v); elRes.className = 'sc-result sc-preview'; elRes.textContent = group(pretty(r.text)); }
     else { elRes.className = 'sc-result sc-preview'; elRes.textContent = ' '; }
   }
   function commit() {
@@ -234,7 +241,7 @@
     var r = ceRun(t, env()); last = r; flip = false; forceDms = false; forceEng = false;
     if (!r.ok) { showErr(r.msg); return; }
     r.text = renderValue(r.v);
-    elRes.className = 'sc-result'; elRes.textContent = pretty(r.text);
+    elRes.className = 'sc-result'; elRes.textContent = group(pretty(r.text));
     if (typeof r.v === 'number' || (r.v && r.v.im !== undefined)) { preans = ans; ans = r.v; }
     else if (r.v && r.v.text !== undefined && typeof r.v.num === 'number') { preans = ans; ans = r.v.num; }
     hist.unshift({ e: t, r: r.text }); if (hist.length > 20) hist.pop(); histPos = -1;
@@ -285,7 +292,7 @@
         }
         var r = ceRun(t, e2);
         out.textContent = r.ok ? '= ' + pretty(ceFmtValue(r.v, fmtOpts({}))) : r.msg;
-        if (r.ok) { last = r; r.text = ceFmtValue(r.v, fmtOpts({})); elRes.className = 'sc-result'; elRes.textContent = pretty(r.text); }
+        if (r.ok) { last = r; r.text = ceFmtValue(r.v, fmtOpts({})); elRes.className = 'sc-result'; elRes.textContent = group(pretty(r.text)); }
       });
       box.appendChild(go); box.appendChild(out);
     } else {
@@ -311,6 +318,29 @@
   // ---------- tabs & panes ----------
   var TABS = [['comp', 'COMP / CMPLX'], ['stat', 'STAT'], ['distr', 'DISTR'], ['base', 'BASE-N'], ['eqn', 'EQN'], ['matrix', 'MATRIX'], ['vector', 'VECTOR'], ['table', 'TABLE'], ['const', 'CONST'], ['conv', 'CONV']];
   var panes = {}, tabBtns = {};
+  var modeMenu = null;
+  function toggleModeMenu(force) {
+    if (!modeMenu) {
+      modeMenu = h('div', { cls: 'sc-modemenu', id: 'sc-modemenu', role: 'dialog', 'aria-label': 'Select mode', hidden: 'hidden' }, []);
+      var head = h('div', { cls: 'sc-mm-head' }, [h('span', { text: 'MODE' })]);
+      var x = h('button', { type: 'button', cls: 'sc-mm-x', 'aria-label': 'Close', text: '✕' });
+      x.addEventListener('click', function () { toggleModeMenu(false); });
+      head.appendChild(x); modeMenu.appendChild(head);
+      var grid = h('div', { cls: 'sc-mm-grid' }, []);
+      TABS.forEach(function (t, i) {
+        var b = h('button', { type: 'button', cls: 'sc-mm-item', text: (i + 1) % 10 + '  ' + t[1].replace(' / CMPLX', '') });
+        b.addEventListener('click', function () { toggleModeMenu(false); if (t[0] === 'comp') { openTab('comp'); } else { openTab(t[0]); window.scrollTo(0, 0); } });
+        grid.appendChild(b);
+      });
+      var su = h('button', { type: 'button', cls: 'sc-mm-item', text: 'SETUP' });
+      su.addEventListener('click', function () { toggleModeMenu(false); action('setup'); });
+      grid.appendChild(su);
+      modeMenu.appendChild(grid);
+      document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !modeMenu.hidden) toggleModeMenu(false); });
+      document.querySelector('.sc-calc').appendChild(modeMenu);
+    }
+    modeMenu.hidden = force === undefined ? !modeMenu.hidden : !force;
+  }
   function openTab(id) {
     Object.keys(panes).forEach(function (k) { panes[k].hidden = k !== id; tabBtns[k].setAttribute('aria-selected', k === id ? 'true' : 'false'); tabBtns[k].tabIndex = k === id ? 0 : -1; });
   }
@@ -325,7 +355,8 @@
     });
     tabHost.appendChild(b); tabBtns[t[0]] = b;
     if (t[0] === 'comp') { panes.comp = $('sc-pane-comp'); }
-    else { var p = h('section', { cls: 'sc-pane', id: 'sc-pane-' + t[0], role: 'tabpanel', 'aria-labelledby': 'sc-tab-' + t[0] }); p.hidden = true; paneHost.appendChild(p); panes[t[0]] = p; }
+    else { var p = h('section', { cls: 'sc-pane', id: 'sc-pane-' + t[0], role: 'tabpanel', 'aria-labelledby': 'sc-tab-' + t[0] }); p.hidden = true;
+      var bk = h('button', { type: 'button', cls: 'sc-back', text: '‹ Calculator' }); bk.addEventListener('click', function () { openTab('comp'); window.scrollTo(0, 0); }); p.appendChild(bk); paneHost.appendChild(p); panes[t[0]] = p; }
   });
 
   function field(label, id, val, extra) {

@@ -161,3 +161,50 @@ main.sc-main { padding-left: 6px; padding-right: 6px; }
 .sc-key.k-2nd { font-style: italic; background: #5b5f6e; }
 .sc-toolbar { flex-wrap: wrap; }
 @media (max-width: 420px) { .sc-pill { font-size: 12px; min-height: 38px; } .sc-key.k-sm { font-size: 10.5px; } }
+
+/* MODE menu (inside the calculator) and back buttons */
+.sc-calc { position: relative; }
+.sc-modemenu { position: absolute; inset: 0; z-index: 30; display: flex; flex-direction: column; gap: 12px; padding: 14px; border-radius: inherit; background: rgba(18, 19, 23, 0.98); overflow: auto; }
+.sc-modemenu[hidden] { display: none; }
+.sc-mm-head { display: flex; justify-content: space-between; align-items: center; color: #fbbf24; font-weight: 800; font-size: 18px; letter-spacing: 0.08em; }
+.sc-mm-x { border: 0; background: #2e3037; color: #fff; width: 40px; height: 40px; border-radius: 12px; font-size: 18px; cursor: pointer; }
+.sc-mm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sc-mm-item { min-height: 54px; border: 0; border-radius: 14px; background: #3a3d46; color: #f4f5f7; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; padding: 0 14px; font-family: inherit; white-space: pre; }
+.sc-mm-item:hover { background: #4a4e5a; }
+.sc-mm-item:focus-visible, .sc-mm-x:focus-visible, .sc-back:focus-visible, .sc-home:focus-visible { outline: 3px solid #fbbf24; outline-offset: 2px; }
+.sc-tabs { display: none !important; }
+.sc-back { display: inline-block; margin: 0 0 12px; padding: 10px 16px; border: 0; border-radius: 12px; background: #17181c; color: #fbbf24; font-weight: 800; font-size: 15px; cursor: pointer; font-family: inherit; }
+.sc-home { margin-right: auto; font-size: 12px; font-weight: 800; color: #14342b; text-decoration: none; padding: 2px 6px; border-radius: 7px; background: rgba(15, 40, 32, 0.12); display: none; }
+
+/* Mobile: the calculator fills the whole phone screen like a real calculator app */
+@media (max-width: 640px) {
+  body.sc-page > header, body.sc-page .sc-ad-top, body.sc-page .sc-crumb { display: none; }
+  body.sc-page main.sc-main { padding: 0; max-width: none; }
+  body.sc-page .sc-card { display: flex; flex-direction: column; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  body.sc-page .sc-wrap { order: 1; display: block; }
+  body.sc-page .sc-intro { order: 2; padding: 20px 16px 4px; }
+  body.sc-page .sc-wrap > .sc-main { display: block; }
+  body.sc-page .sc-calc { max-width: none; width: 100%; height: 100vh; height: 100dvh; min-height: 560px; border-radius: 0; border: 0; margin: 0; padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; box-sizing: border-box; }
+  body.sc-page .sc-screen { flex: 0 0 clamp(130px, 25dvh, 230px); min-height: 0; margin-bottom: 8px; }
+  body.sc-page .sc-expr { min-height: 40px; font-size: 20px; }
+  body.sc-page .sc-result { min-height: 40px; font-size: 32px; }
+  body.sc-page .sc-toolbar { flex: none; margin-bottom: 6px; }
+  body.sc-page .sc-pill { min-height: 34px; font-size: 12px; }
+  body.sc-page .sc-keys-fn, body.sc-page .sc-keys-num, body.sc-page .sc-keys-p2 { flex: 1 1 0; min-height: 0; grid-auto-rows: minmax(0, 1fr); row-gap: 2px; }
+  body.sc-page .sc-keys-fn { margin-bottom: 2px; }
+  body.sc-page .sc-keys-p2 { grid-template-rows: repeat(6, minmax(0, 1fr)); row-gap: 2px; }
+  body.sc-page .sc-keys-p2 .k-wide { font-size: 18px; }
+  body.sc-page .sc-keys-p2 .sc-lbl { min-height: 13px; }
+  body.sc-page .sc-key.k-sm { font-size: 10.5px; letter-spacing: -0.3px; }
+  body.sc-page .sc-kw { min-height: 0; height: 100%; }
+  body.sc-page .sc-key { flex: 1 1 auto; min-height: 30px !important; height: auto; font-size: 15px; }
+  body.sc-page .k-num, body.sc-page .k-op, body.sc-page .k-eq { font-size: 22px; }
+  body.sc-page .sc-lbl { min-height: 0; font-size: 9.5px; }
+  body.sc-page .sc-keys-num .sc-lbl { font-size: 9px; }
+  body.sc-page .sc-dpad { margin-top: 12px; min-height: 0; }
+  body.sc-page .sc-home { display: inline-block; }
+  body.sc-page .sc-pane { padding: 12px; }
+}
+@media (max-width: 640px) and (max-height: 700px) { body.sc-page .sc-screen { flex-basis: 110px; } body.sc-page .sc-result { font-size: 26px; } }
+.sc-brand { flex: none; text-align: center; margin-top: 8px; color: #aab0bb; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; user-select: none; }
+@media (max-width: 640px) { body.sc-page .sc-brand { margin-top: 6px; font-size: 13px; } }

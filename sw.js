@@ -1,6 +1,6 @@
 // Fixlytools service worker: makes the site installable and usable offline.
 // Change CACHE_VERSION whenever you deploy a new version of the site.
-const CACHE_VERSION = 'fixlytools-v17';
+const CACHE_VERSION = 'fixlytools-v19';
 const CDN_HOSTS = ['cdnjs.cloudflare.com'];
 
 const PRECACHE = [
