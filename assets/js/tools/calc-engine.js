@@ -104,25 +104,32 @@ function ceInvTrig(name, x, mode) {
 // ---------- tokenizer ----------
 var CE_NAMES = ['asinh', 'acosh', 'atanh', 'arcsin', 'arccos', 'arctan', 'sinh', 'cosh', 'tanh', 'asin', 'acos', 'atan',
   'sin', 'cos', 'tan', 'log', 'ln', 'exp', 'sqrt', 'cbrt', 'abs', 'intg', 'int', 'rnd', 'root', 'pol', 'rec', 'gcd', 'lcm',
-  'sum', 'prod', 'deriv', 'integ', 'ranint#', 'ran#', 'conj', 'arg', 're', 'im', 'ans', 'preans', 'pi', 'mod', 'ncr', 'npr', 'neg']
+  'sum', 'prod', 'deriv', 'integ', 'ceil', 'floor', 'cot', 'acot', 'lim', 'fact', 'ranint#', 'ran#', 'conj', 'arg', 're', 'im', 'ans', 'preans', 'pi', 'mod', 'ncr', 'npr', 'divr', 'xor', 'and', 'not', 'true', 'false', 'or', 'neg']
   .sort(function (a, b) { return b.length - a.length; });
 var CE_ALIAS = { arcsin: 'asin', arccos: 'acos', arctan: 'atan' };
-var CE_VARS = 'ABCDEFMXY';
+var CE_VARS = 'ABCDEFMXYRSTUVWZ';
 var CE_CONST = { pi: 1, ans: 1, preans: 1 };
-var CE_WORD = { mod: 1, ncr: 1, npr: 1 };
+var CE_WORD = { mod: 1, ncr: 1, npr: 1, divr: 1, xor: 1, and: 1, or: 1, not: 1 };
 
 function ceNormalize(t) {
-  return String(t).replace(/×|·|⋅/g, '*').replace(/÷/g, '/').replace(/[−–—]/g, '-').replace(/π/g, 'pi')
+  return String(t).replace(/÷R/g, ' divr ').replace(/×|·|⋅/g, '*').replace(/÷/g, '/').replace(/[−–—]/g, '-').replace(/π/g, 'pi')
     .replace(/√/g, 'sqrt').replace(/∛/g, 'cbrt').replace(/²/g, '^2').replace(/³/g, '^3').replace(/⁻¹/g, '^-1')
     .replace(/′/g, "'").replace(/″/g, '"').replace(/∫/g, 'integ').replace(/Σ/g, 'sum').replace(/Π/g, 'prod')
-    .replace(/θ/g, 'Y');
+    .replace(/θ/g, 'Y').replace(/∞/g, '1E15').replace(/¬/g, ' not ').replace(/[{]/g, '(').replace(/[}]/g, ')').replace(/>=|⩾/g, '≥').replace(/<=|⩽/g, '≤').replace(/!=|<>/g, '≠');
 }
 function ceTokenize(text) {
   var s = ceNormalize(text), out = [], i = 0, m;
+  m = /^\s*([A-Za-z])\s*:=\s*(.+)$/.exec(s); if (m) s = m[2] + '→' + m[1];
   while (i < s.length) {
     var ch = s.charAt(i);
     if (/\s/.test(ch)) { i++; continue; }
     if (/[0-9.]/.test(ch)) {
+      m = /^(\d*)\.?(\d*)‾(\d{1,12})/.exec(s.slice(i));
+      if (m && m[0].indexOf('.') !== -1 || (m && m[1] !== '')) {
+        var ip = m[1] === '' ? '0' : m[1], np = m[2], rp = m[3], kk = np.length, mm = rp.length;
+        var num = (Number(ip + np)) * (Math.pow(10, mm) - 1) + Number(rp), den = Math.pow(10, kk) * (Math.pow(10, mm) - 1);
+        out.push({ t: 'num', v: num / den }); i += m[0].length; continue;
+      }
       m = /^(?:\d+\.?\d*|\.\d+)(?:E[+-]?\d+)?/.exec(s.slice(i));
       if (!m || s.charAt(i + m[0].length) === '.') throw ceErr('Syntax ERROR');
       var nv = Number(m[0]); if (!isFinite(nv)) throw ceErr('Math ERROR');
@@ -131,6 +138,7 @@ function ceTokenize(text) {
     if (/[A-Za-z]/.test(ch)) {
       var low = s.slice(i).toLowerCase(), found = null, k;
       for (k = 0; k < CE_NAMES.length; k++) if (low.indexOf(CE_NAMES[k]) === 0) { found = CE_NAMES[k]; break; }
+      if (found === 'true' || found === 'false') { out.push({ t: 'num', v: found === 'true' ? 1 : 0, bool: true }); i += found.length; continue; }
       if (found) {
         var nm = CE_ALIAS[found] || found;
         out.push({ t: CE_CONST[nm] ? 'const' : (CE_WORD[nm] ? 'word' : 'func'), v: nm }); i += found.length; continue;
@@ -141,7 +149,7 @@ function ceTokenize(text) {
       if (CE_VARS.indexOf(up) !== -1) { out.push({ t: 'var', v: up }); i++; continue; }
       throw ceErr('Syntax ERROR');
     }
-    if ('+-*/^()!%,=⌟°\'"∠→'.indexOf(ch) !== -1) { out.push({ t: 'op', v: ch }); i++; continue; }
+    if ('+-*/^()!%,=⌟°\'"∠→><≥≤≠'.indexOf(ch) !== -1) { out.push({ t: 'op', v: ch }); i++; continue; }
     throw ceErr('Syntax ERROR');
   }
   return out;
@@ -157,6 +165,30 @@ function ceParse(text) {
   function startsPrimary(t) {
     return t && (t.t === 'num' || t.t === 'const' || t.t === 'var' || (t.t === 'func' && t.v !== 'neg') || isOp(t, '('));
   }
+  function lor() {
+    var l = lxor();
+    while (pk() && pk().t === 'word' && pk().v === 'or') { pos++; l = { t: 'logic', op: 'or', a: l, b: lxor() }; }
+    return l;
+  }
+  function lxor() {
+    var l = land();
+    while (pk() && pk().t === 'word' && pk().v === 'xor') { pos++; l = { t: 'logic', op: 'xor', a: l, b: land() }; }
+    return l;
+  }
+  function land() {
+    var l = lnot();
+    while (pk() && pk().t === 'word' && pk().v === 'and') { pos++; l = { t: 'logic', op: 'and', a: l, b: lnot() }; }
+    return l;
+  }
+  function lnot() {
+    if (pk() && pk().t === 'word' && pk().v === 'not') { pos++; enter(); var r = { t: 'lnot', a: lnot() }; leave(); return r; }
+    return cmp();
+  }
+  function cmp() {
+    var l = add();
+    while (pk() && pk().t === 'op' && '><≥≤≠'.indexOf(pk().v) !== -1) { var co = tk[pos++].v; l = { t: 'bin', op: co, a: l, b: add() }; }
+    return l;
+  }
   function add() {
     var l = mul();
     while (pk() && (isOp(pk(), '+') || isOp(pk(), '-'))) { var op = tk[pos++].v; l = { t: 'bin', op: op, a: l, b: mul() }; }
@@ -167,6 +199,7 @@ function ceParse(text) {
     while (pk()) {
       var t = pk();
       if (isOp(t, '*') || isOp(t, '/')) { pos++; l = { t: 'bin', op: t.v, a: l, b: comb() }; }
+      else if (t.t === 'word' && t.v === 'divr') { pos++; l = { t: 'bin', op: 'divr', a: l, b: comb() }; }
       else if (t.t === 'word' && t.v === 'mod') { pos++; l = { t: 'bin', op: 'mod', a: l, b: comb() }; }
       else break;
     }
@@ -232,7 +265,7 @@ function ceParse(text) {
     if (t.t === 'const') { pos++; return { t: 'const', n: t.v }; }
     if (t.t === 'var') { pos++; return { t: 'var', n: t.v }; }
     if (isOp(t, '(')) {
-      pos++; enter(); var e = add(); leave(); expectClose();
+      pos++; enter(); var e = lor(); leave(); expectClose();
       return e;
     }
     if (t.t === 'func') {
@@ -240,8 +273,8 @@ function ceParse(text) {
       if (isOp(pk(), '(')) {
         pos++; enter(); var args = [];
         if (!isOp(pk(), ')')) {
-          args.push(add());
-          while (isOp(pk(), ',')) { pos++; args.push(add()); }
+          args.push(lor());
+          while (isOp(pk(), ',')) { pos++; args.push(lor()); }
         }
         leave(); expectClose();
         return { t: 'call', n: t.v, a: args };
@@ -252,8 +285,8 @@ function ceParse(text) {
     }
     throw ceErr('Syntax ERROR');
   }
-  var node = add();
-  if (isOp(pk(), '=')) { pos++; node = { t: 'eq', a: node, b: add() }; }
+  var node = lor();
+  if (isOp(pk(), '=')) { pos++; node = { t: 'eq', a: node, b: lor() }; }
   if (isOp(pk(), '→')) {
     pos++; var vt = pk();
     if (!vt || vt.t !== 'var') throw ceErr('Syntax ERROR');
@@ -268,7 +301,9 @@ function ceNewEnv(o) {
   o = o || {};
   return { mode: o.mode || 'deg', cmplx: !!o.cmplx, vars: o.vars || {}, ans: o.ans || 0, preans: o.preans || 0, n: 0 };
 }
-function ceReal(v) { if (cIs(v)) throw ceErr('Math ERROR'); if (v && v.list) throw ceErr('Math ERROR'); return v; }
+function ceBool(b) { return { text: b ? 'True' : 'False', num: b ? 1 : 0, bool: true }; }
+function ceTruth(v) { if (v && v.bool) return v.num !== 0; if (cIs(v) || (v && (v.list || v.text !== undefined))) throw ceErr('Math ERROR'); return v !== 0; }
+function ceReal(v) { if (v && v.bool) return v.num; if (cIs(v)) throw ceErr('Math ERROR'); if (v && v.list) throw ceErr('Math ERROR'); return v; }
 function ceCplxOK(env, v) { if (cIs(v) && !env.cmplx) throw ceErr('Math ERROR'); return v; }
 
 function cePowV(a, b, env) {
@@ -363,6 +398,7 @@ function ceEval(n, env) {
     case 'bin':
       a = ceEval(n.a, env); b = ceEval(n.b, env);
       if (a && a.list || b && b.list) throw ceErr('Math ERROR');
+      if (a && a.bool) a = a.num; if (b && b.bool) b = b.num;
       switch (n.op) {
         case '+': return (cIs(a) || cIs(b)) ? ceCplxOK(env, cAdd(a, b)) : ceChk(a + b);
         case '-': return (cIs(a) || cIs(b)) ? ceCplxOK(env, cSub(a, b)) : ceChk(a - b);
@@ -373,10 +409,18 @@ function ceEval(n, env) {
           return ceChk(a / b);
         case '^': return cePowV(a, b, env);
         case 'mod': ceReal(a); ceReal(b); if (b === 0) throw ceErr('Math ERROR'); { var m = a % b; if (m !== 0 && (m < 0) !== (b < 0)) m += b; return m; }
+        case '>': return ceBool(ceReal(a) > ceReal(b));
+        case '<': return ceBool(ceReal(a) < ceReal(b));
+        case '≥': return ceBool(ceReal(a) >= ceReal(b));
+        case '≤': return ceBool(ceReal(a) <= ceReal(b));
+        case '≠': return ceBool(ceReal(a) !== ceReal(b));
+        case 'divr': { ceReal(a); ceReal(b); if (b === 0 || a !== Math.trunc(a) || b !== Math.trunc(b)) throw ceErr('Math ERROR'); var qq = Math.trunc(a / b), rr2 = a - qq * b; return { text: qq + ' R ' + rr2, num: qq }; }
         case 'ncr': return ceNcr(ceReal(a), ceReal(b));
         case 'npr': return ceNpr(ceReal(a), ceReal(b));
       }
       throw ceErr('Syntax ERROR');
+    case 'logic': { var la = ceTruth(ceEval(n.a, env)), lb = ceTruth(ceEval(n.b, env)); return ceBool(n.op === 'and' ? (la && lb) : n.op === 'or' ? (la || lb) : (la !== lb)); }
+    case 'lnot': return ceBool(!ceTruth(ceEval(n.a, env)));
     case 'sto': {
       var sv = ceEval(n.a, env); env.vars[n.n] = sv; return sv;
     }
@@ -402,6 +446,31 @@ function ceCall(n, env) {
       acc = f === 'sum' ? ((cIs(acc) || cIs(t)) ? cAdd(acc, t) : ceChk(acc + t)) : ((cIs(acc) || cIs(t)) ? cMul(acc, t) : ceChk(acc * t));
     }
     env.vars[vn] = old; return acc;
+  }
+  if (f === 'lim') {
+    if (A.length < 2) throw ceErr('Argument ERROR');
+    var la = ceReal(ceEval(A[1], env)), lold = env.vars.X;
+    var lf = function (v) { env.vars.X = v; var r = ceEval(A[0], env); ceReal(r); return r; };
+    var lres;
+    try {
+      if (Math.abs(la) >= 1e15) {
+        var sgn = la < 0 ? -1 : 1, p1 = lf(sgn * 1e6), p2 = lf(sgn * 1e8), p3 = lf(sgn * 1e10);
+        if (!isFinite(p3)) throw ceErr('Math ERROR');
+        if (Math.abs(p3 - p2) > 1e-6 * Math.max(1, Math.abs(p3)) || Math.abs(p2 - p1) > 1e-3 * Math.max(1, Math.abs(p2)) + 1e-9) throw ceErr('Math ERROR');
+        lres = p3;
+      } else {
+        var hs = [1e-3, 1e-4, 1e-5, 1e-6], rl = [], rr3 = [];
+        hs.forEach(function (hh) { var hx = hh * Math.max(1, Math.abs(la)); try { rl.push(lf(la - hx)); } catch (e1) { } try { rr3.push(lf(la + hx)); } catch (e2) { } });
+        var lastL = rl.length ? rl[rl.length - 1] : NaN, lastR = rr3.length ? rr3[rr3.length - 1] : NaN;
+        var okL = isFinite(lastL), okR = isFinite(lastR);
+        if (!okL && !okR) throw ceErr('Math ERROR');
+        if (okL && okR && Math.abs(lastL - lastR) > 1e-4 * Math.max(1, Math.abs(lastL))) throw ceErr('Math ERROR');
+        lres = okL && okR ? (lastL + lastR) / 2 : (okL ? lastL : lastR);
+        if (rl.length > 1 && Math.abs(rl[rl.length - 1] - rl[rl.length - 2]) > 1e-3 * Math.max(1, Math.abs(lres)) && Math.abs(lres) > 1e6) throw ceErr('Math ERROR');
+      }
+    } finally { env.vars.X = lold; }
+    var lrr = Math.round(lres); if (Math.abs(lres - lrr) < 1e-5 * Math.max(1, Math.abs(lres))) lres = lrr;
+    return ceChk(lres);
   }
   if (f === 'integ' || f === 'deriv') {
     if (f === 'integ') ceArgN(n, 3); else if (A.length < 2) throw ceErr('Argument ERROR');
@@ -473,6 +542,11 @@ function ceCall(n, env) {
       return Math.sqrt(x);
     case 'cbrt': return Math.cbrt(ceReal(x));
     case 'abs': return cx ? cAbs(x) : Math.abs(x);
+    case 'ceil': return Math.ceil(ceReal(x));
+    case 'floor': return Math.floor(ceReal(x));
+    case 'acot': { ceReal(x); var ar = x === 0 ? CE_PI / 2 : Math.atan(1 / x) + (x < 0 ? CE_PI : 0); var ad = ar * 180 / CE_PI, adr = Math.round(ad); if (Math.abs(ad - adr) < 1e-12) ad = adr; return ceFromDeg(ad, env.mode); }
+    case 'fact': { ceReal(x); if (x !== Math.trunc(x) || x < 2 || x > 1e12) throw ceErr('Math ERROR'); var nn = x, fs = [], pf = 2; while (pf * pf <= nn) { var cc = 0; while (nn % pf === 0) { nn /= pf; cc++; } if (cc) fs.push(cc > 1 ? pf + '^' + cc : String(pf)); pf += pf === 2 ? 1 : 2; } if (nn > 1) fs.push(String(nn)); return { text: x + ' = ' + (fs.length === 1 && fs[0] == x ? 'prime' : fs.join('×')), num: x }; }
+    case 'cot': { ceReal(x); var sn = ceTrig('sin', x, env.mode); if (sn === 0) throw ceErr('Math ERROR'); return ceTrig('cos', x, env.mode) / sn; }
     case 'int': return Math.trunc(ceReal(x));
     case 'intg': return Math.floor(ceReal(x));
     case 'rnd': return Number(ceReal(x).toPrecision(10));
@@ -491,6 +565,8 @@ function ceRun(text, env) {
   try {
     if (!String(text).trim()) return { ok: false, msg: '' };
     if (text.length > 400) throw ceErr('Syntax ERROR');
+    var sm = /^\s*(expand|factor|simplify|simply|diff|sint)\s*\((.*)\)\s*$/i.exec(text);
+    if (sm) { var fnm = sm[1].toLowerCase(); if (fnm === 'simply') fnm = 'simplify'; return { ok: true, v: { text: ceSymRun(fnm, sm[2]) } }; }
     var ast = ceParse(text);
     if (ast.t === 'eq') throw ceErr('Syntax ERROR');
     var v = ceEval(ast, env);
@@ -565,6 +641,13 @@ function ceFmtNum(x, st) {
   st = st || {};
   if (x === 0) return '0';
   var fmt = st.fmt || 'norm2', ax = Math.abs(x);
+  if (st.si && isFinite(x) && ax >= 1e-24 && ax < 1e27) {
+    var e3 = Math.floor(Math.log10(ax) / 3) * 3, sm = x / Math.pow(10, e3);
+    if (Math.abs(sm) >= 999.9995) { sm /= 1000; e3 += 3; }
+    var pre = { '-24': 'y', '-21': 'z', '-18': 'a', '-15': 'f', '-12': 'p', '-9': 'n', '-6': 'µ', '-3': 'm', '0': '', '3': 'k', '6': 'M', '9': 'G', '12': 'T', '15': 'P', '18': 'E', '21': 'Z', '24': 'Y' }[String(e3)];
+    var st2 = {}; for (var sk in st) st2[sk] = st[sk]; st2.si = false;
+    return ceFmtNum(Number(sm.toPrecision(10)), st2) + (pre === undefined ? '' : pre);
+  }
   if (fmt === 'sci') return ceSciStr(x, st.digits || 3);
   if (ax >= 1e10) return ceSciStr(x, null);
   if (fmt === 'fix') {
@@ -623,6 +706,7 @@ function ceEng(x) {
 // st: { fmt, digits, cfmt:'rect'|'polar', math:true, mixed:false, mode }
 function ceFmtValue(v, st) {
   st = st || {};
+  if (v && v.text !== undefined) return v.text;
   if (v && v.list) return v.list.map(function (q, i) { return v.labels[i] + '=' + ceFmtValue(q, st); }).join('  ');
   if (cIs(v)) {
     if (st.cfmt === 'polar') {
@@ -633,7 +717,7 @@ function ceFmtValue(v, st) {
     var sgn = v.im < 0 ? '-' : '+';
     return (v.re === 0 ? (v.im < 0 ? '-' : '') + im + 'i' : re + sgn + im + 'i');
   }
-  if (st.math !== false && !st.fmt_override) { var ex = ceExact(v, st); if (ex) return ex; }
+  if (st.math !== false && !st.fmt_override && !st.si) { var ex = ceExact(v, st); if (ex) return ex; }
   return ceFmtNum(v, st);
 }
 
@@ -983,4 +1067,515 @@ if (typeof module !== 'undefined' && module.exports) {
     ceRoots: ceRoots, ceSolveLinear: ceSolveLinear, ceMatMul: ceMatMul, ceMatAdd: ceMatAdd, ceMatScale: ceMatScale, ceMatTrn: ceMatTrn, ceMatDet: ceMatDet, ceMatInv: ceMatInv,
     ceVecDot: ceVecDot, ceVecCross: ceVecCross, ceVecAbs: ceVecAbs, ceVecAngle: ceVecAngle, ceTable: ceTable, CE_CONSTS: CE_CONSTS, CE_UNITS: CE_UNITS, ceConvert: ceConvert, CE_REG: CE_REG
   };
+}
+
+// ---------- symbolic algebra (polynomials over atoms): expand / factor / simplify / diff / sint ----------
+var CES_FUN = { sin: 1, cos: 1, tan: 1, ln: 1, log: 1, exp: 1, sqrt: 1, abs: 1, asin: 1, acos: 1, atan: 1, cbrt: 1 };
+function cesTok(src) {
+  var s = String(src).replace(/\s+/g, '').replace(/×|·/g, '*').replace(/÷/g, '/').replace(/[−–—]/g, '-').replace(/π/g, 'pi').replace(/√/g, 'sqrt').replace(/²/g, '^2').replace(/³/g, '^3').replace(/[{[]/g, '(').replace(/[}\]]/g, ')');
+  var out = [], i = 0, m;
+  while (i < s.length) {
+    var ch = s.charAt(i);
+    if (/[0-9.]/.test(ch)) { m = /^(?:\d+\.?\d*|\.\d+)/.exec(s.slice(i)); if (!m) throw ceErr('Syntax ERROR'); out.push({ t: 'n', v: Number(m[0]) }); i += m[0].length; continue; }
+    if (/[A-Za-z]/.test(ch)) {
+      var w = /^[A-Za-z]+/.exec(s.slice(i))[0], j = 0;
+      while (j < w.length) {
+        var rest = w.slice(j).toLowerCase(), f = null, nm;
+        for (nm in CES_FUN) if (rest.indexOf(nm) === 0 && (!f || nm.length > f.length)) f = nm;
+        if (f) { out.push({ t: 'f', v: f }); j += f.length; }
+        else if (rest.indexOf('pi') === 0) { out.push({ t: 'c', v: 'pi' }); j += 2; }
+        else if (rest.charAt(0) === 'e') { out.push({ t: 'c', v: 'e' }); j++; }
+        else { out.push({ t: 'v', v: rest.charAt(0) }); j++; }
+      }
+      i += w.length; continue;
+    }
+    if ('+-*/^(),'.indexOf(ch) !== -1) { out.push({ t: 'o', v: ch }); i++; continue; }
+    throw ceErr('Syntax ERROR');
+  }
+  return out;
+}
+function cesParse(src) {
+  var tk = cesTok(src), pos = 0, depth = 0;
+  function pk() { return tk[pos]; }
+  function isO(v) { return pk() && pk().t === 'o' && pk().v === v; }
+  function starts(t) { return t && (t.t === 'n' || t.t === 'v' || t.t === 'c' || t.t === 'f' || (t.t === 'o' && t.v === '(')); }
+  function expr() {
+    var terms = [term()];
+    while (isO('+') || isO('-')) { var neg = tk[pos++].v === '-', t = term(); terms.push(neg ? { k: 'mul', a: [{ k: 'n', v: -1 }, t] } : t); }
+    return terms.length === 1 ? terms[0] : { k: 'add', a: terms };
+  }
+  function term() {
+    var fs = [unary()];
+    while (pk()) {
+      if (isO('*')) { pos++; fs.push(unary()); }
+      else if (isO('/')) { pos++; fs.push({ k: 'pow', b: unary(), e: { k: 'n', v: -1 } }); }
+      else if (starts(pk())) fs.push(unary());
+      else break;
+    }
+    return fs.length === 1 ? fs[0] : { k: 'mul', a: fs };
+  }
+  function unary() {
+    if (++depth > 50) throw ceErr('Stack ERROR');
+    var r;
+    if (isO('-')) { pos++; r = { k: 'mul', a: [{ k: 'n', v: -1 }, unary()] }; }
+    else if (isO('+')) { pos++; r = unary(); }
+    else r = pw();
+    depth--; return r;
+  }
+  function pw() {
+    var b = atom();
+    if (isO('^')) { pos++; var e = unary(); return { k: 'pow', b: b, e: e }; }
+    return b;
+  }
+  function atom() {
+    var t = pk(); if (!t) throw ceErr('Syntax ERROR');
+    if (t.t === 'n') { pos++; return { k: 'n', v: t.v }; }
+    if (t.t === 'v') { pos++; return { k: 'v', n: t.v }; }
+    if (t.t === 'c') { pos++; return { k: 'c', n: t.v }; }
+    if (t.t === 'f') { pos++; var a; if (isO('(')) { pos++; a = expr(); if (!isO(')')) throw ceErr('Syntax ERROR'); pos++; } else a = pw(); return { k: 'fn', n: t.v, a: a }; }
+    if (isO('(')) { pos++; var e = expr(); if (!isO(')')) throw ceErr('Syntax ERROR'); pos++; return e; }
+    throw ceErr('Syntax ERROR');
+  }
+  var r = expr(); if (pos < tk.length) throw ceErr('Syntax ERROR'); return r;
+}
+function cesNum(x) { return Number(x.toPrecision(12)); }
+function cesKey(m) { return Object.keys(m).sort().map(function (a) { return a + '^' + m[a]; }).join('*'); }
+function pConst(c) { var p = {}; if (c !== 0) p[''] = { c: c, m: {} }; return p; }
+function pAtom(a, e) { var m = {}; m[a] = e === undefined ? 1 : e; var o = {}; o[cesKey(m)] = { c: 1, m: m }; return o; }
+function pAdd(a, b) {
+  var r = {}, k;
+  for (k in a) r[k] = { c: a[k].c, m: a[k].m };
+  for (k in b) { if (r[k]) { r[k] = { c: cesNum(r[k].c + b[k].c), m: r[k].m }; if (Math.abs(r[k].c) < 1e-12) delete r[k]; } else r[k] = { c: b[k].c, m: b[k].m }; }
+  return r;
+}
+function pMul(a, b) {
+  var r = {}, i, j, x;
+  for (i in a) for (j in b) {
+    var m = {}; for (x in a[i].m) m[x] = a[i].m[x];
+    for (x in b[j].m) { m[x] = (m[x] || 0) + b[j].m[x]; if (m[x] === 0) delete m[x]; }
+    var k = cesKey(m), c = cesNum(a[i].c * b[j].c);
+    if (r[k]) { r[k].c = cesNum(r[k].c + c); if (Math.abs(r[k].c) < 1e-12) delete r[k]; } else if (Math.abs(c) >= 1e-12) r[k] = { c: c, m: m };
+  }
+  if (Object.keys(r).length > 3000) throw ceErr('Time Out');
+  return r;
+}
+function pPow(a, n) { var r = pConst(1), i; for (i = 0; i < n; i++) r = pMul(r, a); return r; }
+function cesConst(nd) {
+  switch (nd.k) {
+    case 'n': return nd.v;
+    case 'add': { var s = 0; for (var i = 0; i < nd.a.length; i++) { var v = cesConst(nd.a[i]); if (v === null) return null; s += v; } return s; }
+    case 'mul': { var p = 1; for (var j = 0; j < nd.a.length; j++) { var w = cesConst(nd.a[j]); if (w === null) return null; p *= w; } return p; }
+    case 'pow': { var b = cesConst(nd.b), e = cesConst(nd.e); if (b === null || e === null) return null; var r = Math.pow(b, e); return isFinite(r) ? r : null; }
+  }
+  return null;
+}
+function cesFrac(x) {
+  if (x === Math.round(x)) return { n: x, d: 1 };
+  var h1 = 1, h0 = 0, k1 = 0, k0 = 1, y = x, i;
+  for (i = 0; i < 20; i++) {
+    var a = Math.floor(y), h2 = a * h1 + h0, k2 = a * k1 + k0;
+    h0 = h1; h1 = h2; k0 = k1; k1 = k2;
+    if (k1 > 2000) return null;
+    if (Math.abs(x - h1 / k1) < 1e-11) return { n: h1, d: k1 };
+    if (y - a === 0) break; y = 1 / (y - a);
+  }
+  return null;
+}
+function cesCoef(x) { var f = cesFrac(x); return f && f.d === 1 ? String(f.n) : ceFmtNum(x, { fmt: 'norm2', digits: 2 }); }
+function cesToPoly(nd, reg) {
+  var i;
+  switch (nd.k) {
+    case 'n': return pConst(nd.v);
+    case 'v': return pAtom(nd.n);
+    case 'c': return pAtom(nd.n === 'pi' ? 'π' : 'e');
+    case 'add': { var s = {}; for (i = 0; i < nd.a.length; i++) s = pAdd(s, cesToPoly(nd.a[i], reg)); return s; }
+    case 'mul': { var p = pConst(1); for (i = 0; i < nd.a.length; i++) p = pMul(p, cesToPoly(nd.a[i], reg)); return p; }
+    case 'pow': {
+      if (nd.b.k === 'c' && nd.b.n === 'e') return cesToPoly({ k: 'fn', n: 'exp', a: nd.e }, reg);
+      var b = cesToPoly(nd.b, reg), ev = cesConst(nd.e);
+      if (ev !== null && ev === Math.trunc(ev) && Math.abs(ev) < 60) {
+        if (ev >= 0) return pPow(b, ev);
+        var ks = Object.keys(b);
+        if (ks.length === 0) throw ceErr('Math ERROR');
+        if (ks.length === 1) { var t = b[ks[0]], m = {}, x; for (x in t.m) m[x] = -t.m[x] * (-ev); var o = {}; if (ev !== -1) { m = {}; for (x in t.m) m[x] = t.m[x] * ev; } else { for (x in t.m) m[x] = -t.m[x]; } o[cesKey(m)] = { c: cesNum(Math.pow(t.c, ev)), m: m }; return o; }
+        return pAtom('(' + cesPrint(b) + ')', ev);
+      }
+      if (ev === 0.5) return cesToPoly({ k: 'fn', n: 'sqrt', a: nd.b }, reg);
+      var bs = cesPrint(b), es = ev !== null ? String(ev) : cesPrint(cesToPoly(nd.e, reg));
+      return pAtom((/^[a-z0-9.]+$/.test(bs) ? bs : '(' + bs + ')') + '^' + (/^[a-z0-9.]+$/.test(es) ? es : '(' + es + ')'));
+    }
+    case 'fn': {
+      var ap = cesToPoly(nd.a, reg), cv = pIsConst(ap) ? pConstVal(ap) : null;
+      if (cv !== null) {
+        if (nd.n === 'sqrt' && cv >= 0 && Math.abs(Math.sqrt(cv) - Math.round(Math.sqrt(cv))) < 1e-12) return pConst(Math.round(Math.sqrt(cv)));
+        if ((nd.n === 'ln' && cv === 1) || (nd.n === 'sin' && cv === 0) || (nd.n === 'tan' && cv === 0)) return {};
+        if ((nd.n === 'exp' && cv === 0) || (nd.n === 'cos' && cv === 0)) return pConst(1);
+      }
+      var key = nd.n + '(' + cesPrint(ap) + ')';
+      if (reg) reg[key] = { n: nd.n, arg: ap };
+      return pAtom(key);
+    }
+  }
+  throw ceErr('Syntax ERROR');
+}
+function pIsConst(p) { var ks = Object.keys(p); return ks.length === 0 || (ks.length === 1 && ks[0] === ''); }
+function pConstVal(p) { return p[''] ? p[''].c : 0; }
+function cesIsFnAtom(a) { return /^[a-z]{2,}\(/.test(a); }
+function cesAtomText(a, e) {
+  if (e === 1) return a;
+  var es = e === Math.trunc(e) ? String(e) : '(' + cesCoef(e) + ')';
+  return a + '^' + es;
+}
+function cesTermStr(t) {
+  var atoms = Object.keys(t.m).sort(function (x, y) {
+    var lx = /^[a-z]$/.test(x), ly = /^[a-z]$/.test(y);
+    if (lx !== ly) return lx ? -1 : 1; return x < y ? -1 : x > y ? 1 : 0;
+  }), num = [], den = [], i;
+  for (i = 0; i < atoms.length; i++) { var e = t.m[atoms[i]]; if (e > 0) num.push([atoms[i], e]); else den.push([atoms[i], -e]); }
+  function join(parts) {
+    var s = '';
+    for (var q = 0; q < parts.length; q++) {
+      var txt = cesAtomText(parts[q][0], parts[q][1]);
+      if (q > 0 && (cesIsFnAtom(parts[q][0]) || cesIsFnAtom(parts[q - 1][0]))) s += '·';
+      s += txt;
+    }
+    return s;
+  }
+  var mag = Math.abs(t.c), fr = cesFrac(mag), nC = fr ? fr.n : mag, dC = fr ? fr.d : 1;
+  var nStr = (nC === 1 && num.length) ? '' : (fr ? String(nC) : cesCoef(mag)) + (num.length && /^[0-9]/.test(join(num).charAt(0)) ? '·' : '') ;
+  nStr += join(num); if (nStr === '') nStr = '1';
+  var dStr = (dC === 1 ? '' : String(dC)) + join(den);
+  if (dStr) { var multi = (dC !== 1 && den.length) || den.length > 1 || (den.length === 1 && den[0][1] > 1 && false); if (multi) dStr = '(' + dStr + ')'; nStr += '/' + dStr; }
+  return nStr;
+}
+function cesPrint(p) {
+  var keys = Object.keys(p);
+  if (!keys.length) return '0';
+  var terms = keys.map(function (k) { return p[k]; });
+  function deg(t) { var d = 0; for (var a in t.m) if (t.m[a] > 0 && /^[a-z]$/.test(a)) d += t.m[a]; return d; }
+  terms.sort(function (a, b) { var da = deg(a), db = deg(b); if (da !== db) return db - da; var ka = cesKey(a.m), kb = cesKey(b.m); return ka < kb ? -1 : ka > kb ? 1 : 0; });
+  var out = '';
+  terms.forEach(function (t, i) {
+    var neg = t.c < 0, s = cesTermStr(t);
+    if (i === 0) out = (neg ? '-' : '') + s; else out += (neg ? ' - ' : ' + ') + s;
+  });
+  return out;
+}
+// ----- factor (univariate, rational roots) -----
+function cesBigGcd(a, b) { a = a < 0n ? -a : a; b = b < 0n ? -b : b; while (b) { var t = a % b; a = b; b = t; } return a; }
+function cesDivisors(n) {
+  n = Number(n < 0n ? -n : n); var out = [], i;
+  if (n === 0) return [1];
+  for (i = 1; i * i <= n; i++) if (n % i === 0) { out.push(i); if (i * i !== n) out.push(n / i); }
+  return out;
+}
+function cesUniCoefs(p, v) {
+  var deg = 0, k, c = {};
+  for (k in p) {
+    var t = p[k], ats = Object.keys(t.m);
+    if (ats.length === 0) { c[0] = (c[0] || 0) + t.c; continue; }
+    if (ats.length !== 1 || ats[0] !== v) return null;
+    var e = t.m[v]; if (e !== Math.trunc(e) || e < 0) return null;
+    c[e] = (c[e] || 0) + t.c; if (e > deg) deg = e;
+  }
+  var a = []; for (var i = 0; i <= deg; i++) a.push(c[i] || 0);
+  return a;
+}
+function cesFactorUni(a, v) {
+  // a: low-to-high real coefficients -> returns text or null
+  var i, lcm = 1, fr;
+  for (i = 0; i < a.length; i++) { fr = cesFrac(Math.abs(a[i])); if (!fr) return null; var g = lcm, d = fr.d; while (d) { var tt = g % d; g = d; d = tt; } lcm = lcm / g * fr.d; if (lcm > 1e6) return null; }
+  var ia = a.map(function (x) { return BigInt(Math.round(x * lcm)); });
+  while (ia.length > 1 && ia[ia.length - 1] === 0n) ia.pop();
+  if (ia.length < 2) return null;
+  var zeros = 0; while (ia[0] === 0n) { ia.shift(); zeros++; }
+  var cont = 0n; ia.forEach(function (x) { cont = cesBigGcd(cont, x); });
+  if (ia[ia.length - 1] < 0n) cont = -cont;
+  ia = ia.map(function (x) { return x / cont; });
+  var facs = [];
+  var guard = 0;
+  while (ia.length > 2 && guard++ < 40) {
+    var found = false, n = ia.length - 1, ps = cesDivisors(ia[0]), qs = cesDivisors(ia[n]), pi, qi, sg;
+    if (ps.length * qs.length > 40000) break;
+    outer:
+    for (pi = 0; pi < ps.length; pi++) for (qi = 0; qi < qs.length; qi++) for (sg = -1; sg <= 1; sg += 2) {
+      var P = BigInt(ps[pi] * sg), Q = BigInt(qs[qi]);
+      if (cesBigGcd(P, Q) !== 1n) continue;
+      var val = 0n, pp = 1n, k;
+      for (k = 0; k <= n; k++) { val += ia[k] * pp * (Q ** BigInt(n - k)); pp *= P; }
+      if (val === 0n) {
+        // divide by (Q x - P): high-to-low
+        var hi = ia.slice().reverse(), res = [], carry = 0n, ok = true, z;
+        for (z = 0; z < hi.length - 1; z++) { var cur = hi[z] + carry; if (cur % Q !== 0n) { ok = false; break; } var cq = cur / Q; res.push(cq); carry = cq * P; }
+        if (!ok || hi[hi.length - 1] + carry !== 0n) continue;
+        ia = res.reverse(); facs.push([Q, P]); found = true; break outer;
+      }
+    }
+    if (!found) break;
+  }
+  if (ia.length === 2) { var Q2 = ia[1], P2 = -ia[0], g2 = cesBigGcd(Q2, P2); if (g2 > 1n) { cont *= g2; Q2 /= g2; P2 /= g2; } facs.push([Q2, P2]); ia = [1n]; }
+  var rest = ia.length > 1 ? ia : null, constK = rest ? cont : cont * ia[0];
+  if (!zeros && facs.length === 0) return null;
+  // group
+  var groups = {}, order = [];
+  facs.forEach(function (f) { var key = f[0] + ',' + f[1]; if (!groups[key]) { groups[key] = { f: f, n: 0 }; order.push(key); } groups[key].n++; });
+  function lin(f) { var q = f[0], p = f[1]; var qs = q === 1n ? '' : String(q); return '(' + qs + v + (p < 0n ? ' + ' + String(-p) : ' - ' + String(p)) + ')'; }
+  var s = '', kf = Number(constK) / lcm;
+  if (kf === -1) s = '-'; else if (kf !== 1) { var kfr = cesFrac(Math.abs(kf)); s = (kf < 0 ? '-' : '') + (kfr && kfr.d !== 1 ? '(' + kfr.n + '/' + kfr.d + ')' : (kfr ? String(kfr.n) : String(kf))); }
+  if (zeros) s += v + (zeros > 1 ? '^' + zeros : '');
+  order.forEach(function (key) { s += lin(groups[key].f) + (groups[key].n > 1 ? '^' + groups[key].n : ''); });
+  if (rest) {
+    var rp = {}; rest.forEach(function (c, i2) { var m = {}; if (i2) m[v] = i2; if (c !== 0n) rp[cesKey(m)] = { c: Number(c), m: m }; });
+    s += '(' + cesPrint(rp) + ')';
+  }
+  return s;
+}
+function cesFactorPoly(p) {
+  var ks = Object.keys(p);
+  if (!ks.length) return '0';
+  if (pIsConst(p)) { var cv = pConstVal(p); return cesFactorNumber(cv); }
+  var vars = {}, k, nonvar = false;
+  ks.forEach(function (key) { for (var a in p[key].m) { if (/^[a-z]$/.test(a)) vars[a] = 1; else nonvar = true; } });
+  var vn = Object.keys(vars);
+  if (vn.length === 1 && !nonvar) { var co = cesUniCoefs(p, vn[0]); if (co) { var r = cesFactorUni(co, vn[0]); if (r) return r; } }
+  // common factor: integer content and minimum positive exponents
+  var minE = null, g = 0n, ok = true, any = false;
+  ks.forEach(function (key) {
+    var t = p[key], fr = cesFrac(Math.abs(t.c)); if (!fr || fr.d !== 1) ok = false; else g = cesBigGcd(g, BigInt(fr.n));
+    if (minE === null) { minE = {}; for (var a in t.m) minE[a] = t.m[a]; }
+    else { for (var b in minE) { if (t.m[b] === undefined || t.m[b] <= 0) delete minE[b]; else minE[b] = Math.min(minE[b], t.m[b]); } }
+  });
+  for (k in minE) if (minE[k] <= 0) delete minE[k];
+  var gnum = ok ? Number(g) : 1;
+  if (ks.length > 1 && (gnum > 1 || Object.keys(minE).length)) {
+    var neg = p[ks[0]].c < 0 && false, rem = {};
+    ks.forEach(function (key) { var t = p[key], m = {}; for (var a in t.m) { var e = t.m[a] - (minE[a] || 0); if (e !== 0) m[a] = e; } rem[cesKey(m)] = { c: cesNum(t.c / gnum), m: m }; });
+    var pre = (gnum > 1 ? String(gnum) : '') + Object.keys(minE).sort().map(function (a) { return cesAtomText(a, minE[a]); }).join('');
+    return pre + '(' + cesPrint(rem) + ')';
+  }
+  return cesPrint(p);
+}
+function cesFactorNumber(v) {
+  if (v !== Math.trunc(v) || Math.abs(v) < 2 || Math.abs(v) > 1e12) return ceFmtNum(v, { fmt: 'norm2' });
+  var n = Math.abs(v), fs = [], f = 2;
+  while (f * f <= n) { var c = 0; while (n % f === 0) { n /= f; c++; } if (c) fs.push(c > 1 ? f + '^' + c : String(f)); f += f === 2 ? 1 : 2; }
+  if (n > 1) fs.push(String(n));
+  return (v < 0 ? '-' : '') + (fs.length === 1 && fs[0] === String(Math.abs(v)) ? String(Math.abs(v)) + ' (prime)' : fs.join('×'));
+}
+// ----- derivative (tree) -----
+function cesN(v) { return { k: 'n', v: v }; }
+function cesMul() { return { k: 'mul', a: Array.prototype.slice.call(arguments) }; }
+function cesAdd() { return { k: 'add', a: Array.prototype.slice.call(arguments) }; }
+function cesPw(b, e) { return { k: 'pow', b: b, e: typeof e === 'number' ? cesN(e) : e }; }
+function cesHas(nd, v) {
+  if (nd.k === 'v') return nd.n === v;
+  if (nd.k === 'n' || nd.k === 'c') return false;
+  if (nd.k === 'add' || nd.k === 'mul') return nd.a.some(function (x) { return cesHas(x, v); });
+  if (nd.k === 'pow') return cesHas(nd.b, v) || cesHas(nd.e, v);
+  if (nd.k === 'fn') return cesHas(nd.a, v);
+  return false;
+}
+function cesD(nd, v) {
+  var i;
+  switch (nd.k) {
+    case 'n': case 'c': return cesN(0);
+    case 'v': return cesN(nd.n === v ? 1 : 0);
+    case 'add': return { k: 'add', a: nd.a.map(function (x) { return cesD(x, v); }) };
+    case 'mul': {
+      var terms = [];
+      for (i = 0; i < nd.a.length; i++) { var fs = nd.a.slice(); fs[i] = cesD(nd.a[i], v); terms.push({ k: 'mul', a: fs }); }
+      return { k: 'add', a: terms };
+    }
+    case 'pow': {
+      var hb = cesHas(nd.b, v), he = cesHas(nd.e, v);
+      if (!he) return cesMul(nd.e, cesPw(nd.b, cesAdd(nd.e, cesN(-1))), cesD(nd.b, v));
+      if (!hb) {
+        var lnb = (nd.b.k === 'c' && nd.b.n === 'e') ? cesN(1) : { k: 'fn', n: 'ln', a: nd.b };
+        return cesMul(nd, lnb, cesD(nd.e, v));
+      }
+      return cesMul(nd, cesAdd(cesMul(cesD(nd.e, v), { k: 'fn', n: 'ln', a: nd.b }), cesMul(nd.e, cesD(nd.b, v), cesPw(nd.b, -1))));
+    }
+    case 'fn': {
+      var a = nd.a, da = cesD(a, v), g;
+      switch (nd.n) {
+        case 'sin': g = { k: 'fn', n: 'cos', a: a }; break;
+        case 'cos': g = cesMul(cesN(-1), { k: 'fn', n: 'sin', a: a }); break;
+        case 'tan': g = cesPw({ k: 'fn', n: 'cos', a: a }, -2); break;
+        case 'ln': g = cesPw(a, -1); break;
+        case 'log': g = cesMul(cesPw(a, -1), cesN(1 / Math.LN10)); break;
+        case 'exp': g = nd; break;
+        case 'sqrt': g = cesMul(cesN(0.5), cesPw({ k: 'fn', n: 'sqrt', a: a }, -1)); break;
+        case 'cbrt': g = cesMul(cesN(1 / 3), cesPw({ k: 'fn', n: 'cbrt', a: a }, -2)); break;
+        case 'abs': g = cesMul(a, cesPw({ k: 'fn', n: 'abs', a: a }, -1)); break;
+        case 'asin': g = cesPw({ k: 'fn', n: 'sqrt', a: cesAdd(cesN(1), cesMul(cesN(-1), cesPw(a, 2))) }, -1); break;
+        case 'acos': g = cesMul(cesN(-1), cesPw({ k: 'fn', n: 'sqrt', a: cesAdd(cesN(1), cesMul(cesN(-1), cesPw(a, 2))) }, -1)); break;
+        case 'atan': g = cesPw(cesAdd(cesN(1), cesPw(a, 2)), -1); break;
+        default: throw ceErr('Math ERROR');
+      }
+      return cesMul(g, da);
+    }
+  }
+  throw ceErr('Syntax ERROR');
+}
+function cesVarsOf(nd, acc) {
+  if (nd.k === 'v') acc[nd.n] = 1;
+  else if (nd.k === 'add' || nd.k === 'mul') nd.a.forEach(function (x) { cesVarsOf(x, acc); });
+  else if (nd.k === 'pow') { cesVarsOf(nd.b, acc); cesVarsOf(nd.e, acc); }
+  else if (nd.k === 'fn') cesVarsOf(nd.a, acc);
+  return acc;
+}
+function cesPickVar(nd, given) {
+  if (given) return given.toLowerCase().charAt(0);
+  var vs = Object.keys(cesVarsOf(nd, {}));
+  if (vs.length === 0) return 'x';
+  return vs.indexOf('x') !== -1 ? 'x' : vs.sort()[0];
+}
+// ----- indefinite integral (term by term) -----
+function cesIntegrate(p, v, reg) {
+  var out = {}, k;
+  for (k in p) {
+    var t = p[k], ats = Object.keys(t.m), c = t.c;
+    if (ats.length === 0) { out = pAdd(out, pMul(pConst(c), pAtom(v))); continue; }
+    var others = ats.filter(function (a) { return a !== v && !cesIsFnAtom(a) && a.charAt(0) !== '('; });
+    var fnAtoms = ats.filter(function (a) { return cesIsFnAtom(a) || a.charAt(0) === '('; });
+    var cm = {}, vexp = t.m[v] || 0;
+    others.forEach(function (a) { cm[a] = t.m[a]; });
+    var coefPoly = {}; coefPoly[cesKey(cm)] = { c: c, m: cm };
+    if (fnAtoms.length === 0) {
+      var r;
+      if (vexp === -1) r = pAtom('ln|' + v + '|'); else r = pAtom(v, vexp + 1);
+      out = pAdd(out, pMul(coefPoly, vexp === -1 ? r : pMul(pConst(1 / (vexp + 1)), r)));
+      continue;
+    }
+    if (fnAtoms.length === 1 && vexp === 0 && t.m[fnAtoms[0]] === 1 && reg[fnAtoms[0]]) {
+      var info = reg[fnAtoms[0]], co = cesUniCoefs(info.arg, v);
+      if (co && co.length === 2 && co[1] !== 0) {
+        var A = co[1], argTxt = cesPrint(info.arg), res = null;
+        if (info.n === 'sin') res = pMul(pConst(-1 / A), pAtom('cos(' + argTxt + ')'));
+        else if (info.n === 'cos') res = pMul(pConst(1 / A), pAtom('sin(' + argTxt + ')'));
+        else if (info.n === 'exp') res = pMul(pConst(1 / A), pAtom('exp(' + argTxt + ')'));
+        else if (info.n === 'tan') res = pMul(pConst(-1 / A), pAtom('ln|cos(' + argTxt + ')|'));
+        if (res) { out = pAdd(out, pMul(coefPoly, res)); continue; }
+      }
+    }
+    throw ceErr("Can't integrate");
+  }
+  return out;
+}
+function cesSplitArgs(s) {
+  var d = 0, parts = [], cur = '', i;
+  for (i = 0; i < s.length; i++) { var ch = s.charAt(i); if (ch === '(' || ch === '[' || ch === '{') d++; if (ch === ')' || ch === ']' || ch === '}') d--; if (ch === ',' && d === 0) { parts.push(cur); cur = ''; } else cur += ch; }
+  parts.push(cur); return parts;
+}
+function cesSimplify(src) {
+  var nd = cesParse(src), reg = {};
+  // rational function with one variable: cancel common linear roots
+  var num = [], den = [];
+  var top = nd.k === 'mul' ? nd.a : [nd];
+  top.forEach(function (f) { if (f.k === 'pow') { var ev = cesConst(f.e); if (ev !== null && ev === Math.trunc(ev) && ev < 0) { den.push(cesPw(f.b, -ev)); return; } } num.push(f); });
+  if (den.length) {
+    var N = cesToPoly({ k: 'mul', a: num.length ? num : [cesN(1)] }, reg), D = cesToPoly({ k: 'mul', a: den }, reg);
+    var vs = {}; [N, D].forEach(function (P) { Object.keys(P).forEach(function (kk) { for (var a in P[kk].m) vs[a] = 1; }); });
+    var vn = Object.keys(vs);
+    if (vn.length === 1 && /^[a-z]$/.test(vn[0])) {
+      var cN = cesUniCoefs(N, vn[0]), cD = cesUniCoefs(D, vn[0]);
+      if (cN && cD) {
+        var rN = cesRoots(cN), rD = cesRoots(cD);
+        if (rN && rD) {
+          var changed = false, i;
+          for (i = 0; i < rN.roots.length; i++) { var j = rD.roots.indexOf(rN.roots[i]); if (j !== -1) { rN.roots.splice(i, 1); rD.roots.splice(j, 1); i--; changed = true; } }
+          if (changed) {
+            function build(R) { var pp = pConst(R.k); R.roots.forEach(function (rt) { var fr = cesFrac(rt), m = {}; m[vn[0]] = 1; var lin = {}; lin[cesKey(m)] = { c: fr.d, m: m }; lin = pAdd(lin, pConst(-fr.n)); pp = pMul(pp, lin); }); return pp; }
+            var bn = build(rN), bd = build(rD);
+            if (pIsConst(bd)) return cesPrint(pMul(bn, pConst(1 / pConstVal(bd))));
+            function wr(P) { return Object.keys(P).length > 1 ? '(' + cesPrint(P) + ')' : cesPrint(P); }
+            return wr(bn) + '/' + wr(bd);
+          }
+        }
+      }
+    }
+  }
+  return cesPrint(cesToPoly(nd, reg));
+}
+function cesRoots(co) {
+  // rational roots (with multiplicity) of low-to-high coefficient array; returns {k: leading scale, roots:[...]} (only if fully split)
+  var a = co.slice(); while (a.length > 1 && a[a.length - 1] === 0) a.pop();
+  var roots = [], zeros = 0; while (a.length > 1 && a[0] === 0) { a.shift(); zeros++; }
+  for (var z = 0; z < zeros; z++) roots.push(0);
+  var lead = a[a.length - 1], guard = 0;
+  while (a.length > 2 && guard++ < 30) {
+    var found = false, n = a.length - 1, ia = a.map(function (x) { return Math.round(x * 1000000); });
+    var ps = cesDivisors(BigInt(Math.abs(ia[0]) || 1)), qs = cesDivisors(BigInt(Math.abs(ia[n]) || 1)), pi, qi, sg;
+    outer:
+    for (pi = 0; pi < ps.length; pi++) for (qi = 0; qi < qs.length; qi++) for (sg = -1; sg <= 1; sg += 2) {
+      var r = sg * ps[pi] / qs[qi], val = 0, k;
+      for (k = n; k >= 0; k--) val = val * r + a[k];
+      if (Math.abs(val) < 1e-9) {
+        var hi = a.slice().reverse(), res = [hi[0]], z2;
+        for (z2 = 1; z2 < hi.length - 1; z2++) res.push(hi[z2] + res[z2 - 1] * r);
+        a = res.reverse(); roots.push(cesNum(r)); found = true; break outer;
+      }
+    }
+    if (!found) return null;
+  }
+  if (a.length === 2) roots.push(cesNum(-a[0] / a[1]));
+  else if (a.length > 2) return null;
+  return { k: lead, roots: roots.map(function (x) { return x; }) };
+}
+function cesOut(t) { return t.replace(/exp\(([^()]*)\)/g, 'e^($1)'); }
+function ceSymRun(fn, argText) { return cesOut(ceSymRun0(fn, argText)); }
+function ceSymRun0(fn, argText) {
+  var parts = cesSplitArgs(argText), reg = {}, nd, p, v;
+  if (fn === 'expand') { nd = cesParse(parts[0]); return cesPrint(cesToPoly(nd, reg)); }
+  if (fn === 'factor') { nd = cesParse(parts[0]); return cesFactorPoly(cesToPoly(nd, reg)); }
+  if (fn === 'simplify') return cesSimplify(parts[0]);
+  if (fn === 'diff') {
+    nd = cesParse(parts[0]); v = cesPickVar(nd, parts[1] ? parts[1].trim() : '');
+    return cesPrint(cesToPoly(cesD(nd, v), reg));
+  }
+  if (fn === 'sint') {
+    nd = cesParse(parts[0]); v = cesPickVar(nd, parts[1] ? parts[1].trim() : '');
+    p = cesToPoly(nd, reg);
+    return cesPrint(cesIntegrate(p, v, reg)) + ' + C';
+  }
+  throw ceErr('Syntax ERROR');
+}
+
+// ---------- extra matrix tools ----------
+function ceMatRref(A) {
+  var M = A.map(function (r) { return r.slice(); }), rows = M.length, cols = M[0].length, r = 0, c, i, j, piv = [];
+  for (c = 0; c < cols && r < rows; c++) {
+    var p = r; for (i = r + 1; i < rows; i++) if (Math.abs(M[i][c]) > Math.abs(M[p][c])) p = i;
+    if (Math.abs(M[p][c]) < 1e-10) continue;
+    var t = M[r]; M[r] = M[p]; M[p] = t;
+    var pv = M[r][c]; for (j = 0; j < cols; j++) M[r][j] /= pv;
+    for (i = 0; i < rows; i++) if (i !== r) { var f = M[i][c]; if (f !== 0) for (j = 0; j < cols; j++) M[i][j] -= f * M[r][j]; }
+    piv.push(c); r++;
+  }
+  return { m: M.map(function (row) { return row.map(ceMatSnap); }), piv: piv };
+}
+function ceMatRank(A) { return ceMatRref(A).piv.length; }
+function ceMatTrace(A) { if (A.some(function (r) { return r.length !== A.length; })) throw ceErr('Dimension ERROR'); return ceMatSnap(A.reduce(function (s, r, i) { return s + r[i]; }, 0)); }
+function ceMatEigen(A) {
+  var n = A.length, i, j, k;
+  if (A.some(function (r) { return r.length !== n; })) throw ceErr('Dimension ERROR');
+  var I = function (c) { return A.map(function (r, a) { return r.map(function (_, b) { return a === b ? c : 0; }); }); };
+  var Mk = A.map(function (r) { return r.map(function () { return 0; }); }), co = [1], ck = 1;
+  for (k = 1; k <= n; k++) {
+    var AM = ceMatMul(A, Mk); Mk = AM.map(function (r, a) { return r.map(function (v, b) { return v + (a === b ? ck : 0); }); });
+    var AMk = ceMatMul(A, Mk), tr = 0; for (i = 0; i < n; i++) tr += AMk[i][i];
+    ck = -tr / k; co.push(ck);
+  }
+  var roots = n === 1 ? [cMk(A[0][0], 0)] : ceRoots(co.map(function (x) { return Math.abs(x) < 1e-12 ? 0 : x; }));
+  var vecs = roots.map(function (lam) {
+    if (cIm(lam) !== 0) return null;
+    var l = cRe(lam), B = A.map(function (r, a) { return r.map(function (v, b) { return v - (a === b ? l : 0); }); });
+    var rr = ceMatRref(B.map(function (r) { return r.map(function (v) { return Math.abs(v) < 1e-12 ? 0 : v; }); }));
+    var free = -1; for (j = 0; j < n; j++) if (rr.piv.indexOf(j) === -1) { free = j; break; }
+    if (free < 0) return null;
+    var v = []; for (j = 0; j < n; j++) v.push(0); v[free] = 1;
+    rr.piv.forEach(function (pc, row) { v[pc] = -rr.m[row][free]; });
+    var nm = Math.sqrt(v.reduce(function (s, x) { return s + x * x; }, 0)); return v.map(function (x) { return ceMatSnap(x / nm); });
+  });
+  return { vals: roots, vecs: vecs };
 }

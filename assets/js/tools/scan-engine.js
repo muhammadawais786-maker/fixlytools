@@ -4,6 +4,7 @@
 const SE_FILTERS = [
   { id: 'original', label: 'Original' },
   { id: 'lighten', label: 'Lighten' },
+  { id: 'magic', label: 'Magic' },
   { id: 'enhance', label: 'Enhance' },
   { id: 'noshadow', label: 'No shadow' },
   { id: 'bw', label: 'B&W' },
@@ -143,37 +144,47 @@ function seErode(mask, w, h, r) {
 
 function seDetectCorners(img) {
   const w = img.width, h = img.height, n = w * h;
-  const gray = new Float32Array(n);
-  for (let i = 0, p = 0; p < n; i += 4, p++) gray[p] = seLuma(img.data[i], img.data[i + 1], img.data[i + 2]);
-  const blur = seBlurGray(gray, w, h, Math.max(2, Math.round(Math.min(w, h) / 90)));
-  const t = seOtsu(blur, n);
-  const candidates = [];
-  for (const bright of [true, false]) {
-    const mask = new Uint8Array(n);
-    for (let i = 0; i < n; i++) mask[i] = bright ? (blur[i] > t ? 1 : 0) : (blur[i] <= t ? 1 : 0);
-    const r = Math.max(2, Math.round(Math.min(w, h) / 70));
-    const comp = seLargestComponent(seErode(mask, w, h, r), w, h);
-    if (!comp) continue;
-    // the erosion pulled the outline in by r pixels: push each corner back out
-    const ccx = comp.corners.reduce((a, q) => a + q.x, 0) / 4, ccy = comp.corners.reduce((a, q) => a + q.y, 0) / 4;
-    comp.corners = comp.corners.map((q) => {
-      const dx = q.x - ccx, dy = q.y - ccy, len = Math.hypot(dx, dy) || 1;
-      return { x: q.x + (dx / len) * r * 1.2, y: q.y + (dy / len) * r * 1.2 };
-    });
-    const frac = comp.count / n;
-    const quadArea = sePolyArea(comp.corners);
-    const fill = quadArea > 0 ? comp.count / quadArea : 0;
-    const quadFrac = quadArea / n;
-    const ok = frac >= 0.12 && quadFrac >= 0.2 && fill >= 0.62 && seIsConvex(comp.corners);
-    // a pale page (bright) is the normal case; the dark variant only wins when the bright one is not usable
-    candidates.push({ bright, ok, fill, quadFrac, corners: comp.corners });
+  const r = Math.max(2, Math.round(Math.min(w, h) / 70));
+  // two views of the picture: plain brightness, and brightness minus colourfulness ("paper-ness":
+  // white paper is neutral, a blue tray or a red rug is not)
+  const lum = new Float32Array(n), neu = new Float32Array(n);
+  for (let i = 0, p = 0; p < n; i += 4, p++) {
+    const R = img.data[i], G = img.data[i + 1], B = img.data[i + 2];
+    lum[p] = seLuma(R, G, B);
+    neu[p] = lum[p] - 1.3 * (Math.max(R, G, B) - Math.min(R, G, B));
   }
+  const views = [neu, lum].map((g) => seBlurGray(g, w, h, Math.max(2, Math.round(Math.min(w, h) / 90))));
+  const candidates = [];
+  views.forEach((blur, vi) => {
+    const t = seOtsu(blur, n);
+    for (const bright of [true, false]) {
+      const mask = new Uint8Array(n);
+      for (let i = 0; i < n; i++) mask[i] = bright ? (blur[i] > t ? 1 : 0) : (blur[i] <= t ? 1 : 0);
+      const comp = seLargestComponent(seErode(mask, w, h, r), w, h);
+      if (!comp) continue;
+      // the erosion pulled the outline in by r pixels: push each corner back out
+      const ccx = comp.corners.reduce((a, q) => a + q.x, 0) / 4, ccy = comp.corners.reduce((a, q) => a + q.y, 0) / 4;
+      comp.corners = comp.corners.map((q) => {
+        const dx = q.x - ccx, dy = q.y - ccy, len = Math.hypot(dx, dy) || 1;
+        return { x: q.x + (dx / len) * r * 1.2, y: q.y + (dy / len) * r * 1.2 };
+      });
+      const frac = comp.count / n;
+      const quadArea = sePolyArea(comp.corners);
+      const fill = quadArea > 0 ? comp.count / quadArea : 0;
+      const quadFrac = quadArea / n;
+      const ok = frac >= 0.12 && quadFrac >= 0.2 && fill >= 0.62 && seIsConvex(comp.corners);
+      candidates.push({ bright, ok, fill, quadFrac, corners: comp.corners, view: vi, blur });
+    }
+  });
+  // a pale page (bright) is the normal case; the dark variant only wins when no bright one is usable.
+  // The colour-aware view goes first so a coloured tray or rug is not taken for paper.
   const pick = candidates.find((c) => c.bright && c.ok) || candidates.find((c) => c.ok);
-  if (!pick || pick.quadFrac > 0.97) return { found: false, corners: seFullFrame(), debug: candidates.map((c) => ({ b: c.bright, ok: c.ok, fill: +c.fill.toFixed(2), qf: +c.quadFrac.toFixed(2) })) };
+  if (!pick || pick.quadFrac > 0.97) return { found: false, corners: seFullFrame(), debug: candidates.map((c) => ({ b: c.bright, v: c.view, ok: c.ok, fill: +c.fill.toFixed(2), qf: +c.quadFrac.toFixed(2) })) };
+  const corners = pick.corners;
   // pull the corners a little inwards so no dark rim is left from the blur
   const inset = 0.004;
-  const cx = pick.corners.reduce((a, p) => a + p.x, 0) / 4, cy = pick.corners.reduce((a, p) => a + p.y, 0) / 4;
-  const norm = pick.corners.map((p) => ({
+  const cx = corners.reduce((a, p) => a + p.x, 0) / 4, cy = corners.reduce((a, p) => a + p.y, 0) / 4;
+  const norm = corners.map((p) => ({
     x: Math.max(0, Math.min(1, (p.x + (cx - p.x) * inset * 2 + 0.5) / w)),
     y: Math.max(0, Math.min(1, (p.y + (cy - p.y) * inset * 2 + 0.5) / h))
   }));
@@ -342,12 +353,86 @@ function seThreshold(d) {
   for (let i = 0; i < d.length; i += 4) { const v = d[i] > th ? 255 : 0; d[i] = d[i + 1] = d[i + 2] = v; }
 }
 
+// white balance from the page itself: the bright paper level of each channel is scaled to white
+function seWhiteBalance(img) {
+  const d = img.data, n = img.width * img.height, hist = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)];
+  let cnt = 0;
+  for (let i = 0; i < d.length; i += 16) { hist[0][d[i]]++; hist[1][d[i + 1]]++; hist[2][d[i + 2]]++; cnt++; }
+  const gains = hist.map((hh) => {
+    let acc = 0, v = 255; const target = cnt * 0.08;
+    for (v = 255; v > 0; v--) { acc += hh[v]; if (acc >= target) break; }
+    return Math.max(1, Math.min(1.7, 245 / Math.max(60, v)));
+  });
+  for (let i = 0; i < d.length; i += 4) { d[i] = seClamp(d[i] * gains[0]); d[i + 1] = seClamp(d[i + 1] * gains[1]); d[i + 2] = seClamp(d[i + 2] * gains[2]); }
+  return n;
+}
+// brightness (0..255) below which the darkest `frac` of the pixels lie
+function seLumaPercentile(img, frac) {
+  const d = img.data, hist = new Uint32Array(256); let cnt = 0;
+  for (let i = 0; i < d.length; i += 16) { hist[Math.round(seLuma(d[i], d[i + 1], d[i + 2]))]++; cnt++; }
+  let acc = 0; const target = cnt * frac;
+  for (let v = 0; v < 256; v++) { acc += hist[v]; if (acc >= target) return v; }
+  return 0;
+}
+
+// make dark strokes a little bolder (3x3 minimum blended in) so thin print does not look faint
+function seThicken(img, amt) {
+  const w = img.width, h = img.height, d = img.data, n = w * h;
+  const L = new Float32Array(n);
+  for (let i = 0, p = 0; p < n; i += 4, p++) L[p] = seLuma(d[i], d[i + 1], d[i + 2]);
+  const mx = new Float32Array(n);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let m = 255;
+    for (let dy = -1; dy <= 1; dy++) {
+      const yy = y + dy; if (yy < 0 || yy >= h) continue;
+      for (let dx = -1; dx <= 1; dx++) { const xx = x + dx; if (xx < 0 || xx >= w) continue; const v = L[yy * w + xx]; if (v < m) m = v; }
+    }
+    mx[y * w + x] = m;
+  }
+  for (let p = 0, i = 0; p < n; p++, i += 4) {
+    const off = (mx[p] - L[p]) * amt;
+    d[i] = seClamp(d[i] + off); d[i + 1] = seClamp(d[i + 1] + off); d[i + 2] = seClamp(d[i + 2] + off);
+  }
+}
+
+// unsharp mask: adds back the difference from a small blur
+function seSharpen(img, amount) {
+  const w = img.width, h = img.height, d = img.data, n = w * h;
+  for (let c = 0; c < 3; c++) {
+    const ch = new Float32Array(n);
+    for (let i = c, p = 0; p < n; i += 4, p++) ch[p] = d[i];
+    const bl = seBlurGray(ch, w, h, 1);
+    for (let i = c, p = 0; p < n; i += 4, p++) d[i] = seClamp(ch[p] + (ch[p] - bl[p]) * amount);
+  }
+}
+
+// smooth S-shaped levels: values below lo go black, above hi go white
+function seLevelsS(d, lo, hi) {
+  const lut = new Uint8ClampedArray(256);
+  for (let v = 0; v < 256; v++) {
+    let t = (v - lo) / (hi - lo); t = t < 0 ? 0 : t > 1 ? 1 : t;
+    lut[v] = 255 * (t * t * (3 - 2 * t));
+  }
+  for (let i = 0; i < d.length; i += 4) { d[i] = lut[d[i]]; d[i + 1] = lut[d[i + 1]]; d[i + 2] = lut[d[i + 2]]; }
+}
+
 // mode: one of SE_FILTERS ids. Changes img.data in place.
 function seApplyFilter(img, mode) {
   const d = img.data;
   switch (mode) {
     case 'lighten': seLevels(d, 0, 205, 0.85); break;
-    case 'enhance': seFlatten(img); seLevels(d, 55, 225, 1.15); break;
+    case 'magic': {
+      seFlatten(img); seWhiteBalance(img); seThicken(img, 0.55); seSharpen(img, 0.8);
+      const dark = seLumaPercentile(img, 0.02);
+      seLevelsS(d, Math.min(150, dark + 0.38 * (205 - dark)), 205);
+      break;
+    }
+    case 'enhance': {
+      seFlatten(img); seWhiteBalance(img); seThicken(img, 0.35); seSharpen(img, 0.6);
+      const dark = seLumaPercentile(img, 0.02);
+      seLevelsS(d, Math.min(130, dark + 0.2 * (215 - dark)), 215);
+      break;
+    }
     case 'noshadow': seFlatten(img); seLevels(d, 0, 240, 1); break;
     case 'bw': seFlatten(img); seToGray(d); seThreshold(d); break;
     case 'eco': seFlatten(img); seToGray(d); seLevels(d, 90, 235, 1); break;

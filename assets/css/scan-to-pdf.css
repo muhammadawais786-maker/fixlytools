@@ -76,3 +76,27 @@
 .scn-slider input { width: 100%; }
 .dark .scn-slider { color: #e2e8f0; }
 .scn-ed-bar.hidden, .scn-modal.hidden { display: none; }
+
+/* ---- v2: selection, per-page save, loupe, live frame ---- */
+.scn-head-links { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+.scn-head-links [hidden] { display: none; }
+.scn-card.scn-selected { border-color: #4f46e5; box-shadow: 0 0 0 2px #4f46e5; }
+.scn-pick { position: absolute; top: 6px; right: 6px; z-index: 2; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.9); border-radius: 8px; cursor: pointer; }
+.scn-pick input { width: 20px; height: 20px; accent-color: #4f46e5; cursor: pointer; margin: 0; }
+.scn-save-tools { display: flex; gap: 6px; width: 100%; }
+.scn-mini { flex: 1 1 0; min-height: 40px; padding: 0 6px; border-radius: 10px; border: 1px solid #c7d2fe; background: #eef2ff; color: #3730a3; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-family: inherit; }
+.scn-mini:hover { background: #e0e7ff; }
+.scn-mini:disabled { opacity: 0.5; cursor: not-allowed; }
+.dark .scn-mini { background: #312e81; border-color: #4338ca; color: #e0e7ff; }
+.scn-save-row { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .scn-save-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.scn-create-alt { background: #0f766e; color: #fff; border: 0; cursor: pointer; font-family: inherit; font-size: 16px; min-height: 52px; }
+.scn-create-alt:hover:not(:disabled) { background: #115e59; }
+.scn-create-alt:disabled { opacity: 0.5; cursor: not-allowed; }
+.scn-video-wrap { position: relative; }
+.scn-video-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.scn-loupe { position: absolute; top: 12px; width: 120px; height: 120px; border-radius: 50%; border: 3px solid #22d3ee; background: #fff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); pointer-events: none; z-index: 5; }
+.scn-loupe.hidden { display: none; }
+.scn-loupe.scn-loupe-left { left: 12px; }
+.scn-loupe.scn-loupe-right { right: 12px; }
+#ed-compare[aria-pressed="true"] { background: #4f46e5; color: #fff; }

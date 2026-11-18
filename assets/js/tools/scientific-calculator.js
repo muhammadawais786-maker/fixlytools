@@ -25,37 +25,58 @@
   if (!elExpr || !elRes) return;
 
   function env() { return ceNewEnv({ mode: st.mode, cmplx: st.cmplx, vars: vars, ans: ans, preans: preans }); }
-  function fmtOpts(over) { var o = { fmt: st.fmt, digits: st.digits, cfmt: st.cfmt, math: st.math, mixed: st.mixed, mode: st.mode }; for (var k in over) o[k] = over[k]; return o; }
+  function fmtOpts(over) { var o = { fmt: st.fmt, digits: st.digits, cfmt: st.cfmt, math: st.math, mixed: st.mixed, mode: st.mode, si: st.si }; for (var k in over) o[k] = over[k]; return o; }
   function plain(x) { return ceFmtNum(x, fmtOpts({})); }
 
   // ---------- keypad ----------
   // [label, insert, shiftLabel, shiftInsert, alphaLabel, alphaInsert, class]   ('@name' = action)
   var FN = [
-    ['SHIFT', '@shift', '', '', '', '', 'k-shift'], ['ALPHA', '@alpha', '', '', '', '', 'k-alpha'], ['◀', '@left', '', '', '', '', 'k-nav'], ['▶', '@right', '', '', '', '', 'k-nav'], ['▲', '@up', '', '', '', '', 'k-nav'], ['MODE', '@mode', 'SETUP', '@setup', '', '', 'k-nav'],
-    ['CALC', '@calc', 'SOLVE', '@solve', '=', '=', 'k-fn'], ['∫dx', 'integ(', 'd/dx', 'deriv(', '', '', 'k-fn'], ['x⁻¹', '^-1', 'x!', '!', '', '', 'k-fn'], ['a b/c', '⌟', 'Abs', 'abs(', '', '', 'k-fn'], ['√', 'sqrt(', '∛', 'cbrt(', '', '', 'k-fn'], ['x²', '^2', 'x³', '^3', '', '', 'k-fn'],
-    ['xʸ', '^', 'ʸ√', 'root(', '', '', 'k-fn'], ['log', 'log(', '10ˣ', '10^', '', '', 'k-fn'], ['ln', 'ln(', 'eˣ', 'e^(', '', '', 'k-fn'], ['(−)', '-', 'i', 'i', 'A', 'A', 'k-fn'], ['° ′ ″', '°', '►DMS', '@dms', 'B', 'B', 'k-fn'], ['hyp', '@hyp', '', '', 'C', 'C', 'k-fn'],
-    ['sin', 'sin(', 'sin⁻¹', 'asin(', 'D', 'D', 'k-fn'], ['cos', 'cos(', 'cos⁻¹', 'acos(', 'E', 'E', 'k-fn'], ['tan', 'tan(', 'tan⁻¹', 'atan(', 'F', 'F', 'k-fn'], ['(', '(', 'Pol(', 'Pol(', 'X', 'X', 'k-fn'], [')', ')', 'Rec(', 'Rec(', 'Y', 'Y', 'k-fn'], ['S⇔D', '@sd', 'ENG', '@eng', '', '', 'k-fn'],
-    ['STO', '→', 'RCL', '@rcl', '', '', 'k-mem'], ['M+', '@mplus', 'M−', '@mminus', 'M', 'M', 'k-mem'], ['Σ', 'sum(', 'Π', 'prod(', '', '', 'k-mem'], ['Ran#', 'ran#', 'RanInt', 'ranint#(', '', '', 'k-mem'], ['CONST', '@const', 'CONV', '@conv', '', '', 'k-mem'], ['OPTN', '@optn', '', '', '', '', 'k-mem']
+    ['SHIFT', '@shift', '', '', '', '', 'k-shift'], ['ALPHA', '@alpha', '', '', '', '', 'k-alpha'], ['@dpad'], ['MODE', '@mode', 'SETUP', '@setup', '', '', 'k-fn'], ['2nd', '@p2', '', '', '', '', 'k-fn k-2nd'],
+    ['CALC', '@calc', 'SOLVE', '@solve', '=', '=', 'k-fn'], ['∫dx', 'integ(', 'd/dx', 'deriv(', '', '', 'k-fn'], ['x⁻¹', '^-1', 'x!', '!', '><=', '@cmp', 'k-fn'], ['logₐb', 'log(', 'Σ', 'sum(', 'Π', 'prod(', 'k-fn'],
+    ['x/y', '/', 'x y/z', '⌟', '÷R', '÷R', 'k-fn'], ['√', 'sqrt(', '∛', 'cbrt(', 'mod', ' mod ', 'k-fn'], ['x²', '^2', 'x³', '^3', '▮', '‾', 'k-fn'], ['xʸ', '^', 'ʸ√', 'root(', '', '', 'k-fn'], ['log', 'log(', '10ˣ', '10^', '', '', 'k-fn'], ['ln', 'ln(', 'eˣ', 'e^(', '', '', 'k-fn'],
+    ['(−)', '-', '∠', '∠', 'a', 'A', 'k-fn'], ['° ′ ″', '°', 'FACT', 'fact(', 'b', 'B', 'k-fn'], ['hyp', '@hyp', 'Abs', 'abs(', 'c', 'C', 'k-fn'], ['sin', 'sin(', 'sin⁻¹', 'asin(', 'd', 'D', 'k-fn'], ['cos', 'cos(', 'cos⁻¹', 'acos(', 'e', 'E', 'k-fn'], ['tan', 'tan(', 'tan⁻¹', 'atan(', 'f', 'F', 'k-fn'],
+    ['RCL', '@rcl', 'STO', '→', 'CLRv', '@clrv', 'k-fn'], ['ENG', '@eng', 'i', 'i', 'Cot', 'cot(', 'k-fn'], ['(', '(', '%', '%', 'Cot⁻¹', 'acot(', 'k-fn'], [')', ')', ',', ',', 'x', 'X', 'k-fn'], ['S⇔D', '@sd', '►DMS', '@dms', 'y', 'Y', 'k-fn'], ['M+', '@mplus', 'M−', '@mminus', 'm', 'M', 'k-fn']
   ];
   var NUM = [
-    ['7', '7', '', '', '', '', 'k-num'], ['8', '8', '', '', '', '', 'k-num'], ['9', '9', '', '', '', '', 'k-num'], ['DEL', '@del', '', '', '', '', 'k-clr'], ['AC', '@ac', '', '', '', '', 'k-clr'],
-    ['4', '4', '', '', '', '', 'k-num'], ['5', '5', '', '', '', '', 'k-num'], ['6', '6', '', '', '', '', 'k-num'], ['×', '*', 'nPr', ' nPr ', '', '', 'k-op'], ['÷', '/', 'nCr', ' nCr ', '', '', 'k-op'],
-    ['1', '1', '', '', '', '', 'k-num'], ['2', '2', '', '', '', '', 'k-num'], ['3', '3', '', '', '', '', 'k-num'], ['+', '+', '', '', '', '', 'k-op'], ['−', '-', '', '', '', '', 'k-op'],
-    ['0', '0', 'Rnd', 'rnd(', '', '', 'k-num'], ['.', '.', '∠', '∠', '', '', 'k-num'], ['×10ˣ', 'E', 'π', 'pi', 'e', 'e', 'k-fn'], ['Ans', 'Ans', 'PreAns', 'PreAns', '', '', 'k-fn'], ['=', '@eq', '', '', '', '', 'k-eq']
+    ['7', '7', 'CONST', '@const', '', '', 'k-num'], ['8', '8', 'CONV', '@conv', 'SI', '@si', 'k-num'], ['9', '9', 'Limit', 'lim(', '∞', '∞', 'k-num'], ['DEL', '@del', '', '', '', '', 'k-clr'], ['AC', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr'],
+    ['4', '4', 'MATRIX', '@tab_matrix', 'EQN', '@tab_eqn', 'k-num'], ['5', '5', 'VECTOR', '@tab_vector', 'BASE', '@tab_base', 'k-num'], ['6', '6', 'FUNC', '@tab_table', 'HELP', '@help', 'k-num'], ['×', '*', 'nPr', ' nPr ', 'GCD', 'gcd(', 'k-op'], ['÷', '/', 'nCr', ' nCr ', 'LCM', 'lcm(', 'k-op'],
+    ['1', '1', 'STAT', '@tab_stat', '', '', 'k-num'], ['2', '2', 'CMPLX', '@cmplx', '', '', 'k-num'], ['3', '3', 'DISTR', '@tab_distr', '', '', 'k-num'], ['+', '+', 'Pol', 'Pol(', 'Ceil', 'ceil(', 'k-op'], ['−', '-', 'Rec', 'Rec(', 'Floor', 'floor(', 'k-op'],
+    ['0', '0', 'COPY', '@copy', 'PASTE', '@paste', 'k-num'], ['.', '.', 'Ran#', 'ran#', 'RanInt', 'ranint#(', 'k-num'], ['×10ˣ', 'E', 'π', 'pi', 'e', 'e', 'k-num'], ['Ans', 'Ans', 'PreAns', 'PreAns', '', '', 'k-num'], ['=', '@eq', 'History', '@hist', '', '', 'k-eq']
+  ];
+  var P2 = [
+    ['SHIFT', '@shift', '', '', '', '', 'k-shift'], ['ALPHA', '@alpha', '', '', '', '', 'k-alpha'], ['◀', '@left', '', '', '', '', 'k-fn'], ['▶', '@right', '', '', '', '', 'k-fn'], ['', '@noop', '', '', '', '', 'k-fn'], ['1st', '@p1', '', '', '', '', 'k-fn k-2nd'],
+    ['FACTOR', 'factor(', '', '', '', '', 'k-fn k-sm'], ['EXPAND', 'expand(', '', '', '', '', 'k-fn k-sm'], ['SIMPLY', 'simplify(', '', '', '', '', 'k-fn k-sm'], ['TABLE', '@tab_table', '', '', '', '', 'k-fn k-sm'], ['∫dx', 'sint(', '', '', '', '', 'k-fn'], ['d/dx', 'diff(', '', '', '', '', 'k-fn'],
+    ['r', 'R', 's', 'S', 't', 'T', 'k-fn'], ['u', 'U', 'v', 'V', 'w', 'W', 'k-fn'], ['x', 'X', 'y', 'Y', 'z', 'Z', 'k-fn'], ['{', '{', '(', '(', '', '', 'k-fn'], ['}', '}', ')', ')', '', '', 'k-fn'], [',', ',', '', '', '', '', 'k-fn'],
+    ['=', '=', '≠', '≠', 'and', ' and ', 'k-fn'], ['<', '<', '≤', '≤', 'or', ' or ', 'k-fn'], ['>', '>', '≥', '≥', 'xor', ' xor ', 'k-fn'], ['True', 'true', 'False', 'false', '¬', '¬', 'k-fn k-sm'], ['→', '→', '', '', '', '', 'k-fn'], [':=', ':=', '', '', '', '', 'k-fn'],
+    ['[⁞⁞]', '@mx_open', 'v2', '@vc_open2', 'v3', '@vc_open3', 'k-fn k-sm'], ['•', '@vc_dot', 'Cross', '@vc_cross', '', '', 'k-fn'], ['Det', '@mx_det', 'Trn', '@mx_trn', '', '', 'k-fn k-sm'], ['Rank', '@mx_rank', 'Trace', '@mx_trace', '', '', 'k-fn k-sm'], ['[ ]⁻¹', '@mx_inv', 'RREF', '@mx_rref', '', '', 'k-fn k-sm'], ['EiValues', '@mx_eival', 'EiVec', '@mx_eivec', '', '', 'k-fn k-sm'],
+    ['DEL', '@del', '', '', '', '', 'k-clr k-wide'], ['CLR', '@ac', 'CLR ALL', '@clrall', '', '', 'k-clr k-wide']
   ];
   var keyEls = [];
   function buildKeys(list, host) {
     list.forEach(function (d) {
-      var b = h('button', { type: 'button', cls: 'sc-key ' + d[6], 'aria-label': d[0] + (d[2] ? ' (shift ' + d[2] + ')' : '') }, []);
-      if (d[2]) b.appendChild(h('span', { cls: 'sc-s', text: d[2] }));
-      if (d[4]) b.appendChild(h('span', { cls: 'sc-a', text: d[4] }));
-      b.appendChild(h('span', { cls: 'sc-m', text: d[0] }));
+      if (d[0] === '@dpad') { host.appendChild(buildDpad()); return; }
+      var w = h('div', { cls: 'sc-kw' }, []);
+      var lbl = h('div', { cls: 'sc-lbl' }, []);
+      lbl.appendChild(h('span', { cls: 'sc-s', text: d[2] || '' }));
+      lbl.appendChild(h('span', { cls: 'sc-a', text: d[4] || '' }));
+      var b = h('button', { type: 'button', cls: 'sc-key ' + d[6], 'aria-label': d[0] + (d[2] ? ' (shift ' + d[2] + ')' : '') + (d[4] ? ' (alpha ' + d[4] + ')' : '') }, [h('span', { cls: 'sc-m', text: d[0] })]);
       b.addEventListener('click', function () { press(d); });
-      host.appendChild(b); keyEls.push({ d: d, b: b });
+      w.appendChild(lbl); w.appendChild(b);
+      host.appendChild(w); keyEls.push({ d: d, b: b });
     });
+  }
+  function buildDpad() {
+    var pad = h('div', { cls: 'sc-dpad', role: 'group', 'aria-label': 'Cursor and history' }, []);
+    [['up', '▲', 'Previous calculation'], ['left', '◀', 'Move cursor left'], ['right', '▶', 'Move cursor right'], ['down', '▼', 'Next calculation']].forEach(function (k) {
+      var b = h('button', { type: 'button', cls: 'sc-dp sc-dp-' + k[0], 'aria-label': k[2], text: k[1] });
+      b.addEventListener('click', function () { action(k[0]); });
+      pad.appendChild(b);
+    });
+    return pad;
   }
   buildKeys(FN, $('sc-keys-fn'));
   buildKeys(NUM, $('sc-keys-num'));
+  buildKeys(P2, $('sc-keys-p2'));
 
   function syncKeyState() {
     keyEls.forEach(function (k) {
@@ -67,7 +88,7 @@
     $('sc-badge-mem').hidden = !memory;
     $('sc-badge-mode').textContent = st.mode === 'deg' ? 'DEG' : st.mode === 'rad' ? 'RAD' : 'GRA';
     $('sc-badge-cx').hidden = !st.cmplx;
-    $('sc-badge-disp').textContent = st.fmt === 'fix' ? 'Fix' + st.digits : st.fmt === 'sci' ? 'Sci' + st.digits : st.fmt === 'norm1' ? 'Norm1' : 'Norm2';
+    $('sc-badge-disp').textContent = (st.fmt === 'fix' ? 'Fix' + st.digits : st.fmt === 'sci' ? 'Sci' + st.digits : st.fmt === 'norm1' ? 'Norm1' : 'Norm2') + (st.si ? ' SI' : '');
   }
 
   // ---------- editing ----------
@@ -109,6 +130,18 @@
     insertText(t);
     elExpr.focus();
   }
+  function showPage(n) {
+    var two = n === 2;
+    $('sc-keys-fn').hidden = two; $('sc-keys-num').hidden = two; $('sc-keys-p2').hidden = !two;
+    shift = false; alpha = false; hyp = false; syncKeyState();
+  }
+  function openPane(tab, selId, op, dim) {
+    openTab(tab);
+    if (dim && $('vc-dim')) { $('vc-dim').value = String(dim); $('vc-dim').dispatchEvent(new Event('change')); }
+    if (op && $(selId)) $(selId).value = op;
+    panes[tab].scrollIntoView({ block: 'nearest' });
+    var c = panes[tab].querySelector('.sc-cell'); if (c) c.focus();
+  }
   function action(name) {
     var wasShift = shift; shift = false;
     switch (name) {
@@ -118,6 +151,9 @@
       case 'left': moveCaret(-1); break;
       case 'right': moveCaret(1); break;
       case 'up': histRecall(); break;
+      case 'down': histRecall(true); break;
+      case 'clrall': vars = {}; memory = 0; ans = 0; preans = 0; hist = []; renderHist(); action('ac'); break;
+      case 'cmplx': { var cs = $('su-cmplx'); cs.value = st.cmplx ? 'comp' : 'cmplx'; cs.dispatchEvent(new Event('change')); break; }
       case 'mode': openTab('comp'); $('sc-tabs').scrollIntoView({ block: 'nearest' }); $('sc-tabs').querySelector('button').focus(); break;
       case 'setup': $('sc-setup').open = true; $('sc-setup').scrollIntoView({ block: 'nearest' }); break;
       case 'del': doDel(); break;
@@ -137,7 +173,35 @@
       case 'solve': openBox('solve'); break;
       case 'const': openTab('const'); break;
       case 'conv': openTab('conv'); break;
+      case 'tab_stat': case 'tab_distr': case 'tab_base': case 'tab_eqn': case 'tab_matrix': case 'tab_vector': case 'tab_table': openTab(name.slice(4)); panes[name.slice(4)].scrollIntoView({ block: 'nearest' }); break;
+      case 'noop': break;
+      case 'p2': showPage(2); break;
+      case 'p1': showPage(1); break;
+      case 'mx_open': openPane('matrix', 'mx-op', ''); break;
+      case 'mx_det': openPane('matrix', 'mx-op', 'det'); break;
+      case 'mx_trn': openPane('matrix', 'mx-op', 'trn'); break;
+      case 'mx_inv': openPane('matrix', 'mx-op', 'inv'); break;
+      case 'mx_rank': openPane('matrix', 'mx-op', 'rank'); break;
+      case 'mx_trace': openPane('matrix', 'mx-op', 'trace'); break;
+      case 'mx_rref': openPane('matrix', 'mx-op', 'rref'); break;
+      case 'mx_eival': openPane('matrix', 'mx-op', 'eival'); break;
+      case 'mx_eivec': openPane('matrix', 'mx-op', 'eivec'); break;
+      case 'vc_dot': openPane('vector', 'vc-op', 'dot'); break;
+      case 'vc_cross': openPane('vector', 'vc-op', 'cross', 3); break;
+      case 'vc_open2': openPane('vector', 'vc-op', '', 2); break;
+      case 'vc_open3': openPane('vector', 'vc-op', '', 3); break;
       case 'optn': $('sc-optn').hidden = !$('sc-optn').hidden; break;
+      case 'cmp': $('sc-cmp').hidden = !$('sc-cmp').hidden; break;
+      case 'clrv': vars = {}; memory = 0; break;
+      case 'si': st.si = !st.si; renderLast(); break;
+      case 'hist': $('sc-go-hist').click(); break;
+      case 'copy': $('sc-copy').click(); break;
+      case 'help': $('sc-help').open = true; $('sc-help').scrollIntoView({ block: 'nearest' }); break;
+      case 'paste':
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          navigator.clipboard.readText().then(function (tx) { insertText(String(tx).slice(0, 300)); elExpr.focus(); }, function () { showErr('Paste blocked - long-press the box and paste'); });
+        } else showErr('Paste blocked - long-press the box and paste');
+        break;
     }
     syncKeyState();
   }
@@ -172,12 +236,13 @@
     r.text = renderValue(r.v);
     elRes.className = 'sc-result'; elRes.textContent = pretty(r.text);
     if (typeof r.v === 'number' || (r.v && r.v.im !== undefined)) { preans = ans; ans = r.v; }
+    else if (r.v && r.v.text !== undefined && typeof r.v.num === 'number') { preans = ans; ans = r.v.num; }
     hist.unshift({ e: t, r: r.text }); if (hist.length > 20) hist.pop(); histPos = -1;
     renderHist(); flipFresh = true;
   }
-  function histRecall() {
+  function histRecall(newer) {
     if (!hist.length) return;
-    histPos = Math.min(hist.length - 1, histPos + 1);
+    histPos = newer ? Math.max(0, histPos - 1) : Math.min(hist.length - 1, histPos + 1);
     elExpr.value = hist[histPos].e; elExpr.setSelectionRange(elExpr.value.length, elExpr.value.length); preview(); elExpr.focus();
   }
   function renderHist() {
@@ -455,7 +520,7 @@
       ha.appendChild(ga.el); hb.appendChild(gb.el);
     }
     [ar, ac, br, bc].forEach(function (s) { s.addEventListener('change', build); }); build();
-    var kf = field('k (scalar) =', 'mx-k', '2'), opSel = select('mx-op', [['add', 'A + B'], ['sub', 'A − B'], ['mul', 'A × B'], ['ka', 'k × A'], ['det', 'Det(A)'], ['trn', 'Trn(A)'], ['inv', 'A⁻¹'], ['sq', 'A²'], ['detb', 'Det(B)'], ['invb', 'B⁻¹'], ['ba', 'B × A']], 'Operation');
+    var kf = field('k (scalar) =', 'mx-k', '2'), opSel = select('mx-op', [['add', 'A + B'], ['sub', 'A − B'], ['mul', 'A × B'], ['ka', 'k × A'], ['det', 'Det(A)'], ['trn', 'Trn(A)'], ['inv', 'A⁻¹'], ['sq', 'A²'], ['rank', 'Rank(A)'], ['trace', 'Trace(A)'], ['rref', 'RowReduce(A) (rref)'], ['eival', 'Eigenvalues(A)'], ['eivec', 'Eigenvalues + Eigenvectors(A)'], ['detb', 'Det(B)'], ['invb', 'B⁻¹'], ['ba', 'B × A']], 'Operation');
     var go = h('button', { type: 'button', cls: 'sc-tool-btn sc-go', text: 'Calculate' });
     go.addEventListener('click', function () {
       try {
@@ -463,6 +528,16 @@
         if (op === 'add') r = ceMatAdd(A, B, 1); else if (op === 'sub') r = ceMatAdd(A, B, -1); else if (op === 'mul') r = ceMatMul(A, B); else if (op === 'ba') r = ceMatMul(B, A);
         else if (op === 'ka') r = ceMatScale(A, numOf(kf.inp, 'k')); else if (op === 'trn') r = ceMatTrn(A); else if (op === 'inv') r = ceMatInv(A);
         else if (op === 'invb') r = ceMatInv(B); else if (op === 'sq') r = ceMatMul(A, A);
+        else if (op === 'rank' || op === 'trace') { kv(out, [[op === 'rank' ? 'Rank' : 'Trace', ceFmtNum(op === 'rank' ? ceMatRank(A) : ceMatTrace(A), { fmt: 'norm2' })]]); return; }
+        else if (op === 'rref') r = ceMatRref(A).m;
+        else if (op === 'eival' || op === 'eivec') {
+          var eg = ceMatEigen(A), lines = [];
+          eg.vals.forEach(function (lv, ei) {
+            lines.push('λ' + (ei + 1) + ' = ' + ceFmtValue(lv, { fmt: 'norm2' }));
+            if (op === 'eivec') lines.push('   v' + (ei + 1) + ' = ' + (eg.vecs[ei] ? '(' + eg.vecs[ei].map(function (x) { return ceFmtNum(x, { fmt: 'norm2' }); }).join(', ') + ')' : '(complex - not shown)'));
+          });
+          ok(out); out.appendChild(h('pre', { cls: 'sc-pre', text: lines.join('\n') })); return;
+        }
         else { var d = ceMatDet(op === 'det' ? A : B); kv(out, [['Det', ceFmtNum(d, { fmt: 'norm2' })]]); return; }
         ok(out); out.appendChild(h('pre', { cls: 'sc-pre', text: matText(r) }));
       } catch (e) { fail(out, e && e.msg === 'Math ERROR' ? { msg: 'Math ERROR (matrix is singular)' } : e); }
@@ -556,6 +631,11 @@
   })();
 
   openTab('comp');
+  $('sc-go-optn').addEventListener('click', function () { action('optn'); });
+  $('sc-go-hist').addEventListener('click', function () { $('sc-hist-title').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  $('sc-go-setup').addEventListener('click', function () { $('sc-setup').open = true; $('sc-setup').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); });
+  $('sc-go-const').addEventListener('click', function () { openTab('const'); panes.const.scrollIntoView({ block: 'nearest' }); });
+  $('sc-go-conv').addEventListener('click', function () { openTab('conv'); panes.conv.scrollIntoView({ block: 'nearest' }); });
 
   // ---------- setup ----------
   function bindSetup() {
@@ -574,11 +654,31 @@
   bindSetup();
 
   // ---------- OPTN palette ----------
-  [['gcd(', 'GCD'], ['lcm(', 'LCM'], ['int(', 'Int'], ['intg(', 'Intg'], ['rnd(', 'Rnd'], ['abs(', 'Abs'], ['conj(', 'Conjg'], ['arg(', 'arg'], ['re(', 'Re'], ['im(', 'Im'], [' mod ', 'mod'], ['!', 'x!'], ['%', '%'], ['∠', '∠'], ['log(', 'logₐb (a,b)'], ['sinh(', 'sinh'], ['cosh(', 'cosh'], ['tanh(', 'tanh'], ['asinh(', 'sinh⁻¹'], ['acosh(', 'cosh⁻¹'], ['atanh(', 'tanh⁻¹'], [',', ','], ['=', '=']].forEach(function (c) {
+  [['gcd(', 'GCD'], ['lcm(', 'LCM'], ['int(', 'Int'], ['intg(', 'Intg'], ['rnd(', 'Rnd'], ['abs(', 'Abs'], ['conj(', 'Conjg'], ['arg(', 'arg'], ['re(', 'Re'], ['im(', 'Im'], [' mod ', 'mod'], ['!', 'x!'], ['%', '%'], ['∠', '∠'], ['log(', 'logₐb (a,b)'], ['ceil(', 'Ceil'], ['floor(', 'Floor'], ['cot(', 'Cot'], ['acot(', 'Cot⁻¹'], ['ranint#(', 'RanInt'], ['lim(', 'Limit'], ['fact(', 'FACT'], ['÷R', '÷R'], ['‾', '▮ repeat'], ['∞', '∞'], ['sinh(', 'sinh'], ['cosh(', 'cosh'], ['tanh(', 'tanh'], ['asinh(', 'sinh⁻¹'], ['acosh(', 'cosh⁻¹'], ['atanh(', 'tanh⁻¹'], [',', ','], ['=', '=']].forEach(function (c) {
     var b = h('button', { type: 'button', cls: 'sc-chip', text: c[1] });
     b.addEventListener('click', function () { insertText(c[0]); elExpr.focus(); });
     $('sc-optn').appendChild(b);
   });
+
+  var cmpBox = h('div', { cls: 'sc-chips sc-optn', id: 'sc-cmp', hidden: 'hidden', 'aria-label': 'Comparison symbols' }, []);
+  [['>', '>'], ['<', '<'], ['≥', '≥ (>=)'], ['≤', '≤ (<=)'], ['≠', '≠ (!=)']].forEach(function (c) {
+    var b = h('button', { type: 'button', cls: 'sc-chip', text: c[1] });
+    b.addEventListener('click', function () { insertText(c[0]); elExpr.focus(); });
+    cmpBox.appendChild(b);
+  });
+  $('sc-optn').parentNode.insertBefore(cmpBox, $('sc-optn').nextSibling);
+  var helpBox = h('details', { id: 'sc-help', cls: 'sc-setup' }, [
+    h('summary', { text: 'HELP - keys, shortcuts and examples' }),
+    h('div', { cls: 'sc-help-body' }, [
+      h('p', { text: 'SHIFT = yellow function above the key, ALPHA = letters and the purple/white secondary function. Enter or = evaluates, Esc clears.' }),
+      h('p', { text: 'Fractions: type 1/3 (shows 1/3 in Math mode); SHIFT + x/y types a mixed number 2⌟1⌟3. ÷R gives quotient and remainder: 17÷R5 = 3 R 2. FACT(360) shows prime factors.' }),
+      h('p', { text: 'Repeating decimal: type 0.‾3 for 0.333... or 0.1‾6 for 0.1666... (digits after ▮ repeat). ><= opens > < ≥ ≤ ≠ (answer 1 = true, 0 = false).' }),
+      h('p', { text: 'Limit: lim(sin(X)/X,0) or lim((2X+1)/X,∞) with the variable X. CALC evaluates with values for X, Y; SOLVE solves L=R. SI toggles k, M, µ prefixes. CLRv clears variables A-F, X, Y, M.' }),
+      h('p', { text: '2nd opens the algebra page: expand((x+1)^3), factor(x^2-1), simplify((x^2-1)/(x-1)), diff(x^3,x) and sint(3x^2) (indefinite integral). Letters r-z hold values with := (for example a:=5). Logic keys and, or, xor, ¬ give True or False. Matrix keys open the MATRIX pane with that operation selected.' }),
+      h('p', { text: 'Modes (SHIFT + number): CONST 7, CONV 8, MATRIX 4, VECTOR 5, FUNC/TABLE 6, STAT 1, CMPLX 2, DISTR 3; ALPHA + 4 gives EQN, ALPHA + 5 gives BASE-N. COPY and PASTE are on 0.' })
+    ])
+  ]);
+  $('sc-setup').parentNode.insertBefore(helpBox, $('sc-setup').nextSibling);
 
   // ---------- misc ----------
   elExpr.addEventListener('input', function () { flipFresh = false; preview(); });

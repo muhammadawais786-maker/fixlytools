@@ -209,6 +209,13 @@ if (typeof document !== 'undefined') {
     const clearBtn = $('clear-btn');
     const createBtn = $('create-btn');
     const formatSelect = $('opt-format');
+    const saveImgBtn = $('save-img-btn');
+    const selectAllBtn = $('select-all-btn');
+    const selectNoneBtn = $('select-none-btn');
+    const selectionNote = $('selection-note');
+    const edCompare = $('ed-compare');
+    const edLoupe = $('ed-loupe');
+    const camOverlay = $('camera-overlay');
     const progress = $('progress-text');
 
     // editor elements
@@ -234,6 +241,7 @@ if (typeof document !== 'undefined') {
     let cameraCount = 0;
     let stream = null;
     let busy = false;
+    const selected = new Set();
 
     function ctx2d(canvas, readback) {
       return canvas.getContext('2d', readback ? { willReadFrequently: true } : undefined);
@@ -264,10 +272,16 @@ if (typeof document !== 'undefined') {
     function cornersPx(corners, w, h) { return corners.map((p) => ({ x: p.x * w, y: p.y * h })); }
 
     // straightened page (no filter) from the working copy, limited to maxSide pixels on the long side
-    function warpedBase(page, maxSide) {
-      const bx = ctx2d(page.base, true);
-      const src = bx.getImageData(0, 0, page.base.width, page.base.height);
-      const px = cornersPx(page.corners, page.base.width, page.base.height);
+    function warpedBase(page, maxSide, srcCanvas) {
+      const sc = srcCanvas || page.base;
+      let src;
+      if (srcCanvas) {
+        if (!srcCanvas._id) srcCanvas._id = ctx2d(srcCanvas, true).getImageData(0, 0, srcCanvas.width, srcCanvas.height);
+        src = srcCanvas._id;
+      } else {
+        src = ctx2d(sc, true).getImageData(0, 0, sc.width, sc.height);
+      }
+      const px = cornersPx(page.corners, sc.width, sc.height);
       const sz = seQuadSize(px, maxSide);
       return seWarp(src, px, sz.w, sz.h);
     }
@@ -288,8 +302,8 @@ if (typeof document !== 'undefined') {
     }
 
     // finished look of a page as a canvas (crop + filter + brightness/contrast + rotation)
-    function renderPage(page, maxSide) {
-      const im = warpedBase(page, maxSide);
+    function renderPage(page, maxSide, srcCanvas) {
+      const im = warpedBase(page, maxSide, srcCanvas);
       seApplyFilter(im, page.filter);
       seAdjust(im, page.brightness, page.contrast);
       return imgToCanvas(im, page.rotation);
@@ -313,6 +327,7 @@ if (typeof document !== 'undefined') {
         card.className = 'scn-card';
         card.innerHTML = `
           <span class="scn-num">${i + 1}</span>
+          <label class="scn-pick" title="Select page ${i + 1}"><input type="checkbox" data-act="pick" aria-label="Select page ${i + 1}"${selected.has(p.id) ? ' checked' : ''}></label>
           <canvas class="scn-thumb" role="img" aria-label="Page ${i + 1}: ${escapeHtml(p.name)}" data-act="edit"></canvas>
           <div class="scn-tools">
             <button type="button" class="scn-icon" data-act="left" aria-label="Move page ${i + 1} earlier"${i === 0 ? ' disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>
@@ -320,12 +335,56 @@ if (typeof document !== 'undefined') {
             <button type="button" class="scn-icon" data-act="rotate" aria-label="Rotate page ${i + 1}"><i class="fa-solid fa-rotate-right"></i></button>
             <button type="button" class="scn-icon" data-act="delete" aria-label="Delete page ${i + 1}"><i class="fa-solid fa-trash"></i></button>
             <button type="button" class="scn-icon" data-act="right" aria-label="Move page ${i + 1} later"${i === pages.length - 1 ? ' disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="scn-save-tools">
+            <button type="button" class="scn-mini" data-act="img" aria-label="Save only page ${i + 1} as an image"><i class="fa-solid fa-image"></i> Image</button>
+            <button type="button" class="scn-mini" data-act="pdf" aria-label="Make a PDF of only page ${i + 1}"><i class="fa-solid fa-file-pdf"></i> PDF</button>
           </div>`;
+        if (selected.has(p.id)) card.classList.add('scn-selected');
         card.dataset.id = String(p.id);
         grid.appendChild(card);
         paintThumb(card.querySelector('canvas'), p);
       });
       createBtn.disabled = busy || !has;
+      saveImgBtn.disabled = busy || !has;
+      updateActionUi();
+    }
+
+    function targetPages() {
+      const chosen = pages.filter((p) => selected.has(p.id));
+      return chosen.length ? chosen : pages;
+    }
+    function updateActionUi() {
+      [...selected].forEach((id) => { if (!pages.some((p) => p.id === id)) selected.delete(id); });
+      const n = selected.size;
+      selectNoneBtn.hidden = n === 0;
+      selectAllBtn.hidden = n === pages.length;
+      createBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> ' + (n ? `Create PDF (${n} selected)` : 'Create PDF');
+      saveImgBtn.innerHTML = '<i class="fa-solid fa-image"></i> ' + (n ? `Save ${n} selected as image` : 'Save as image');
+      selectionNote.textContent = n
+        ? `Only the ${n} selected page${n === 1 ? '' : 's'} will be saved. Clear the selection to save all pages.`
+        : (pages.length > 1 ? 'All pages will be saved. Tick the box on a page to save only some, or use the Image / PDF buttons on a single page.' : '');
+    }
+
+    // copy the picture bytes into memory so it can still be read later (phone galleries can drop the original handle)
+    async function readStable(file) {
+      try { return new File([await file.arrayBuffer()], file.name, { type: file.type || 'image/jpeg' }); }
+      catch (e) { return file; }
+    }
+    // full-size picture for the final file; tries twice, then another decoder, then the working copy
+    async function loadSource(page) {
+      for (let i = 0; i < 2; i++) {
+        try { return { src: await loadImageFile(page.file), full: true }; }
+        catch (e) { await new Promise((r) => setTimeout(r, 200)); }
+      }
+      if (typeof createImageBitmap === 'function') {
+        try { return { src: await createImageBitmap(page.file), full: true }; } catch (e) { /* use the working copy */ }
+      }
+      return { src: page.base, full: false };
+    }
+    function releaseSource(src) {
+      if (src && typeof src.close === 'function') src.close();
+      else if (src && src.tagName === 'IMG') src.src = '';
     }
 
     async function addFiles(files) {
@@ -335,11 +394,14 @@ if (typeof document !== 'undefined') {
       for (const file of images) {
         if (pages.length >= SCPDF_MAX_PAGES) { showToast(`A scan can have up to ${SCPDF_MAX_PAGES} pages. Extra images were not added.`, 'warning'); break; }
         try {
-          const img = await loadImageFile(file);
+          const stable = await readStable(file);
+          let img;
+          try { img = await loadImageFile(stable); }
+          catch (e) { img = await createImageBitmap(stable); }
           const base = makeBase(img);
-          img.src = '';
+          releaseSource(img);
           const det = autoCrop.checked ? detectFor(base) : { found: false, corners: seFullFrame() };
-          pages.push({ id: nextId++, file, name: file.name, rotation: 0, base, corners: det.corners, filter: filterSelect.value, brightness: 0, contrast: 0 });
+          pages.push({ id: nextId++, file: stable, name: file.name, rotation: 0, base, corners: det.corners, filter: filterSelect.value, brightness: 0, contrast: 0 });
         } catch (err) {
           failed.push(file.name);
         }
@@ -364,7 +426,10 @@ if (typeof document !== 'undefined') {
       const idx = pages.findIndex(p => String(p.id) === card.dataset.id);
       if (idx < 0) return;
       const act = btn.dataset.act;
+      if (act === 'pick') return;
       if (act === 'edit') { openEditor(idx); return; }
+      if (act === 'img') { exportList([pages[idx]], formatSelect.value); return; }
+      if (act === 'pdf') { exportList([pages[idx]], 'pdf'); return; }
       if (act === 'left') pages = scpdfMove(pages, idx, -1);
       else if (act === 'right') pages = scpdfMove(pages, idx, 1);
       else if (act === 'rotate') pages[idx].rotation = scpdfNextRotation(pages[idx].rotation, 90);
@@ -372,9 +437,21 @@ if (typeof document !== 'undefined') {
       render();
     });
 
+    grid.addEventListener('change', (e) => {
+      const box = e.target.closest('input[data-act="pick"]');
+      if (!box) return;
+      const card = box.closest('.scn-card');
+      const id = Number(card.dataset.id);
+      if (box.checked) selected.add(id); else selected.delete(id);
+      card.classList.toggle('scn-selected', box.checked);
+      updateActionUi();
+    });
+    selectAllBtn.addEventListener('click', () => { pages.forEach((p) => selected.add(p.id)); render(); });
+    selectNoneBtn.addEventListener('click', () => { selected.clear(); render(); });
+
     // the default look: sets the look of every page
     filterSelect.addEventListener('change', () => { pages.forEach((p) => { p.filter = filterSelect.value; }); render(); });
-    clearBtn.addEventListener('click', () => { if (busy) return; pages = []; render(); });
+    clearBtn.addEventListener('click', () => { if (busy) return; pages = []; selected.clear(); render(); });
 
     // ----- page editor: look, brightness / contrast, crop with four corners -----
     let ed = null;   // { page, cropMode, corners (working copy while cropping), drag, strip }
@@ -401,24 +478,37 @@ if (typeof document !== 'undefined') {
       });
     }
 
-    function paintEditor() {
+    let sharpTimer = null, paintToken = 0;
+    function stageTarget() {
+      const dpr = Math.min(3, window.devicePixelRatio || 1);
+      return Math.max(600, Math.min(2200, Math.round(Math.max(edStage.clientWidth, 320) * dpr * 1.1)));
+    }
+    function paintEditor(sharpOnly) {
       if (!ed) return;
       const page = ed.page;
+      const srcC = ed.hi || page.base;
+      const shown = ed.compare ? { corners: page.corners, filter: 'original', brightness: 0, contrast: 0, rotation: page.rotation, base: page.base } : page;
       if (ed.cropMode) {
-        // show the whole picture with the four corner handles
-        const s = Math.min(1, 900 / Math.max(page.base.width, page.base.height));
-        edCanvas.width = Math.round(page.base.width * s); edCanvas.height = Math.round(page.base.height * s);
-        ctx2d(edCanvas).drawImage(page.base, 0, 0, edCanvas.width, edCanvas.height);
+        const target = Math.min(stageTarget(), 1800);
+        const s2 = Math.min(1, target / Math.max(srcC.width, srcC.height));
+        edCanvas.width = Math.round(srcC.width * s2); edCanvas.height = Math.round(srcC.height * s2);
+        ctx2d(edCanvas).drawImage(srcC, 0, 0, edCanvas.width, edCanvas.height);
         edOverlay.width = edCanvas.width; edOverlay.height = edCanvas.height;
         drawCropOverlay();
-      } else {
-        const r = renderPage(page, 900);
+        return;
+      }
+      const draw = (maxSide) => {
+        const r = renderPage(shown, maxSide, ed.hi || null);
         edCanvas.width = r.width; edCanvas.height = r.height;
         ctx2d(edCanvas).drawImage(r, 0, 0);
         r.width = r.height = 0;
         edOverlay.width = edCanvas.width; edOverlay.height = edCanvas.height;
         ctx2d(edOverlay).clearRect(0, 0, edOverlay.width, edOverlay.height);
-      }
+      };
+      clearTimeout(sharpTimer);
+      const token = ++paintToken;
+      if (!sharpOnly) draw(900);                     // quick draft while sliders move
+      sharpTimer = setTimeout(() => { if (ed && token === paintToken && !ed.cropMode) draw(stageTarget()); }, sharpOnly ? 0 : 180);
     }
 
     function drawCropOverlay() {
@@ -452,7 +542,8 @@ if (typeof document !== 'undefined') {
 
     function openEditor(idx) {
       const page = pages[idx];
-      ed = { page, cropMode: false, corners: null, drag: -1 };
+      ed = { page, cropMode: false, corners: null, drag: -1, hi: null, compare: false };
+      loadHi(page).then((hi) => { if (ed && ed.page === page) { ed.hi = hi; paintEditor(); } });
       edTitle.textContent = `Page ${idx + 1}`;
       edBright.value = String(page.brightness);
       edContrast.value = String(page.contrast);
@@ -462,9 +553,27 @@ if (typeof document !== 'undefined') {
       edDone.focus();
     }
 
+    // a sharper working copy (up to 2200 px) used only while the editor is open, so the preview is not blurry
+    async function loadHi(page) {
+      try {
+        const loaded = await loadSource(page);
+        if (!loaded.full) return null;
+        const src = loaded.src, iw = src.naturalWidth || src.width, ih = src.naturalHeight || src.height;
+        const k = Math.min(1, 2200 / Math.max(iw, ih));
+        const c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(iw * k)); c.height = Math.max(1, Math.round(ih * k));
+        ctx2d(c, true).drawImage(src, 0, 0, c.width, c.height);
+        releaseSource(src);
+        return c;
+      } catch (e) { return null; }
+    }
+
     function closeEditor() {
       if (!ed) return;
       if (ed.cropMode) applyCrop();
+      clearTimeout(sharpTimer); paintToken++;
+      if (ed.hi) { ed.hi._id = null; ed.hi.width = ed.hi.height = 0; }
+      edLoupe.classList.add('hidden');
       ed = null;
       editor.classList.add('hidden');
       document.body.classList.remove('scn-noscroll');
@@ -503,6 +612,15 @@ if (typeof document !== 'undefined') {
       ed.page.rotation = scpdfNextRotation(ed.page.rotation, 90);
       paintEditor();
     });
+    function setCompare(on) {
+      if (!ed || ed.cropMode) return;
+      ed.compare = on;
+      edCompare.setAttribute('aria-pressed', on ? 'true' : 'false');
+      paintEditor(true);
+    }
+    edCompare.addEventListener('pointerdown', (e) => { e.preventDefault(); setCompare(true); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => edCompare.addEventListener(ev, () => setCompare(false)));
+    edCompare.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setCompare(!(ed && ed.compare)); } });
     edDone.addEventListener('click', closeEditor);
     editor.addEventListener('click', (e) => { if (e.target === editor) closeEditor(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && ed) closeEditor(); });
@@ -550,20 +668,77 @@ if (typeof document !== 'undefined') {
         ed.drag = best;
         edOverlay.setPointerCapture(e.pointerId);
         e.preventDefault();
+        showLoupe();
       }
     });
+    // magnifier that sits away from the finger and shows the exact spot of the corner
+    function showLoupe() {
+      if (!ed || ed.drag < 0) return;
+      const c = ed.corners[ed.drag], dpr = Math.min(3, window.devicePixelRatio || 1), size = 120;
+      if (edLoupe.width !== Math.round(size * dpr)) { edLoupe.width = edLoupe.height = Math.round(size * dpr); }
+      const lx = edLoupe.getContext('2d'), rect = edCanvas.getBoundingClientRect();
+      const zoom = 3, region = (size / zoom) * (edCanvas.width / Math.max(1, rect.width));
+      const cx = c.x * edCanvas.width, cy = c.y * edCanvas.height;
+      lx.fillStyle = '#fff'; lx.fillRect(0, 0, edLoupe.width, edLoupe.height);
+      lx.imageSmoothingEnabled = true;
+      lx.drawImage(edCanvas, cx - region / 2, cy - region / 2, region, region, 0, 0, edLoupe.width, edLoupe.height);
+      const m = edLoupe.width / 2;
+      lx.strokeStyle = '#ef4444'; lx.lineWidth = Math.max(1.5, dpr * 1.2);
+      lx.beginPath(); lx.moveTo(m - 14 * dpr, m); lx.lineTo(m + 14 * dpr, m); lx.moveTo(m, m - 14 * dpr); lx.lineTo(m, m + 14 * dpr); lx.stroke();
+      edLoupe.classList.remove('hidden');
+      const left = c.x > 0.5;      // corner on the right half: lens goes to the left, and the other way round
+      edLoupe.classList.toggle('scn-loupe-left', left);
+      edLoupe.classList.toggle('scn-loupe-right', !left);
+    }
     edOverlay.addEventListener('pointermove', (e) => {
       if (!ed || ed.drag < 0) return;
       const p = pointerPos(e);
       ed.corners[ed.drag] = { x: Math.max(0, Math.min(1, p.x)), y: Math.max(0, Math.min(1, p.y)) };
       drawCropOverlay();
+      showLoupe();
     });
-    const endDrag = () => { if (ed) ed.drag = -1; };
+    const endDrag = () => { if (ed) ed.drag = -1; edLoupe.classList.add('hidden'); };
     edOverlay.addEventListener('pointerup', endDrag);
     edOverlay.addEventListener('pointercancel', endDrag);
 
     // ----- live camera -----
+    // live page frame: runs the edge finder on a small copy of the video a few times a second
+    let liveTimer = null, liveBusy = false, liveQuad = null;
+    const liveCanvas = document.createElement('canvas');
+    function drawLive(quad) {
+      const w = video.clientWidth, h = video.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+      if (camOverlay.width !== Math.round(w * dpr) || camOverlay.height !== Math.round(h * dpr)) { camOverlay.width = Math.round(w * dpr); camOverlay.height = Math.round(h * dpr); }
+      const x = camOverlay.getContext('2d');
+      x.clearRect(0, 0, camOverlay.width, camOverlay.height);
+      if (!quad) return;
+      const vw = video.videoWidth, vh = video.videoHeight, k = Math.min(w / vw, h / vh), dw = vw * k, dh = vh * k, ox = (w - dw) / 2, oy = (h - dh) / 2;
+      const pts = quad.map((p) => ({ x: (ox + p.x * dw) * dpr, y: (oy + p.y * dh) * dpr }));
+      x.beginPath(); pts.forEach((p, i) => (i ? x.lineTo(p.x, p.y) : x.moveTo(p.x, p.y))); x.closePath();
+      x.fillStyle = 'rgba(34,197,94,0.18)'; x.fill();
+      x.strokeStyle = '#22c55e'; x.lineWidth = 4 * dpr; x.lineJoin = 'round'; x.stroke();
+    }
+    function liveStep() {
+      if (!stream || !video.videoWidth || liveBusy) return;
+      liveBusy = true;
+      try {
+        const k = Math.min(1, 220 / Math.max(video.videoWidth, video.videoHeight));
+        liveCanvas.width = Math.max(1, Math.round(video.videoWidth * k)); liveCanvas.height = Math.max(1, Math.round(video.videoHeight * k));
+        const x = ctx2d(liveCanvas, true);
+        x.drawImage(video, 0, 0, liveCanvas.width, liveCanvas.height);
+        const det = seDetectCorners(x.getImageData(0, 0, liveCanvas.width, liveCanvas.height));
+        if (det.found && !seIsFullFrame(det.corners)) {
+          const q = det.corners;
+          liveQuad = liveQuad ? q.map((p, i) => ({ x: liveQuad[i].x * 0.4 + p.x * 0.6, y: liveQuad[i].y * 0.4 + p.y * 0.6 })) : q;
+        } else liveQuad = null;
+        drawLive(liveQuad);
+      } catch (e) { drawLive(null); }
+      liveBusy = false;
+    }
+    function startLive() { stopLive(); liveTimer = setInterval(liveStep, 280); }
+    function stopLive() { if (liveTimer) { clearInterval(liveTimer); liveTimer = null; } liveQuad = null; if (camOverlay.width) camOverlay.getContext('2d').clearRect(0, 0, camOverlay.width, camOverlay.height); }
+
     function stopCamera() {
+      stopLive();
       if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
       video.srcObject = null;
       cameraPanel.classList.add('hidden');
@@ -580,7 +755,8 @@ if (typeof document !== 'undefined') {
         video.srcObject = stream;
         await video.play();
         cameraPanel.classList.remove('hidden');
-        cameraStatus.textContent = 'Camera is on. Point it at the page and press Capture.';
+        cameraStatus.textContent = 'Camera is on. A green frame appears when the page edges are found. Press Capture when it fits.';
+        startLive();
       } catch (err) {
         stopCamera();
         if (err && err.name === 'NotAllowedError') showToast('Camera permission was denied. Allow camera access in your browser settings, or use "Take photo" / "Choose images".', 'error');
@@ -607,19 +783,19 @@ if (typeof document !== 'undefined') {
     });
 
     // ----- build the PDF, one page at a time -----
-    async function buildPdf(format) {
+    async function buildPdf(format, list) {
+      list = list || pages;
       const maxSide = parseInt(qualitySelect.value, 10) || 2000;
       const jpegQuality = maxSide >= 3000 ? 0.9 : 0.82;
       const margin = parseInt(marginSelect.value, 10) || 0;
       const asImage = format === 'jpg' || format === 'png';
       const images = [];
       const pdfDoc = asImage ? null : await PDFLib.PDFDocument.create();
-      for (let i = 0; i < pages.length; i++) {
-        const p = pages[i];
-        progress.textContent = `Processing page ${i + 1} of ${pages.length}...`;
-        let img;
-        try { img = await loadImageFile(p.file); }
-        catch (err) { throw new Error(`Could not read ${p.name}.`); }
+      for (let i = 0; i < list.length; i++) {
+        const p = list[i];
+        progress.textContent = `Processing page ${i + 1} of ${list.length}...`;
+        const loaded = await loadSource(p);
+        const img = loaded.src;
         const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
         // source copy for cutting out the page (kept below 3500 px so memory stays reasonable)
         const s = Math.min(1, 3500 / Math.max(iw, ih));
@@ -627,7 +803,7 @@ if (typeof document !== 'undefined') {
         src.width = Math.max(1, Math.round(iw * s)); src.height = Math.max(1, Math.round(ih * s));
         const sx = ctx2d(src, true);
         sx.drawImage(img, 0, 0, src.width, src.height);
-        img.src = '';
+        releaseSource(loaded.full ? img : null);
         let work;
         if (seIsFullFrame(p.corners)) {
           const out = scpdfOutputSize(iw, ih, maxSide);
@@ -663,29 +839,20 @@ if (typeof document !== 'undefined') {
       return asImage ? images : pdfDoc.save();
     }
 
-    function updateFormatUi() {
-      const img = formatSelect.value !== 'pdf';
-      document.querySelectorAll('.scn-pdf-only').forEach((l) => { if (l.parentElement) l.parentElement.hidden = img; });
-      createBtn.innerHTML = img ? '<i class="fa-solid fa-image"></i> Save enhanced image' : '<i class="fa-solid fa-file-pdf"></i> Create PDF';
-    }
-    formatSelect.addEventListener('change', updateFormatUi);
-    updateFormatUi();
-
-    createBtn.addEventListener('click', async () => {
-      if (busy || !pages.length) return;
-      const format = formatSelect.value;
+    async function exportList(list, format) {
+      if (busy || !list.length) return;
       if (format === 'pdf' && typeof PDFLib === 'undefined') {
         showToast('The PDF library could not be loaded. Please check your internet connection and reload.', 'error');
         return;
       }
       busy = true;
-      createBtn.disabled = true;
-      createBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Working...';
+      createBtn.disabled = true; saveImgBtn.disabled = true;
+      progress.textContent = 'Working...';
       try {
-        const result = await buildPdf(format);
+        const result = await buildPdf(format, list);
         if (format === 'pdf') {
-          downloadBlob(new Blob([result], { type: 'application/pdf' }), scpdfOutputName(pages[0].name));
-          showToast('Your scan PDF is ready.', 'success');
+          downloadBlob(new Blob([result], { type: 'application/pdf' }), scpdfOutputName(list[0].name));
+          showToast(list.length === 1 ? 'Your PDF of this page is ready.' : 'Your scan PDF is ready.', 'success');
         } else {
           const ext = format === 'png' ? 'png' : 'jpg';
           if (result.length === 1) {
@@ -701,14 +868,16 @@ if (typeof document !== 'undefined') {
         }
       } catch (err) {
         console.error(err);
-        showToast(err && err.message ? err.message + ' Remove that page and try again.' : 'Could not create the file. Please try again.', 'error');
+        showToast(err && err.message ? err.message : 'Could not create the file. Please try again.', 'error');
       } finally {
         busy = false;
         progress.textContent = '';
-        updateFormatUi();
-        createBtn.disabled = pages.length === 0;
+        createBtn.disabled = pages.length === 0; saveImgBtn.disabled = pages.length === 0;
+        updateActionUi();
       }
-    });
+    }
+    createBtn.addEventListener('click', () => exportList(targetPages(), 'pdf'));
+    saveImgBtn.addEventListener('click', () => exportList(targetPages(), formatSelect.value));
 
     render();
   });
