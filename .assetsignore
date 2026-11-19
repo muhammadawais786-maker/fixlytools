@@ -1,0 +1,8 @@
+wrangler.jsonc
+worker
+functions
+.assetsignore
+.gitignore
+.git
+node_modules
+*.md
