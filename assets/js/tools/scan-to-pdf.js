@@ -196,6 +196,11 @@ if (typeof document !== 'undefined') {
     const cameraPanel = $('camera-panel');
     const video = $('camera-video');
     const snapBtn = $('snap-btn');
+    const doneCamBtn = $('done-camera-btn');
+    const torchBtn = $('torch-btn');
+    const camCount = $('cam-count');
+    const focusRing = $('focus-ring');
+    const camFlash = $('cam-flash');
     const closeCameraBtn = $('close-camera-btn');
     const cameraStatus = $('camera-status');
     const workspace = $('workspace');
@@ -737,49 +742,130 @@ if (typeof document !== 'undefined') {
     function startLive() { stopLive(); liveTimer = setInterval(liveStep, 280); }
     function stopLive() { if (liveTimer) { clearInterval(liveTimer); liveTimer = null; } liveQuad = null; if (camOverlay.width) camOverlay.getContext('2d').clearRect(0, 0, camOverlay.width, camOverlay.height); }
 
+    let track = null, imgCap = null, camCaps = {}, torchOn = false;
     function stopCamera() {
       stopLive();
       if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+      track = null; imgCap = null; camCaps = {}; torchOn = false;
       video.srcObject = null;
+      torchBtn.classList.add('hidden'); torchBtn.setAttribute('aria-pressed', 'false');
       cameraPanel.classList.add('hidden');
+      document.body.classList.remove('scn-cam-open');
+    }
+    function updateCamCount() { camCount.textContent = pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : ''; }
+
+    // best effort camera tuning: continuous focus, torch, full-size stills (support differs per phone and browser)
+    async function tuneCamera() {
+      try {
+        track = stream.getVideoTracks()[0];
+        camCaps = (track.getCapabilities && track.getCapabilities()) || {};
+        const adv = [];
+        if (camCaps.focusMode && camCaps.focusMode.indexOf('continuous') >= 0) adv.push({ focusMode: 'continuous' });
+        if (camCaps.exposureMode && camCaps.exposureMode.indexOf('continuous') >= 0) adv.push({ exposureMode: 'continuous' });
+        if (camCaps.whiteBalanceMode && camCaps.whiteBalanceMode.indexOf('continuous') >= 0) adv.push({ whiteBalanceMode: 'continuous' });
+        for (const c of adv) { try { await track.applyConstraints({ advanced: [c] }); } catch (e) { /* not supported */ } }
+        if (camCaps.torch) torchBtn.classList.remove('hidden');
+        if (window.ImageCapture) imgCap = new ImageCapture(track);
+      } catch (e) { /* ignore: the plain video stream still works */ }
     }
 
     cameraBtn.addEventListener('click', async () => {
       if (stream) return;
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        showToast('Live camera is not available here (it needs a secure https page and a supported browser). Use "Take photo" or "Choose images" instead.', 'warning');
+        showToast('Live camera is not available here (it needs a secure https page and a supported browser). Use "Use phone camera" or "Choose images" instead.', 'warning');
         return;
       }
       try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 2560 }, height: { ideal: 1440 } }, audio: false });
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 4096 }, height: { ideal: 2160 } }, audio: false });
+        } catch (e1) {
+          if (e1 && (e1.name === 'NotAllowedError' || e1.name === 'NotFoundError')) throw e1;
+          stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        }
         video.srcObject = stream;
         await video.play();
         cameraPanel.classList.remove('hidden');
-        cameraStatus.textContent = 'Camera is on. A green frame appears when the page edges are found. Press Capture when it fits.';
+        document.body.classList.add('scn-cam-open');
+        updateCamCount();
+        cameraStatus.textContent = 'Hold the phone steady above the page. Tap the picture to focus. Press the round button when the green frame fits.';
+        await tuneCamera();
         startLive();
       } catch (err) {
         stopCamera();
-        if (err && err.name === 'NotAllowedError') showToast('Camera permission was denied. Allow camera access in your browser settings, or use "Take photo" / "Choose images".', 'error');
+        if (err && err.name === 'NotAllowedError') showToast('Camera permission was denied. Allow camera access in your browser settings, or use "Use phone camera" / "Choose images".', 'error');
         else if (err && err.name === 'NotFoundError') showToast('No camera was found on this device.', 'error');
-        else showToast('The camera could not be started. Try "Take photo" or "Choose images" instead.', 'error');
+        else showToast('The camera could not be started. Try "Use phone camera" or "Choose images" instead.', 'error');
       }
     });
 
     closeCameraBtn.addEventListener('click', stopCamera);
+    doneCamBtn.addEventListener('click', stopCamera);
     window.addEventListener('pagehide', stopCamera);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && stream) stopCamera(); });
 
+    torchBtn.addEventListener('click', async () => {
+      if (!track) return;
+      try {
+        torchOn = !torchOn;
+        await track.applyConstraints({ advanced: [{ torch: torchOn }] });
+        torchBtn.setAttribute('aria-pressed', torchOn ? 'true' : 'false');
+        torchBtn.classList.toggle('on', torchOn);
+      } catch (e) { torchOn = false; showToast('Flash light is not available on this camera.', 'warning'); }
+    });
+
+    // tap to focus (only where the browser lets a page set a focus point)
+    video.addEventListener('click', async (e) => {
+      if (!track) return;
+      const r = video.getBoundingClientRect();
+      const vw = video.videoWidth, vh = video.videoHeight; if (!vw || !vh) return;
+      const k = Math.min(r.width / vw, r.height / vh), dw = vw * k, dh = vh * k;
+      const px = (e.clientX - r.left - (r.width - dw) / 2) / dw, py = (e.clientY - r.top - (r.height - dh) / 2) / dh;
+      if (px < 0 || px > 1 || py < 0 || py > 1) return;
+      focusRing.style.left = (e.clientX - r.left) + 'px'; focusRing.style.top = (e.clientY - r.top) + 'px';
+      focusRing.classList.remove('hidden'); focusRing.classList.remove('go'); void focusRing.offsetWidth; focusRing.classList.add('go');
+      setTimeout(() => focusRing.classList.add('hidden'), 900);
+      try {
+        const modes = camCaps.focusMode || [];
+        const c = {};
+        if (modes.indexOf('single-shot') >= 0) c.focusMode = 'single-shot';
+        else if (modes.indexOf('manual') < 0 && modes.indexOf('continuous') >= 0) c.focusMode = 'continuous';
+        c.pointsOfInterest = [{ x: px, y: py }];
+        await track.applyConstraints({ advanced: [c] });
+        if (modes.indexOf('continuous') >= 0) setTimeout(() => { try { track && track.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }); } catch (err) { /* ignore */ } }, 1600);
+      } catch (err) { /* focus point not supported here: continuous focus still runs */ }
+    });
+
+    let snapping = false;
     snapBtn.addEventListener('click', async () => {
+      if (snapping) return;
       if (!stream || !video.videoWidth) { showToast('The camera is not ready yet. Wait a moment and try again.', 'warning'); return; }
-      const c = document.createElement('canvas');
-      c.width = video.videoWidth;
-      c.height = video.videoHeight;
-      ctx2d(c).drawImage(video, 0, 0, c.width, c.height);
-      const blob = await canvasToBlob(c, 'image/jpeg', 0.92);
-      c.width = c.height = 0;
-      if (!blob) { showToast('Could not capture the picture.', 'error'); return; }
-      cameraCount++;
-      await addFiles([new File([blob], `camera-${cameraCount}.jpg`, { type: 'image/jpeg' })]);
-      cameraStatus.textContent = `Captured. ${pages.length} page${pages.length === 1 ? '' : 's'} so far. Press Capture for the next page or Close camera when done.`;
+      snapping = true;
+      try {
+        camFlash.classList.remove('go'); void camFlash.offsetWidth; camFlash.classList.add('go');
+        let blob = null;
+        // full-resolution still when the browser supports it, otherwise a frame from the live video
+        if (imgCap && imgCap.takePhoto) {
+          try {
+            const pc = await imgCap.getPhotoCapabilities();
+            const opts = {};
+            if (pc && pc.imageWidth && pc.imageWidth.max) opts.imageWidth = pc.imageWidth.max;
+            if (pc && pc.imageHeight && pc.imageHeight.max) opts.imageHeight = pc.imageHeight.max;
+            blob = await imgCap.takePhoto(opts);
+          } catch (e) { blob = null; }
+        }
+        if (!blob || !blob.size) {
+          const c = document.createElement('canvas');
+          c.width = video.videoWidth; c.height = video.videoHeight;
+          ctx2d(c).drawImage(video, 0, 0, c.width, c.height);
+          blob = await canvasToBlob(c, 'image/jpeg', 0.95);
+          c.width = c.height = 0;
+        }
+        if (!blob) { showToast('Could not capture the picture.', 'error'); return; }
+        cameraCount++;
+        await addFiles([new File([blob], `camera-${cameraCount}.jpg`, { type: blob.type || 'image/jpeg' })]);
+        updateCamCount();
+        cameraStatus.textContent = `Captured. ${pages.length} page${pages.length === 1 ? '' : 's'} so far. Take the next page, or press Done.`;
+      } finally { snapping = false; }
     });
 
     // ----- build the PDF, one page at a time -----

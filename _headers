@@ -6,7 +6,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Permissions-Policy: camera=(self), microphone=(self), geolocation=(), payment=(), usb=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-JiOERVdwdOlI4ow81H9/VsDYg1pLpA1Qi0+O3sg+rfE=' 'sha256-1M9t9NcFeiuf1tiEB+vIIx8troaktEftcbV1DbSmrdQ=' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' blob: data: https://api.web3forms.com https://cdnjs.cloudflare.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-JiOERVdwdOlI4ow81H9/VsDYg1pLpA1Qi0+O3sg+rfE=' 'sha256-1M9t9NcFeiuf1tiEB+vIIx8troaktEftcbV1DbSmrdQ=' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' blob: data: https://api.web3forms.com https://cdnjs.cloudflare.com https://api.mymemory.translated.net; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
 
 /sw.js
   Cache-Control: no-cache

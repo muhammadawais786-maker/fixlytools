@@ -128,7 +128,7 @@
       "name": "Why does the camera not open?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Live camera needs a secure (https) page, a camera and your permission. If it fails, use \"Take photo\", which opens your phone camera app, or \"Choose images\" to pick pictures you already have."
+        "text": "Live camera needs a secure (https) page, a camera and your permission. If it fails, use \"Use phone camera\", which opens your phone camera app, or \"Choose images\" to pick pictures you already have."
       }
     },
     {
@@ -173,20 +173,17 @@
       </div>
     </div>
   </header>
-
+  <div class="ft-backbar"><a class="ft-back" href="/pdf-tools" data-ft-back><i class="fa-solid fa-arrow-left"></i> <span>PDF</span></a></div>
+  
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
     <a href="/" class="hover:underline">Home</a> &gt; 
-    <span>PDF Tools</span> &gt; 
+    <a href="/pdf-tools" class="hover:underline">PDF</a> &gt; 
     <span class="text-slate-800 dark:text-slate-200 font-semibold">Scan to PDF</span>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
-    <div class="ad-slot">
-      <span class="ad-label">Advertisement</span>
-    </div>
-  </div>
-
-  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full ad-rail-host">
+    <aside class="ad-rail ad-rail-l" aria-hidden="true"><div class="ad-rail-sticky"><div class="ad-slot ad-rail-box"></div></div></aside>
+    <aside class="ad-rail ad-rail-r" aria-hidden="true"><div class="ad-rail-sticky"><div class="ad-slot ad-rail-box"></div></div></aside>
     <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="text-center mb-8">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Scan to PDF Online - Free Document Scanner</h1>
@@ -194,20 +191,25 @@
       </div>
 
       <div class="scn-actions">
-        <button type="button" id="photo-btn" class="scn-btn scn-btn-main"><i class="fa-solid fa-camera"></i> Take photo</button>
-        <button type="button" id="camera-btn" class="scn-btn"><i class="fa-solid fa-video"></i> Open live camera</button>
+        <button type="button" id="camera-btn" class="scn-btn scn-btn-main"><i class="fa-solid fa-camera"></i> Camera</button>
         <button type="button" id="choose-btn" class="scn-btn"><i class="fa-solid fa-images"></i> Choose images</button>
       </div>
-      <p class="scn-note">Pictures stay on your device and are never uploaded. Your browser asks for permission before it uses the camera.</p>
+      <p class="scn-note">Pictures stay on your device and are never uploaded. Your browser asks for permission before it uses the camera. <button type="button" id="photo-btn" class="scn-textlink">Camera not working? Use phone camera</button></p>
       <input type="file" id="capture-input" accept="image/*" capture="environment" class="hidden">
 
-      <div id="camera-panel" class="scn-camera hidden">
-        <div class="scn-video-wrap"><video id="camera-video" class="scn-video" playsinline muted></video><canvas id="camera-overlay" class="scn-video-overlay"></canvas></div>
-        <div class="scn-camera-row">
-          <button type="button" id="snap-btn" class="scn-btn scn-btn-main"><i class="fa-solid fa-circle-dot"></i> Capture page</button>
-          <button type="button" id="close-camera-btn" class="scn-btn"><i class="fa-solid fa-xmark"></i> Close camera</button>
+      <div id="camera-panel" class="scn-camera hidden" role="dialog" aria-label="Document camera">
+        <div class="scn-cam-top">
+          <button type="button" id="close-camera-btn" class="scn-cam-x" aria-label="Close camera"><i class="fa-solid fa-xmark"></i></button>
+          <span id="cam-count" class="scn-cam-count" aria-live="polite"></span>
+          <button type="button" id="torch-btn" class="scn-cam-x hidden" aria-label="Flash light" aria-pressed="false"><i class="fa-solid fa-bolt"></i></button>
         </div>
+        <div class="scn-video-wrap"><video id="camera-video" class="scn-video" playsinline muted></video><canvas id="camera-overlay" class="scn-video-overlay"></canvas><div id="focus-ring" class="scn-focus hidden"></div><div id="cam-flash" class="scn-flash"></div></div>
         <p id="camera-status" class="scn-status" aria-live="polite"></p>
+        <div class="scn-cam-bar">
+          <span class="scn-cam-spacer"></span>
+          <button type="button" id="snap-btn" class="scn-shutter" aria-label="Capture page"></button>
+          <button type="button" id="done-camera-btn" class="scn-cam-done">Done</button>
+        </div>
       </div>
 
       <div id="dropzone" class="dropzone">
@@ -300,7 +302,7 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to Scan Documents to PDF</h2>
         <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mb-4">A phone camera is a decent scanner when the light is good. Take a picture of each page, clean it up and put all pages into one PDF in the right order.</p>
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
-        <li><strong>Add your pages:</strong> Press &quot;Take photo&quot; or &quot;Open live camera&quot; to photograph a page, or choose images you already have. Repeat for every page.</li>
+        <li><strong>Add your pages:</strong> Press &quot;Camera&quot; to photograph a page, or choose images you already have. Repeat for every page.</li>
         <li><strong>Check the crop:</strong> The tool finds the edges of the page and straightens it automatically. If it missed, press the magic-wand button on a page, choose Crop and drag the four corners onto the page. The arrows change the order, the rotate button turns a page and the bin removes it.</li>
         <li><strong>Choose a scanner look:</strong> Open a page with the magic-wand button and pick Enhance, Lighten, No shadow, Black &amp; white, Eco, Grayscale or Invert, then fine-tune brightness and contrast. Enhance gives white paper and dark text like a real scanner.</li>
         <li><strong>Set page size and create the PDF:</strong> Choose A4, US Letter or fit to image, then press &quot;Create PDF&quot; to download your file.</li>
@@ -330,6 +332,8 @@
         </ul>
         <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">CamScanner is a trademark of its owner. Fixlytools is an independent tool and is not affiliated with or endorsed by CamScanner.</p>
       </div>
+
+      <div class="ad-slot ad-mid"></div>
 
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
@@ -368,7 +372,7 @@
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Why does the camera not open?</h3>
-          <p>Live camera needs a secure (https) page, a camera and your permission. If it fails, use &quot;Take photo&quot;, which opens your phone camera app, or &quot;Choose images&quot; to pick pictures you already have.</p>
+          <p>Live camera needs a secure (https) page, a camera and your permission. If it fails, use &quot;Camera not working? Use phone camera&quot;, which opens your phone camera app, or &quot;Choose images&quot; to pick pictures you already have.</p>
         </div>
         <div>
           <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can I add HEIC photos from an iPhone?</h3>
@@ -434,7 +438,12 @@
   <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
-      <div class="flex gap-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <a href="/image-tools" class="hover:text-blue-600">Images</a>
+        <a href="/pdf-tools" class="hover:text-blue-600">PDF</a>
+        <a href="/text-tools" class="hover:text-blue-600">Text &amp; Audio</a>
+        <a href="/math-calculators" class="hover:text-blue-600">Math &amp; Calculators</a>
+        <a href="/generator-tools" class="hover:text-blue-600">Generators &amp; Dev</a>
         <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
         <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
         <a href="/contact" class="hover:text-blue-600">Contact</a>

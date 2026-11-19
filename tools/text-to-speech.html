@@ -132,20 +132,17 @@
       </div>
     </div>
   </header>
-
+  <div class="ft-backbar"><a class="ft-back" href="/text-tools" data-ft-back><i class="fa-solid fa-arrow-left"></i> <span>Text &amp; Audio</span></a></div>
+  
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500">
     <a href="/" class="hover:underline">Home</a> &gt;
-    <span>Text Tools</span> &gt;
+    <a href="/text-tools" class="hover:underline">Text &amp; Audio</a> &gt;
     <span class="text-slate-800 dark:text-slate-200 font-semibold">Text to Speech</span>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
-    <div class="ad-slot">
-      <span class="ad-label">Advertisement</span>
-    </div>
-  </div>
-
-  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full">
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full ad-rail-host">
+    <aside class="ad-rail ad-rail-l" aria-hidden="true"><div class="ad-rail-sticky"><div class="ad-slot ad-rail-box"></div></div></aside>
+    <aside class="ad-rail ad-rail-r" aria-hidden="true"><div class="ad-rail-sticky"><div class="ad-slot ad-rail-box"></div></div></aside>
     <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="text-center mb-8">
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Text to Speech</h1>
@@ -230,6 +227,8 @@
         </ul>
       </div>
 
+      <div class="ad-slot ad-mid"></div>
+
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
@@ -276,7 +275,12 @@
   <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 text-sm text-slate-500 dark:text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>Fixlytools &copy; 2026. All rights reserved.</div>
-      <div class="flex gap-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <a href="/image-tools" class="hover:text-blue-600">Images</a>
+        <a href="/pdf-tools" class="hover:text-blue-600">PDF</a>
+        <a href="/text-tools" class="hover:text-blue-600">Text &amp; Audio</a>
+        <a href="/math-calculators" class="hover:text-blue-600">Math &amp; Calculators</a>
+        <a href="/generator-tools" class="hover:text-blue-600">Generators &amp; Dev</a>
         <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
         <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
         <a href="/contact" class="hover:text-blue-600">Contact</a>

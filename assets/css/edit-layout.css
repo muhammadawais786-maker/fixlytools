@@ -1,0 +1,98 @@
+/* Shared layout for the image editing tools.
+   Laptop: preview on the left (stays in view), controls on the right.
+   Phone: preview pinned at the top (about 36% of the screen), controls scroll below it. */
+.edit-page .max-w-4xl { max-width: 80rem; }
+
+.edit-layout, .memegen-layout, .blurimg-layout, .photoed-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start;
+}
+.edit-stage, .memegen-stage, .blurimg-stage, .photoed-stage {
+  position: sticky; top: 0; z-index: 20; min-width: 0; text-align: center;
+  background: #f8fafc; padding: 6px 0 8px; border-bottom: 1px solid #e2e8f0;
+}
+.dark .edit-stage, .dark .memegen-stage, .dark .blurimg-stage, .dark .photoed-stage { background: #0f172a; border-bottom-color: #1e293b; }
+.edit-side { min-width: 0; }
+
+/* preview images are capped so a tall or square photo can never fill the whole screen */
+.memegen-canvas, .blurimg-canvas, .photoed-canvas, .wmi-preview canvas {
+  width: auto; height: auto; max-width: 100%; max-height: 36vh; max-height: 36dvh;
+}
+.cri-stage img { max-height: 36vh; max-height: 36dvh; }
+.cri-wrap { padding: 6px; }
+.wmi-preview { padding: 6px; margin-bottom: 2px; }
+.wmi-note, .memegen-stage #memegen-size-note { margin: 2px 0 0; }
+
+/* the picture is only grabbed by the crop box and its handles; the rest of the page scrolls normally */
+.cri-stage { touch-action: pan-y; }
+
+/* phone: the page header scrolls away so the pinned preview sits at the very top */
+@media (max-width: 767px) {
+  .edit-page header { position: static; }
+}
+
+@media (min-width: 768px) {
+  .edit-layout, .memegen-layout, .blurimg-layout, .photoed-layout {
+    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr); gap: 24px;
+  }
+  .edit-stage, .memegen-stage, .blurimg-stage, .photoed-stage {
+    top: 76px; background: transparent; border-bottom: 0; padding: 0;
+  }
+  .dark .edit-stage, .dark .memegen-stage, .dark .blurimg-stage, .dark .photoed-stage { background: transparent; }
+  .memegen-canvas, .blurimg-canvas, .photoed-canvas, .wmi-preview canvas {
+    max-height: calc(100vh - 170px); max-height: calc(100dvh - 170px);
+  }
+  .cri-stage img { max-height: calc(100vh - 190px); max-height: calc(100dvh - 190px); }
+  .cri-wrap, .wmi-preview { padding: 12px; }
+  .wmi-controls { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Rotate Image: use the full width on a laptop */
+@media (min-width: 1200px) {
+  .roi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .roi-options { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 60rem; }
+}
+.roi-view { height: min(230px, 32vh); }
+@media (min-width: 900px) { .roi-view { height: 260px; } }
+
+/* ================= Dock (icon bar + one panel at a time) ================= */
+.dock-leftover { display: none !important; }
+.dock-wrap { display: flex; flex-direction: column; min-width: 0; }
+.dock-panel { padding: 10px 2px 6px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  max-height: calc(64vh - 210px); max-height: calc(64dvh - 210px); min-height: 120px; }
+.dock-sec { display: none; gap: 12px; }
+.dock-sec.on { display: grid; grid-template-columns: minmax(0, 1fr); }
+.dock-sec > * { margin: 0; min-width: 0; }
+.dock-bar { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  position: sticky; bottom: 0; z-index: 30; background: #fff; border-top: 1px solid #e2e8f0;
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); margin: 0 -4px; }
+.dock-bar::-webkit-scrollbar { display: none; }
+.dock-btn { flex: 1 0 64px; min-width: 64px; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 4px; border: 0;
+  border-radius: 12px; background: transparent; color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.dock-btn i { font-size: 20px; line-height: 1; }
+.dock-btn.on { color: #059669; background: #ecfdf5; }
+.dock-btn:focus-visible { outline: 2px solid #2563eb; }
+.dock-act { color: #475569; }
+.dark .dock-bar { background: #0f172a; border-top-color: #1e293b; }
+.dark .dock-btn { color: #94a3b8; }
+.dark .dock-btn.on { color: #34d399; background: #064e3b; }
+
+/* phones and tablets: preview on top, tools bar at the bottom of the screen area */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .has-dock { grid-template-columns: minmax(0, 1fr) !important; }
+  .has-dock .edit-stage, .has-dock .memegen-stage, .has-dock .photoed-stage { top: 0 !important; background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; padding: 6px 0 8px !important; }
+  .dark .has-dock .edit-stage, .dark .has-dock .memegen-stage, .dark .has-dock .photoed-stage { background: #0f172a !important; }
+  .has-dock canvas { max-height: 36dvh !important; }
+}
+
+/* laptop: preview left, icon rail + panel right */
+@media (min-width: 1024px) {
+  .has-dock { grid-template-columns: minmax(0, 1fr) 420px !important; }
+  .has-dock > :last-child { position: sticky; top: 76px; align-self: start; }
+  .dock-wrap { flex-direction: row-reverse; gap: 8px; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; padding: 8px; }
+  .dark .dock-wrap { border-color: #334155; background: #1e293b; }
+  .dock-panel { flex: 1 1 auto; min-width: 0; max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px); padding: 6px 8px; }
+  .dock-bar { position: static; flex-direction: column; overflow: visible; border-top: 0; border-right: 1px solid #e2e8f0; background: transparent;
+    padding: 0 8px 0 0; margin: 0; width: 76px; flex: 0 0 76px; }
+  .dark .dock-bar { border-right-color: #334155; }
+  .dock-btn { flex: 0 0 auto; min-width: 0; width: 100%; }
+}

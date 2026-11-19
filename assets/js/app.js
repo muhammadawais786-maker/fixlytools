@@ -1,8 +1,18 @@
 // Fixlytools Core Application Script
+// Set to true after AdSense approval: shows the reserved ad slots (below tools only).
+const ADS_ON = false;
+if (ADS_ON) {
+  document.documentElement.classList.add('ads-on');
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.body.classList.contains('sc-page')) return;
+    const a = document.createElement('div'); a.className = 'ad-anchor'; a.setAttribute('aria-hidden', 'true'); document.body.appendChild(a);
+  });
+}
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initMobileMenu();
   initSearchAndFilter();
+  initRecentTracking();
   initAccessibility();
   initGlobalDropGuard();
   initServiceWorker();
@@ -41,12 +51,60 @@ function initMobileMenu() {
   }
 }
 
-// 3. Tool Search & Category Filter (Homepage)
+// 3. Favorites, Recent, Tool Search & Category Filter
+const FT_FAV_KEY = 'fixlytools_favs_v1';
+const FT_RECENT_KEY = 'fixlytools_recent_v1';
+const FT_DEFAULT_FAVS = ['image-compressor', 'pdf-compressor', 'scan-to-pdf', 'translate', 'speech-to-text'];
+function ftRead(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key)); return Array.isArray(v) ? v : fallback; } catch (e) { return fallback; }
+}
+function ftWrite(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* private mode */ } }
+function ftFavs() { return ftRead(FT_FAV_KEY, FT_DEFAULT_FAVS.slice()); }
+function ftSlug(href) { const m = (href || '').match(/\/tools\/([a-z0-9-]+)/); return m ? m[1] : ''; }
+
+// Record the tool being used (Recent list, newest first, max 8)
+function initRecentTracking() {
+  const slug = ftSlug(location.pathname);
+  if (!slug) return;
+  const list = ftRead(FT_RECENT_KEY, []).filter(x => x !== slug);
+  list.unshift(slug);
+  ftWrite(FT_RECENT_KEY, list.slice(0, 8));
+}
+
 function initSearchAndFilter() {
   const searchInput = document.getElementById('tool-search');
-  const categoryButtons = document.querySelectorAll('.category-btn');
+  const categoryButtons = document.querySelectorAll('button.category-btn');
   const toolCards = document.querySelectorAll('.tool-card');
   const noResults = document.getElementById('no-results');
+  const listEmpty = document.getElementById('list-empty');
+
+  // star buttons on every card
+  toolCards.forEach(card => {
+    const slug = ftSlug(card.getAttribute('href'));
+    if (!slug || card.querySelector('.fav-star')) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fav-star';
+    b.innerHTML = '<i class="fa-solid fa-star"></i>';
+    const paint = () => {
+      const on = ftFavs().includes(slug);
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', (on ? 'Remove from favorites: ' : 'Add to favorites: ') + (card.querySelector('.tool-title')?.textContent || slug));
+      b.title = on ? 'Remove from favorites' : 'Add to favorites';
+    };
+    b.addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      let f = ftFavs();
+      f = f.includes(slug) ? f.filter(x => x !== slug) : f.concat(slug);
+      ftWrite(FT_FAV_KEY, f);
+      document.querySelectorAll('.fav-star').forEach(x => x.dispatchEvent(new Event('ft-paint')));
+      if (currentCategory === 'fav') filterTools();
+    });
+    b.addEventListener('ft-paint', paint);
+    paint();
+    card.appendChild(b);
+  });
 
   if (!searchInput && categoryButtons.length === 0) return;
 
@@ -56,14 +114,21 @@ function initSearchAndFilter() {
   function filterTools() {
     let visibleCount = 0;
     const query = currentSearch.toLowerCase().trim();
+    const favs = ftFavs();
+    const recent = ftRead(FT_RECENT_KEY, []);
 
     toolCards.forEach(card => {
       const cardCategory = card.dataset.category || 'all';
+      const slug = ftSlug(card.getAttribute('href'));
       const title = (card.querySelector('.tool-title')?.textContent || '').toLowerCase();
       const desc = (card.querySelector('.tool-desc')?.textContent || '').toLowerCase();
       const keywords = (card.dataset.keywords || '').toLowerCase();
 
-      const matchesCat = currentCategory === 'all' || cardCategory === currentCategory;
+      let matchesCat = true;
+      card.style.order = '';
+      if (currentCategory === 'fav') matchesCat = favs.includes(slug);
+      else if (currentCategory === 'recent') { matchesCat = recent.includes(slug); card.style.order = String(recent.indexOf(slug)); }
+      else if (currentCategory !== 'all') matchesCat = cardCategory === currentCategory;
       const matchesSearch = !query || title.includes(query) || desc.includes(query) || keywords.includes(query);
 
       if (matchesCat && matchesSearch) {
@@ -74,12 +139,18 @@ function initSearchAndFilter() {
       }
     });
 
+    const special = (currentCategory === 'fav' || currentCategory === 'recent') && !query;
+    if (listEmpty) {
+      if (special && visibleCount === 0) {
+        document.getElementById('list-empty-title').textContent = currentCategory === 'fav' ? 'No favorites yet' : 'Nothing opened recently';
+        document.getElementById('list-empty-text').textContent = currentCategory === 'fav'
+          ? 'Tap the star on any tool card to keep it here.' : 'Tools you open will show up here.';
+        listEmpty.classList.remove('hidden');
+      } else listEmpty.classList.add('hidden');
+    }
     if (noResults) {
-      if (visibleCount === 0) {
-        noResults.classList.remove('hidden');
-      } else {
-        noResults.classList.add('hidden');
-      }
+      if (visibleCount === 0 && !(special)) noResults.classList.remove('hidden');
+      else noResults.classList.add('hidden');
     }
   }
 
@@ -90,19 +161,29 @@ function initSearchAndFilter() {
     });
   }
 
+  function setActive(btn) {
+    categoryButtons.forEach(b => {
+      b.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+      b.classList.add('bg-slate-100', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
+    });
+    btn.classList.add('bg-blue-600', 'text-white');
+    btn.classList.remove('bg-slate-100', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
+  }
   categoryButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      categoryButtons.forEach(b => {
-        b.classList.remove('bg-blue-600', 'text-white');
-        b.classList.add('bg-slate-100', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
-      });
-      btn.classList.add('bg-blue-600', 'text-white');
-      btn.classList.remove('bg-slate-100', 'text-slate-700', 'dark:bg-slate-800', 'dark:text-slate-300');
-
+      setActive(btn);
       currentCategory = btn.dataset.category || 'all';
       filterTools();
     });
   });
+
+  // #favorites / #recent deep links from other pages
+  const h = (location.hash || '').replace('#', '');
+  if (h === 'favorites' || h === 'recent') {
+    const key = h === 'favorites' ? 'fav' : 'recent';
+    const btn = Array.from(categoryButtons).find(b => b.dataset.category === key);
+    if (btn) { setActive(btn); currentCategory = key; filterTools(); }
+  }
 }
 
 // 4. Global Toast Notification

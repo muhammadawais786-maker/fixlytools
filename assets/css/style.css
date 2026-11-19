@@ -20,14 +20,14 @@
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-/* Ad Placement Slots — hidden until AdSense code is pasted */
-.ad-slot {
-  display: none;
-}
-
-.ad-label {
-  display: none;
-}
+/* Ad Placement Slots
+   Slots sit BELOW the tool (never above it), so enabling ads can never push a tool down.
+   Hidden until AdSense is approved. To enable: add class "ads-on" to <html> (one line in app.js, ADS_ON = true)
+   and the slots appear with a fixed height, so the page does not jump when an ad loads. */
+.ad-slot { display: none; }
+.ad-label { display: none; }
+html.ads-on .ad-slot { display: block; min-height: 280px; max-height: 320px; overflow: hidden; text-align: center; }
+html.ads-on .ad-label { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 4px; }
 
 /* Drag and Drop Zone */
 .dropzone {
@@ -89,4 +89,51 @@
 }
 .dark .tool-card:hover {
   box-shadow: 0 12px 24px -10px rgba(59, 130, 246, 0.25);
+}
+
+/* ---- Navigation: back bar, favorites star, pills ---- */
+.ft-backbar{max-width:56rem;margin:0 auto;padding:.75rem 1rem 0;width:100%}
+@media (min-width:640px){.ft-backbar{padding-left:1.5rem;padding-right:1.5rem}}
+.wide-page .ft-backbar,.wide-page .max-w-4xl{max-width:72rem}
+.edit-page .ft-backbar{max-width:80rem}
+.ft-back{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .85rem;border-radius:9999px;font-size:.8rem;font-weight:600;color:#1d4ed8;background:#eff6ff;border:1px solid #bfdbfe;text-decoration:none}
+.ft-back:hover{background:#dbeafe}
+.dark .ft-back{color:#93c5fd;background:#1e293b;border-color:#334155}
+.sc-page .ft-backbar{display:none}
+.tool-card{position:relative}
+.fav-star{position:absolute;top:.75rem;right:.75rem;width:2.25rem;height:2.25rem;border-radius:9999px;border:0;background:transparent;color:#94a3b8;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
+.fav-star:hover{background:#fef3c7;color:#f59e0b}
+.fav-star.on{color:#f59e0b}
+.fav-star:focus-visible{outline:2px solid #2563eb}
+#pill-row{row-gap:.5rem}
+@media (max-width:640px){
+  #pill-row{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:.25rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #pill-row::-webkit-scrollbar{display:none}
+  #pill-row .category-btn{white-space:nowrap;flex:0 0 auto}
+}
+
+/* ---- Ad slot map (all hidden until ADS_ON = true in app.js; none of them can move a tool) ----
+   1. .ad-rail-l / .ad-rail-r : desktop only, 160x600 in the empty side margins of the page (absolute, outside the tool)
+   2. .ad-slot (after the tool card): below the tool
+   3. .ad-mid : between the explanation text and the FAQ
+   4. .ad-anchor : phones only, thin fixed bar at the bottom of the screen (added by app.js when ads are on)
+*/
+.ad-rail-host { position: relative; }
+.ad-rail { display: none; }
+@media (min-width: 1300px) {
+  html.ads-on .ad-rail { display: block; position: absolute; top: 0; bottom: 0; width: 160px; }
+  html.ads-on .ad-rail-l { right: 100%; margin-right: 16px; }
+  html.ads-on .ad-rail-r { left: 100%; margin-left: 16px; }
+  html.ads-on .ad-rail-sticky { position: sticky; top: 88px; }
+  html.ads-on .ad-rail .ad-slot { min-height: 600px; max-height: 600px; margin: 0; }
+}
+.wide-page .ad-rail, .edit-page .ad-rail { display: none !important; }
+@media (min-width: 1560px) { html.ads-on .wide-page .ad-rail { display: block !important; } }
+@media (min-width: 1700px) { html.ads-on .edit-page .ad-rail { display: block !important; } }
+html.ads-on .ad-mid { margin: 8px 0; }
+.ad-anchor { display: none; }
+@media (max-width: 767px) {
+  html.ads-on .ad-anchor { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; min-height: 50px; max-height: 60px; background: #fff; border-top: 1px solid #e2e8f0; text-align: center; }
+  html.ads-on body { padding-bottom: 60px; }
+  html.ads-on .sc-page { padding-bottom: 0; }
 }

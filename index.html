@@ -64,9 +64,11 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="#image-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Image & Text</a>
-        <a href="#pdf-tools" class="hover:text-blue-600 dark:hover:text-blue-400">PDF Suite</a>
-        <a href="#dev-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Dev & Calculators</a>
+        <a href="/image-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Images</a>
+        <a href="/pdf-tools" class="hover:text-blue-600 dark:hover:text-blue-400">PDF</a>
+        <a href="/text-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Text &amp; Audio</a>
+        <a href="/math-calculators" class="hover:text-blue-600 dark:hover:text-blue-400">Math &amp; Calculators</a>
+        <a href="/generator-tools" class="hover:text-blue-600 dark:hover:text-blue-400">Generators &amp; Dev</a>
         <a href="/about" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
         <a href="/contact" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
       </nav>
@@ -84,9 +86,11 @@
 
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-2 text-sm font-medium">
-      <a href="#image-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Image & Text</a>
-      <a href="#pdf-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">PDF Suite</a>
-      <a href="#dev-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Dev & Calculators</a>
+      <a href="/image-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Images</a>
+      <a href="/pdf-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">PDF</a>
+      <a href="/text-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Text &amp; Audio</a>
+      <a href="/math-calculators" class="block py-1.5 text-slate-700 dark:text-slate-200">Math &amp; Calculators</a>
+      <a href="/generator-tools" class="block py-1.5 text-slate-700 dark:text-slate-200">Generators &amp; Dev</a>
       <a href="/about" class="block py-1.5 text-slate-700 dark:text-slate-200">About</a>
       <a href="/contact" class="block py-1.5 text-slate-700 dark:text-slate-200">Contact</a>
     </div>
@@ -115,11 +119,15 @@
       </div>
 
       <!-- Category Filter Pills -->
-      <div class="flex flex-wrap items-center justify-center gap-2">
-        <button data-category="all" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all">All 50+ Tools</button>
-        <button data-category="image-text" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-image text-xs mr-1 text-blue-500"></i> Images &amp; Text</button>
-        <button data-category="pdf" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-file-pdf text-xs mr-1 text-red-500"></i> PDF Suite</button>
-        <button data-category="dev-calc" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-calculator text-xs mr-1 text-emerald-500"></i> Developer &amp; Math</button>
+      <div class="flex flex-wrap items-center justify-center gap-2" id="pill-row">
+        <button data-category="all" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 text-white shadow-sm transition-all"><i class="fa-solid fa-border-all text-xs mr-1 text-slate-400"></i> All Tools</button>
+        <button data-category="fav" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-star text-xs mr-1 text-amber-500"></i> Favorites</button>
+        <button data-category="recent" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-clock-rotate-left text-xs mr-1 text-sky-500"></i> Recent</button>
+        <a href="/image-tools" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-image text-xs mr-1 text-blue-500"></i> Images</a>
+        <a href="/pdf-tools" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-file-pdf text-xs mr-1 text-red-500"></i> PDF</a>
+        <a href="/text-tools" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-font text-xs mr-1 text-violet-500"></i> Text & Audio</a>
+        <a href="/math-calculators" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-calculator text-xs mr-1 text-emerald-500"></i> Math & Calculators</a>
+        <a href="/generator-tools" class="category-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"><i class="fa-solid fa-wand-magic-sparkles text-xs mr-1 text-amber-500"></i> Generators & Dev</a>
       </div>
     </div>
   </section>
@@ -136,6 +144,7 @@
   <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
 
     <h2 class="sr-only">Free Online Tools</h2>
+      <div id="list-empty" class="hidden text-center py-16"><i class="fa-regular fa-star text-4xl text-slate-400 mb-3"></i><h3 class="text-lg font-bold text-slate-700 dark:text-slate-200" id="list-empty-title"></h3><p class="text-sm text-slate-500" id="list-empty-text"></p></div>
       <div id="no-results" class="hidden text-center py-16">
       <i class="fa-solid fa-face-frown text-4xl text-slate-400 mb-3"></i>
       <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200">No matching tools found</h3>
@@ -146,7 +155,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-container">
 
       <!-- TOOL 1: Image Compressor -->
-      <a href="/tools/image-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image photo compress size shrink reduce optimize jpg png webp">
+      <a href="/tools/image-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="image photo compress size shrink reduce optimize jpg png webp">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-image"></i>
@@ -162,7 +171,7 @@
       </a>
 
       <!-- TOOL 2: Image Resizer -->
-      <a href="/tools/image-resizer" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="image resize scale dimensions pixels crop width height aspect ratio">
+      <a href="/tools/image-resizer" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="image resize scale dimensions pixels crop width height aspect ratio">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
@@ -178,7 +187,7 @@
       </a>
 
       <!-- TOOL: Crop Image -->
-      <a href="/tools/crop-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="crop image photo cropper trim cut passport square 1:1 4:3 16:9 profile picture">
+      <a href="/tools/crop-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="crop image photo cropper trim cut passport square 1:1 4:3 16:9 profile picture">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-crop-simple"></i>
@@ -194,7 +203,7 @@
       </a>
 
       <!-- TOOL: Rotate Image -->
-      <a href="/tools/rotate-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="rotate image photo flip mirror turn sideways straighten angle batch zip">
+      <a href="/tools/rotate-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="rotate image photo flip mirror turn sideways straighten angle batch zip">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-rotate"></i>
@@ -210,7 +219,7 @@
       </a>
 
       <!-- TOOL: Add Watermark to Image -->
-      <a href="/tools/watermark-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="watermark image photo logo text copyright protect stamp tiled batch zip">
+      <a href="/tools/watermark-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="watermark image photo logo text copyright protect stamp tiled batch zip">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-stamp"></i>
@@ -226,7 +235,7 @@
       </a>
 
       <!-- TOOL: Meme Generator -->
-      <a href="/tools/meme-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="meme generator caption text image funny top bottom impact">
+      <a href="/tools/meme-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="meme generator caption text image funny top bottom impact">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-face-laugh"></i>
@@ -242,7 +251,7 @@
       </a>
 
       <!-- TOOL: Free Online Photo Editor -->
-      <a href="/tools/photo-editor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="photo editor edit picture brightness contrast filter sepia sticker draw text rotate flip">
+      <a href="/tools/photo-editor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="photo editor edit picture brightness contrast filter sepia sticker draw text rotate flip">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-sliders"></i>
@@ -258,7 +267,7 @@
       </a>
 
       <!-- TOOL: Blur Image -->
-      <a href="/tools/blur-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="blur image pixelate hide faces censor privacy mosaic redact plate">
+      <a href="/tools/blur-image" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="blur image pixelate hide faces censor privacy mosaic redact plate">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-droplet"></i>
@@ -274,7 +283,7 @@
       </a>
 
       <!-- TOOL 3: Image Format Converter -->
-      <a href="/tools/image-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="convert image jpg to png png to jpg webp format convert">
+      <a href="/tools/image-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="convert image jpg to png png to jpg webp format convert">
         <div>
           <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-arrows-rotate"></i>
@@ -290,7 +299,7 @@
       </a>
 
       <!-- TOOL 4: QR Code Generator -->
-      <a href="/tools/qr-code-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="qr code generator barcode url text link wifi contact create make">
+      <a href="/tools/qr-code-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="qr code generator barcode url text link wifi contact create make">
         <div>
           <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-qrcode"></i>
@@ -306,7 +315,7 @@
       </a>
 
       <!-- TOOL 5: Word Counter -->
-      <a href="/tools/word-counter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="word counter character count sentences paragraphs reading time text length">
+      <a href="/tools/word-counter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="word counter character count sentences paragraphs reading time text length">
         <div>
           <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-font"></i>
@@ -322,7 +331,7 @@
       </a>
 
       <!-- TOOL 6: Merge PDF -->
-      <a href="/tools/merge-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="merge pdf combine pdf join pdf files documents unite">
+      <a href="/tools/merge-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="merge pdf combine pdf join pdf files documents unite">
         <div>
           <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-pdf"></i>
@@ -338,7 +347,7 @@
       </a>
 
       <!-- TOOL 7: JPG to PDF -->
-      <a href="/tools/jpg-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="jpg to pdf images to pdf png to pdf photo to document converter">
+      <a href="/tools/jpg-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="jpg to pdf images to pdf png to pdf photo to document converter">
         <div>
           <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-images"></i>
@@ -354,7 +363,7 @@
       </a>
 
       <!-- TOOL 8: Split PDF -->
-      <a href="/tools/split-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="split pdf extract pages divide separate pdf range">
+      <a href="/tools/split-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="split pdf extract pages divide separate pdf range">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-scissors"></i>
@@ -370,7 +379,7 @@
       </a>
 
       <!-- TOOL: PDF to JPG -->
-      <a href="/tools/pdf-to-jpg" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf to jpg pdf to png pdf to image convert pdf pages to pictures">
+      <a href="/tools/pdf-to-jpg" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="pdf to jpg pdf to png pdf to image convert pdf pages to pictures">
         <div>
           <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-image"></i>
@@ -386,7 +395,7 @@
       </a>
 
       <!-- TOOL: Remove Pages from PDF -->
-      <a href="/tools/remove-pages" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="remove delete pages pdf page remover cut blank">
+      <a href="/tools/remove-pages" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="remove delete pages pdf page remover cut blank">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-trash-can"></i>
@@ -402,7 +411,7 @@
       </a>
 
       <!-- TOOL: Rotate PDF Pages -->
-      <a href="/tools/rotate-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="rotate pdf turn sideways upside down landscape portrait flip">
+      <a href="/tools/rotate-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="rotate pdf turn sideways upside down landscape portrait flip">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-rotate"></i>
@@ -418,7 +427,7 @@
       </a>
 
       <!-- TOOL: Add Page Numbers to PDF -->
-      <a href="/tools/add-page-numbers" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="page numbers number pages pdf pagination footer header">
+      <a href="/tools/add-page-numbers" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="page numbers number pages pdf pagination footer header">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-list-ol"></i>
@@ -434,7 +443,7 @@
       </a>
 
       <!-- TOOL: Add Watermark to PDF -->
-      <a href="/tools/add-watermark-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="watermark pdf stamp confidential draft logo overlay">
+      <a href="/tools/add-watermark-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="watermark pdf stamp confidential draft logo overlay">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-droplet"></i>
@@ -450,7 +459,7 @@
       </a>
 
       <!-- TOOL: Crop PDF Pages -->
-      <a href="/tools/crop-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="crop pdf trim margins cut edges resize page">
+      <a href="/tools/crop-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="crop pdf trim margins cut edges resize page">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-crop-simple"></i>
@@ -466,7 +475,7 @@
       </a>
 
       <!-- TOOL: Organize PDF -->
-      <a href="/tools/organize-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="organize pdf reorder rearrange sort pages order rotate delete duplicate arrange">
+      <a href="/tools/organize-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="organize pdf reorder rearrange sort pages order rotate delete duplicate arrange">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-table-cells-large"></i>
@@ -482,7 +491,7 @@
       </a>
 
       <!-- TOOL: Sign PDF -->
-      <a href="/tools/sign-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="sign pdf signature esign e-sign draw type upload initials autograph">
+      <a href="/tools/sign-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="sign pdf signature esign e-sign draw type upload initials autograph">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-signature"></i>
@@ -498,7 +507,7 @@
       </a>
 
       <!-- TOOL: Redact PDF -->
-      <a href="/tools/redact-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="redact pdf black out blackout hide censor sensitive private confidential remove text">
+      <a href="/tools/redact-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="redact pdf black out blackout hide censor sensitive private confidential remove text">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-user-secret"></i>
@@ -514,7 +523,7 @@
       </a>
 
       <!-- TOOL: Compare PDF Text -->
-      <a href="/tools/compare-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="compare pdf difference diff changes versions text compare documents">
+      <a href="/tools/compare-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="compare pdf difference diff changes versions text compare documents">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code-compare"></i>
@@ -530,7 +539,7 @@
       </a>
 
       <!-- TOOL: PDF to Text -->
-      <a href="/tools/pdf-to-text" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf to text extract text from pdf convert pdf to txt copy text markdown md">
+      <a href="/tools/pdf-to-text" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="pdf to text extract text from pdf convert pdf to txt copy text markdown md">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-lines"></i>
@@ -546,7 +555,7 @@
       </a>
 
       <!-- TOOL: Scan to PDF -->
-      <a href="/tools/scan-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="scan scanner camera document pdf photo to pdf mobile scan black white">
+      <a href="/tools/scan-to-pdf" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="scan scanner camera document pdf photo to pdf mobile scan black white">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-camera"></i>
@@ -562,7 +571,7 @@
       </a>
 
       <!-- TOOL 9: PDF Compressor -->
-      <a href="/tools/pdf-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="pdf compressor reduce pdf size shrink document mb to kb">
+      <a href="/tools/pdf-compressor" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf-tools" data-keywords="pdf compressor reduce pdf size shrink document mb to kb">
         <div>
           <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-compress"></i>
@@ -578,7 +587,7 @@
       </a>
 
       <!-- TOOL 10: HEIC to JPG -->
-      <a href="/tools/heic-to-jpg" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="pdf" data-keywords="heic to jpg iphone photo apple format heif converter">
+      <a href="/tools/heic-to-jpg" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-tools" data-keywords="heic to jpg iphone photo apple format heif converter">
         <div>
           <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-brands fa-apple"></i>
@@ -594,7 +603,7 @@
       </a>
 
       <!-- TOOL 11: JSON Formatter & Validator -->
-      <a href="/tools/json-formatter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="json formatter validator beautify minify clean json debug developer">
+      <a href="/tools/json-formatter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="json formatter validator beautify minify clean json debug developer">
         <div>
           <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code"></i>
@@ -610,7 +619,7 @@
       </a>
 
       <!-- TOOL 12: Password Generator -->
-      <a href="/tools/password-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="password generator strong random security secure pass gen">
+      <a href="/tools/password-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="password generator strong random security secure pass gen">
         <div>
           <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-key"></i>
@@ -626,7 +635,7 @@
       </a>
 
       <!-- TOOL 13: Text Diff Checker -->
-      <a href="/tools/text-diff" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="text diff difference compare comparison text checker find differences">
+      <a href="/tools/text-diff" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="text diff difference compare comparison text checker find differences">
         <div>
           <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code-compare"></i>
@@ -642,7 +651,7 @@
       </a>
 
       <!-- TOOL: Online Calculator -->
-      <a href="/tools/calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="calculator calc online basic math percent add subtract multiply divide memory">
+      <a href="/tools/calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="calculator calc online basic math percent add subtract multiply divide memory">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-calculator"></i>
@@ -658,7 +667,7 @@
       </a>
 
       <!-- TOOL: Scientific Calculator -->
-      <a href="/tools/scientific-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="scientific calculator sin cos tan log ln factorial root power radians degrees permutation combination trigonometry">
+      <a href="/tools/scientific-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="scientific calculator sin cos tan log ln factorial root power radians degrees permutation combination trigonometry">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-square-root-variable"></i>
@@ -674,7 +683,7 @@
       </a>
 
       <!-- TOOL: Physics Solver -->
-      <a href="/tools/physics-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="physics solver calculator formula velocity acceleration force energy power projectile ohm resistor gas law lens snell pressure density units">
+      <a href="/tools/physics-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="physics solver calculator formula velocity acceleration force energy power projectile ohm resistor gas law lens snell pressure density units">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-atom"></i>
@@ -690,7 +699,7 @@
       </a>
 
       <!-- TOOL: Chemistry Solver -->
-      <a href="/tools/chemistry-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="chemistry molar mass molecular weight balance equation moles molarity dilution ph poh ideal gas law percent composition stoichiometry">
+      <a href="/tools/chemistry-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="chemistry molar mass molecular weight balance equation moles molarity dilution ph poh ideal gas law percent composition stoichiometry">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-flask"></i>
@@ -706,7 +715,7 @@
       </a>
 
       <!-- TOOL: Math Solver -->
-      <a href="/tools/math-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="math solver algebra equation solve x calculus derivative integral matrix determinant inverse factor simplify expand statistics mean median">
+      <a href="/tools/math-solver" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="math solver algebra equation solve x calculus derivative integral matrix determinant inverse factor simplify expand statistics mean median">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-square-root-variable"></i>
@@ -722,7 +731,7 @@
       </a>
 
       <!-- TOOL 14: Age Calculator -->
-      <a href="/tools/age-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="age calculator birthday date of birth years months days calculate age">
+      <a href="/tools/age-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="age calculator birthday date of birth years months days calculate age">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-cake-candles"></i>
@@ -738,7 +747,7 @@
       </a>
 
       <!-- TOOL 15: EMI / Loan Calculator -->
-      <a href="/tools/emi-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="emi calculator loan interest mortgage monthly installment bank">
+      <a href="/tools/emi-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="emi calculator loan interest mortgage monthly installment bank">
         <div>
           <div class="w-12 h-12 rounded-xl bg-lime-100 dark:bg-lime-900/50 text-lime-600 dark:text-lime-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-calculator"></i>
@@ -754,7 +763,7 @@
       </a>
 
       <!-- TOOL 16: Invoice Generator -->
-      <a href="/tools/invoice-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="invoice generator quote receipt bill pdf business freelance tax vat">
+      <a href="/tools/invoice-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="invoice generator quote receipt bill pdf business freelance tax vat">
         <div>
           <div class="w-12 h-12 rounded-xl bg-lime-100 dark:bg-lime-900/50 text-lime-600 dark:text-lime-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-file-pdf"></i>
@@ -770,7 +779,7 @@
       </a>
 
       <!-- TOOL: Text to Speech -->
-      <a href="/tools/text-to-speech" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="text to speech tts read aloud voice speak audio">
+      <a href="/tools/text-to-speech" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="text to speech tts read aloud voice speak audio">
         <div>
           <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-volume-high"></i>
@@ -786,7 +795,7 @@
       </a>
 
       <!-- TOOL: Speech to Text -->
-      <a href="/tools/speech-to-text" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="speech to text voice typing dictation transcribe microphone">
+      <a href="/tools/speech-to-text" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="speech to text voice typing dictation transcribe microphone">
         <div>
           <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-microphone"></i>
@@ -801,8 +810,21 @@
         </div>
       </a>
 
+      <!-- TOOL: Translate -->
+      <a href="/tools/translate" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="translate translator urdu english arabic hindi language translation offline">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-language"></i>
+          </div>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-300">Text</span>
+          <h3 class="tool-title text-lg font-bold text-slate-900 dark:text-white mt-2 mb-1.5">Translate</h3>
+          <p class="tool-desc text-sm text-slate-600 dark:text-slate-300">
+            Translate text between English, Urdu, Arabic, Hindi and 40+ languages, with an offline mode in Chrome.
+          </p>
+        </div>
+      </a>
       <!-- TOOL: Case Converter -->
-      <a href="/tools/case-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="image-text" data-keywords="case converter uppercase lowercase title case camelcase snake">
+      <a href="/tools/case-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="case converter uppercase lowercase title case camelcase snake">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-arrow-up-a-z"></i>
@@ -818,7 +840,7 @@
       </a>
 
       <!-- TOOL: Lorem Ipsum Generator -->
-      <a href="/tools/lorem-ipsum-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="lorem ipsum generator placeholder dummy text">
+      <a href="/tools/lorem-ipsum-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="lorem ipsum generator placeholder dummy text">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-paragraph"></i>
@@ -834,7 +856,7 @@
       </a>
 
       <!-- TOOL: Color Picker &amp; HEX to RGB -->
-      <a href="/tools/color-picker" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="color picker hex to rgb hsl cmyk converter">
+      <a href="/tools/color-picker" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="color picker hex to rgb hsl cmyk converter">
         <div>
           <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-palette"></i>
@@ -850,7 +872,7 @@
       </a>
 
       <!-- TOOL: Base64 Encoder &amp; Decoder -->
-      <a href="/tools/base64-encoder-decoder" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="base64 encode decode image to base64 data uri">
+      <a href="/tools/base64-encoder-decoder" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="text-tools" data-keywords="base64 encode decode image to base64 data uri">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-code"></i>
@@ -866,7 +888,7 @@
       </a>
 
       <!-- TOOL: Barcode Generator -->
-      <a href="/tools/barcode-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="barcode generator ean upc code128 code39">
+      <a href="/tools/barcode-generator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="barcode generator ean upc code128 code39">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-barcode"></i>
@@ -882,7 +904,7 @@
       </a>
 
       <!-- TOOL: Unit Converter -->
-      <a href="/tools/unit-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="unit converter length weight area temperature marla kanal tola">
+      <a href="/tools/unit-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="unit converter length weight area temperature marla kanal tola">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-ruler-combined"></i>
@@ -898,7 +920,7 @@
       </a>
 
       <!-- TOOL: Percentage Calculator -->
-      <a href="/tools/percentage-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="percentage calculator percent increase decrease discount">
+      <a href="/tools/percentage-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="percentage calculator percent increase decrease discount">
         <div>
           <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-percent"></i>
@@ -914,7 +936,7 @@
       </a>
 
       <!-- TOOL: BMI Calculator -->
-      <a href="/tools/bmi-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="bmi calculator body mass index weight height healthy">
+      <a href="/tools/bmi-calculator" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="math-calculators" data-keywords="bmi calculator body mass index weight height healthy">
         <div>
           <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-weight-scale"></i>
@@ -930,7 +952,7 @@
       </a>
 
       <!-- TOOL: Time Zone Converter -->
-      <a href="/tools/time-zone-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="time zone converter time difference pakistan uk usa india">
+      <a href="/tools/time-zone-converter" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="time zone converter time difference pakistan uk usa india">
         <div>
           <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-earth-asia"></i>
@@ -946,7 +968,7 @@
       </a>
 
       <!-- TOOL: Stopwatch &amp; Timer -->
-      <a href="/tools/stopwatch-timer" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="dev-calc" data-keywords="stopwatch timer countdown online alarm pomodoro">
+      <a href="/tools/stopwatch-timer" class="tool-card flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700" data-category="generator-tools" data-keywords="stopwatch timer countdown online alarm pomodoro">
         <div>
           <div class="w-12 h-12 rounded-xl bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-stopwatch"></i>
@@ -1022,6 +1044,11 @@
         <span class="font-bold text-slate-700 dark:text-slate-200">Fixlytools</span> &copy; 2026. All rights reserved.
       </div>
       <div class="flex flex-wrap items-center justify-center gap-6">
+        <a href="/image-tools" class="hover:text-blue-600">Images</a>
+        <a href="/pdf-tools" class="hover:text-blue-600">PDF</a>
+        <a href="/text-tools" class="hover:text-blue-600">Text &amp; Audio</a>
+        <a href="/math-calculators" class="hover:text-blue-600">Math &amp; Calculators</a>
+        <a href="/generator-tools" class="hover:text-blue-600">Generators &amp; Dev</a>
         <a href="/privacy-policy" class="hover:text-blue-600">Privacy Policy</a>
         <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
         <a href="/about" class="hover:text-blue-600">About Us</a>

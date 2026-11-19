@@ -100,3 +100,35 @@
 .scn-loupe.scn-loupe-left { left: 12px; }
 .scn-loupe.scn-loupe-right { right: 12px; }
 #ed-compare[aria-pressed="true"] { background: #4f46e5; color: #fff; }
+
+/* ---- Camera (CamScanner style): full screen on phones, large dialog on laptops ---- */
+.scn-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.scn-textlink { background: none; border: 0; padding: 0; color: #4f46e5; font-size: 12px; font-weight: 600; text-decoration: underline; cursor: pointer; }
+.dark .scn-textlink { color: #a5b4fc; }
+.scn-camera { position: fixed; inset: 0; z-index: 100; margin: 0; padding: 0; border: 0; border-radius: 0; background: #000; display: flex; flex-direction: column; }
+.scn-camera.hidden { display: none; }
+.dark .scn-camera { background: #000; }
+.scn-cam-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; color: #fff; }
+.scn-cam-x { width: 44px; height: 44px; border-radius: 9999px; border: 0; background: rgba(255,255,255,.16); color: #fff; font-size: 18px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.scn-cam-x.on { background: #facc15; color: #111; }
+.scn-cam-x.hidden { visibility: hidden; display: inline-flex; }
+.scn-cam-count { font-size: 14px; font-weight: 700; }
+.scn-camera .scn-video-wrap { position: relative; flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.scn-camera .scn-video { width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: contain; }
+.scn-camera .scn-status { color: #cbd5e1; text-align: center; padding: 6px 16px; margin: 0; min-height: 32px; }
+.scn-cam-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px calc(16px + env(safe-area-inset-bottom)); }
+.scn-cam-spacer, .scn-cam-done { width: 80px; }
+.scn-cam-done { background: none; border: 0; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; min-height: 44px; text-align: right; }
+.scn-shutter { width: 72px; height: 72px; border-radius: 9999px; background: #fff; border: 5px solid rgba(255,255,255,.45); background-clip: padding-box; cursor: pointer; }
+.scn-shutter:active { transform: scale(.92); }
+.scn-focus { position: absolute; width: 70px; height: 70px; margin: -35px 0 0 -35px; border: 2px solid #facc15; border-radius: 12px; pointer-events: none; }
+.scn-focus.hidden { display: none; }
+.scn-focus.go { animation: scn-focus .5s ease-out; }
+@keyframes scn-focus { from { transform: scale(1.5); opacity: .2; } to { transform: scale(1); opacity: 1; } }
+.scn-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.scn-flash.go { animation: scn-flash .25s ease-out; }
+@keyframes scn-flash { from { opacity: .7; } to { opacity: 0; } }
+body.scn-cam-open { overflow: hidden; }
+@media (min-width: 900px) {
+  .scn-camera { inset: 3vh 18vw; border-radius: 20px; box-shadow: 0 0 0 100vmax rgba(15,23,42,.7); }
+}
