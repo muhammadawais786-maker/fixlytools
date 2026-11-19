@@ -209,3 +209,46 @@ main.sc-main { padding-left: 6px; padding-right: 6px; }
 .sc-brand { flex: none; text-align: center; margin-top: 8px; color: #aab0bb; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; user-select: none; }
 @media (max-width: 640px) { body.sc-page .sc-brand { margin-top: 6px; font-size: 13px; } }
 body .sc-key.k-del { font-size: 30px; line-height: 1; }
+
+/* Laptop / desktop window: the whole calculator fits the window height, no scrolling needed */
+@media (min-width: 641px) {
+  body.sc-page .sc-crumb, body.sc-page .sc-ad-top { display: none; }
+  body.sc-page main.sc-main { max-width: 1180px; padding: 12px 16px; }
+  body.sc-page .sc-card { display: flex; flex-direction: column; padding: 12px; }
+  body.sc-page .sc-wrap { order: 1; }
+  body.sc-page .sc-intro { order: 2; padding-top: 28px; }
+  body.sc-page .sc-calc { max-width: none; width: 100%; height: calc(100vh - 110px); height: calc(100dvh - 110px); min-height: 540px; display: flex; flex-direction: column; box-sizing: border-box; margin: 0; }
+  body.sc-page .sc-screen { flex: 0 0 clamp(110px, 20dvh, 190px); min-height: 0; margin-bottom: 8px; }
+  body.sc-page .sc-expr { min-height: 36px; font-size: 22px; }
+  body.sc-page .sc-result { min-height: 40px; font-size: 34px; }
+  body.sc-page .sc-toolbar { flex: none; margin-bottom: 6px; }
+  body.sc-page .sc-pill { min-height: 34px; }
+  body.sc-page .sc-keys-fn, body.sc-page .sc-keys-num, body.sc-page .sc-keys-p2 { flex: 1 1 0; min-height: 0; grid-auto-rows: minmax(0, 1fr); row-gap: 2px; column-gap: 10px; }
+  body.sc-page .sc-keys-p2 { grid-template-rows: repeat(6, minmax(0, 1fr)); }
+  body.sc-page .sc-kw { min-height: 0; height: 100%; }
+  body.sc-page .sc-key { flex: 1 1 auto; min-height: 30px !important; height: auto; font-size: 17px; }
+  body.sc-page .k-num, body.sc-page .k-op, body.sc-page .k-eq { font-size: 24px; }
+  body.sc-page .sc-keys-p2 .k-wide { font-size: 20px; }
+  body.sc-page .sc-lbl { min-height: 0; font-size: 11px; }
+  body.sc-page .sc-dpad { margin-top: 12px; min-height: 0; }
+  body.sc-page .sc-key.k-sm { font-size: 12px; }
+}
+@media (min-width: 1000px) { body.sc-page .sc-wrap { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 641px) and (max-height: 640px) { body.sc-page .sc-screen { flex-basis: 90px; } body.sc-page .sc-result { font-size: 26px; } }
+
+/* Wide windows: function keys and number keys sit side by side, so only 5 rows are needed */
+@media (min-width: 900px) {
+  body.sc-page .sc-calc { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); grid-template-rows: auto auto auto minmax(0, 1fr) auto auto; column-gap: 16px; height: calc(100dvh - 96px); min-height: 480px; }
+  body.sc-page .sc-calc > .sc-screen { grid-column: 1 / -1; grid-row: 1; flex: none; height: clamp(100px, 22dvh, 190px); }
+  body.sc-page .sc-calc > .sc-toolbar { grid-column: 1 / -1; grid-row: 2; }
+  body.sc-page .sc-calc > .sc-box, body.sc-page .sc-calc > .sc-optn, body.sc-page .sc-calc > #sc-cmp { grid-column: 1 / -1; grid-row: 3; }
+  body.sc-page .sc-calc > .sc-keys-fn { grid-column: 1; grid-row: 4; margin: 0; }
+  body.sc-page .sc-calc > .sc-keys-num { grid-column: 2; grid-row: 4; }
+  body.sc-page .sc-calc > .sc-keys-p2 { grid-column: 1 / -1; grid-row: 4; }
+  body.sc-page .sc-calc > .sc-brand { grid-column: 1 / -1; grid-row: 5; }
+  body.sc-page .sc-calc > .sc-tools { grid-column: 1 / -1; grid-row: 6; }
+  body.sc-page .sc-keys-fn { grid-template-rows: repeat(5, minmax(0, 1fr)); }
+  body.sc-page .sc-keys-num { grid-template-rows: repeat(4, minmax(0, 1fr)); }
+  body.sc-page .sc-keys-p2 { grid-template-rows: repeat(6, minmax(0, 1fr)); }
+  body.sc-page .sc-dpad { margin-top: 14px; }
+}
