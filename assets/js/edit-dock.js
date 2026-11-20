@@ -37,6 +37,40 @@
         { key: 'style', label: 'Style', icon: 'fa-sliders', els: [function () { return el('wm-opacity', 1); }, function () { return el('wm-rotation', 1); }] },
         { key: 'save', label: 'Save', icon: 'fa-download', els: [function () { return el('format-select', 1); }, function () { return byId('quality-wrap'); }, function () { return byId('download-btn'); }, function () { return byId('progress-text'); }] }
       ]
+    },
+    'blur-image': {
+      side: '.blurimg-panel', layout: '.blurimg-layout', first: 'area',
+      sections: [
+        { key: 'area', label: 'Area', icon: 'fa-vector-square', els: [function () { return el('blurimg-tool', 1); }, function () { return byId('blurimg-brush-row'); }, function () { return byId('blurimg-count').parentElement; }] },
+        { key: 'effect', label: 'Effect', icon: 'fa-droplet', els: [function () { return el('blurimg-mode', 1); }, function () { return el('blurimg-strength', 1); }, function () { return document.querySelector('.blurimg-warn'); }] },
+        { key: 'save', label: 'Save', icon: 'fa-download', els: [function () { return el('blurimg-format', 1); }, function () { return byId('blurimg-btn'); }] }
+      ],
+      actions: [{ label: 'Undo', icon: 'fa-rotate-left', target: 'blurimg-undo' }]
+    },
+    'crop-image': {
+      side: '.edit-side', layout: '.edit-layout', first: 'shape',
+      sections: [
+        { key: 'shape', label: 'Shape', icon: 'fa-crop-simple', els: [function () { return el('aspect-select', 1); }, function () { return byId('passport-hint'); }] },
+        { key: 'size', label: 'Size', icon: 'fa-ruler-combined', els: [function () {
+          var g = document.createElement('div'); g.className = 'cri-grid';
+          ['crop-x', 'crop-y', 'crop-w', 'crop-h'].forEach(function (i) { var e = el(i, 1); if (e) g.appendChild(e); });
+          return g; }] },
+        { key: 'save', label: 'Save', icon: 'fa-download', els: [function () { return el('format-select', 1); }, function () { return byId('quality-wrap'); }, function () { return byId('output-info'); }, function () { return byId('download-btn'); }, function () { return byId('reset-btn'); }] }
+      ]
+    },
+    'image-resizer': {
+      side: '.edit-side', layout: '.edit-layout', first: 'size',
+      sections: [
+        { key: 'size', label: 'Size', icon: 'fa-up-right-and-down-left-from-center', els: [function () { return el('width-input', 2); }, function () { return el('lock-aspect', 1); }, function () { var b = document.querySelector('.preset-btn'); return b && b.parentElement.parentElement; }] },
+        { key: 'save', label: 'Save', icon: 'fa-download', els: [function () { return el('format-select', 1); }, function () { return byId('download-btn'); }, function () { return byId('reset-btn'); }] }
+      ]
+    },
+    'rotate-image': {
+      side: '.roi-options', first: 'rotate',
+      sections: [
+        { key: 'rotate', label: 'Rotate', icon: 'fa-rotate', els: [function () { return byId('all-left-btn').parentElement; }] },
+        { key: 'save', label: 'Save', icon: 'fa-download', els: [function () { return el('format-select', 1); }, function () { return el('fill-select', 1); }, function () { return byId('quality-wrap'); }, function () { return byId('download-btn'); }, function () { return byId('progress-text'); }] }
+      ]
     }
   };
 

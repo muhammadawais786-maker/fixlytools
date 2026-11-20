@@ -57,7 +57,7 @@ function photoedOrientationMap(p, orient) {
 
 // ---------- pixel maths (work on ImageData.data) ----------
 
-// opts: { brightness: -100..100, contrast: -100..100, saturation: -100..100, preset: 'none'|'grayscale'|'sepia'|'warm'|'cool' }
+// opts: { brightness: -100..100, contrast: -100..100, saturation: -100..100, preset: none, grayscale, sepia, warm, cool, vivid, vintage, fade, dramatic, noir, golden, cinematic, pastel }
 function photoedApplyColor(data, opts) {
   const preset = opts.preset || 'none';
   const brightness = Number(opts.brightness) || 0;
@@ -87,6 +87,34 @@ function photoedApplyColor(data, opts) {
       r = cl(r * 1.08 + 6); g = cl(g * 1.02); b = cl(b * 0.88);
     } else if (preset === 'cool') {
       r = cl(r * 0.88); g = cl(g * 1.02); b = cl(b * 1.08 + 6);
+    } else if (preset === 'vivid') {
+      const l0 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = cl(128 + 1.08 * ((l0 + (r - l0) * 1.45) - 128)); g = cl(128 + 1.08 * ((l0 + (g - l0) * 1.45) - 128)); b = cl(128 + 1.08 * ((l0 + (b - l0) * 1.45) - 128));
+    } else if (preset === 'vintage') {
+      r = cl(r * 0.95 + 26); g = cl(g * 0.9 + 20); b = cl(b * 0.74 + 26);
+      const l1 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l1 + (r - l1) * 0.8; g = l1 + (g - l1) * 0.8; b = l1 + (b - l1) * 0.8;
+    } else if (preset === 'fade') {
+      r = r * 0.84 + 40; g = g * 0.84 + 40; b = b * 0.84 + 42;
+      const l2 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l2 + (r - l2) * 0.85; g = l2 + (g - l2) * 0.85; b = l2 + (b - l2) * 0.85;
+    } else if (preset === 'dramatic') {
+      const l3 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l3 + (r - l3) * 0.75; g = l3 + (g - l3) * 0.75; b = l3 + (b - l3) * 0.75;
+      r = cl(1.35 * (r - 128) + 120); g = cl(1.35 * (g - 128) + 120); b = cl(1.35 * (b - 128) + 120);
+    } else if (preset === 'noir') {
+      const l4 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = g = b = cl(1.5 * (l4 - 128) + 120);
+    } else if (preset === 'golden') {
+      r = cl(r * 1.15 + 10); g = cl(g * 1.05 + 4); b = cl(b * 0.8);
+    } else if (preset === 'cinematic') {
+      const k = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      r = cl(r * (1 - 0.12 * (1 - k)) + 14 * k); g = cl(g + 4 * (1 - k)); b = cl(b + 20 * (1 - k) - 12 * k);
+      r = cl(1.1 * (r - 128) + 128); g = cl(1.1 * (g - 128) + 128); b = cl(1.1 * (b - 128) + 128);
+    } else if (preset === 'pastel') {
+      r = r * 0.78 + 52; g = g * 0.78 + 52; b = b * 0.78 + 56;
+      const l5 = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l5 + (r - l5) * 0.85; g = l5 + (g - l5) * 0.85; b = l5 + (b - l5) * 0.85;
     }
 
     r = cl(r + add); g = cl(g + add); b = cl(b + add);
@@ -324,12 +352,44 @@ if (typeof document !== 'undefined') {
     }
     const snap = () => JSON.stringify(state);
 
+    const FILTERS = [['none', 'Original'], ['vivid', 'Vivid'], ['cinematic', 'Cinematic'], ['golden', 'Golden'], ['warm', 'Warm'], ['cool', 'Cool'],
+      ['vintage', 'Vintage'], ['fade', 'Fade'], ['pastel', 'Pastel'], ['dramatic', 'Dramatic'], ['grayscale', 'B&W'], ['noir', 'Noir'], ['sepia', 'Sepia']];
+    const filterBox = document.getElementById('photoed-filters');
+    function markFilters() {
+      if (!filterBox) return;
+      filterBox.querySelectorAll('.photoed-filter').forEach(b => {
+        const on = b.getAttribute('data-preset') === state.preset;
+        b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    // little preview pictures of every filter, made from the photo that was opened
+    function buildFilterThumbs() {
+      if (!filterBox || !image) return;
+      filterBox.innerHTML = '';
+      const iw = image.naturalWidth || image.width, ih = image.naturalHeight || image.height;
+      const side = Math.min(iw, ih), sx = (iw - side) / 2, sy = (ih - side) / 2, T = 84;
+      FILTERS.forEach(f => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'photoed-filter'; b.setAttribute('data-preset', f[0]);
+        const c = document.createElement('canvas'); c.width = T; c.height = T;
+        const x = c.getContext('2d', { willReadFrequently: true });
+        x.drawImage(image, sx, sy, side, side, 0, 0, T, T);
+        if (f[0] !== 'none') { const id = x.getImageData(0, 0, T, T); photoedApplyColor(id.data, { preset: f[0] }); x.putImageData(id, 0, 0); }
+        const l = document.createElement('span'); l.textContent = f[1];
+        b.appendChild(c); b.appendChild(l);
+        b.addEventListener('click', () => { presetSelect.value = f[0]; presetSelect.dispatchEvent(new Event('change', { bubbles: true })); });
+        filterBox.appendChild(b);
+      });
+      markFilters();
+    }
+
     function syncControls() {
       brightness.value = state.adj.brightness;
       contrast.value = state.adj.contrast;
       saturation.value = state.adj.saturation;
       blur.value = state.adj.blur;
       presetSelect.value = state.preset;
+      markFilters();
       if (!state.items.some(i => i.id === selectedId)) selectedId = null;
       itemPanel.classList.toggle('hidden', selectedId === null);
       undoBtn.disabled = undoStack.length === 0;
@@ -407,6 +467,7 @@ if (typeof document !== 'undefined') {
       dropzone.classList.add('hidden');
       workspace.classList.remove('hidden');
       syncControls();
+      buildFilterThumbs();
       updateSizeNote();
       paint();
     }

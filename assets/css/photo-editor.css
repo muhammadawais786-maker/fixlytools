@@ -40,3 +40,16 @@
 .photoed-sticker:hover { background: #ecfdf5; border-color: #10b981; }
 .dark .photoed-sticker { background: #334155; border-color: #475569; }
 .dark .photoed-sticker:hover { background: #475569; }
+
+/* filter thumbnails */
+.photoed-select-hidden { display: none; }
+.photoed-filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 10px; }
+.photoed-filter { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px; border: 2px solid transparent; border-radius: 12px; background: transparent; color: #475569; font-size: 11px; font-weight: 600; cursor: pointer; }
+.photoed-filter canvas { width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 8px; display: block; }
+.photoed-filter.on { border-color: #10b981; color: #059669; }
+.dark .photoed-filter { color: #cbd5e1; }
+.dark .photoed-filter.on { color: #34d399; }
+@media (max-width: 767px) {
+  .photoed-filters { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .photoed-filter { flex: 0 0 74px; }
+}

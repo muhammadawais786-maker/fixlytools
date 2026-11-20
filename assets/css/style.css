@@ -137,3 +137,6 @@ html.ads-on .ad-mid { margin: 8px 0; }
   html.ads-on body { padding-bottom: 60px; }
   html.ads-on .sc-page { padding-bottom: 0; }
 }
+/* search box -> pill row spacing (same on home and category pages) */
+div:has(> #tool-search){margin-bottom:22px !important}
+#pill-row{margin-top:0}

@@ -96,3 +96,21 @@
   .dark .dock-bar { border-right-color: #334155; }
   .dock-btn { flex: 0 0 auto; min-width: 0; width: 100%; }
 }
+
+/* dock: pages added in phase 2 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .has-dock .blurimg-stage { top: 0 !important; background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; padding: 6px 0 8px !important; }
+}
+.has-dock .cri-stage img, .has-dock .rsz-preview img { max-height: 36dvh; }
+.rsz-preview { min-height: 160px; }
+.rsz-preview img { max-height: 36vh; max-height: 36dvh; }
+@media (min-width: 768px) { .rsz-preview img { max-height: calc(100vh - 220px); max-height: calc(100dvh - 220px); } }
+.dock-sec .cri-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.dock-sec .roi-bar { display: flex; flex-wrap: wrap; gap: 8px; }
+.dock-sec #download-btn, .dock-sec #blurimg-btn { width: 100%; }
+.dock-sec .preset-btn { padding: 8px 14px; }
+/* Rotate Image: the dock sits under the picture grid and stays at the bottom of the screen */
+.roi-options:has(.dock-wrap) { display: block; max-width: none; position: sticky; bottom: 0; z-index: 30; margin-top: 12px; }
+.roi-options .dock-wrap { max-width: 640px; margin: 0 auto; background: #fff; }
+.dark .roi-options .dock-wrap { background: #1e293b; }
+@media (min-width: 1024px) { .roi-options .dock-wrap { border: 1px solid #e2e8f0; } .roi-options .dock-panel { max-height: 360px; } }
