@@ -41,7 +41,7 @@
 {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Translate", "url": "https://fixlytools.com/tools/translate", "description": "Free online translator for English, Urdu, Arabic, Hindi and 40 more languages. Translate text instantly, copy, listen, and use offline on-device mode in Chrome. No sign-up.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
   </script>
   <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the translator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free with no sign-up. Online translation uses shared free services, so there can be daily limits at busy times."}}, {"@type": "Question", "name": "Does my text stay private?", "acceptedAnswer": {"@type": "Answer", "text": "In the online modes your text is sent to Cloudflare Workers AI, or to MyMemory as a backup, only to be translated. In the on-device mode in Chrome or Edge on a computer, the text never leaves your browser."}}, {"@type": "Question", "name": "Can it translate without internet?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but only in desktop Chrome or Edge, in the on-device mode, for language pairs the browser supports. The language pack downloads once and then works offline. Urdu is not in the browser's list at the moment, so Urdu needs the online mode."}}, {"@type": "Question", "name": "Which languages are supported?", "acceptedAnswer": {"@type": "Answer", "text": "More than 40, including English, Urdu, Arabic, Hindi, Persian, Punjabi, Pashto, Bengali, Turkish, Spanish, French, German, Chinese, Japanese and Korean."}}, {"@type": "Question", "name": "How accurate is it?", "acceptedAnswer": {"@type": "Answer", "text": "Machine translation is good for the general meaning but can make mistakes with idioms, names and religious, legal or medical text. Check important text with a person who knows both languages."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the translator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is free with no sign-up. Online translation uses shared free services, so there can be daily limits at busy times."}}, {"@type": "Question", "name": "Does my text stay private?", "acceptedAnswer": {"@type": "Answer", "text": "In the online modes your text is sent to Cloudflare Workers AI, to Google Cloud Translation when it is enabled, or to MyMemory as a backup, only to be translated. In the on-device mode in Chrome or Edge on a computer, the text never leaves your browser."}}, {"@type": "Question", "name": "Can it translate without internet?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but only in desktop Chrome or Edge, in the on-device mode, for language pairs the browser supports. The language pack downloads once and then works offline. Urdu is not in the browser's list at the moment, so Urdu needs the online mode."}}, {"@type": "Question", "name": "Which languages are supported?", "acceptedAnswer": {"@type": "Answer", "text": "More than 40, including English, Urdu, Arabic, Hindi, Persian, Punjabi, Pashto, Bengali, Turkish, Spanish, French, German, Chinese, Japanese and Korean."}}, {"@type": "Question", "name": "How accurate is it?", "acceptedAnswer": {"@type": "Answer", "text": "Machine translation is good for the general meaning but can make mistakes with idioms, names and religious, legal or medical text. Check important text with a person who knows both languages."}}]}
   </script>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans">
@@ -100,12 +100,11 @@
           </div>
           <div>
             <div class="nt-row" style="justify-content:space-between"><label for="tr-out" class="nt-label">Translation</label></div>
-            <textarea id="tr-out" rows="9" class="nt-field" readonly placeholder="The translation appears here."></textarea>
+            <div class="tr-outwrap"><textarea id="tr-out" rows="9" class="nt-field" readonly placeholder="The translation appears here."></textarea><div id="tr-dots" class="tr-dots" hidden aria-hidden="true"><span></span><span></span><span></span></div></div>
             <p id="tr-used" class="nt-hint"></p>
           </div>
         </div>
         <div class="nt-row">
-          <button type="button" id="tr-go" class="nt-btn"><i class="fa-solid fa-language"></i> Translate</button>
           <button type="button" id="tr-copy" class="nt-btn nt-btn-green"><i class="fa-solid fa-copy"></i> Copy</button>
           <button type="button" id="tr-speak" class="nt-btn nt-btn-alt"><i class="fa-solid fa-volume-high"></i> Listen</button>
           <button type="button" id="tr-clear" class="nt-btn nt-btn-alt"><i class="fa-solid fa-eraser"></i> Clear</button>
@@ -124,12 +123,12 @@
         <ol class="text-sm sm:text-base text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside">
           <li><strong>Choose the languages:</strong> Pick the language you are translating from (or leave it on Detect) and the language you want.</li>
           <li><strong>Paste your text:</strong> Type it or press Paste. Long text is split into parts automatically.</li>
-          <li><strong>Press Translate:</strong> The result appears on the right. Copy it or press Listen to hear it.</li>
+          <li><strong>Wait a moment:</strong> The translation appears by itself as soon as you paste or stop typing. Copy it or press Listen to hear it.</li>
         </ol>
       </div>
       <div>
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">About Privacy and Offline Use</h2>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">Unlike the other Fixlytools tools, online translation cannot run only inside your browser. Your text is sent to Cloudflare Workers AI, or to the MyMemory service if the first one is busy, and is used only to translate it. Fixlytools does not store the text. If you use desktop Chrome or Edge you can choose the on-device mode: the language pack downloads once, then translation works offline and the text never leaves your computer. This mode does not cover every language (Urdu is not in the browser list at the moment).</p>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">Unlike the other Fixlytools tools, online translation cannot run only inside your browser. Your text is sent to Cloudflare Workers AI or, when enabled, to Google Cloud Translation, or to the MyMemory service if the first one is busy, and is used only to translate it. Fixlytools does not store the text. If you use desktop Chrome or Edge you can choose the on-device mode: the language pack downloads once, then translation works offline and the text never leaves your computer. This mode does not cover every language (Urdu is not in the browser list at the moment).</p>
       </div>
       <div class="ad-slot ad-mid"></div>
 
@@ -137,7 +136,7 @@
         <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-5 text-sm sm:text-base text-slate-600 dark:text-slate-300">
           <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Is the translator free?</h3><p>Yes. It is free with no sign-up. Online translation uses shared free services, so there can be daily limits at busy times.</p></div>
-          <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does my text stay private?</h3><p>In the online modes your text is sent to Cloudflare Workers AI, or to MyMemory as a backup, only to be translated. In the on-device mode in Chrome or Edge on a computer, the text never leaves your browser.</p></div>
+          <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Does my text stay private?</h3><p>In the online modes your text is sent to Cloudflare Workers AI, to Google Cloud Translation when it is enabled, or to MyMemory as a backup, only to be translated. In the on-device mode in Chrome or Edge on a computer, the text never leaves your browser.</p></div>
           <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Can it translate without internet?</h3><p>Yes, but only in desktop Chrome or Edge, in the on-device mode, for language pairs the browser supports. The language pack downloads once and then works offline. Urdu is not in the browser's list at the moment, so Urdu needs the online mode.</p></div>
           <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">Which languages are supported?</h3><p>More than 40, including English, Urdu, Arabic, Hindi, Persian, Punjabi, Pashto, Bengali, Turkish, Spanish, French, German, Chinese, Japanese and Korean.</p></div>
           <div><h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">How accurate is it?</h3><p>Machine translation is good for the general meaning but can make mistakes with idioms, names and religious, legal or medical text. Check important text with a person who knows both languages.</p></div>

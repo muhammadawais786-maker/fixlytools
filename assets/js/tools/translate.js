@@ -15,7 +15,7 @@
 
   const $ = (id) => document.getElementById(id);
   const src = $('tr-src'), dst = $('tr-dst'), inp = $('tr-in'), out = $('tr-out'), engineSel = $('tr-engine');
-  const goBtn = $('tr-go'), status = $('tr-status'), stats = $('tr-stats'), used = $('tr-used'), warn = $('tr-warn');
+  const dots = $('tr-dots'), status = $('tr-status'), stats = $('tr-stats'), used = $('tr-used'), warn = $('tr-warn');
   if (!inp) return;
 
   function fill(sel, withAuto) {
@@ -29,7 +29,7 @@
   const hasLocal = 'Translator' in self;
   if (hasLocal) engineSel.add(new Option('On this device (offline, Chrome/Edge desktop)', 'local'));
   const warnText = {
-    online: 'Online modes send your text to Cloudflare (Workers AI) or, as a backup, to MyMemory, only to translate it. They do not receive your files or your name. For private text choose the on-device mode where available.',
+    online: 'Online modes send your text to Cloudflare (Workers AI), Google Cloud Translation (when enabled) or, as a backup, to MyMemory, only to translate it. They do not receive your files or your name. For private text choose the on-device mode where available.',
     local: 'On-device mode: your text stays in your browser and is not sent anywhere. The language pack downloads once, then it works offline.'
   };
   function showWarn() { warn.textContent = engineSel.value === 'local' ? warnText.local : warnText.online; warn.className = 'nt-note' + (engineSel.value === 'local' ? ' nt-note-blue' : ''); }
@@ -81,11 +81,13 @@
     return parts;
   }
 
+  let lastEngine = 'cloudflare';
   async function viaCloudflare(text, s, t) {
     const r = await fetch('/api/translate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, source: s, target: t }) });
     if (!r.ok) throw new Error('cf ' + r.status);
     const d = await r.json();
     if (!d.translation) throw new Error('cf empty');
+    lastEngine = d.engine || 'cloudflare';
     return d.translation;
   }
   async function viaMyMemory(text, s, t) {
@@ -118,17 +120,21 @@
     return res.join('');
   }
 
-  let busy = false;
+  // Quran / Hadith Arabic carries vowel marks (tashkeel) that confuse translation models; remove them before translating
+  function stripMarks(t) { return t.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640\u08D3-\u08FF]/g, '').replace(/[\uFD3E\uFD3F]/g, ''); }
+  let seq = 0, timer = null;
+  function schedule(ms) { clearTimeout(timer); timer = setTimeout(run, ms); }
   async function run() {
-    if (busy) return;
-    const text = inp.value.trim();
-    if (!text) { showToast('Type or paste some text first.', 'warning'); return; }
-    if (text.length > MAX_TOTAL) { showToast('Please keep the text under ' + MAX_TOTAL.toLocaleString() + ' characters.', 'warning'); return; }
+    clearTimeout(timer);
+    const rawText = inp.value.trim();
+    const text = stripMarks(rawText).replace(/[ \t]{2,}/g, ' ').trim();
+    const my = ++seq;
+    if (!rawText) { out.value = ''; used.textContent = ''; status.textContent = ''; dots.hidden = true; return; }
+    if (text.length > MAX_TOTAL) { dots.hidden = true; showToast('Please keep the text under ' + MAX_TOTAL.toLocaleString() + ' characters.', 'warning'); return; }
     let s = src.value; const t = dst.value;
     if (s === 'auto') { s = detect(text); }
-    if (s === t) { out.value = text; used.textContent = 'Source and target language are the same.'; return; }
-    busy = true; goBtn.disabled = true; out.value = ''; used.textContent = '';
-    status.textContent = 'Translating...';
+    if (s === t) { out.value = rawText; used.textContent = 'Source and target language are the same.'; dots.hidden = true; return; }
+    dots.hidden = false; used.textContent = ''; status.textContent = '';
     try {
       let result = '', label = '';
       if (engineSel.value === 'local') {
@@ -142,6 +148,7 @@
         let engine = 'cf';
         const outParts = [];
         for (let i = 0; i < pieces.length; i++) {
+          if (my !== seq) return;
           const p = pieces[i];
           if (/^\n+$/.test(p) || !p.trim()) { outParts.push(p); continue; }
           let tr = null;
@@ -155,31 +162,37 @@
             tr = sub.join(' ');
           }
           outParts.push(tr);
-          status.textContent = 'Translating... ' + Math.round(((i + 1) / pieces.length) * 100) + '%';
         }
         result = outParts.join('');
-        label = engine === 'cf' ? 'Translated with Cloudflare Workers AI' : 'Translated with MyMemory (backup service)';
+        label = engine !== 'cf' ? 'Translated with MyMemory (backup service)'
+          : lastEngine === 'google' ? 'Translated with Google Cloud Translation'
+          : lastEngine === 'cloudflare-pivot' ? 'Translated with Cloudflare Workers AI (through English for better accuracy)'
+          : 'Translated with Cloudflare Workers AI';
       }
+      if (my !== seq) return;
       out.value = result; used.textContent = label;
-      status.textContent = 'Done.';
     } catch (e) {
-      status.textContent = '';
+      if (my !== seq) return;
       showToast(e && e.message ? e.message : 'Translation failed. Please try again.', 'error');
-    } finally { busy = false; goBtn.disabled = false; }
+    } finally { if (my === seq) dots.hidden = true; }
   }
-  goBtn.addEventListener('click', run);
-  inp.addEventListener('keydown', (e) => { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') run(); });
+  // automatic: translate by itself after typing stops, straight away after a paste or a language change
+  inp.addEventListener('input', () => schedule(700));
+  inp.addEventListener('paste', () => setTimeout(() => schedule(50), 0));
+  src.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
+  dst.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
+  engineSel.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
 
   $('tr-swap').addEventListener('click', () => {
     const s = src.value === 'auto' ? detect(inp.value) : src.value;
     src.value = dst.value; dst.value = s;
     const o = out.value; out.value = ''; if (o) inp.value = o;
-    setDir(); updateStats();
+    setDir(); updateStats(); if (inp.value.trim()) schedule(50);
   });
   $('tr-copy').addEventListener('click', () => ntCopyWithToast(out.value, 'Translation copied.'));
-  $('tr-clear').addEventListener('click', () => { inp.value = ''; out.value = ''; used.textContent = ''; status.textContent = ''; updateStats(); inp.focus(); });
+  $('tr-clear').addEventListener('click', () => { seq++; dots.hidden = true; inp.value = ''; out.value = ''; used.textContent = ''; status.textContent = ''; updateStats(); inp.focus(); });
   $('tr-paste').addEventListener('click', async () => {
-    try { inp.value = await navigator.clipboard.readText(); updateStats(); } catch (e) { showToast('Paste with Ctrl+V or long-press in the box.', 'info'); }
+    try { inp.value = await navigator.clipboard.readText(); updateStats(); schedule(50); } catch (e) { showToast('Paste with Ctrl+V or long-press in the box.', 'info'); }
   });
   $('tr-speak').addEventListener('click', () => {
     if (!out.value) { showToast('Translate something first.', 'warning'); return; }
