@@ -378,3 +378,40 @@ function initServiceWorker() {
     navigator.serviceWorker.register('/sw.js').catch(() => { /* offline mode is optional */ });
   });
 }
+
+
+// Back button returns to the same tool card on the category page; footer "Feedback" link
+(function () {
+  const LISTING = /^\/(index(\.html)?|image-tools|pdf-tools|text-tools|math-calculators|generator-tools)?\/?$/;
+  // 1. listing pages: give every card an anchor and scroll to it when asked
+  document.querySelectorAll('.tool-card[href^="/tools/"]').forEach((a) => { a.id = 'card-' + a.getAttribute('href').split('/').pop(); });
+  if (/^#card-/.test(location.hash)) {
+    const t = document.getElementById(location.hash.slice(1));
+    if (t) setTimeout(() => t.scrollIntoView({ block: 'center' }), 150);
+  }
+  // 2. tool pages: smart Back
+  const back = document.querySelector('a[data-ft-back]');
+  if (back) {
+    const slug = location.pathname.split('/').pop().replace(/\.html$/, '');
+    const base = back.getAttribute('href').split('#')[0];
+    back.setAttribute('href', base + '#card-' + slug);
+    back.addEventListener('click', (e) => {
+      try {
+        if (document.referrer) {
+          const r = new URL(document.referrer);
+          if (r.origin === location.origin && LISTING.test(r.pathname) && history.length > 1) { e.preventDefault(); history.back(); }
+        }
+      } catch (err) { /* normal link */ }
+    });
+  }
+  // 3. feedback link in the footer
+  const f = document.querySelector('footer .flex-wrap');
+  if (f && !f.querySelector('[data-feedback]')) {
+    const m = document.createElement('a');
+    m.setAttribute('data-feedback', '');
+    m.className = 'hover:text-blue-600';
+    m.textContent = 'Feedback';
+    m.href = 'mailto:support@fixlytools.com?subject=' + encodeURIComponent('Fixlytools feedback: ' + document.title) + '&body=' + encodeURIComponent('Page: ' + location.href + '\n\nWhat happened or what would you like to see?\n');
+    f.appendChild(m);
+  }
+})();

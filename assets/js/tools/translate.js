@@ -23,7 +23,8 @@
     LANGS.forEach((l) => sel.add(new Option(l[1], l[0])));
   }
   fill(src, true); fill(dst, false);
-  src.value = 'auto'; dst.value = 'ur';
+  dst.insertBefore(new Option('Select language', ''), dst.firstChild);
+  src.value = 'auto'; dst.value = '';
 
   // offline option only where the browser has the API
   const hasLocal = 'Translator' in self;
@@ -36,8 +37,9 @@
   engineSel.addEventListener('change', showWarn); showWarn();
 
   function setDir() {
-    inp.dir = RTL.indexOf(src.value) >= 0 ? 'rtl' : 'auto';
-    out.dir = RTL.indexOf(dst.value) >= 0 ? 'rtl' : 'ltr';
+    // empty boxes always keep their hint on the left; written text follows its language
+    inp.dir = !inp.value ? 'ltr' : (RTL.indexOf(src.value) >= 0 ? 'rtl' : 'auto');
+    out.dir = (out.value && RTL.indexOf(dst.value) >= 0) ? 'rtl' : 'ltr';
   }
   src.addEventListener('change', setDir); dst.addEventListener('change', setDir); setDir();
   function updateStats() { stats.textContent = inp.value.length.toLocaleString() + ' / ' + MAX_TOTAL.toLocaleString() + ' characters'; }
@@ -55,7 +57,8 @@
     if (deva / total > 0.3) return 'hi';
     if (n(/[ঀ-৿]/g) / total > 0.3) return 'bn';
     if (arab / total > 0.3) {
-      if (/[ٹڈڑںےہھ]/.test(text)) return 'ur';
+      // Urdu only if it has Urdu-only letters or common Urdu words (Quranic Arabic also uses ی ہ ھ)
+      if (/[ٹڈڑںے]/.test(text) || /(^|\s)(کے|کی|ہے|ہیں|میں|اور|سے|کو|نہیں|تھا|ہوں|یہ|وہ|ہو|کہ|پر|ایک)(\s|$|[،۔])/.test(text)) return 'ur';
       if (/[پچژگ]/.test(text)) return 'fa';
       return 'ar';
     }
@@ -132,6 +135,7 @@
     if (!rawText) { out.value = ''; used.textContent = ''; status.textContent = ''; dots.hidden = true; return; }
     if (text.length > MAX_TOTAL) { dots.hidden = true; showToast('Please keep the text under ' + MAX_TOTAL.toLocaleString() + ' characters.', 'warning'); return; }
     let s = src.value; const t = dst.value;
+    if (!t) { dots.hidden = true; status.textContent = 'Choose the language you want to translate into (To).'; return; }
     if (s === 'auto') { s = detect(text); }
     if (s === t) { out.value = rawText; used.textContent = 'Source and target language are the same.'; dots.hidden = true; return; }
     dots.hidden = false; used.textContent = ''; status.textContent = '';
@@ -170,27 +174,28 @@
           : 'Translated with Cloudflare Workers AI';
       }
       if (my !== seq) return;
-      out.value = result; used.textContent = label;
+      out.value = result; used.textContent = label; setDir();
     } catch (e) {
       if (my !== seq) return;
       showToast(e && e.message ? e.message : 'Translation failed. Please try again.', 'error');
     } finally { if (my === seq) dots.hidden = true; }
   }
   // automatic: translate by itself after typing stops, straight away after a paste or a language change
-  inp.addEventListener('input', () => schedule(700));
+  inp.addEventListener('input', () => { setDir(); schedule(500); });
   inp.addEventListener('paste', () => setTimeout(() => schedule(50), 0));
   src.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
   dst.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
   engineSel.addEventListener('change', () => { if (inp.value.trim()) schedule(50); });
 
   $('tr-swap').addEventListener('click', () => {
+    if (!dst.value) { showToast('Choose the To language first.', 'warning'); return; }
     const s = src.value === 'auto' ? detect(inp.value) : src.value;
     src.value = dst.value; dst.value = s;
     const o = out.value; out.value = ''; if (o) inp.value = o;
     setDir(); updateStats(); if (inp.value.trim()) schedule(50);
   });
   $('tr-copy').addEventListener('click', () => ntCopyWithToast(out.value, 'Translation copied.'));
-  $('tr-clear').addEventListener('click', () => { seq++; dots.hidden = true; inp.value = ''; out.value = ''; used.textContent = ''; status.textContent = ''; updateStats(); inp.focus(); });
+  $('tr-clear').addEventListener('click', () => { seq++; dots.hidden = true; inp.value = ''; out.value = ''; setDir(); used.textContent = ''; status.textContent = ''; updateStats(); inp.focus(); });
   $('tr-paste').addEventListener('click', async () => {
     try { inp.value = await navigator.clipboard.readText(); updateStats(); schedule(50); } catch (e) { showToast('Paste with Ctrl+V or long-press in the box.', 'info'); }
   });
